@@ -37,6 +37,7 @@ Detailed logs of the foundational engineering decisions:
 7. [ADR 0007: Observability Telemetry with Grafana Loki and OpenTelemetry](./docs/architecture-design/adrs/0007-observability-telemetry-loki-opentelemetry.md)
 8. [ADR 0008: Progressive Multi-Module Evolution with API Gateway and BFF Patterns](./docs/architecture-design/adrs/0008-progressive-multimodule-evolution-gateway-bff.md)
 9. [ADR 0009: Strict Dependency Pinning and Automated Vulnerability Management](./docs/architecture-design/adrs/0009-strict-dependency-pinning-vulnerability-management.md)
+10. [ADR 0010: Multi-Tenancy Architecture Strategy for SaaS Evolution](./docs/architecture-design/adrs/0010-multi-tenancy-architecture-strategy.md)
 
 ### 🏷️ Versioning & Audit Trail
 - [BMAD Automated Versioning Strategy](./docs/architecture-design/versioning_and_audit_strategy.md) - Learn how we automate Semantic Versioning and Release cycles.

@@ -13,12 +13,14 @@ Defines the boundary of the User Management System (UMS) interacting with corpor
 
 ```mermaid
 graph TD
-    User["👥 UMS User<br/>(Corporate Staff / Operators)"]
-    UMS["🏢 User Management System (UMS)<br/>(ums-workspace)"]
-    ExternalAuth["🔒 UMS Identity Service<br/>(OAuth / External LDAP)"]
+    User["👥 Multi-Tenant Users<br/>(Tenant A, B, C Staff)"]
+    UMS["🏢 UMS & SaaS Gateway<br/>(API Gateway & BFF)"]
+    ExternalAuth["🔒 External Identity Service<br/>(OAuth / Tenant IdP)"]
+    Downstream["📦 Downstream SaaS Services<br/>(TMS, WMS, etc.)"]
 
-    User -->|Logs in / Manages users| UMS
-    UMS -->|Verifies federated credentials| ExternalAuth
+    User -->|Logs in / Accesses Portal| UMS
+    UMS -->|Verifies credentials per Tenant| ExternalAuth
+    UMS -->|Routes traffic & enforces Tenant isolation| Downstream
 ```
 
 ---
@@ -28,17 +30,26 @@ Maps the physical subsystems (React Frontend, NestJS API, PostgreSQL Database) t
 
 ```mermaid
 graph TD
-    subgraph Browser["🌐 Client Browser"]
-        ReactApp["⚛️ Frontend React Web App<br/>(Zustand + React Query + Lucide)"]
+    subgraph Clients["🌐 Client Applications"]
+        ReactApp["⚛️ Frontend React Web App<br/>(Lazy-loaded Multi-Module Portal)"]
+        MobileApp["📱 Future Mobile App<br/>(iOS/Android)"]
     end
 
-    subgraph Server["🖥️ Application Server (Local Host/Cloud)"]
-        NestAPI["🦁 RESTful NestJS API<br/>(Clean Architecture / TypeORM)"]
-        PostgresDB["🐘 PostgreSQL 16 Database<br/>(TypeORM Persistence)"]
+    subgraph Gateways["🛡️ BFF Gateways"]
+        WebBFF["🕸️ Web BFF Gateway<br/>(Express/NestJS)"]
+        MobileBFF["📲 Mobile BFF Gateway<br/>(Payload Optimizer)"]
     end
 
-    ReactApp -->|1. HTTPS Queries / Secure TLS| NestAPI
-    NestAPI -->|2. TCP Connection / TypeORM Driver| PostgresDB
+    subgraph Server["🖥️ Application Services (Tenant Isolated)"]
+        NestAPI["🦁 RESTful NestJS Service<br/>(UMS Core / TMS / WMS)"]
+        PostgresDB["🐘 PostgreSQL 16 Database<br/>(Shared Schema + Row-Level Security RLS)"]
+    end
+
+    ReactApp -->|1. HTTPS / JWT + Tenant Header| WebBFF
+    MobileApp -->|1. HTTPS / Optimized Payload| MobileBFF
+    WebBFF -->|2. Internal TCP / gRPC| NestAPI
+    MobileBFF -->|2. Internal TCP / gRPC| NestAPI
+    NestAPI -->|3. Sets LOCAL tenant context| PostgresDB
 ```
 
 ---
@@ -133,3 +144,4 @@ To guarantee the healthy evolution of the monorepo towards distributed models an
 *   **[ADR 0007: Observability Telemetry with Grafana Loki and OpenTelemetry](file:///d:/Users/aarroyo/personal/sources/ums/ums-workspace/docs/architecture-design/adrs/0007-observability-telemetry-loki-opentelemetry.md)**: Details the asynchronous telemetry and instrumentation architecture using OpenTelemetry and lightweight collection in Grafana Loki.
 *   **[ADR 0008: Progressive Multi-Module Evolution with API Gateway and BFF](file:///d:/Users/aarroyo/personal/sources/ums/ums-workspace/docs/architecture-design/adrs/0008-progressive-multimodule-evolution-gateway-bff.md)**: Establishes the progressive design to transform this 100% Node.js reference solution into a multi-module portal capable of integrating independent systems (TMS, WMS, etc.) exposed as services with isolated databases, consumed via a central API Gateway and optimized through Backend For Frontend (BFF) gateways for Web and Mobile clients.
 *   **[ADR 0009: Strict Dependency Pinning and Automated Vulnerability Management](file:///d:/Users/aarroyo/personal/sources/ums/ums-workspace/docs/architecture-design/adrs/0009-strict-dependency-pinning-vulnerability-management.md)**: Establishes the strategy of zero-tolerance for dynamic dependency versions, enforcing static versions across the monorepo, with automated dependency bot updates and high/critical CI vulnerability checks.
+*   **[ADR 0010: Multi-Tenancy Architecture Strategy for SaaS Evolution](file:///d:/Users/aarroyo/personal/sources/ums/ums-workspace/docs/architecture-design/adrs/0010-multi-tenancy-architecture-strategy.md)**: Establishes the hybrid pooled multi-tenancy strategy utilizing a shared PostgreSQL schema coupled with Row-Level Security (RLS) to enforce absolute data isolation at the engine level for cost-effective SaaS scalability.
