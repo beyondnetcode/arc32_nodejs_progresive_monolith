@@ -24,7 +24,7 @@ This repository contains extensive technical documentation following the **bMAD 
 *   👉 **[Global Engineering Standards & BMAD Manifesto](./docs/artifacts/engineering_standards.md)**: **MANDATORY reading**. Establishes the non-negotiable coding standards, SOLID, Clean Code, OWASP compliance, and optional DDD guidelines.
 
 ### 🏗️ 2. Architectural Design
-*   👉 **[ULPMS Functional Specifications & Use Cases](./docs/functional/index.md)**: Details the complete functional scope, glossary, ER diagrams, and permission matrices of the User Life-Cycle & Permissions Management System (ULPMS).
+*   👉 **[ULPMS Functional Specifications & Use Cases](./docs/functional/)**: Details the complete functional scope, glossary, ER diagrams, and permission matrices of the User Life-Cycle & Permissions Management System (ULPMS).
 *   👉 **[C4 Architecture Spec & Technical Inventory](./docs/architecture-design/architecture_spec.md)**: Details the Level 1 (System Context), Level 2 (Container), and Level 3 (Component) diagrams of the UMS, along with the physical technology inventory.
 *   👉 **[Gap Analysis & Optimization Roadmap](./docs/artifacts/gap_analysis_and_optimization_plan.md)**: Analyzes the platform's architectural maturity against 16 Enterprise Quality Criteria and tracks active ADR implementations.
 
