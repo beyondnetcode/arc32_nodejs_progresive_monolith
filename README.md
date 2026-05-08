@@ -29,7 +29,7 @@ Click on the phases or files to navigate quickly and directly through the knowle
 *   🏗️ **[Phase 02 - Architectural Design](./ums-workspace/docs/02-architecture/)**:
     *   [C4 Master Specification](./ums-workspace/docs/02-architecture/architecture-spec.md)
 *   📜 **[Phase 03 - Architectural Decision Records (ADRs)](./ums-workspace/docs/03-adrs/)**:
-    *   [22 ADRs History](./ums-workspace/docs/03-adrs/)
+    *   [23 ADRs History](./ums-workspace/docs/03-adrs/)
 *   🛠️ **[Phase 04 - Engineering Standards and Artifacts](./ums-workspace/docs/04-artifacts/)**:
     *   [Global Standards](./ums-workspace/docs/04-artifacts/engineering-standards.md) | [Gap Analysis](./ums-workspace/docs/04-artifacts/gap-analysis-and-optimization-plan.md) | [QA Quality Plan](./ums-workspace/docs/04-artifacts/contract-testing-plan.md) | [Observability Strategy](./ums-workspace/docs/04-artifacts/observability-strategy.md)
 *   📈 **[Phase 05 - Release Roadmap](./ums-workspace/docs/05-roadmap/)**:
