@@ -74,8 +74,8 @@ graph TD
     UseCase -.->|Depende de| IUserRepo
     UseCase -.->|Depende de| IPassHasher
 
-    TypeOrmRepo --.->|Implementa| IUserRepo
-    BcryptHasher --.->|Implementa| IPassHasher
+    TypeOrmRepo -.->|Implementa| IUserRepo
+    BcryptHasher -.->|Implementa| IPassHasher
 ```
 
 ---
