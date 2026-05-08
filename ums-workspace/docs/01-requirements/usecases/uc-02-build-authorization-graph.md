@@ -64,5 +64,6 @@ sequenceDiagram
 ---
 
 ## 📋 4. Primary Operational Model Reference
-The complete transaction flow, Redis caching strategy, and Explicit-Deny compilation rules for this use case are modeled around the **SCM Transportation Analyst** role at the Callao Terminal (under *Logistics Corp*). For the detailed technical schemas, parameter structures, and OpenAPI examples, consult **[enterprise_iam_ums_specification.md](../../../brain/71335e4d-6260-47f1-b3d0-312cd05611ad/enterprise_iam_ums_specification.md)**.
+The complete transaction flow, Redis caching strategy, and Explicit-Deny compilation rules for this use case are modeled around the **SCM Transportation Analyst** role at the Callao Terminal (under *Logistics Corp*). For the detailed technical schemas, parameter structures, and OpenAPI examples, consult **[enterprise-iam-ums-specification.md](../../04-artifacts/enterprise-iam-ums-specification.md)**.
+
 
