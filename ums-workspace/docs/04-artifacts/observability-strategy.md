@@ -10,14 +10,14 @@ To ensure absolute visibility across our modular monolith and prepare for future
 
 ```mermaid
 graph TD
-    subgraph LGTMStack["📊 Enterprise LGTM Observability Stack"]
-        Grafana["💻 Grafana<br/>(Unified Visual Dashboard)"]
-        Loki["📝 Grafana Loki<br/>(Structured Log Aggregator)"]
-        Tempo["🕸️ Grafana Tempo<br/>(Distributed Trace Store)"]
-        Mimir["📈 Grafana Mimir<br/>(Scalable Metrics Storage)"]
+    subgraph LGTMStack["Enterprise LGTM Observability Stack"]
+        Grafana["Grafana (Unified Visual Dashboard)"]
+        Loki["Grafana Loki (Structured Log Aggregator)"]
+        Tempo["Grafana Tempo (Distributed Trace Store)"]
+        Mimir["Grafana Mimir (Scalable Metrics Storage)"]
     end
 
-    App["🔐 NestJS SCM Application"] -.->|Structured JSON Logs| Loki
+    App["NestJS SCM Application"] -.->|Structured JSON Logs| Loki
     App -.->|OpenTelemetry Tracing| Tempo
     App -.->|Prometheus RED Metrics| Mimir
 

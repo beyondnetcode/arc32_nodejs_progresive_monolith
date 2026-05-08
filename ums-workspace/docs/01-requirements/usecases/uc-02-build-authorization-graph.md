@@ -20,20 +20,20 @@ This document specifies the transaction flow, actors, and caching strategies for
 ```mermaid
 sequenceDiagram
     autonumber
-    participant Guard as 🛡️ NestJS Guard
-    participant Engine as 🧠 Auth Engine (Core)
-    participant DB as 🐘 PostgreSQL
-    participant Cache as ⚡ Redis Cache
+    participant Guard as NestJS Guard
+    participant Engine as Auth Engine (Core)
+    participant DB as PostgreSQL
+    participant Cache as Redis Cache
 
     Guard->>Cache: Query cached graph for User
     alt Cache Hit
         Cache-->>Guard: Return JSON Graph
     else Cache Miss
         Guard->>Engine: Fetch raw authorizations
-        Engine->>DB: Query assigned Profiles & Templates
+        Engine->>DB: Query assigned Profiles and Templates
         DB-->>Engine: Return Profile data
         Engine-->>Engine: Compile Explicit-Deny Precedence
-        Engine->>Cache: Save compiled JSON Graph (TTL=1hr)
+        Engine->>Cache: Save compiled JSON Graph
         Engine-->>Guard: Return JSON Graph
     end
 ```

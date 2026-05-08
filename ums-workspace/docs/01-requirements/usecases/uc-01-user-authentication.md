@@ -20,13 +20,13 @@ This document specifies the transaction flow, actors, and fallback strategies fo
 ```mermaid
 sequenceDiagram
     autonumber
-    actor User as 👤 SCM Corporate User
-    participant Web as ⚛️ React Web App
-    participant IdP as 🔑 Identity Provider (OIDC)
-    participant API as 🔐 NestJS API Gateway
+    actor User as SCM Corporate User
+    participant Web as React Web App
+    participant IdP as Identity Provider (OIDC)
+    participant API as NestJS API Gateway
 
     User->>Web: Click Login
-    Web->>IdP: Redirect to Login Page (Auth Code Flow with PKCE)
+    Web->>IdP: Redirect with PKCE Auth Code Flow
     User->>IdP: Enter Corporate Credentials
     IdP-->>Web: Redirect with Auth Code
     Web->>API: Exchange Auth Code

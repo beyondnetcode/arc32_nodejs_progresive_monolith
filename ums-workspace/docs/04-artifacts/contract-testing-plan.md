@@ -19,17 +19,17 @@ Contract testing operates under a "Consumer-Driven" model. The consumer (e.g., B
 ```mermaid
 sequenceDiagram
     autonumber
-    participant Cons as 💰 Consumer (Billing)
-    participant Pact as 📂 Pact Broker / Local Contract Store
-    participant Prov as 📦 Provider (Inventory)
+    participant Cons as Consumer (Billing)
+    participant Pact as Pact Broker / Local Contract Store
+    participant Prov as Provider (Inventory)
 
-    Note over Cons: Write Contract Test & Define Mock Payload
-    Cons->>Pact: 1. Generate & Publish Pact JSON Contract File
+    Note over Cons: Write Contract Test and Define Mock Payload
+    Cons->>Pact: 1. Generate and Publish Pact JSON Contract File
     Note over Prov: CI Pipeline Triggers Provider Verification
     Pact->>Prov: 2. Fetch Active Contracts
     Note over Prov: Replay Requests Against API Controller
-    Prov-->>Pact: 3. Publish Verification Results (Pass/Fail)
-    Note over Pact: Pact Broker checks "Can I Deploy?"
+    Prov-->>Pact: 3. Publish Verification Results Pass or Fail
+    Note over Pact: Pact Broker checks Can I Deploy
 ```
 
 ---

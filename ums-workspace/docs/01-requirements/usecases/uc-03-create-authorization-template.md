@@ -20,18 +20,18 @@ This document specifies the transaction flow, actors, and versioning rules for c
 ```mermaid
 sequenceDiagram
     autonumber
-    actor Admin as 👤 IT Administrator
-    participant Web as ⚛️ React Web App
-    participant API as 🔐 NestJS Backend
-    participant DB as 🐘 PostgreSQL
-    participant Audit as 📝 Audit Ledger
+    actor Admin as IT Administrator
+    participant Web as React Web App
+    participant API as NestJS Backend
+    participant DB as PostgreSQL
+    participant Audit as Audit Ledger
 
-    Admin->>Web: Define Name & Select Auths
+    Admin->>Web: Define Name and Select Auths
     Web->>API: POST /api/v1/templates
-    Note over API: Validate Schema & Versioning
-    API->>DB: Save Template (v1.0.0)
+    Note over API: Validate Schema and Versioning
+    API->>DB: Save Template Version 1.0.0
     API->>DB: Assign Template to Profile
-    API->>Audit: Log Audit Record (CDC)
+    API->>Audit: Log Audit Record CDC
     API-->>Web: Success Response
     Web-->>Admin: Show Success Notification
 ```

@@ -14,11 +14,11 @@ UMS resolves these issues by serving as the **Unified Gatekeeper** of the Produc
 
 ```mermaid
 graph TD
-    User["👥 Multi-Tenant Users"] -->|1. Authenticates (SSO/Passkey)| IdP["🔒 Zitadel IDP<br/>(Authentication Store)"]
+    User["Multi-Tenant Users"] -->|1. Authenticates SSO and Passkey| IdP["Zitadel IDP (Authentication Store)"]
     IdP -->|2. Issues JWT token| User
-    User -->|3. Requests Page Access (with JWT)| UMS["🏢 UMS Authorization Engine"]
-    UMS -->|4. Compiles Permission Graph| DB[(PostgreSQL RLS)]
-    UMS -->|5. Injects Dynamic Menu & Roles| Client["⚛️ Client Portal UI"]
+    User -->|3. Requests Page Access with JWT| UMS["UMS Authorization Engine"]
+    UMS -->|4. Compiles Permission Graph| DB["PostgreSQL Database with RLS"]
+    UMS -->|5. Injects Dynamic Menu and Roles| Client["Client Portal UI"]
 ```
 
 UMS separates **Authentication** from **Authorization**:
