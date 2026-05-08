@@ -18,22 +18,22 @@ The UMS is built leveraging the **BMAD Method**, enforcing strict **Clean Archit
 
 This repository contains extensive technical documentation following the **bMAD Method** and industry standards (C4 Model and Markdown Architectural Decision Records - MADR). Use the following curated guides to navigate the codebase:
 
-### 🏛️ Estructura y Taxonomía bMAD (Navegación Interactiva)
-Haz clic en las fases o en los archivos para navegar de forma rápida y directa por la base de conocimiento:
+### 🏛️ bMAD Structure and Taxonomy (Interactive Navigation)
+Click on the phases or files to navigate quickly and directly through the knowledge base:
 
-*   🗺️ **[Fase Principal - Índice Maestro y Guías de Navegación](./ums-workspace/docs/index.md)** (Índice central unificado)
-*   🎯 **[Fase 00 - Visión de Producto](./ums-workspace/docs/00-product/)**:
-    *   [Visión de Producto](./ums-workspace/docs/00-product/product-vision.md) | [Contexto de Negocio](./ums-workspace/docs/00-product/business-context.md) | [Alcance y Límites](./ums-workspace/docs/00-product/scope.md) | [Objetivos](./ums-workspace/docs/00-product/objectives.md) | [Stakeholders](./ums-workspace/docs/00-product/stakeholders.md)
-*   📋 **[Fase 01 - Requerimientos de Dominio](./ums-workspace/docs/01-requirements/)**:
-    *   [Casos de Uso Atómicos](./ums-workspace/docs/01-requirements/usecases/) | [Modelo de Datos Conceptual](./ums-workspace/docs/01-requirements/conceptual-data-model.md) | [Matriz de Permisos](./ums-workspace/docs/01-requirements/permission-matrix-example.md) | [Glosario DDD](./ums-workspace/docs/01-requirements/glossary.md)
-*   🏗️ **[Fase 02 - Diseño de Arquitectura](./ums-workspace/docs/02-architecture/)**:
-    *   [Especificación Maestra C4](./ums-workspace/docs/02-architecture/architecture-spec.md)
-*   📜 **[Fase 03 - Decisiones de Arquitectura (ADRs)](./ums-workspace/docs/03-adrs/)**:
-    *   [Historial de 19 ADRs](./ums-workspace/docs/03-adrs/)
-*   🛠️ **[Fase 04 - Estándares de Ingeniería y Artefactos](./ums-workspace/docs/04-artifacts/)**:
-    *   [Estándares Globales](./ums-workspace/docs/04-artifacts/engineering-standards.md) | [Análisis de Brechas](./ums-workspace/docs/04-artifacts/gap-analysis-and-optimization-plan.md) | [Plan de Calidad QA](./ums-workspace/docs/04-artifacts/contract-testing-plan.md) | [Estrategia de Observabilidad](./ums-workspace/docs/04-artifacts/observability-strategy.md)
-*   📈 **[Fase 05 - Roadmap de Releases](./ums-workspace/docs/05-roadmap/)**:
-    *   [Versionamiento Semántico](./ums-workspace/docs/05-roadmap/versioning-and-audit-strategy.md)
+*   🗺️ **[Main Phase - Master Index and Navigation Guides](./ums-workspace/docs/index.md)** (Unified central index)
+*   🎯 **[Phase 00 - Product Vision](./ums-workspace/docs/00-product/)**:
+    *   [Product Vision](./ums-workspace/docs/00-product/product-vision.md) | [Business Context](./ums-workspace/docs/00-product/business-context.md) | [Scope and Boundaries](./ums-workspace/docs/00-product/scope.md) | [Objectives](./ums-workspace/docs/00-product/objectives.md) | [Stakeholders](./ums-workspace/docs/00-product/stakeholders.md)
+*   📋 **[Phase 01 - Domain Requirements](./ums-workspace/docs/01-requirements/)**:
+    *   [Atomic Use Cases](./ums-workspace/docs/01-requirements/usecases/) | [Conceptual Data Model](./ums-workspace/docs/01-requirements/conceptual-data-model.md) | [Permission Matrix](./ums-workspace/docs/01-requirements/permission-matrix-example.md) | [DDD Glossary](./ums-workspace/docs/01-requirements/glossary.md)
+*   🏗️ **[Phase 02 - Architectural Design](./ums-workspace/docs/02-architecture/)**:
+    *   [C4 Master Specification](./ums-workspace/docs/02-architecture/architecture-spec.md)
+*   📜 **[Phase 03 - Architectural Decision Records (ADRs)](./ums-workspace/docs/03-adrs/)**:
+    *   [19 ADRs History](./ums-workspace/docs/03-adrs/)
+*   🛠️ **[Phase 04 - Engineering Standards and Artifacts](./ums-workspace/docs/04-artifacts/)**:
+    *   [Global Standards](./ums-workspace/docs/04-artifacts/engineering-standards.md) | [Gap Analysis](./ums-workspace/docs/04-artifacts/gap-analysis-and-optimization-plan.md) | [QA Quality Plan](./ums-workspace/docs/04-artifacts/contract-testing-plan.md) | [Observability Strategy](./ums-workspace/docs/04-artifacts/observability-strategy.md)
+*   📈 **[Phase 05 - Release Roadmap](./ums-workspace/docs/05-roadmap/)**:
+    *   [Semantic Versioning](./ums-workspace/docs/05-roadmap/versioning-and-audit-strategy.md)
 
 ---
 
