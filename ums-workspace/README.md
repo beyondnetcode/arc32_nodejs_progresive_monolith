@@ -31,7 +31,7 @@ Click on the phases or files to navigate quickly and directly through the knowle
 *   🏗️ **[Phase 02 - Architectural Design](./docs/02-architecture/)**:
     *   [C4 Master Specification](./docs/02-architecture/architecture-spec.md)
 *   📜 **[Phase 03 - Architectural Decision Records (ADRs)](./docs/03-adrs/)**:
-    *   [21 ADRs History](./docs/03-adrs/)
+    *   [22 ADRs History](./docs/03-adrs/)
 *   🛠️ **[Phase 04 - Engineering Standards and Artifacts](./docs/04-artifacts/)**:
     *   [Global Standards](./docs/04-artifacts/engineering-standards.md) | [Gap Analysis](./docs/04-artifacts/gap-analysis-and-optimization-plan.md) | [QA Quality Plan](./docs/04-artifacts/contract-testing-plan.md) | [Observability Strategy](./docs/04-artifacts/observability-strategy.md)
 *   📈 **[Phase 05 - Release Roadmap](./docs/05-roadmap/)**:
