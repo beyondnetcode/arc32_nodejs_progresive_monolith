@@ -12,5 +12,16 @@
     "lint": {
       "cache": true
     }
+  },
+  "release": {
+    "projects": ["*"],
+    "changelog": {
+      "workspaceChangelog": {
+        "createRelease": "github"
+      }
+    },
+    "version": {
+      "conventionalCommits": true
+    }
   }
 }
