@@ -12,8 +12,8 @@ High-concurrency portals (like appointment scheduling or inventory checking) can
 ## Decision
 We will introduce a distributed caching layer using **Redis**:
 
-1. **NestJS CacheManager**: Integrate the `@nestjs/cache-manager` module configured with a Redis store.
-2. **Read-Aside Caching**: High-frequency, low-mutation queries (e.g., master data catalogs, active operational statuses) will query Redis first. If a cache miss occurs, the database is queried, and the result is stored in Redis with an appropriate TTL (Time To Live).
+1. **Cache Adapter (Tool Transparency)**: We will integrate the `@nestjs/cache-manager` module configured with a Redis store, but it will be strictly implemented as an Infrastructure Adapter. The Core domain will only interact with a pure `ICachePort` interface, remaining completely unaware of Redis or `@nestjs/cache-manager`.
+2. **Read-Aside Caching**: High-frequency, low-mutation queries (e.g., master data catalogs, active operational statuses) will query the `ICachePort` first. If a cache miss occurs, the database is queried, and the result is stored in the cache with an appropriate TTL (Time To Live).
 3. **Cache Invalidation**: Mutations to cached entities must synchronously trigger cache invalidation events to ensure data consistency.
 
 ## Consequences

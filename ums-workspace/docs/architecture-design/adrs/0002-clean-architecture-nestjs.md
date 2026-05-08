@@ -1,4 +1,4 @@
-﻿# ADR 0002: Clean Architecture and Hexagonal Boundaries on NestJS
+# ADR 0002: Clean Architecture and Hexagonal Boundaries on NestJS
 
 ## Status
 Accepted
@@ -16,6 +16,7 @@ We decided to strictly enforce **Clean and Hexagonal Architecture** boundaries:
    * **`application/`**: Use cases, orchestrators, payload DTOs. Can only depend on `core`.
    * **`infrastructure/`**: Adapters (controllers, database entities, repositories, security hashing implementations). Can depend on `core` and `application`.
 2. Configure **`eslint-plugin-boundaries`** inside `.eslintrc.js` to map these folder patterns and block invalid imports (e.g., blocking `core` from importing from `infrastructure`) with custom, human-readable compilation errors.
+3. **Absolute Tool Transparency (Dependency Inversion Principle)**: Any third-party tool, library, or framework (e.g., TypeORM, Redis, Axios, Opossum, Unleash) **MUST NOT** be imported directly into the `core` or `application` layers. Instead, the `core` defines abstract Interfaces (Ports), and the `infrastructure` provides implementations (Adapters) that wrap these tools. If a tool is replaced in the future, exactly zero lines of code in the core business logic will change.
 
 ## Consequences
 

@@ -12,8 +12,8 @@ Deploying new, complex, or risky features often requires halting the system or r
 ## Decision
 We will implement a **Feature Flagging (Toggle)** architecture:
 
-1. **Dynamic Toggles**: Use a dedicated feature flag management system (like Unleash, LaunchDarkly, or a custom in-house Postgres module with a Redis cache) to evaluate feature states at runtime.
-2. **Progressive Rollouts**: Code branches for new features will be wrapped in feature flag checks. This allows for A/B testing, Canary releases (enabling a feature for only 5% of users), and instant "kill switches" if a new feature causes critical errors.
+1. **Dynamic Toggles (Infrastructure Adapter)**: We will use a dedicated feature flag management system (like Unleash, LaunchDarkly, or a custom in-house Postgres module). Crucially, the Core will only depend on an `IFeatureTogglePort`. The actual tool (e.g., Unleash SDK) will be strictly confined to an Infrastructure Adapter. Changing from Unleash to LaunchDarkly will require zero changes to the Domain or Application layers.
+2. **Progressive Rollouts**: Code branches for new features within Use Cases will evaluate the `IFeatureTogglePort`. This allows for A/B testing, Canary releases (enabling a feature for only 5% of users), and instant "kill switches" if a new feature causes critical errors.
 
 ## Consequences
 * **Pros**: Decouples deployment from release. Enables trunk-based development and zero-downtime rollbacks for failing features.
