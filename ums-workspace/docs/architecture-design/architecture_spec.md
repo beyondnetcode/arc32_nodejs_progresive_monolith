@@ -7,7 +7,31 @@ This document details the formal system design specification for the **`ums-work
 
 ---
 
-## 🗺️ 1. C4 Model
+## 🎯 1. Architectural Deliverables & Requirements Baseline
+
+The following table defines the mandatory deliverables, strategic scope, and contractual design requirements governing the software architecture of this monorepo:
+
+| Priority | Deliverable | Description (Strategic Level – Executive Rationale) |
+| :--- | :--- | :--- |
+| **1** | Bounded Context Map | Representation of the bounded contexts of the SCM domain, their responsibilities, how they relate, and how they will evolve. Establishes a clear functional scope for teams and budgeting. |
+| **2** | Platform Core Definition | Strategy that identifies cross-cutting capabilities (Identity, Master Data, Event Bus, API Gateway), their common purpose, and reuse principles. Justifies investments in shared components. |
+| **3** | C4 Diagram (Context, Container, Component) | Architectural vision at levels 1 and 2: external systems, large containers, and communication between them. Sizes technical complexity and allows estimating effort without detailing classes or internal components. |
+| **4** | Database Strategy | Substantiates the choice of persistence pattern (Database-per-Module), guidelines for distributed transactions, and general backup and recovery policies. Details the impact on costs and operations. |
+| **5** | Event Domain Model (Event Storming) | Map of relevant business events, their producers, and consumers, along with delivery and ordering principles. Guides integration and the effort associated with orchestration/choreography. |
+| **6** | End-to-End Observability Strategy | Approach to distributed telemetry: traceability of complete business processes, key metrics, and logging models at the architectural level. Used to estimate monitoring tools and costs. |
+| **7** | Identity & Authorization Design | Strategy for the identity and authorization model: Identity Provider (IdP), authentication flow between contexts, and session guidelines. Helps size security across all domains. |
+| **8** | Documented Non-Functional Requirements (NFRs) | Definition of measurable non-functional requirements that condition the architecture: latency, throughput, availability, and graceful degradation mechanisms. Represents contractual targets that the design must meet. |
+| **9** | Master Data Management Strategy | Work plan for master data: key entities, migration approach from SAP, quality guidelines, and phases. Justifies the integration and data cleansing effort in the budget. |
+| **10** | API Versioning & Evolution Strategy | Guidelines for contract evolution (APIs and events): how changes are introduced without breaking dependencies. Forecasts technical governance and the cost of maintaining compatibility. |
+| **11** | Multi-Domain Synchronization Strategy | Approach to eventual consistency between contexts: definition of sources of truth, duplication guidelines, and conflict resolution. Reveals integration complexity and its impact on timelines. |
+| **12** | Initial Architecture Decision Records (ADRs) | Log of the most influential architectural decisions, their justification, and alternatives. Backs up why a specific path was chosen, clarifying risks and assumed costs. |
+| **13** | Integration Contract Testing Plan | Strategy to ensure interactions between contexts comply with their contracts, integrated into the CI/CD pipeline. Justifies quality assurance in integrations without detailing specific tools. |
+| **14** | Deployment Infrastructure | Layout of the topology (cloud/on-premise/hybrid), key managed services, and operational cost estimations. Provides a financial and technical baseline for sizing. |
+| **15** | Work Breakdown Structure & Plan | Roadmap with phases, sprints, profiles, milestones, and acceptance criteria. Translates strategy into a schedule and justifies workload and costs for each stage. |
+
+---
+
+## 🗺️ 2. C4 Model
 
 The architectural design of UMS is modeled at three progressive levels of abstraction to align business vision with physical code implementation.
 
@@ -94,7 +118,7 @@ graph TD
 
 ---
 
-## 📊 2. Dependency Technical Inventory (Sovereign Tech Inventory)
+## 📊 3. Dependency Technical Inventory (Sovereign Tech Inventory)
 
 This inventory details all tools, libraries, plugins, and components per workspace with their respective installed version, technical lifecycle recommendation (*Staff Recommendation*), and official reference URL.
 
@@ -139,7 +163,7 @@ This inventory details all tools, libraries, plugins, and components per workspa
 
 ---
 
-## 🧠 3. Architectural Decision Matrix
+## 🧠 4. Architectural Decision Matrix
 
 This matrix maps foundational technical decisions to their targeted Quality Attributes, summarizing the architectural strategy and enforcement mechanisms to ensure a verifiable and sustainable system under the **bMAD Method**:
 
@@ -158,7 +182,7 @@ This matrix maps foundational technical decisions to their targeted Quality Attr
 
 ---
 
-## 📈 4. Technical Debt Management & Architectural Roadmap (Backlog)
+## 📈 5. Technical Debt Management & Architectural Roadmap (Backlog)
 
 To guarantee the healthy evolution of the monorepo towards distributed models and production telemetry, the following items are established in the architecture backlog:
 
