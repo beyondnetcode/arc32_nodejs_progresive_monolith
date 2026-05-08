@@ -20,25 +20,22 @@ The UMS is built leveraging the **BMAD Method**, enforcing strict **Clean Archit
 
 This repository contains extensive technical documentation following the **bMAD Method** and industry standards (C4 Model and Markdown Architectural Decision Records - MADR). Use the following curated guides to navigate the codebase:
 
-### 🏛️ Estructura y Taxononomía bMAD (Navegación Rápida)
-Puedes navegar directamente a cada fase de la documentación oficial haciendo clic en las carpetas a continuación:
+### 🏛️ Estructura y Taxonomía bMAD (Navegación Interactiva)
+Haz clic en las fases o en los archivos para navegar de forma rápida y directa por la base de conocimiento:
 
-```directory
-/docs/
-├── 🗺️ [Master Index & Guides](./docs/index.md) - Índice unificado de navegación
-│
-├── 🎯 [00-product/](./docs/00-product/) - Visión, objetivos y contexto de negocio
-│
-├── 📋 [01-requirements/](./docs/01-requirements/) - Casos de uso funcionales, ERD y glosario
-│
-├── 🏗️ [02-architecture/](./docs/02-architecture/) - Especificación técnica y modelo C4
-│
-├── 📜 [03-adrs/](./docs/03-adrs/) - Bitácora de decisiones arquitectónicas (19 ADRs)
-│
-├── 🛠️ [04-artifacts/](./docs/04-artifacts/) - Estándares de ingeniería, QA y observabilidad
-│
-└── 📈 [05-roadmap/](./docs/05-roadmap/) - Estrategias de releases y versionamiento semántico
-```
+*   🗺️ **[Fase Principal - Índice Maestro y Guías de Navegación](./docs/index.md)** (Índice central unificado)
+*   🎯 **[Fase 00 - Visión de Producto](./docs/00-product/)**:
+    *   [Visión de Producto](./docs/00-product/product-vision.md) | [Contexto de Negocio](./docs/00-product/business-context.md) | [Alcance y Límites](./docs/00-product/scope.md) | [Objetivos](./docs/00-product/objectives.md) | [Stakeholders](./docs/00-product/stakeholders.md)
+*   📋 **[Fase 01 - Requerimientos de Dominio](./docs/01-requirements/)**:
+    *   [Casos de Uso Atómicos](./docs/01-requirements/usecases/) | [Modelo de Datos Conceptual](./docs/01-requirements/conceptual-data-model.md) | [Matriz de Permisos](./docs/01-requirements/permission-matrix-example.md) | [Glosario DDD](./docs/01-requirements/glossary.md)
+*   🏗️ **[Fase 02 - Diseño de Arquitectura](./docs/02-architecture/)**:
+    *   [Especificación Maestra C4](./docs/02-architecture/architecture-spec.md)
+*   📜 **[Fase 03 - Decisiones de Arquitectura (ADRs)](./docs/03-adrs/)**:
+    *   [Historial de 19 ADRs](./docs/03-adrs/)
+*   🛠️ **[Fase 04 - Estándares de Ingeniería y Artefactos](./docs/04-artifacts/)**:
+    *   [Estándares Globales](./docs/04-artifacts/engineering-standards.md) | [Análisis de Brechas](./docs/04-artifacts/gap-analysis-and-optimization-plan.md) | [Plan de Calidad QA](./docs/04-artifacts/contract-testing-plan.md) | [Estrategia de Observabilidad](./docs/04-artifacts/observability-strategy.md)
+*   📈 **[Fase 05 - Roadmap de Releases](./docs/05-roadmap/)**:
+    *   [Versionamiento Semántico](./docs/05-roadmap/versioning-and-audit-strategy.md)
 
 ---
 
