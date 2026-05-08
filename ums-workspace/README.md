@@ -21,11 +21,11 @@ The UMS is built leveraging the **BMAD Method**, enforcing strict **Clean Archit
 This repository contains extensive technical documentation following the **bMAD Method** and industry standards (C4 Model and Markdown Architectural Decision Records - MADR). Use the following curated guides to navigate the codebase:
 
 ### 📖 1. Standards & Mandates (Core)
-*   👉 **[Global Engineering Standards & BMAD Manifesto](./docs/engineering_standards.md)**: **MANDATORY reading**. Establishes the non-negotiable coding standards, SOLID, Clean Code, OWASP compliance, and optional DDD guidelines.
+*   👉 **[Global Engineering Standards & BMAD Manifesto](./docs/artifacts/engineering_standards.md)**: **MANDATORY reading**. Establishes the non-negotiable coding standards, SOLID, Clean Code, OWASP compliance, and optional DDD guidelines.
 
 ### 🏗️ 2. Architectural Design
 *   👉 **[C4 Architecture Spec & Technical Inventory](./docs/architecture-design/architecture_spec.md)**: Details the Level 1 (System Context), Level 2 (Container), and Level 3 (Component) diagrams of the UMS, along with the physical technology inventory.
-*   👉 **[Gap Analysis & Optimization Roadmap](./docs/architecture-design/gap_analysis_and_optimization_plan.md)**: Analyzes the platform's architectural maturity against 16 Enterprise Quality Criteria and tracks active ADR implementations.
+*   👉 **[Gap Analysis & Optimization Roadmap](./docs/artifacts/gap_analysis_and_optimization_plan.md)**: Analyzes the platform's architectural maturity against 16 Enterprise Quality Criteria and tracks active ADR implementations.
 
 ### 📜 3. Architectural Decision Records (ADRs)
 Foundational engineering decisions grouped by architectural focus:
@@ -56,7 +56,7 @@ Foundational engineering decisions grouped by architectural focus:
 *   [ADR 0019: Tactical Design Patterns for Domain Integrity (Result Pattern)](./docs/architecture-design/adrs/0019-tactical-design-patterns-future-proofing.md)
 
 ### 🏷️ 4. Versioning & Release Cycles
-*   [BMAD Automated Versioning Strategy](./docs/architecture-design/versioning_and_audit_strategy.md) - Learn how we automate Semantic Versioning and Release cycles.
+*   [BMAD Automated Versioning Strategy](./docs/artifacts/versioning_and_audit_strategy.md) - Learn how we automate Semantic Versioning and Release cycles.
 *   **[View the Official CHANGELOG](./CHANGELOG.md)** - The pristine audit log of all merged features and fixes across the monorepo.
 
 ---
