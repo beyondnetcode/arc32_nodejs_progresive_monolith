@@ -62,6 +62,7 @@ Technical guidelines, clean code rules, security standards, and technical qualit
 *   📄 **[High-Concurrency Auth Spec](./04-artifacts/high-concurrency-auth-specification.md)**: Performance caching and token rotation schemas.
 *   📄 **[UMS Web Console Product Spec](./04-artifacts/ums-web-console-product-scope.md)**: Administrative PAP control panel and SRE monitors.
 *   📄 **[Configuration & Feature Management Platform Spec](./04-artifacts/ums-configuration-platform-spec.md)**: Multi-IdP config engine, system behavioral config, and feature flag framework.
+*   📄 **[BMAD Master Audit & Enterprise Spec](./04-artifacts/bmad-master-audit-alignment-report.md)**: Comprehensive business-models-architecture-delivery spec.
 
 
 
