@@ -18,8 +18,8 @@ graph TD
     
     %% AUTHENTICATION CORNER (Optional & Pluggable)
     App -->|2. Delegate Auth & Query Config| UMS["UMS Sovereign Authorization Kernel"]
-    UMS -.->| "IAuthenticationPort (Pluggable)" | IdP_Providers["Identity Providers (Internal bcrypt / Zitadel / Azure AD / Okta)"]
-    UMS -.->| "IFeatureFlagPort (Pluggable)" | FF_Providers["Feature Flag Engines (Internal PostgreSQL-Redis / LaunchDarkly / Unleash)"]
+    UMS -.->|IAuthenticationPort_Pluggable| IdP_Providers["Identity Providers (Internal bcrypt / Zitadel / Azure AD / Okta)"]
+    UMS -.->|IFeatureFlagPort_Pluggable| FF_Providers["Feature Flag Engines (Internal PostgreSQL-Redis / LaunchDarkly / Unleash)"]
     
     %% RESOLUTION & PERSISTENCE CORNER
     UMS -->|3. Read context-aware overrides| DB[("PostgreSQL 16 (RLS Isolated)")]
