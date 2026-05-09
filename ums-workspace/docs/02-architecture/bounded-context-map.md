@@ -26,10 +26,18 @@ graph TD
         AC5["Explicit-Deny Precedence Resolver"]
     end
 
+    subgraph ConfigContext["⚙️ Configuration & Feature Management Context"]
+        CF1["Multi-IdP Configuration Engine"]
+        CF2["System Behavioral Configuration Model"]
+        CF3["Feature Flag Management Framework"]
+        CF4["Config Cache Manager"]
+    end
+
     subgraph AuditContext["📋 Audit Context"]
         AU1["Immutable Audit Ledger (CDC/Subscribers)"]
         AU2["Access Attempt Log"]
         AU3["Permission Mutation History"]
+        AU4["Config & Flag Change History"]
     end
 
     subgraph ConsoleContext["💻 Console Context (PAP)"]
@@ -38,19 +46,29 @@ graph TD
         CO3["Template Builder & Assignment Engine"]
         CO4["Visual Graph Resolver & Diagnostics"]
         CO5["Security Ledger Monitor"]
+        CO6["IdP Configuration Manager"]
+        CO7["System Config Editor"]
+        CO8["Feature Flag Dashboard"]
     end
 
     subgraph CacheContext["⚡ Cache Context (Infrastructure)"]
-        CA1["Redis Authorization Graph Store"]
-        CA2["TTL Governance & Eviction Hooks"]
+        CA1["Redis: auth_graph namespace"]
+        CA2["Redis: cfg namespace (IdP + System Config)"]
+        CA3["Redis: flags namespace (Evaluated Flag Sets)"]
+        CA4["TTL Governance & Eviction Hooks"]
     end
 
     IdentityContext -->|"Customer-Supplier: User + Org + Branch claims"| AuthorizationContext
+    IdentityContext -->|"Customer-Supplier: Tenant scope keys"| ConfigContext
     AuthorizationContext -->|"Conformist: emits mutation events"| AuditContext
     IdentityContext -->|"Conformist: emits lifecycle events"| AuditContext
+    ConfigContext -->|"Conformist: emits config + flag events"| AuditContext
+    ConfigContext -->|"Customer-Supplier: provides IdP config to"| IdentityContext
     ConsoleContext -->|"Customer-Supplier: PAP calls via API"| AuthorizationContext
     ConsoleContext -->|"Customer-Supplier: Admin identity"| IdentityContext
-    AuthorizationContext -->|"Read-Aside: cache compiled graphs"| CacheContext
+    ConsoleContext -->|"Customer-Supplier: Config + Flags admin"| ConfigContext
+    AuthorizationContext -->|"Read-Aside: cache auth_graph"| CacheContext
+    ConfigContext -->|"Read-Aside: cache cfg + flags"| CacheContext
 ```
 
 ---
@@ -58,17 +76,18 @@ graph TD
 ## 📦 2. Context Definitions
 
 ### 🔐 A. Identity Context
-**Mission:** Manage the lifecycle of all principals (users) and the organizational structures (tenants and branches) they belong to. Delegate credential verification to pluggable, external Identity Providers.
+**Mission:** Manage the lifecycle of all principals (users) and the organizational structures (tenants and branches) they belong to. Delegate credential verification to pluggable, external Identity Providers using configurations supplied by the Configuration Context.
 
 **Owns:**
 - `User` aggregate (registration, suspension, offboarding)
 - `Organization` (Tenant) aggregate
 - `Branch` (Sedes) aggregate
-- `IAuthenticationPort` (pluggable IdP strategy adapter)
+- `IAuthenticationPort` (pluggable IdP strategy adapter — reads from Config Context)
 
 **Does NOT own:**
 - Authorization rules or permission logic
 - Audit ledger storage
+- IdP configuration data (owned by Config Context)
 
 **Integration Contracts (Published Language):**
 - `UserRegisteredEvent { userId, organizationId, branchId, employeeReference }`
@@ -93,6 +112,7 @@ graph TD
 - Identity verification (delegated to Identity Context via port)
 - Cache storage (delegated to Cache Context via `ICachePort`)
 - Admin UI rendering (delegated to Console Context)
+- Feature flag state (delegated to Config Context)
 
 **Integration Contracts (Published Language):**
 - `GET /v1/authorization/graph` → returns `HierarchicalJsonGraph`
@@ -101,40 +121,74 @@ graph TD
 
 ---
 
-### 📋 C. Audit Context
-**Mission:** Maintain an **immutable, tamper-proof ledger** of all identity events and permission mutations. Serves compliance, forensic, and SRE diagnostic needs.
+### ⚙️ C. Configuration & Feature Management Context *(NEW)*
+**Mission:** Govern the **dynamic, multi-tenant runtime behavior** of all UMS-integrated systems without requiring code changes or redeployment. Owns three capability pillars:
+1. **Multi-IdP Configuration Engine** — per-tenant/system IdP registry with priority/fallback
+2. **System Behavioral Configuration** — versioned JSON config for auth, session, branding, modules
+3. **Feature Flag Framework** — centralized, multi-dimensional toggle engine with rollout strategies
+
+**Owns:**
+- `IdpConfiguration` aggregate
+- `SystemConfiguration` aggregate (versioned)
+- `FeatureFlag` aggregate
+- `FlagEvaluationEngine` (domain service)
+- `ConfigCacheManager` (infrastructure adapter behind `IConfigCachePort`)
+
+**Does NOT own:**
+- User or organization identities (scopes them as foreign keys only)
+- Permission graphs (belongs to Authorization Context)
+- Admin UI (belongs to Console Context)
+
+**Integration Contracts (Published Language):**
+- `GET /v1/config/idp?tenant_id&system_id` → returns ordered IdP config set
+- `GET /v1/config/system/{system_id}?tenant_id` → returns active system config
+- `POST /v1/flags/evaluate` → returns evaluated flag set for a runtime context
+- `IdpConfigUpdatedEvent { configId, tenantId, version, timestamp }`
+- `SystemConfigPublishedEvent { configId, systemId, tenantId, version }`
+- `FeatureFlagStateChangedEvent { flagCode, newStatus, targetScope, changedBy }`
+
+---
+
+### 📋 D. Audit Context
+**Mission:** Maintain an **immutable, tamper-proof ledger** of all identity events, permission mutations, **and configuration changes**. Serves compliance, forensic, and SRE diagnostic needs.
 
 **Owns:**
 - `AuditRecord` entity (who, when, what, result)
 - `AccessAttemptLog` (authentication success/failure)
 - `PermissionMutationHistory` (ALLOW/DENY changes)
+- `ConfigChangeHistory` (IdP config, system config, feature flag mutations) *(NEW)*
 
-**Integration Pattern:** Event-driven subscriber (Conformist). Receives events from Identity and Authorization contexts via internal event bus (`IEventBusPort`). Does **not** call other contexts.
+**Integration Pattern:** Event-driven subscriber (Conformist). Receives events from Identity, Authorization, and Configuration contexts via internal event bus (`IEventBusPort`).
 
 ---
 
-### 💻 D. Console Context (Policy Administration Point — PAP)
-**Mission:** Provide the **Administrative Web Portal** that allows SuperAdmins and Tenant Managers to govern organizations, systems, profiles, templates, and diagnose permission graphs visually.
+### 💻 E. Console Context (Policy Administration Point — PAP)
+**Mission:** Provide the **Administrative Web Portal** that allows SuperAdmins and Tenant Managers to govern organizations, systems, profiles, templates, IdP configurations, system configs, and feature flags.
 
 **Owns:**
 - Admin Web Portal (React SPA)
-- Template Builder UI
-- Automated Assignment Rule Configurator
+- Template Builder UI & Automated Assignment Rule Configurator
 - Visual Graph Resolver
+- **IdP Configuration Manager** *(NEW)*
+- **System Config Editor** *(NEW)*
+- **Feature Flag Dashboard** *(NEW)*
 
-**Integration Pattern:** Customer-Supplier. Calls the Authorization Context and Identity Context via their published REST APIs. Does not access the database directly. Authenticates using the same UMS AuthGateway with a `SuperAdmin`-scoped `system_id`.
+**Integration Pattern:** Customer-Supplier. Calls all backend contexts via their published REST APIs. Authenticates using the same UMS AuthGateway with a `SuperAdmin`-scoped `system_id`.
 
 ---
 
-### ⚡ E. Cache Context (Infrastructure)
-**Mission:** Provide a high-performance distributed cache layer for compiled authorization graphs, ensuring p95 < 5ms resolution on cache hits.
+### ⚡ F. Cache Context (Infrastructure)
+**Mission:** Provide a high-performance distributed cache layer for authorization graphs, system configurations, and feature flag evaluations — all under strict namespace governance.
 
-**Owns:**
-- Redis key-value store (`auth_graph:{userId}:{systemId}:{tenantId}:{branchId}`)
-- TTL policies (default: 3600s)
-- Cache invalidation hooks (triggered on `PermissionMutatedEvent`)
+**Cache Namespaces:**
+| Namespace | Owner Context | Key Pattern | TTL |
+| :--- | :--- | :--- | :--- |
+| `auth_graph:*` | Authorization Context | `auth_graph:{userId}:{systemId}:{tenantId}:{branchId}` | 3600s |
+| `cfg:idp:*` | Configuration Context | `cfg:idp:{tenantId}:{systemId}` | 900s |
+| `cfg:sys:*` | Configuration Context | `cfg:sys:{systemId}:{tenantId}` | 300s |
+| `flags:*` | Configuration Context | `flags:{systemId}:{tenantId}:{userId}` | 60s |
 
-**Integration Pattern:** Hidden behind a pure core `ICachePort` abstraction. Only the Authorization Context's infrastructure adapter interacts with Redis directly.
+**Integration Pattern:** Hidden behind pure core port abstractions (`ICachePort`, `IConfigCachePort`). Only infrastructure adapters interact with Redis directly.
 
 ---
 
@@ -143,21 +197,26 @@ graph TD
 | Upstream Context | Downstream Context | Pattern | Contract |
 | :--- | :--- | :--- | :--- |
 | Identity Context | Authorization Context | **Customer-Supplier** | User/Org/Branch claims pushed as events or queried via API |
-| Authorization Context | Audit Context | **Conformist (Event)** | Publishes `PermissionMutatedEvent` consumed by Audit |
+| Identity Context | Config Context | **Customer-Supplier** | Tenant scope keys used for config isolation |
+| Config Context | Identity Context | **Customer-Supplier** | IdP config supplied to Auth Gateway for routing |
+| Authorization Context | Audit Context | **Conformist (Event)** | Publishes `PermissionMutatedEvent` |
 | Identity Context | Audit Context | **Conformist (Event)** | Publishes `UserRegisteredEvent`, `UserSuspendedEvent` |
+| Config Context | Audit Context | **Conformist (Event)** | Publishes `IdpConfigUpdatedEvent`, `SystemConfigPublishedEvent`, `FeatureFlagStateChangedEvent` |
 | Console Context | Authorization Context | **Customer-Supplier** | PAP calls Authorization APIs for template/profile management |
 | Console Context | Identity Context | **Customer-Supplier** | PAP calls Identity APIs for org/branch management |
-| Authorization Context | Cache Context | **Shared Kernel (ICachePort)** | Read-aside pattern; invalidation on mutation events |
+| Console Context | Config Context | **Customer-Supplier** | PAP calls Config APIs for IdP, system config, and flag management |
+| Authorization Context | Cache Context | **Shared Kernel (ICachePort)** | Read-aside; invalidation on mutation events |
+| Config Context | Cache Context | **Shared Kernel (IConfigCachePort)** | Read-aside for cfg + flags; invalidation on config events |
 
 ---
 
 ## 🚧 4. Anti-Corruption Layers (ACL)
 
-To prevent tight coupling between contexts, the following ACL adapters are mandated:
-
 | Boundary | ACL Mechanism | Reason |
 | :--- | :--- | :--- |
 | Authorization ↔ External IdP | `IAuthenticationPort` (Strategy Pattern) | Prevents Zitadel/Okta SDK from polluting core |
-| Authorization ↔ Redis | `ICachePort` | Prevents Redis client from leaking into domain layer |
+| Config ↔ Secret Vault | `ISecretStorePort` (Strategy Pattern) | Prevents AWS Secrets Manager / HashiCorp Vault SDK from leaking into domain |
+| Config ↔ Redis (cfg/flags) | `IConfigCachePort` | Separate port from auth graph cache to enforce namespace governance |
+| Authorization ↔ Redis (auth_graph) | `ICachePort` | Prevents Redis client from leaking into domain layer |
 | Authorization ↔ Event Bus | `IEventBusPort` | Prevents Kafka/RabbitMQ from coupling to use cases |
 | Console ↔ UMS APIs | REST API contracts (versioned) | Console is an external consumer; treated as any third party |

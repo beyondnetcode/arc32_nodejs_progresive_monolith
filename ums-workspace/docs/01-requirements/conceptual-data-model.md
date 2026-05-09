@@ -29,6 +29,13 @@ erDiagram
 
     AUTHORIZATION }o--|| ACTION : targets
     NETWORK ||--o{ PROFILE : restricts
+
+    SYSTEM ||--o{ IDP_CONFIGURATION : uses
+    ORGANIZATION ||--o{ IDP_CONFIGURATION : configures
+    SYSTEM ||--o{ SYSTEM_CONFIGURATION : has
+    ORGANIZATION ||--o{ SYSTEM_CONFIGURATION : scopes
+    SYSTEM ||--o{ FEATURE_FLAG : governs
+    FEATURE_FLAG ||--o{ FLAG_EVALUATION_LOG : produces
 ```
 
 ---
@@ -102,9 +109,53 @@ erDiagram
 - `Option`: `id`, `submenu_id (FK)`, `label`, `route_path`
 - `Action`: `id`, `option_id (FK)`, `code` (`create`, `read`, `update`, `delete`, `export`, `approve`), `api_endpoint`
 
+### I. IDP_CONFIGURATION Entity *(NEW — Configuration Context)*
+- `id` (UUID, PK)
+- `tenant_id` (UUID, FK → ORGANIZATION)
+- `system_id` (UUID, FK, Nullable → SYSTEM): `NULL` means applies to all systems for the tenant
+- `provider_type` (enum): `INTERNAL_BCRYPT`, `ZITADEL`, `AZURE_AD`, `OKTA`, `KEYCLOAK`, `AUTH0`, `GOOGLE`, `LDAP`, `SAML2`, `GENERIC_OIDC`
+- `priority` (integer): Resolution order (lower = higher priority)
+- `fallback_to` (UUID, FK, Nullable → IDP_CONFIGURATION)
+- `config_payload` (jsonb, encrypted): Authority URL, client_id, scopes, claim mappings
+- `config_secret_ref` (string): Vault path for encrypted credentials (e.g., `vault://ums/secrets/{tenant}/client_secret`)
+- `domain_hints` (text[]): Email domain patterns for IdP routing (e.g., `@logisticscorp.com`)
+- `mfa_enforced` (boolean)
+- `status` (enum): `ACTIVE`, `INACTIVE`, `DRAFT`
+- `version` (string): Semantic version of this config record
+
+### J. SYSTEM_CONFIGURATION Entity *(NEW — Configuration Context)*
+- `id` (UUID, PK)
+- `system_id` (UUID, FK → SYSTEM)
+- `tenant_id` (UUID, FK → ORGANIZATION)
+- `version` (string): Semantic version (e.g., `2.1.0`)
+- `config_payload` (jsonb): Full behavioral config (auth, session, MFA, onboarding, branding, modules)
+- `status` (enum): `ACTIVE`, `ARCHIVED`, `DRAFT`
+- `published_at` (timestamp)
+- `published_by` (UUID, FK → USER)
+
+### K. FEATURE_FLAG Entity *(NEW — Configuration Context)*
+- `id` (UUID, PK)
+- `flag_code` (string, Unique globally): Machine-readable identifier (e.g., `FLEET_DISPATCH_NEW_UI_V2`)
+- `type` (enum): `BOOLEAN`, `VARIANT`, `PERCENTAGE`
+- `targets` (jsonb): Scoping rules `{ systems, tenants, organizations, branches, roles, users, environments, rollout_percentage }`
+- `status` (enum): `ACTIVE`, `INACTIVE`, `ARCHIVED`
+- `linked_resource_type` (string, Nullable): `menu`, `module`, `endpoint`, `workflow`
+- `linked_resource_id` (UUID, Nullable)
+- `version` (string)
+- `created_by` (UUID, FK → USER)
+- `created_at` (timestamp)
+
+### L. FLAG_EVALUATION_LOG Entity *(NEW — Audit Context)*
+- `id` (UUID, PK)
+- `flag_id` (UUID, FK → FEATURE_FLAG)
+- `evaluated_for_type` (string): `user`, `tenant`, `organization`
+- `evaluated_for_id` (UUID)
+- `result` (boolean or variant value)
+- `evaluated_at` (timestamp)
+
 ---
 
-## ⚙️ 3. Key Precedence Axioms (Engine Rules)
+## ⚙️ 4. Key Precedence Axioms (Engine Rules)
 
 1. **Deny-by-Default**: An action is blocked until an explicit `ALLOW` is declared by a profile or template.
 2. **Permissive Union**: If no `DENY` is present, the user inherits all active `ALLOW` blocks from all assigned profiles.

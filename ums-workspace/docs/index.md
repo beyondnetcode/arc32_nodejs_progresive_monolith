@@ -44,7 +44,9 @@ Contains the system's architectural specification based on the C4 Model standard
 
 ### 📜 [Phase 03 - Architectural Decision Records (ADRs)](./03-adrs/)
 The chronological and immutable ledger of critical design decisions in MADR format.
-*   📄 **[ADR Ledger](./03-adrs/)**: Access the complete index of the 23 active architectural decisions (ranging from Nx Monorepo, Clean Architecture, RLS, to Identity Provider Abstraction, High-Performance Graph Compilation, Pluggable Output Projections, and Centralized Authorization Kernel).
+*   📄 **[ADR Ledger](./03-adrs/)**: Access the complete index of **24 active architectural decisions** (ranging from Nx Monorepo, Clean Architecture, RLS, to Identity Provider Abstraction, High-Performance Graph Compilation, Pluggable Output Projections, Centralized Authorization Kernel, and the new **Configuration & Feature Management Platform**).
+*   📄 **[ADR-0024: Configuration & Feature Management Platform](./03-adrs/0024-configuration-feature-management-platform.md)**: Architectural decision establishing Multi-IdP config, System Behavioral Config, and Feature Flag framework.
+
 
 ---
 
@@ -57,6 +59,8 @@ Technical guidelines, clean code rules, security standards, and technical qualit
 *   📄 **[Enterprise IAM Spec](./04-artifacts/enterprise-iam-ums-specification.md)**: Dynamic authorization graph contracts and specifications.
 *   📄 **[High-Concurrency Auth Spec](./04-artifacts/high-concurrency-auth-specification.md)**: Performance caching and token rotation schemas.
 *   📄 **[UMS Web Console Product Spec](./04-artifacts/ums-web-console-product-scope.md)**: Administrative PAP control panel and SRE monitors.
+*   📄 **[Configuration & Feature Management Platform Spec](./04-artifacts/ums-configuration-platform-spec.md)**: Multi-IdP config engine, system behavioral config, and feature flag framework.
+
 
 
 ---

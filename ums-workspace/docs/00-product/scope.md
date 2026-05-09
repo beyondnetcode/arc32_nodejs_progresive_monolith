@@ -27,7 +27,13 @@ The User Management System (UMS) manages the following key functional capabiliti
 - **Active Session & Telemetry Monitors**: Real-time auditing of authentication attempts, cache hit ratios, and Redis-cache evictions.
 - **Visual Graph Resolver**: Interactive visualization of the compiled authorization graph for specific user/tenant contexts (e.g., debugging Transportation Analyst permissions).
 
+### F. Configuration & Feature Management Platform
+- **Multi-IdP Configuration Engine**: Per-tenant, per-system registry of Identity Providers with priority/fallback rules, hybrid authentication, and encrypted credential management.
+- **System Behavioral Configuration**: Versioned, auditable, multi-tenant JSON configuration controlling auth strategy, session policies, MFA, onboarding flows, branding, and module enablement per system.
+- **Feature Flag Framework**: Centralized toggle engine supporting Boolean, Variant, and Percentage flags with multi-dimensional targeting (tenant, org, branch, role, user, environment, system). Supports Canary and Beta rollout strategies.
+
 ---
+
 
 
 ## 2. Out-of-Scope Capabilities
