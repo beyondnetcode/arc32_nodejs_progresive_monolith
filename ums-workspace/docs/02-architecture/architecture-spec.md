@@ -41,13 +41,17 @@ Defines the boundary of the User Management System (UMS) interacting with corpor
 ```mermaid
 graph TD
     User["Multi-Tenant Users (Tenant Staff)"]
-    UMS["UMS and SaaS Gateway (API Gateway and BFF)"]
+    Admin["Global Admin / Tenant Admin / SRE"]
+    UMS["UMS Authorization Core (PDP)"]
+    UMSConsole["UMS Admin Web Console (PAP)"]
     ExternalAuth["External Identity Service (OAuth / Tenant IdP)"]
-    Downstream["Downstream SaaS Services (TMS, WMS, etc.)"]
+    Downstream["Downstream SaaS Services (SCM, TMS, WMS, etc.)"]
 
-    User -->|Logs in / Accesses Portal| UMS
+    User -->|Logs in via Auth Gateway| UMS
+    Admin -->|Manages organizations, templates, profiles| UMSConsole
+    UMSConsole -->|Calls Authorization and Identity APIs| UMS
     UMS -->|Verifies credentials per Tenant| ExternalAuth
-    UMS -->|Routes traffic & enforces Tenant isolation| Downstream
+    UMS -->|Injects Authorization Graph| Downstream
 ```
 
 ---
@@ -58,25 +62,36 @@ Maps the physical subsystems (React Frontend, NestJS API, PostgreSQL Database) t
 ```mermaid
 graph TD
     subgraph Clients["Client Applications"]
-        ReactApp["Frontend React Web App (Lazy-loaded Portal)"]
+        ReactApp["Frontend React Web App (SCM Portal)"]
+        AdminApp["UMS Admin Console (PAP React App)"]
         MobileApp["Future Mobile App (iOS/Android)"]
     end
 
     subgraph Gateways["BFF Gateways"]
-        WebBFF["Web BFF Gateway (Express/NestJS)"]
+        WebBFF["Web BFF Gateway (NestJS)"]
         MobileBFF["Mobile BFF Gateway (Payload Optimizer)"]
     end
 
     subgraph Server["Application Services (Tenant Isolated)"]
-        NestAPI["RESTful NestJS Service (UMS Core / TMS / WMS)"]
+        NestAPI["RESTful NestJS Service (UMS Core)"]
         PostgresDB["PostgreSQL 16 Database (Shared Schema + RLS)"]
+        AuditDB["Audit Ledger (Isolated Read-Only Table)"]
+        RedisCache["Redis Cache Cluster (Authorization Graphs)"]
+    end
+
+    subgraph ExternalServices["External Identity Services"]
+        ExternalIdP["Agnostic Identity Provider (Zitadel / Okta / Azure AD / SAML)"]
     end
 
     ReactApp -->|1. HTTPS / JWT + Tenant Header| WebBFF
+    AdminApp -->|1. HTTPS / JWT + SuperAdmin Token| WebBFF
     MobileApp -->|1. HTTPS / Optimized Payload| MobileBFF
     WebBFF -->|2. Internal TCP / gRPC| NestAPI
     MobileBFF -->|2. Internal TCP / gRPC| NestAPI
-    NestAPI -->|3. Sets LOCAL tenant context| PostgresDB
+    NestAPI -->|3. Sets LOCAL tenant context via RLS| PostgresDB
+    NestAPI -->|4. Read-Aside cache lookup| RedisCache
+    NestAPI -->|5. Delegates identity verification| ExternalIdP
+    NestAPI -->|6. Streams mutation events| AuditDB
 ```
 
 ---

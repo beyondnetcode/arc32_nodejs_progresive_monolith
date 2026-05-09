@@ -22,15 +22,23 @@ Details business rules, interactive sequences, conceptual database diagrams, and
 *   📄 **[Conceptual Data Model](./01-requirements/conceptual-data-model.md)**: PostgreSQL relational logic and Row-Level Security (RLS) policies.
 *   📄 **[Granular Permission Matrix](./01-requirements/permission-matrix-example.md)**: Detailed access logic (RBAC/ABAC) and the explicit-deny precedence rule.
 *   📂 **[Atomic Use Cases](./01-requirements/usecases/)**:
-    *   [UC-01: User Authentication](./01-requirements/usecases/uc-01-user-authentication.md)
+    *   [UC-01: User Authentication via External IdP](./01-requirements/usecases/uc-01-user-authentication.md)
     *   [UC-02: Compile Authorization Graph](./01-requirements/usecases/uc-02-build-authorization-graph.md)
-    *   [UC-03: Instantiate Policy Template](./01-requirements/usecases/uc-03-create-authorization-template.md)
+    *   [UC-03: Create & Instantiate Authorization Template](./01-requirements/usecases/uc-03-create-authorization-template.md)
+    *   [UC-04: Register Organization & Configure IdP Strategy](./01-requirements/usecases/uc-04-register-organization.md)
+    *   [UC-05: Register System & Define Menu Topology](./01-requirements/usecases/uc-05-register-system-topology.md)
+    *   [UC-06: Create Profile & Manually Assign Template](./01-requirements/usecases/uc-06-create-profile-manual-template.md)
+    *   [UC-07: Auto-Assign Template on Profile Creation](./01-requirements/usecases/uc-07-auto-assign-template.md)
+    *   [UC-08: Diagnose Permissions via Visual Graph Resolver](./01-requirements/usecases/uc-08-visual-graph-resolver.md)
+
 
 ---
 
 ### 🏗️ [Phase 02 - Software Architecture](./02-architecture/)
 Contains the system's architectural specification based on the C4 Model standard.
+*   📄 **[Bounded Context Map](./02-architecture/bounded-context-map.md)**: DDD context boundaries, integration patterns, and Anti-Corruption Layers.
 *   📄 **[C4 Architecture Spec & Technical Inventory](./02-architecture/architecture-spec.md)**: Level 1 (Context), Level 2 (Container), and Level 3 (Component) technical diagrams.
+
 
 ---
 

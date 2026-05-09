@@ -1,6 +1,6 @@
-# 💾 Conceptual Data Model (Artifact 3)
+# 💾 Conceptual Data Model
 
-This document details the database schema, entity structures, relationships, and Entity-Relationship diagrams for the **User Life-Cycle & Permissions Management System (ULPMS)** under the **bMAD Method**.
+This document details the database schema, entity structures, relationships, and Entity-Relationship diagrams for the **User Management System (UMS)** under the **bMAD Method**.
 
 ---
 
@@ -8,19 +8,25 @@ This document details the database schema, entity structures, relationships, and
 
 ```mermaid
 erDiagram
+    ORGANIZATION ||--o{ BRANCH : has
     ORGANIZATION ||--o{ USER : contains
     ORGANIZATION ||--o{ PROFILE : owns
+
+    BRANCH ||--o{ PROFILE : scoped_to
+    BRANCH ||--o{ USER_PROFILES : restricts
+
     USER ||--o{ USER_PROFILES : assigned
     PROFILE ||--o{ USER_PROFILES : holds
-    
-    PROFILE }o--|| AUTH_TEMPLATE : implements
+
+    PROFILE }o--o| AUTH_TEMPLATE : implements
     PROFILE ||--o{ AUTHORIZATION : declares
     AUTH_TEMPLATE ||--o{ AUTHORIZATION : templates
-    
+
     SYSTEM ||--o{ MENU : contains
-    MENU ||--o{ OPTION : contains
+    MENU ||--o{ SUBMENU : contains
+    SUBMENU ||--o{ OPTION : contains
     OPTION ||--o{ ACTION : contains
-    
+
     AUTHORIZATION }o--|| ACTION : targets
     NETWORK ||--o{ PROFILE : restricts
 ```
@@ -29,36 +35,78 @@ erDiagram
 
 ## 📋 2. Entity Attributes Specification
 
-The following tables define the attributes, keys, and constraints of each primary entity:
-
 ### A. User Entity
-*   `id` (UUID, PK): Unique identifier for the user.
-*   `email` (string, Unique): Corporate email address.
-*   `password_hash` (string): Cryptographically secure password hash (bcrypt).
-*   `employee_reference` (string): External unique ID linking to corporate RR.HH./ERP records.
-*   `status` (string): Active, Suspended, or Terminated.
-*   `created_at` (timestamp): Record creation timestamp.
+- `id` (UUID, PK): Unique identifier for the user.
+- `organization_id` (UUID, FK): Owning tenant organization.
+- `email` (string, Unique): Corporate email address.
+- `password_hash` (string, **Nullable**): Populated **only** when the Internal Bcrypt Strategy adapter is active for the organization. `NULL` when authentication is delegated to an external IdP.
+- `employee_reference` (string): External unique ID linking to corporate HR/ERP records.
+- `status` (enum): `ACTIVE`, `SUSPENDED`, or `TERMINATED`.
+- `created_at` (timestamp): Record creation timestamp.
 
 ### B. Organization Entity (Tenant)
-*   `id` (UUID, PK): Unique identifier for the tenant.
-*   `name` (string): Corporate legal company name.
-*   `company_reference` (string, SAP): External company code linking to corporate ERP.
-*   `status` (string): Active or Blocked.
+- `id` (UUID, PK): Unique identifier for the tenant.
+- `name` (string): Corporate legal company name.
+- `company_reference` (string): External company code linking to corporate ERP (e.g., SAP code).
+- `idp_strategy` (enum): `INTERNAL_BCRYPT`, `ZITADEL`, `AZURE_AD`, `OKTA`, `SAML2`, `GENERIC_OIDC`.
+- `status` (enum): `ACTIVE` or `BLOCKED`.
 
-### C. Profile Entity
-*   `id` (UUID, PK): Unique identifier for the profile.
-*   `organization_id` (UUID, FK): The owning tenant organization.
-*   `name` (string): Human-readable profile name (e.g., `PortOperator`).
-*   `template_id` (UUID, FK, Nullable): Optional linked Authorization Template.
+### C. Branch Entity (Sedes)
+> [!IMPORTANT]
+> This entity represents a physical or logical sub-unit of an Organization (e.g., *Callao Port Terminal*, *Lurin Warehouse*). It is the **branch context** used for hierarchical, context-aware authorization routing.
 
-### D. Authorization Entity
-*   `id` (UUID, PK): Unique identifier for the authorization record.
-*   `profile_id` (UUID, FK, Nullable): Linked profile if customized locally.
-*   `template_id` (UUID, FK, Nullable): Linked template if inherited from a blueprint.
-*   `action_id` (UUID, FK): Mapped system action.
-*   `effect` (string): Effect of the policy (`ALLOW` or `DENY`).
+- `id` (UUID, PK): Unique identifier for the branch.
+- `organization_id` (UUID, FK): Owning tenant organization.
+- `name` (string): Human-readable branch name (e.g., `Callao Terminal`).
+- `code` (string, Unique within org): Short code for the branch (e.g., `BRANCH_CALLAO`).
+- `geofencing_metadata` (jsonb, Nullable): Optional geofencing constraints applied to access policies (e.g., `{ "radius_km": 10, "center_lat": -12.05, "center_lng": -77.12 }`).
+- `status` (enum): `ACTIVE` or `SUSPENDED`.
 
-### E. System Entity
-*   `id` (UUID, PK): Unique identifier for the application/sub-portal.
-*   `name` (string, Unique): Application name (e.g., `Inventory`).
-*   `base_url` (string): Base physical URL for routing.
+### D. Profile Entity
+- `id` (UUID, PK): Unique identifier for the profile.
+- `organization_id` (UUID, FK): The owning tenant organization.
+- `branch_id` (UUID, FK, **Nullable**): Optional scoping to a specific branch. `NULL` means profile applies org-wide.
+- `name` (string): Human-readable profile name (e.g., `PortOperator_Callao`).
+- `template_id` (UUID, FK, Nullable): Optional linked Authorization Template (auto-assigned or manually attached).
+- `auto_assigned` (boolean): `true` if template was assigned via the Automatic Rule-Based Engine.
+
+### E. Authorization Entity
+- `id` (UUID, PK): Unique identifier for the authorization record.
+- `profile_id` (UUID, FK, Nullable): Linked profile if customized locally.
+- `template_id` (UUID, FK, Nullable): Linked template if inherited from a blueprint.
+- `action_id` (UUID, FK): Mapped system action.
+- `effect` (enum): `ALLOW` or `DENY`.
+
+### F. Auth Template Entity
+- `id` (UUID, PK): Unique identifier for the template.
+- `name` (string): Human-readable template name (e.g., `SCM_Analyst_Baseline_v1`).
+- `version` (string): Semantic version (e.g., `1.0.0`).
+- `system_id` (UUID, FK): The target client system this template is designed for.
+- `created_by` (UUID, FK): Admin user who created the template.
+- `created_at` (timestamp).
+
+### G. System Entity
+- `id` (UUID, PK): Unique identifier for the application/sub-portal.
+- `name` (string, Unique): Application name (e.g., `SCM Route Planner`).
+- `system_code` (string, Unique): Machine-readable slug (e.g., `scm_route_planner`).
+- `base_url` (string): Base physical URL for routing.
+- `api_credential_hash` (string): Hashed M2M credential for gateway validation.
+
+### H. Menu / Submenu / Option / Action Entities
+> [!NOTE]
+> These form the hierarchical navigation topology compiled into the Authorization Graph.
+> `System → Menu → Submenu → Option → Action`
+
+- `Menu`: `id`, `system_id (FK)`, `label`, `order`, `icon_code`
+- `Submenu`: `id`, `menu_id (FK)`, `label`, `order`
+- `Option`: `id`, `submenu_id (FK)`, `label`, `route_path`
+- `Action`: `id`, `option_id (FK)`, `code` (`create`, `read`, `update`, `delete`, `export`, `approve`), `api_endpoint`
+
+---
+
+## ⚙️ 3. Key Precedence Axioms (Engine Rules)
+
+1. **Deny-by-Default**: An action is blocked until an explicit `ALLOW` is declared by a profile or template.
+2. **Permissive Union**: If no `DENY` is present, the user inherits all active `ALLOW` blocks from all assigned profiles.
+3. **Explicit Deny Dominance**: A `DENY` from *any* active profile instantly invalidates matching `ALLOW` blocks across all other profiles.
+4. **Branch Scope Precedence**: Branch-scoped profiles override org-wide profiles for the matching branch context.

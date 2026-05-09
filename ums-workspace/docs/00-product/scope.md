@@ -33,7 +33,7 @@ The User Management System (UMS) manages the following key functional capabiliti
 ## 2. Out-of-Scope Capabilities
 To prevent scope creep and keep the UMS highly specialized, the following domains are strictly **Out-of-Scope**:
 
-- **Sovereign User Store / Password Hashing**: UMS does not store password hashes or perform local credentials verification. This is delegated 100% to Zitadel.
+- **Sovereign User Store / Password Hashing** *(Optional Adapter)*: By default, credential verification is delegated to an external Identity Provider (e.g., Zitadel, Azure AD, Okta). Internal Bcrypt-based credential storage is **supported as an optional, pluggable adapter** (`IAuthenticationPort`), activatable on a per-tenant basis. When active, `password_hash` is stored per user. This is not a core UMS responsibility but an opt-in infrastructure adapter.
 - **Billing and Subscription Management**: Credit card processing, tenant invoicing, and subscription tier limits are managed by a separate Billing microservice.
 - **Direct Mail/SMS Gateways**: Delivery of notifications or verification messages is delegated to Twilio/SendGrid adapters; UMS only triggers the events.
 - **Transactional Domain Operations**: Core operations of downstream applications (such as TMS freight planning or WMS warehouse stock) are completely isolated from UMS.
