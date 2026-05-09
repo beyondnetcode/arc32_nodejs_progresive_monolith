@@ -20,5 +20,6 @@ To ensure the success of UMS, the following internal and external **Stakeholders
 
 | User Persona | Context | Key Benefit from UMS |
 | :--- | :--- | :--- |
-| **Client Tenant Admin** | IT Administrator at a partner company (Tenant) using the Product Planner suite. | Complete self-service autonomy to manage employee profiles, roles, and device registrations without submitting support tickets. |
-| **B2B End User** | Employee at a partner company (e.g., forklift operator, freight planner). | Fast, frictionless passwordless login (Passkey/SSO) and a clean, dynamic portal displaying only their permitted applications. |
+| **Client Tenant Admin** | IT Administrator at an integrated B2B client company (Tenant). | Complete self-service autonomy to manage employee profiles, roles, and authorization scopes without submitting support tickets. |
+| **B2B End User** | Employee at a client company (e.g., forklift operator, freight planner). | Fast, frictionless passwordless login (Passkey/SSO) and a clean, dynamic portal displaying only their permitted applications. |
+

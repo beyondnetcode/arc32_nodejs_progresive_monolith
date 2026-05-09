@@ -1,7 +1,7 @@
 # 🎯 Product Vision - User Management System (UMS)
 
 ## 1. Executive Summary
-The **User Management System (UMS)** is the central foundation of the Product Planner suite. Its core vision is to centralize and standardize the governance of identities, organizations, and fine-grained permissions across a federated **B2B Multi-tenant SaaS architecture**.
+The **User Management System (UMS)** is an abstract, standalone authorization & identity governance kernel. Its core vision is to centralize and standardize the governance of identities, organizations, and fine-grained permissions across a federated, multi-system **B2B Multi-tenant SaaS architecture** via highly decoupled APIs and message buses.
 
 Rather than serving as a simple user store, UMS acts as a **Specialized Authorization & Dynamic Configuration Engine** that manages "what a user can do," while providing both a native, secure internal user database and the plug-and-play flexibility to delegate "who the user is" to secure, sovereign external Identity Providers (IdP).
 

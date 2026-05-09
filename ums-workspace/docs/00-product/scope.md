@@ -1,7 +1,12 @@
 # 🔬 Product Scope & Boundaries - User Management System (UMS)
 
 ## 1. In-Scope Capabilities
-The User Management System (UMS) manages the following key functional capabilities:
+The User Management System (UMS) is an **abstract, sovereign security kernel completely decoupled from any specific application suite**. It is designed to govern identities, behavioral configurations, and fine-grained permissions for any generic downstream system, communicating purely via:
+- **Synchronous REST APIs and gRPC services** to evaluate permissions, fetch configurations, and authenticate contexts.
+- **Asynchronous Message Buses (Events)** to broadcast configuration updates, audit traces, and lifecycle mutations.
+
+The UMS manages the following key functional capabilities:
+
 
 ### A. Organization & Multi-Tenancy Governance
 - Definition of **Organizations (Tenants)** and their hierarchical structures.

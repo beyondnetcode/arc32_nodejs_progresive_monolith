@@ -10,7 +10,7 @@ Historically, corporate software ecosystems suffer from fragmented identity and 
 ---
 
 ## 2. Proposed Solution
-UMS resolves these issues by serving as the **Unified Gatekeeper** of the Product Planner ecosystem. 
+UMS resolves these issues by serving as an **abstract, sovereign Authorization & Identity Gateway** for any downstream client system or integrated enterprise suite.
 
 ```mermaid
 graph TD
