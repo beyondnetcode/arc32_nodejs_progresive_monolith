@@ -75,6 +75,21 @@ Foundational engineering decisions grouped by architectural focus:
 *   [ADR 0018: Testing Pyramid & Automated Quality Gates](./docs/03-adrs/0018-testing-pyramid-quality-gates.md)
 *   [ADR 0019: Tactical Design Patterns for Domain Integrity (Result Pattern)](./docs/03-adrs/0019-tactical-design-patterns-future-proofing.md)
 
+#### 🏛️ Architectural Governance & ADR Status Matrix
+
+Before initiating any coding phase, the Product Owner (PO) and Lead Architect must review and sign off on all Architectural Decision Records (ADRs). Below is the current status of the UMS decision ledger (29 active decisions):
+
+| ADR ID | Decision Title | Status | Impact / Scope | Action Required |
+| :--- | :--- | :--- | :--- | :--- |
+| **ADR-0001** to **ADR-0023** | Historical Baseline (Nx, Clean Arch, etc.) | 🟢 **APPROVED** | Core modular monolith structure, testing, and CI/CD quality gates. | None (Historical Baseline) |
+| **ADR-0024** | [Configuration & Feature Management](./docs/03-adrs/0024-configuration-feature-management-platform.md) | 🟢 **APPROVED** | Establishes Multi-IdP dynamic parameters and system configurations. | None (Approved) |
+| **ADR-0025** | [Feature Flag Provider Abstraction](./docs/03-adrs/0025-feature-flag-provider-abstraction.md) | 🟢 **APPROVED** | Defines pluggable `IFeatureFlagPort` for flexible providers. | None (Approved) |
+| **ADR-0026** | [Multi-Tenant Adaptive MFA and Passwordless](./docs/03-adrs/0026-mfa-passwordless-adaptive-authentication.md) | 🟡 **UNDER REVIEW** | Context-aware adaptive MFA, WebAuthn/Passkeys, and trusted devices. | **PO Sign-off Required** before starting coding. |
+| **ADR-0027** | [Dual-Protocol REST & gRPC API Structure](./docs/03-adrs/0027-dual-protocol-rest-grpc-api-gateway.md) | 🟢 **APPROVED** | High-performance gRPC internal communication and REST public routing. | None (Approved) |
+| **ADR-0028** | [Self-Hosted Hybrid Infrastructure](./docs/03-adrs/0028-self-hosted-hybrid-infrastructure-on-premise.md) | 🟢 **APPROVED** | Cloud-agnostic capability using MinIO, RabbitMQ, and Vault OSS. | None (Approved) |
+| **ADR-0029** | [Tactical DDD Primitives Library](./docs/03-adrs/0029-tactical-ddd-primitives-library.md) | 🟡 **UNDER REVIEW** | Pre-approved `@nestjslatam/ddd` standard library for optional DDD use. | **PO Approval Required** to authorize DDD. |
+
+
 ### 🏷️ 4. Versioning & Release Cycles
 *   [BMAD Automated Versioning Strategy](./docs/05-roadmap/versioning-and-audit-strategy.md) - Learn how we automate Semantic Versioning and Release cycles.
 *   **[View the Official CHANGELOG](./CHANGELOG.md)** - The pristine audit log of all merged features and fixes across the monorepo.

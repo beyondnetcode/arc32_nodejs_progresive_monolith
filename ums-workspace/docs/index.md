@@ -57,6 +57,20 @@ The chronological and immutable ledger of critical design decisions in MADR form
 *   📄 **[ADR-0028: Self-Hosted, Open-Source Infrastructure for Hybrid & On-Premise Deployments](./03-adrs/0028-self-hosted-hybrid-infrastructure-on-premise.md)**: Guarantees cloud-agnostic capability and localized deployments with zero cloud lock-in via MinIO, RabbitMQ, and HashiCorp Vault.
 *   📄 **[ADR-0029: Tactical DDD Primitives Library](./03-adrs/0029-tactical-ddd-primitives-library.md)**: Adopts `@nestjslatam/ddd` as the pre-approved standard library for tactical DDD primitives in case DDD is selected as part of the design.
 
+#### 🏛️ Architectural Governance & ADR Status Matrix
+
+Before initiating any coding phase, the Product Owner (PO) and Lead Architect must review and sign off on all Architectural Decision Records (ADRs). Below is the current status of the UMS decision ledger (29 active decisions):
+
+| ADR ID | Decision Title | Status | Impact / Scope | Action Required |
+| :--- | :--- | :--- | :--- | :--- |
+| **ADR-0001** to **ADR-0023** | Historical Baseline (Nx, Clean Arch, etc.) | 🟢 **APPROVED** | Core modular monolith structure, testing, and CI/CD quality gates. | None (Historical Baseline) |
+| **ADR-0024** | [Configuration & Feature Management](./03-adrs/0024-configuration-feature-management-platform.md) | 🟢 **APPROVED** | Establishes Multi-IdP dynamic parameters and system configurations. | None (Approved) |
+| **ADR-0025** | [Feature Flag Provider Abstraction](./03-adrs/0025-feature-flag-provider-abstraction.md) | 🟢 **APPROVED** | Defines pluggable `IFeatureFlagPort` for flexible providers. | None (Approved) |
+| **ADR-0026** | [Multi-Tenant Adaptive MFA and Passwordless](./03-adrs/0026-mfa-passwordless-adaptive-authentication.md) | 🟡 **UNDER REVIEW** | Context-aware adaptive MFA, WebAuthn/Passkeys, and trusted devices. | **PO Sign-off Required** before starting coding. |
+| **ADR-0027** | [Dual-Protocol REST & gRPC API Structure](./03-adrs/0027-dual-protocol-rest-grpc-api-gateway.md) | 🟢 **APPROVED** | High-performance gRPC internal communication and REST public routing. | None (Approved) |
+| **ADR-0028** | [Self-Hosted Hybrid Infrastructure](./03-adrs/0028-self-hosted-hybrid-infrastructure-on-premise.md) | 🟢 **APPROVED** | Cloud-agnostic capability using MinIO, RabbitMQ, and Vault OSS. | None (Approved) |
+| **ADR-0029** | [Tactical DDD Primitives Library](./03-adrs/0029-tactical-ddd-primitives-library.md) | 🟡 **UNDER REVIEW** | Pre-approved `@nestjslatam/ddd` standard library for optional DDD use. | **PO Approval Required** to authorize DDD. |
+
 
 
 ---
