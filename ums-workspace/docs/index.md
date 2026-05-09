@@ -32,6 +32,7 @@ Details business rules, interactive sequences, conceptual database diagrams, and
     *   [UC-08: Diagnose Permissions via Visual Graph Resolver](./01-requirements/usecases/uc-08-visual-graph-resolver.md)
     *   [UC-09: Resolve Hierarchical System Configuration](./01-requirements/usecases/uc-09-resolve-hierarchical-config.md)
     *   [UC-10: Authenticate via Customizable Hosted Login Page](./01-requirements/usecases/uc-10-hosted-login-redirection.md)
+    *   [UC-11: Multi-Factor & Passwordless Adaptive Authentication](./01-requirements/usecases/uc-11-mfa-passwordless-adaptive-auth.md)
 
 ---
 
@@ -45,9 +46,10 @@ Contains the system's architectural specification based on the C4 Model standard
 
 ### 📜 [Phase 03 - Architectural Decision Records (ADRs)](./03-adrs/)
 The chronological and immutable ledger of critical design decisions in MADR format.
-*   📄 **[ADR Ledger](./03-adrs/)**: Access the complete index of **25 active architectural decisions** (ranging from Nx Monorepo, Clean Architecture, RLS, to Identity Provider Abstraction, High-Performance Graph Compilation, Pluggable Output Projections, Centralized Authorization Kernel, Configuration Platform, and Feature Flag Provider Abstraction).
+*   📄 **[ADR Ledger](./03-adrs/)**: Access the complete index of **26 active architectural decisions** (ranging from Nx Monorepo, Clean Architecture, RLS, to Identity Provider Abstraction, High-Performance Graph Compilation, Pluggable Output Projections, Centralized Authorization Kernel, Configuration Platform, Feature Flag Provider Abstraction, and Adaptive MFA/Passwordless).
 *   📄 **[ADR-0024: Configuration & Feature Management Platform](./03-adrs/0024-configuration-feature-management-platform.md)**: Establishes Multi-IdP config, System Behavioral Config, and Feature Flag framework.
 *   📄 **[ADR-0025: Feature Flag Provider Abstraction](./03-adrs/0025-feature-flag-provider-abstraction.md)**: Defines `IFeatureFlagPort` pluggable pattern — supports Internal engine, LaunchDarkly, Unleash, ConfigCat, Azure App Config.
+*   📄 **[ADR-0026: Multi-Tenant Adaptive MFA and Passwordless Authentication](./03-adrs/0026-mfa-passwordless-adaptive-authentication.md)**: Establishes dynamic adaptive MFA, WebAuthn/Passkeys, cryptographic trusted devices, and self-service recovery.
 
 
 
@@ -63,6 +65,7 @@ Technical guidelines, clean code rules, security standards, and technical qualit
 *   📄 **[High-Concurrency Auth Spec](./04-artifacts/high-concurrency-auth-specification.md)**: Performance caching and token rotation schemas.
 *   📄 **[UMS Web Console Product Spec](./04-artifacts/ums-web-console-product-scope.md)**: Administrative PAP control panel and SRE monitors.
 *   📄 **[Configuration & Feature Management Platform Spec](./04-artifacts/ums-configuration-platform-spec.md)**: Multi-IdP config engine, system behavioral config, and feature flag framework.
+*   📄 **[MFA & Passwordless Authentication Spec](./04-artifacts/mfa-passwordless-security-spec.md)**: High-assurance multi-factor (WebAuthn/Passkeys, TOTP, Email/SMS OTP) and adaptive risk-based authentication spec.
 *   📄 **[BMAD Master Audit & Enterprise Spec](./04-artifacts/bmad-master-audit-alignment-report.md)**: Comprehensive business-models-architecture-delivery spec.
 
 
