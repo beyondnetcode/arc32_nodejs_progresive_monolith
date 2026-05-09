@@ -22,14 +22,12 @@ graph TD
     UMS -.->|IFeatureFlagPort_Pluggable| FF_Providers["Feature Flag Engines (Internal PostgreSQL-Redis / LaunchDarkly / Unleash)"]
     
     %% RESOLUTION & PERSISTENCE CORNER
-    UMS -->|3. Read context-aware overrides| DB[("PostgreSQL 16 (RLS Isolated)")]
+    UMS -->|3. Read context-aware overrides| DB["PostgreSQL 16 (RLS Isolated)"]
     DB -->|4. Resolve dynamic rules| UMS
-    Note over UMS: Applies Dynamic Deep Merge:<br/>Global → Tenant → System → Branch → Role → User → Environment
     
     %% RESPONSE CORNER
-    UMS -->|5. Cache effective payload| Cache[("Redis Cache (cfg, flags, auth_graph)")]
+    UMS -->|5. Cache effective payload| Cache["Redis Cache (cfg, flags, auth_graph)"]
     UMS -->|6. Unified API Payload| App
-    Note over App: Unified JWT injection containing:<br/>1. Compiled Permission Graph<br/>2. Tenant/System Behavioral Config<br/>3. Evaluated Feature Flag States
 ```
 
 UMS separates **Authentication**, **Authorization**, and **Dynamic Configuration**:
