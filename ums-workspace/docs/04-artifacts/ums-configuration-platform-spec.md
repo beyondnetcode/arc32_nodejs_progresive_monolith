@@ -109,7 +109,7 @@ Each system registered in UMS must support a **dynamic, versioned, auditable con
 | **Session Policy** | `access_token_ttl_seconds`, `refresh_token_ttl_seconds`, `idle_session_timeout_seconds`, `max_concurrent_sessions` |
 | **Multi-Tenancy Restrictions** | `allowed_organizations`, `blocked_regions`, `ip_allowlist`, `branch_restriction_enabled` |
 | **Onboarding** | `self_registration_enabled`, `email_verification_required`, `auto_profile_creation_enabled` |
-| **Branding & UI** | `primary_color`, `logo_url`, `login_background_url`, `tenant_display_name` |
+| **Branding & UI** | `primary_color`, `logo_url`, `login_background_url`, `tenant_display_name`, `hosted_login_enabled`, `custom_css_url`, `font_family` |
 | **Module Enablement** | `modules_enabled: ["fleet_dispatch", "route_planning", "audit_export"]` |
 
 ### 3.2 Configuration Schema
@@ -134,7 +134,10 @@ Each system registered in UMS must support a **dynamic, versioned, auditable con
   },
   "branding": {
     "primary_color": "#0B3D91",
-    "logo_url": "https://cdn.logisticscorp.com/logo.svg"
+    "logo_url": "https://cdn.logisticscorp.com/logo.svg",
+    "hosted_login_enabled": true,
+    "custom_css_url": "https://cdn.logisticscorp.com/styles/login-override.css",
+    "font_family": "Outfit, sans-serif"
   },
   "modules_enabled": ["fleet_dispatch", "route_planning"],
   "published_at": "2026-05-09T00:00:00Z",

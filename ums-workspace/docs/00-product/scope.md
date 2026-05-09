@@ -37,6 +37,12 @@ The UMS manages the following key functional capabilities:
 - **System Behavioral Configuration**: Versioned, auditable, multi-tenant JSON configuration controlling auth strategy, session policies, MFA, onboarding flows, branding, and module enablement per system.
 - **Feature Flag Framework**: Centralized toggle engine supporting Boolean, Variant, and Percentage flags with multi-dimensional targeting (tenant, org, branch, role, user, environment, system). Supports Canary and Beta rollout strategies.
 
+### G. Customizable Hosted Login Portal
+- **Sovereign Login Experience**: Centralized, secure authentication portal hosted by UMS that downstream client systems redirect to for user authentication (reducing SSO redirect loop overhead).
+- **Dynamic CSS & Branding Injection**: Login screens are styled dynamically at runtime per tenant or system context using logos, custom stylesheets, font choices, and primary colors fetched from the hierarchical configuration engine.
+- **Zero-Trust Token Emission**: Safely processes authentication via federated IdPs or native stores, emitting standardized, signed JWTs with custom tenant headers directly to the redirect URL callback.
+
+
 ---
 
 

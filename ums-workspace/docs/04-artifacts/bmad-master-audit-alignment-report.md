@@ -31,6 +31,7 @@ To align development with enterprise outcomes, UMS tracks these measurable indic
 | **Authorization** | Rigid RBAC role assignments | Fine-Grained ABAC, Policy Templates, explicit-deny priority, Dynamic Menu Injection |
 | **Multi-Tenancy** | Schema separation | Row-Level Security (RLS) with Shared Schema, Hierarchical Org overrides |
 | **Feature Flags** | Internal DB flags (Boolean/Variant) | `IFeatureFlagPort` (Unleash, LaunchDarkly, ConfigCat), Canary, percentage rollouts |
+| **Hosted Login** | Redirect with standard default layout | Highly customizable hosted login page (logo, colors, custom CSS dynamic injection per tenant/system) |
 | **Auditing** | Simple DB logs | Immutable Event Sourcing, Change Data Capture (CDC), OpenTelemetry Correlation IDs |
 | **Extensibility** | Hardcoded logic hooks | Event-Driven Architecture, Webhooks, Plugin Framework, secure custom action code |
 
