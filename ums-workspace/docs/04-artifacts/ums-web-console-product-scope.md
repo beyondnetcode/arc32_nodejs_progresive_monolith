@@ -37,39 +37,42 @@ By serving as a secure, web-based visual interface, the console guarantees **Zer
          ┌──────────────────┬──────────────┴──────┬──────────────────┐
          ▼                  ▼                     ▼                  ▼
 ┌─────────────────┐┌─────────────────┐┌─────────────────┐┌─────────────────┐
-│  Organizaciones ││    Sistemas     ││ Perfiles/Roles  ││   Monitores de  │
-│   (Tenants)     ││   (Resources)   ││ (Authorizations)││ Seguridad/Grafo │
+│  Organizations  ││    Systems      ││Profiles/Templates││ Security & Graph│
+│   (Tenants)     ││   (Resources)   ││ (Authorizations)││    Monitors     │
 └─────────────────┘└─────────────────┘└─────────────────┘└─────────────────┘
 ```
 
-### 🏢 Module A: Organizaciones (Tenant Management)
+### 🏢 Module A: Organizations (Tenant Management)
 *   **Description**: Fully manages the lifecycle of corporate organizations (tenants) under a strict multi-tenant SaaS model.
 *   **Functional Criteria**:
     *   **Tenant CRUD**: Create, read, update, or suspend corporate organizations.
     *   **Agnostic IdP Strategy Configurator**: Configure the preferred authentication mechanism for the tenant (internal Bcrypt store, external Zitadel, Microsoft Entra ID, Okta, SAML2, or generic OIDC).
     *   **Branch Context Registry (Sedes)**: Register local branches (such as *Callao Terminal* or *Lurin Warehouse*) to support hierarchical, context-aware authorization routing.
 
-### 🏗️ Module B: Sistemas & Recursos (Systems & Resource Registry)
+### 🏗️ Module B: Systems & Resources (Systems & Resource Registry)
 *   **Description**: Registers client systems and defines their dynamic UI/UX navigation topologies.
 *   **Functional Criteria**:
     *   **System Registration**: Define systems (SCM Route Planner, HCM Portal, etc.) and generate secure API credentials for gateway validation.
     *   **UI Layout Topology CRUD**: Define the nested hierarchy of **Menus ➔ Submenus ➔ Options ➔ Actions** available in the client system.
     *   **Action Taxonomy Manager**: Configure granular action scopes (`create`, `read`, `update`, `delete`, `export`, `approve_dispatch`).
 
-### 🔑 Module C: Perfiles & Roles (Authorization Profiles)
-*   **Description**: Constructs reusable authorization schemas and attaches them to user profiles.
+### 🔑 Module C: Profiles, Templates & Advanced Assignment Engine
+*   **Description**: Constructs reusable authorization schemas (Templates) and maps them to active user Profiles both manually and automatically.
 *   **Functional Criteria**:
     *   **Policy Template Builder**: Build reusable access blocks (e.g., *Baseline Analyst Permissions*) containing allowed menus, options, and contextual ABAC rules.
-    *   **Profile Mapping Manager**: Map users to profiles based on tenant and branch context.
+    *   **Manual Assignment Workflow**: Direct visual interface where administrators can select a user Profile and manually attach or detach active Authorization Templates.
+    *   **Automatic Rule-Based Assignment Engine**: Trigger-based automated mapping when a profile is created (via automated B2B customer registration, tenant onboarding, or HR sync).
+        *   *Rule Configuration*: Define matching rules (e.g., *if role equals 'TransportationAnalyst' and tenant equals 'LogisticsCorp', automatically assign 'Template_SCM_Analyst_Baseline'*).
+        *   *Instant Activation*: Applies baseline templates instantly upon profile generation, ensuring zero administrative latency for new users.
     *   **Precedence Controller**: Toggle explicit authorization precedence overrides (e.g., enforcing `Explicit-Deny` to instantly block suspended branches).
 
-### 📈 Module D: Monitor de Seguridad & Auditoría (Live Security Ledger)
+### 📈 Module D: Security Ledger & Observability Monitor
 *   **Description**: Real-time auditing of authentication attempts and authorization graph resolution.
 *   **Functional Criteria**:
     *   **Access Audit Trail**: Live, search-optimized tabular feed of successful and blocked access requests carrying user, IP address, organization, timestamp, and gateway correlation IDs.
     *   **OpenTelemetry Tracing Integration**: Clickable links on log records to navigate instantly to Jaeger/Zipkin distributed traces.
 
-### 🦁 Module E: Monitor de Grafo Interactivo (Visual Graph Resolver)
+### 🦁 Module E: Interactive Graph Resolver & Visualizer
 *   **Description**: A powerful visual diagnostic utility for SREs and support teams.
 *   **Functional Criteria**:
     *   **Principal Search**: Search for a user using their email or unique ID (e.g., `usr_analyst_callao_098`).
