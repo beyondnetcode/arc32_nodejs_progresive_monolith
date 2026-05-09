@@ -30,7 +30,7 @@ Details business rules, interactive sequences, conceptual database diagrams, and
     *   [UC-06: Create Profile & Manually Assign Template](./01-requirements/usecases/uc-06-create-profile-manual-template.md)
     *   [UC-07: Auto-Assign Template on Profile Creation](./01-requirements/usecases/uc-07-auto-assign-template.md)
     *   [UC-08: Diagnose Permissions via Visual Graph Resolver](./01-requirements/usecases/uc-08-visual-graph-resolver.md)
-
+    *   [UC-09: Resolve Hierarchical System Configuration](./01-requirements/usecases/uc-09-resolve-hierarchical-config.md)
 
 ---
 

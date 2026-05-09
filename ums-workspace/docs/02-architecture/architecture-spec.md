@@ -42,16 +42,18 @@ Defines the boundary of the User Management System (UMS) interacting with corpor
 graph TD
     User["Multi-Tenant Users (Tenant Staff)"]
     Admin["Global Admin / Tenant Admin / SRE"]
-    UMS["UMS Authorization Core (PDP)"]
+    UMS["UMS Authorization & Config Core"]
     UMSConsole["UMS Admin Web Console (PAP)"]
     ExternalAuth["External Identity Service (OAuth / Tenant IdP)"]
+    ExternalFlags["Feature Flag Providers (LaunchDarkly/Unleash)"]
     Downstream["Downstream SaaS Services (SCM, TMS, WMS, etc.)"]
 
     User -->|Logs in via Auth Gateway| UMS
-    Admin -->|Manages organizations, templates, profiles| UMSConsole
-    UMSConsole -->|Calls Authorization and Identity APIs| UMS
+    Admin -->|Manages profiles, configs, flags| UMSConsole
+    UMSConsole -->|Calls Auth & Config APIs| UMS
     UMS -->|Verifies credentials per Tenant| ExternalAuth
-    UMS -->|Injects Authorization Graph| Downstream
+    UMS -->|Evaluates Flags via Adapters| ExternalFlags
+    UMS -->|Injects Auth Graph & Config State| Downstream
 ```
 
 ---
@@ -73,25 +75,32 @@ graph TD
     end
 
     subgraph Server["Application Services (Tenant Isolated)"]
-        NestAPI["RESTful NestJS Service (UMS Core)"]
+        NestAPI["UMS Core (Auth, Identity, Profiles)"]
+        ConfigAPI["Config & Feature Flag Module"]
         PostgresDB["PostgreSQL 16 Database (Shared Schema + RLS)"]
         AuditDB["Audit Ledger (Isolated Read-Only Table)"]
-        RedisCache["Redis Cache Cluster (Authorization Graphs)"]
+        RedisCache["Redis Cluster (Auth Graph + Cfg + Flags)"]
     end
 
-    subgraph ExternalServices["External Identity Services"]
-        ExternalIdP["Agnostic Identity Provider (Zitadel / Okta / Azure AD / SAML)"]
+    subgraph ExternalServices["External Services"]
+        ExternalIdP["Tenant IdPs (Zitadel / Azure AD / Okta)"]
+        ExternalProviders["Flag Providers (LaunchDarkly / ConfigCat)"]
     end
 
     ReactApp -->|1. HTTPS / JWT + Tenant Header| WebBFF
     AdminApp -->|1. HTTPS / JWT + SuperAdmin Token| WebBFF
     MobileApp -->|1. HTTPS / Optimized Payload| MobileBFF
     WebBFF -->|2. Internal TCP / gRPC| NestAPI
+    WebBFF -->|2. Internal TCP / gRPC| ConfigAPI
     MobileBFF -->|2. Internal TCP / gRPC| NestAPI
     NestAPI -->|3. Sets LOCAL tenant context via RLS| PostgresDB
+    ConfigAPI -->|3. Sets LOCAL tenant context via RLS| PostgresDB
     NestAPI -->|4. Read-Aside cache lookup| RedisCache
+    ConfigAPI -->|4. Read/Write config & flags| RedisCache
     NestAPI -->|5. Delegates identity verification| ExternalIdP
+    ConfigAPI -->|5. Pluggable Flag Eval via IFeatureFlagPort| ExternalProviders
     NestAPI -->|6. Streams mutation events| AuditDB
+    ConfigAPI -->|6. Streams config events| AuditDB
 ```
 
 ---
@@ -217,9 +226,12 @@ To guarantee the healthy evolution of the monorepo towards distributed models an
 *   **[ADR 0014: Distributed Caching Strategy](../03-adrs/0014-distributed-caching-strategy-redis.md)**: Specifies Redis integration to offload read-heavy database operations.
 *   **[ADR 0015: Event-Driven Architecture (EDA)](../03-adrs/0015-event-driven-architecture-intra-domain.md)**: Adopts asynchronous internal event buses to decouple domain interactions within the monolith.
 *   **[ADR 0016: Immutable Business Audit Trail](../03-adrs/0016-immutable-business-audit-trail.md)**: Mandates an automated, tamper-proof tracking ledger (CDC/Subscribers) for critical mutations.
-*   **[ADR 0017: Feature Flagging Strategy](../03-adrs/0017-feature-flagging-strategy.md)**: Integrates runtime feature toggles for progressive, zero-downtime feature delivery.
+*   **[ADR 0017: Feature Flagging Strategy](../03-adrs/0017-feature-flagging-strategy.md)**: Integrates runtime feature toggles for progressive, zero-downtime feature delivery. *(Superseded by ADR-0025)*
 *   **[ADR 0018: Testing Pyramid & Automated Quality Gates](../03-adrs/0018-testing-pyramid-quality-gates.md)**: Enforces strict testing standards and CI/CD quality gates (>70% coverage).
 *   **[ADR 0019: Tactical Design Patterns for Domain Integrity](../03-adrs/0019-tactical-design-patterns-future-proofing.md)**: Mandates the Result Pattern, Null Objects, and Decorators to ensure 100% domain isolation and zero-impact evolution towards Dapr microservices.
+*   **[ADR 0024: Configuration & Feature Management Platform](../03-adrs/0024-configuration-feature-management-platform.md)**: Extends UMS to handle dynamic system configuration and multi-IdP setups.
+*   **[ADR 0025: Feature Flag Provider Abstraction](../03-adrs/0025-feature-flag-provider-abstraction.md)**: Pluggable framework for external flag providers via `IFeatureFlagPort`.
+
 
 ---
 

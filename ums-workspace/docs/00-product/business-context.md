@@ -21,16 +21,18 @@ graph TD
     UMS -->|5. Injects Dynamic Menu and Roles| Client["Client Portal UI"]
 ```
 
-UMS separates **Authentication** from **Authorization**:
+UMS separates **Authentication**, **Authorization**, and **Dynamic Configuration**:
 1.  **Authentication (Identity)**: Treated as an abstract, pluggable service layer. UMS validates "who" the user is using secure, federated Single Sign-On (SSO), SAML, OIDC, WebAuthn (Passkeys), or an internal credentials database, dynamically routing to external Identity Providers (such as Zitadel, AWS Cognito, Microsoft Entra ID, Okta, or Keycloak) on a per-tenant basis without impacting business logic.
 2.  **Authorization (Permissions)**: Controlled centrally by UMS. UMS stores the definitions of client systems, menus, permission graphs, roles, and profiles, injecting authorization tokens and dynamic menus into downstream applications on demand.
+3.  **Dynamic Configuration & Feature Flags**: UMS governs the runtime behavior of downstream systems via a hierarchical multi-tenant configuration model and an extensible feature flag framework (LaunchDarkly, Unleash, Internal), enabling zero-deployment behavioral shifts and progressive rollouts.
 
 ---
 
 ## 3. Executive Business Rationale
 Standardizing access under UMS provides three massive business benefits:
-- **Zero Ticket Onboarding**: Clients self-manage their administrative scopes through delegable profiles.
-- **Compliance Ready**: Immutable business audit logs (CDC/Subscribers) track all critical permission mutations, making the system instantly ready for SOC 2 and ISO 27001 certifications.
+- **Zero Ticket Onboarding**: Clients self-manage their administrative scopes through delegable profiles and tenant-specific settings.
+- **Zero-Deployment Agility**: Real-time feature flags and dynamic hierarchical configuration overrides (Tenant > System > Org > Environment) allow immediate business adjustments without code releases.
+- **Compliance Ready**: Immutable business audit logs (CDC/Subscribers) track all critical permission mutations and configuration state changes, making the system instantly ready for SOC 2 and ISO 27001 certifications.
 - **Enterprise-Grade Security**: Passwordless cryptography completely eliminates brute-force vectors and credentials theft.
 
 ---

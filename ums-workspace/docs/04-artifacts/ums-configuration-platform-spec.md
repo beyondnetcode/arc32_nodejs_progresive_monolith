@@ -149,6 +149,25 @@ Each system registered in UMS must support a **dynamic, versioned, auditable con
 - **API-first**: all configurations are read via `GET /v1/config/system/{system_id}?tenant_id=X`
 - **Cache-backed**: configurations are cached in Redis at `cfg:sys:{system_id}:{tenant_id}` with a 5-minute TTL and evicted on `SystemConfigUpdatedEvent`
 
+### 3.4 Hierarchical Resolution Strategy (Inheritance & Overrides)
+
+To support massive enterprise multi-tenancy without duplicating configuration data, the UMS employs a **Dynamic Configuration Resolution Engine** based on an inheritance and override model.
+
+When a client system requests its configuration, the UMS engine calculates the "effective configuration" by merging layers in the following precedence order (highest priority last):
+
+1. **Global Default Level**: Hardcoded application defaults.
+2. **Tenant Level**: Overrides applied to the entire Organization (`tenant_id`).
+3. **System Level**: Overrides specific to an application within a tenant (`system_id`).
+4. **Organization/Branch Level**: Localized overrides for a specific branch (`branch_id`).
+5. **Role Level**: Behavior overrides applied via profile/role templates.
+6. **User Level**: Extreme-edge customization specific to a `user_id` (e.g., accessibility settings).
+7. **Environment Level**: Final override based on runtime environment (`STAGING`, `PROD`).
+
+**Resolution Logic:**
+- Each parameter is resolved individually using a Deep Merge strategy.
+- If a parameter is explicitly set at a higher priority level, it overrides the lower levels.
+- This guarantees that a Tenant can set a baseline `mfa_enabled=true`, but a specific System (e.g., public tracking portal) can override it to `mfa_enabled=false` without duplicating the entire config object.
+
 ---
 
 ## 📋 4. Pillar 3 — Feature Flag Management Framework (Pluggable Provider Architecture)
