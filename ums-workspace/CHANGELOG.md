@@ -1,3 +1,13 @@
+## 0.0.6 (2026-05-10)
+
+### 🚀 Features
+
+- **devops:** provide EDA dependencies for ADR 0015 ([320f33e](https://github.com/beyondnetcode/ums/commit/320f33e))
+
+### ❤️ Thank You
+
+- Alberto Arroyo Raygada @nestjslatam
+
 ## 0.0.5 (2026-05-10)
 
 ### 🚀 Features
