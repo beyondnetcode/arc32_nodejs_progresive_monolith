@@ -79,6 +79,7 @@ These decisions are officially **Approved** and form the system's baseline archi
 | **ADR-0012** | [Advanced Authorization (RBAC/ABAC)](./03-adrs/0012-advanced-authorization-rbac-abac.md) | 🟢 **Accepted** | Fine-grained contextual permission modeling. | Approved baseline. |
 | **ADR-0014** | [Distributed Caching (Redis)](./03-adrs/0014-distributed-caching-strategy-redis.md) | 🟢 **Accepted** | Memory caches for auth validations and active sessions. | Approved baseline. |
 | **ADR-0015** | [Event-Driven Architecture](./03-adrs/0015-event-driven-architecture-intra-domain.md) | 🟢 **Accepted** | Asynchronous events publishing for state sync. | Approved baseline. |
+| **ADR-0016** | [Immutable Business Audit Trail](./03-adrs/0016-immutable-business-audit-trail.md) | 🟢 **Accepted** | Application-level audit strategy using Domain Events. | Approved baseline. |
 | **ADR-0020** | [Identity Provider Abstraction](./03-adrs/0020-identity-provider-abstraction-strategy.md) | 🟢 **Accepted** | Decouples UMS from Auth0, Keycloak, or Entra ID. | Approved baseline. |
 | **ADR-0021** | [High Performance Auth Graph](./03-adrs/0021-high-performance-auth-and-graph-compilation.md) | 🟢 **Accepted** | Optimized permission compiling under <5ms latency limit. | Approved baseline. |
 | **ADR-0022** | [Pluggable Output Projections](./03-adrs/0022-contextual-auth-and-pluggable-projections.md) | 🟢 **Accepted** | Context-aware read projection layers outside the core. | Approved baseline. |
@@ -97,7 +98,6 @@ These decisions are currently **Proposed** and represent strategic backlogs. The
 | :--- | :--- | :--- | :--- | :--- |
 | **ADR-0006** | [Future Microservices via Dapr](./03-adrs/0006-future-microservices-transition-dapr.md) | 🟡 **Proposed** | Sidecar integration for distributed state and messaging. | **PO review/approve** to activate microservice migration. |
 | **ADR-0013** | [Cloud Infrastructure & DR](./03-adrs/0013-cloud-infrastructure-topology-dr.md) | 🟡 **Proposed** | Multi-region disaster recovery replication limits. | **PO review/approve** to authorize deployment budget. |
-| **ADR-0016** | [Immutable Business Audit Trail](./03-adrs/0016-immutable-business-audit-trail.md) | 🟡 **Proposed** | Cryptographically signed logs for user activity tracing. | **PO review/approve** to authorize audit compliance rules. |
 | **ADR-0017** | [Feature Flagging Strategy](./03-adrs/0017-feature-flagging-strategy.md) | 🟡 **Proposed** | Live features toggling on development environments. | **PO review/approve** to authorize operational gating. |
 | **ADR-0018** | [Testing Pyramid Quality Gates](./03-adrs/0018-testing-pyramid-quality-gates.md) | 🟡 **Proposed** | Coverage limits for E2E, Contract, and Unit tests. | **PO review/approve** to authorize QA gate requirements. |
 | **ADR-0019** | [Tactical Domain Patterns (Result Pattern)](./03-adrs/0019-tactical-design-patterns-future-proofing.md) | 🟡 **Proposed** | Rigid functional error handling over exception throwing. | **PO review/approve** to authorize coding style mandate. |
