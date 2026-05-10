@@ -117,6 +117,7 @@ These architectural decisions have been **Vetoed / Rejected** or **Cancelled** b
 ### 🛠️ [Phase 04 - Engineering Standards and Artifacts](./04-artifacts/)
 Technical guidelines, clean code rules, security standards, and technical quality plans.
 *   📄 **[Global Engineering Standards](./04-artifacts/engineering-standards.md)**: SOLID, Clean Architecture, OWASP compliance, and DDD guidelines.
+*   📄 **[Architecture Maturity Model (AMM)](./04-artifacts/architecture-maturity-model.md)**: TOGAF ACMM and Well-Architected Framework maturity assessment.
 *   📄 **[Contract Testing Plan](./04-artifacts/contract-testing-plan.md)**: Safe microservices integration using Pact JS.
 *   📄 **[Distributed Observability Strategy](./04-artifacts/observability-strategy.md)**: Unified telemetry using OpenTelemetry and Grafana Loki.
 *   📄 **[Gap Analysis & Technical Debt](./04-artifacts/gap-analysis-and-optimization-plan.md)**: Architectural maturity assessment and technical mitigation plan.
