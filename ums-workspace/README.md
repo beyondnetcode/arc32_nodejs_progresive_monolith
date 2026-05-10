@@ -46,6 +46,7 @@ Click on the phases or files to navigate quickly and directly through the knowle
 *   👉 **[ULPMS Master Documentation Index & Guides](./docs/index.md)**: The central navigation map linking all 6 phases of product vision, requirements, architecture specifications, ADRs, engineering standards, and deployment roadmaps.
 *   👉 **[C4 Architecture Spec & Technical Inventory](./docs/02-architecture/architecture-spec.md)**: Details the Level 1 (System Context), Level 2 (Container), and Level 3 (Component) diagrams of the UMS, along with the physical technology inventory.
 *   👉 **[Gap Analysis & Optimization Roadmap](./docs/04-artifacts/gap-analysis-and-optimization-plan.md)**: Analyzes the platform's architectural maturity against 16 Enterprise Quality Criteria and tracks active ADR implementations.
+*   👉 **[Vendor Lock-In & Financial Risk Assessment](./docs/02-architecture/vendor-risk-assessment.md)**: Analyzes financial and operational risks associated with commercial identity providers, caching mechanisms, and feature flag solutions.
 
 ### 📜 3. Architectural Decision Records (ADRs)
 Foundational engineering decisions grouped by architectural focus:

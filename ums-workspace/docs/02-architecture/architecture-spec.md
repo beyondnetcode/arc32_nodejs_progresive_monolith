@@ -227,7 +227,15 @@ To guarantee the healthy evolution of the monorepo towards distributed models an
 
 ---
 
-## 🏛️ 6. Centralized Authorization Engine Architecture (PEP/PDP/PAP/PIP)
+## 🛡️ 6. Financial & Operational Risk Assessment
+
+An exhaustive evaluation of **"Build vs. Buy"** decisions, licensing implications, and operational costs associated with the sovereign tech stack. 
+
+*   **[Vendor Lock-In & Financial Risk Assessment](./vendor-risk-assessment.md)**: Baseline documentation analyzing Identity Providers, Redis licensing, Feature Flag platforms, and Nx Cloud caching to prevent unexpected financial burdens.
+
+---
+
+## 🏛️ 7. Centralized Authorization Engine Architecture (PEP/PDP/PAP/PIP)
 
 To support secure, context-aware, and highly scalable access control across all corporate applications, the system adopts a centralized **User Management System (UMS)** serving as a shared "authorization kernel". This architecture decouples identity validation from dynamic permission resolution by implementing standard **XACML Architectural Reference Model** layers:
 
@@ -237,5 +245,6 @@ To support secure, context-aware, and highly scalable access control across all 
 4.  **Policy Information Point (PIP)**: Relational PostgreSQL registries supplying active tenant, branch (sedes), and user attributes during graph evaluation.
 
 By utilizing the **Strategy Pattern** for dynamic output projections, the UMS can format the compiled graph into a variety of target structures on-the-fly (including frontend-optimized JSON, cryptographically signed JWT scopes, or Claims-based lists), ensuring high adaptability and complete zero-lock-in longevity. For a complete analysis of the SCM Transportation Analyst reference model and API contracts, consult **[enterprise-iam-ums-specification.md](../04-artifacts/enterprise-iam-ums-specification.md)**.
+
 
 

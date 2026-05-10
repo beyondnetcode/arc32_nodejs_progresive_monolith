@@ -57,6 +57,9 @@ The chronological and immutable ledger of critical design decisions in MADR form
 *   📄 **[ADR-0028: Self-Hosted, Open-Source Infrastructure for Hybrid & On-Premise Deployments](./03-adrs/0028-self-hosted-hybrid-infrastructure-on-premise.md)**: Guarantees cloud-agnostic capability and localized deployments with zero cloud lock-in via MinIO, RabbitMQ, and HashiCorp Vault.
 *   📄 **[ADR-0029: Tactical DDD Primitives Library](./03-adrs/0029-tactical-ddd-primitives-library.md)**: Adopts `@nestjslatam/ddd` as the pre-approved standard library for tactical DDD primitives in case DDD is selected as part of the design.
 
+#### 🛡️ Operational Risk Management
+*   📄 **[Vendor Lock-In & Financial Risk Assessment](./02-architecture/vendor-risk-assessment.md)**: Baseline documentation analyzing Identity Providers, Redis licensing, Feature Flag platforms, and Nx Cloud caching to prevent unexpected financial burdens.
+
 #### 🏛️ Architectural Governance & ADR Status Matrix
 
 Before starting the coding phase, the Product Owner (PO) has absolute authority to approve, defer, or veto any Architectural Decision Record (ADR). Below is the exhaustive classification of all 29 active decisions matching their file statuses:
