@@ -1,7 +1,7 @@
 # ADR 0011: Fault Tolerance and Resiliency Patterns (Circuit Breakers & Retries)
 
 ## Status
-Proposed
+Approved
 
 ## Date
 2026-05-08

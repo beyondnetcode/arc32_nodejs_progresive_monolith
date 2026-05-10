@@ -71,9 +71,11 @@ These decisions are officially **Approved** and form the system's baseline archi
 | **ADR-0003** | [Strict TypeScript Standards](./03-adrs/0003-strict-typescript-standards.md) | 🟢 **Accepted** | Static analysis quality gate and type enforcement. | Approved baseline. |
 | **ADR-0004** | [React Query Offline Architecture](./03-adrs/0004-frontend-offline-resilience.md) | 🟢 **Accepted** | Local caching & fallback mechanism for client resilience. | Approved baseline. |
 | **ADR-0005** | [Zero-Cost Security via CodeQL](./03-adrs/0005-ci-cd-quality-codeql.md) | 🟢 **Accepted** | Automated vulnerability scanning inside CI pipeline. | Approved baseline. |
+| **ADR-0007** | [Loki & OpenTelemetry Strategy](./03-adrs/0007-observability-telemetry-loki-opentelemetry.md) | 🟢 **Accepted** | Distributed tracing and centralized log collection. | Approved baseline. |
 | **ADR-0008** | [Gateway and BFF Patterns](./03-adrs/0008-progressive-multimodule-evolution-gateway-bff.md) | 🟢 **Accepted** | Optimizes network requests for multi-module clients. | Approved baseline. |
 | **ADR-0009** | [Strict Dependency Pinning](./03-adrs/0009-strict-dependency-pinning-vulnerability-management.md) | 🟢 **Accepted** | Mitigates supply chain injection vulnerabilities. | Approved baseline. |
 | **ADR-0010** | [Multi-Tenancy SaaS Strategy](./03-adrs/0010-multi-tenancy-architecture-strategy.md) | 🟢 **Accepted** | Defines database isolation strategy per corporate tenant. | Approved baseline. |
+| **ADR-0011** | [Fault Tolerance & Resiliency](./03-adrs/0011-fault-tolerance-resiliency-patterns.md) | 🟢 **Accepted** | Circuit breakers (`opossum`) and exponential retries. | Approved baseline. |
 | **ADR-0020** | [Identity Provider Abstraction](./03-adrs/0020-identity-provider-abstraction-strategy.md) | 🟢 **Accepted** | Decouples UMS from Auth0, Keycloak, or Entra ID. | Approved baseline. |
 | **ADR-0021** | [High Performance Auth Graph](./03-adrs/0021-high-performance-auth-and-graph-compilation.md) | 🟢 **Accepted** | Optimized permission compiling under <5ms latency limit. | Approved baseline. |
 | **ADR-0022** | [Pluggable Output Projections](./03-adrs/0022-contextual-auth-and-pluggable-projections.md) | 🟢 **Accepted** | Context-aware read projection layers outside the core. | Approved baseline. |
@@ -91,8 +93,6 @@ These decisions are currently **Proposed** and represent strategic backlogs. The
 | ADR ID | Decision Title | Status | Impact / Scope | Required PO Action |
 | :--- | :--- | :--- | :--- | :--- |
 | **ADR-0006** | [Future Microservices via Dapr](./03-adrs/0006-future-microservices-transition-dapr.md) | 🟡 **Proposed** | Sidecar integration for distributed state and messaging. | **PO review/approve** to activate microservice migration. |
-| **ADR-0007** | [Loki & OpenTelemetry Strategy](./03-adrs/0007-observability-telemetry-loki-opentelemetry.md) | 🟡 **Proposed** | Distributed tracing and centralized log collection. | **PO review/approve** to authorize SRE monitoring infra. |
-| **ADR-0011** | [Fault Tolerance & Resiliency](./03-adrs/0011-fault-tolerance-resiliency-patterns.md) | 🟡 **Proposed** | Circuit breakers (`opossum`) and exponential retries. | **PO review/approve** to authorize resiliency policies. |
 | **ADR-0012** | [Advanced Authorization (RBAC/ABAC)](./03-adrs/0012-advanced-authorization-rbac-abac.md) | 🟡 **Proposed** | Fine-grained contextual permission modeling. | **PO review/approve** to authorize security model. |
 | **ADR-0013** | [Cloud Infrastructure & DR](./03-adrs/0013-cloud-infrastructure-topology-dr.md) | 🟡 **Proposed** | Multi-region disaster recovery replication limits. | **PO review/approve** to authorize deployment budget. |
 | **ADR-0014** | [Distributed Caching (Redis)](./03-adrs/0014-distributed-caching-strategy-redis.md) | 🟡 **Proposed** | Memory caches for auth validations and active sessions. | **PO review/approve** to authorize memory allocation. |

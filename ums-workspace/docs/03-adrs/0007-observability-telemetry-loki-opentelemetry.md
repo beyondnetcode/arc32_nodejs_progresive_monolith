@@ -1,7 +1,7 @@
-﻿# ADR 0007: Observability Telemetry with Grafana Loki and OpenTelemetry
+# ADR 0007: Observability Telemetry with Grafana Loki and OpenTelemetry
 
 ## Status
-Proposed (Backlog / Technical Debt)
+Approved
 
 ## Date
 2026-05-08
