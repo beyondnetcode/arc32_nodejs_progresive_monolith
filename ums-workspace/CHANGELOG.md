@@ -1,3 +1,13 @@
+## 0.0.8 (2026-05-10)
+
+### 🚀 Features
+
+- **devops:** provide FF dependencies for ADR 0017 ([d7eaef7](https://github.com/beyondnetcode/ums/commit/d7eaef7))
+
+### ❤️ Thank You
+
+- Alberto Arroyo Raygada @nestjslatam
+
 ## 0.0.7 (2026-05-10)
 
 ### 🚀 Features
