@@ -1,3 +1,13 @@
+## 0.0.7 (2026-05-10)
+
+### 🚀 Features
+
+- **devops:** provide context storage dependency for ADR 0016 ([c2a7d8b](https://github.com/beyondnetcode/ums/commit/c2a7d8b))
+
+### ❤️ Thank You
+
+- Alberto Arroyo Raygada @nestjslatam
+
 ## 0.0.6 (2026-05-10)
 
 ### 🚀 Features
