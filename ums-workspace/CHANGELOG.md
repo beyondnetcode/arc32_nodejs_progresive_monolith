@@ -1,3 +1,13 @@
+## 0.0.9 (2026-05-10)
+
+### 🚀 Features
+
+- **devops:** enforce 70% coverage gate for ADR 0018 ([7f957ec](https://github.com/beyondnetcode/ums/commit/7f957ec))
+
+### ❤️ Thank You
+
+- Alberto Arroyo Raygada @nestjslatam
+
 ## 0.0.8 (2026-05-10)
 
 ### 🚀 Features
