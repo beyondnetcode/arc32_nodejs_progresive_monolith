@@ -82,6 +82,7 @@ These decisions are officially **Approved** and form the system's baseline archi
 | **ADR-0016** | [Immutable Business Audit Trail](./03-adrs/0016-immutable-business-audit-trail.md) | 🟢 **Accepted** | Application-level audit strategy using Domain Events. | Approved baseline. |
 | **ADR-0017** | [Feature Flagging Strategy](./03-adrs/0017-feature-flagging-strategy.md) | 🟢 **Accepted** | Infrastructure-injected Feature Flags (Unleash/LaunchDarkly). | Approved baseline. |
 | **ADR-0018** | [Testing Pyramid Quality Gates](./03-adrs/0018-testing-pyramid-quality-gates.md) | 🟢 **Accepted** | Coverage limits for E2E, Contract, and Unit tests (>70%). | Approved baseline. |
+| **ADR-0019** | [Tactical Domain Patterns](./03-adrs/0019-tactical-design-patterns-future-proofing.md) | 🟢 **Accepted** | Result Pattern, Null Objects, and Decorators. | Approved baseline. |
 | **ADR-0020** | [Identity Provider Abstraction](./03-adrs/0020-identity-provider-abstraction-strategy.md) | 🟢 **Accepted** | Decouples UMS from Auth0, Keycloak, or Entra ID. | Approved baseline. |
 | **ADR-0021** | [High Performance Auth Graph](./03-adrs/0021-high-performance-auth-and-graph-compilation.md) | 🟢 **Accepted** | Optimized permission compiling under <5ms latency limit. | Approved baseline. |
 | **ADR-0022** | [Pluggable Output Projections](./03-adrs/0022-contextual-auth-and-pluggable-projections.md) | 🟢 **Accepted** | Context-aware read projection layers outside the core. | Approved baseline. |
@@ -100,7 +101,6 @@ These decisions are currently **Proposed** and represent strategic backlogs. The
 | :--- | :--- | :--- | :--- | :--- |
 | **ADR-0006** | [Future Microservices via Dapr](./03-adrs/0006-future-microservices-transition-dapr.md) | 🟡 **Proposed** | Sidecar integration for distributed state and messaging. | **PO review/approve** to activate microservice migration. |
 | **ADR-0013** | [Cloud Infrastructure & DR](./03-adrs/0013-cloud-infrastructure-topology-dr.md) | 🟡 **Proposed** | Multi-region disaster recovery replication limits. | **PO review/approve** to authorize deployment budget. |
-| **ADR-0019** | [Tactical Domain Patterns (Result Pattern)](./03-adrs/0019-tactical-design-patterns-future-proofing.md) | 🟡 **Proposed** | Rigid functional error handling over exception throwing. | **PO review/approve** to authorize coding style mandate. |
 
 ### 🔴 3. CANCELLED, REJECTED OR VETOED (Rechazados o Descartados por el PO)
 These architectural decisions have been **Vetoed / Rejected** or **Cancelled** by the Product Owner and **must never be implemented**:
