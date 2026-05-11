@@ -413,6 +413,7 @@ graph TD
 | **Messaging Strategy** | ADR-0036 | FIFO vs Fire & Forget vs DLQ Policies | §6.2 |
 | **Performance Testing** | ADR-0037 | K6 Load + Pact Contract Verification | §5, §6.3 |
 | **Error Management** | ADR-0038 | Result Pattern + Unified Boundaries | §5, §6.3 |
+| **Deployment Switcher** | ADR-0039 | Factory-based Topology Abstraction | §7 |
 
 ---
 
