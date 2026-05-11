@@ -16,7 +16,7 @@ This matrix rates our current infrastructure and design readiness against standa
 | **Database** | **Schema Per Context** | **Core Mandatory** | 🟢 100% Adopted | Solves coupling from day one. Prevents raw SQL join poisoning across domains (ADR-0031). Zero-refactor DB portability. |
 | **Scalability** | **CQRS (Basic)** | **High Value** | 🟡 75% (Roadmap) | Read/Write logic separations utilized inside BFF aggregates. Full Command/Query event-store architecture is roadmap-driven if required. |
 | **Consistency** | **Saga Pattern** | **Distributed Future** | 🟡 60% (Ready) | Infrastructure exists (`IEventBusPort`). Currently relies on DB transactions, but design accepts asynchronous choreography if extracted. |
-| **Messaging** | **Transactional Outbox** | **High Criticality** | 🟡 50% (Recommended) | Ensures eventual consistency guarantee when writing to DB and RabbitMQ atomically. *Action Item: Implement for full async guarantee.* |
+| **Messaging** | **Transactional Outbox** | **High Criticality** | 🟢 100% Adopted | Mandated via ADR-0033. Guarantees absolute atomic consistency between DB state and RabbitMQ event forwarding via outbox relay table. |
 
 **Score Legend:**
 *   🟢 **Adopted**: Fully designed, verified in specs, zero configuration changes required.

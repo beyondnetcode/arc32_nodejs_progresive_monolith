@@ -32,7 +32,7 @@ Technical layout, topology, and C4 Model definitions.
 ---
 
 ## 📜 Phase 03: Architectural Decision Records (ADRs)
-The canonical system blueprint ledger consisting of all 32 fully approved records.
+The canonical system blueprint ledger consisting of all 33 fully approved records.
 
 ### Core Foundation & Tooling
 *   [ADR 0001: Monorepo Orchestration with Nx](./03-adrs/0001-monorepo-orchestration-nx.md)
@@ -51,11 +51,11 @@ The canonical system blueprint ledger consisting of all 32 fully approved record
 *   [ADR 0011: Resiliency Patterns (Circuit Breakers)](./03-adrs/0011-fault-tolerance-resiliency-patterns.md)
 *   [ADR 0013: Cloud Topology & DR](./03-adrs/0013-cloud-infrastructure-topology-dr.md)
 *   [ADR 0014: Distributed Caching (Redis)](./03-adrs/0014-distributed-caching-strategy-redis.md)
-*   [ADR 0015: Event-Driven Architecture](./03-adrs/0015-event-driven-architecture-intra-domain.md)
-*   [ADR 0029: Tactical DDD Primitives](./03-adrs/0029-tactical-ddd-primitives-library.md)
+*   [ADR 0015: Injectable Event Bus Mechanism](./03-adrs/0015-event-driven-decoupled-architecture.md)
 *   [ADR 0030: API Gateway Strategy - Kong vs NestJS](./03-adrs/0030-api-gateway-kong-vs-nestjs.md)
-*   [ADR 0031: Schema-per-Context and Domain Event Catalog](./03-adrs/0031-schema-per-context-domain-event-catalog.md)
-*   [ADR 0032: API Protocol Selection Matrix (REST, gRPC, GraphQL)](./03-adrs/0032-api-protocol-decision-matrix-rest-grpc-graphql.md)
+*   [ADR 0031: Isolated PostgreSQL Schema Per Bounded Context](./03-adrs/0031-isolated-postgresql-schema-per-bounded-context.md)
+*   [ADR 0032: API Protocol Selection Matrix](./03-adrs/0032-api-protocol-decision-matrix-rest-grpc-graphql.md)
+*   [ADR 0033: Transactional Outbox Pattern](./03-adrs/0033-transactional-outbox-pattern.md)
 
 ### Security & Features Governance
 *   [ADR 0012: Advanced Authorization (RBAC/ABAC)](./03-adrs/0012-advanced-authorization-rbac-abac.md)
