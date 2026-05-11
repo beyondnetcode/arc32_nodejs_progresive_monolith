@@ -1,22 +1,32 @@
-# 🏛️ Evolutionary Reference Architecture for API-Driven Systems (Node.js Stack)
+# 🏛️ Corporate Reference Architecture (Multi-Runtime / arc42)
 
 > [!IMPORTANT]
-> **Corporate Reference Architecture Blueprint (ARC32 / Arc42)**: This document defines the corporate standard for building highly decoupled applications that start as a **Modular Monolith** and evolve toward a full **SaaS Multi-Tenant Microservices** mesh. The base project physically implements this international standard.
+> **Unified Corporate Reference Blueprint**: This document defines the global standard for software architecture across the organization. While the canonical physical implementation uses Node.js, the architectural constraints and design principles are agnostic and applicable to approved runtimes (.NET / Android) for diverse workloads.
 
 ---
 
 ## 1. Introduction and Goals
 
-This reference architecture provides a standardized blueprint for building modern, highly scalable, multi-tenant SaaS systems. All 38 Architectural Decision Records (ADRs) are reflected throughout the diagrams of this document.
+This reference architecture provides a standardized blueprint for building modern, highly scalable systems.
 
 ### 1.1 Purpose and Applicability
 This pattern is designed specifically for systems that:
 *   Have a strong orientation towards **intensive API utilization** with multi-channel clients (Web, Mobile, B2B).
 *   Require native **SaaS multi-tenant isolation** at the database engine level.
-*   Must support **progressive evolution** from Modular Monolith to Distributed Microservices without domain rewrites.
-*   Require **asynchronous decoupled communication** via an injectable, swappable event bus.
+*   Must support **progressive evolution** from Modular Monolith to Distributed Microservices.
 
-### 1.2 Mandatory Quality Attributes
+### 1.2 Corporate Multi-Runtime Strategy (Políglota)
+The organization promotes a deliberate polyglot architecture where runtimes are chosen strictly based on workload suitability, validated via ADR:
+
+| Runtime | Canonical Role | Typical Use Case |
+| :--- | :--- | :--- |
+| **Node.js / TypeScript** | Principal Runtime | REST/gRPC APIs, BFF Orchestration, Transacional Web Services, Frontend SSR. |
+| **.NET (C#)** | High Processing | Batch compute, ETL pipelines, Heavy computational tasks, Legacy interoperability. |
+| **Android (Kotlin/Java)** | Native Mobile Client | Industrial operative apps, offline capture, hardware scan/GPS integration. |
+
+> **Rule of Contracts**: Communication between distinct runtimes MUST strictly utilize explicit, versioned contract definitions (OpenAPI for HTTP, Protobuf for gRPC, AsyncAPI for Messaging) guaranteeing absolute implementation opacity.
+
+### 1.3 Mandatory Quality Attributes
 | Quality Attribute | Source ADR | Target |
 | :--- | :--- | :--- |
 | **Progressive Evolution** | ADR-0006, ADR-0008 | Zero-refactoring path to microservices via Dapr |
@@ -429,3 +439,36 @@ Implemented using:
 - **Gateway**: Kong OSS (DB-less YAML) + NestJS BFF layers.
 - **Event Bus**: `IEventBusPort` defaulting to In-Memory, injectable with RabbitMQ.
 - **Testing**: Jest (unit/integration) + Pact (contract tests).
+
+---
+
+## 11. Risks and Technical Debt
+
+Strategic tracking of current design limitations and acknowledged system risks.
+
+### 11.1 Inherent Risks
+| Risk ID | Description | Mitigation Strategy | Severity |
+| :--- | :--- | :--- | :--- |
+| **R-01** | **Shared DB Performance** | Physical DB packing creates single failure domain. | Enforce strict read replication and query timeout ceilings. | Medium |
+| **R-02** | **RabbitMQ Overflow** | In-memory message spikes during outage. | Mandatory **ADR-0036** Flow Control / Quotas. | High |
+| **R-03** | **gRPC Polyglot Coupling** | Non-backward compatible proto changes. | Mandatory **Pact JS** Contract verification in CI. | High |
+
+### 11.2 Known Technical Debt
+*   **Monorepo Bloat**: As library counts exceed 200+, Nx cache management will require migration from Local to Cloud caching.
+*   **Zero-Day Library Vulnerability**: Fast update cycles imposed by strict dependency pinning (ADR-0009) may consume 5-10% dev bandwidth monthly.
+
+---
+
+## 12. Glossary of Architectural Concepts
+
+Reference nomenclature used by this blueprint.
+
+*   **ACL (Anti-Corruption Layer)**: Isolates internal domain model from foreign schemas/contracts.
+*   **BFF (Backend for Frontend)**: Single-purpose edge API optimizing payloads for a specific client.
+*   **Bounded Context**: Strategic logic boundary owning its private database schema.
+*   **Clean Architecture**: Design paradigm where control flow always points inward toward dependencies.
+*   **Distributed Circuit Breaker**: Mechanism to halt request delivery to failing upstreams sharing state across pods via Redis.
+*   **Hexagonal Architecture**: See *Ports & Adapters*.
+*   **Port**: Explicit contract (Interface) that the application requires to talk to external systems.
+*   **RLS (Row-Level Security)**: Native DB engine security constraining table rows to active session user.
+*   **Saga Pattern**: Managing distributed transactional consistency via compensating events.

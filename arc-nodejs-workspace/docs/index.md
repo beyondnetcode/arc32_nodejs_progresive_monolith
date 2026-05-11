@@ -4,12 +4,13 @@ Welcome to the centralized guide for navigating the complete **Node.js Corporate
 
 ---
 
-## 🎯 Phase 00: Product Vision & Strategic Alignment
-High-level scoping and target business metrics.
-*   [Business Context](./00-product/business-context.md)
-*   [Product Vision](./00-product/product-vision.md)
-*   [Strategic Scope & Limits](./00-product/scope.md)
-*   [Key Objectives](./00-product/objectives.md)
+## 🎯 Phase 00: Product Vision & Scope
+Foundational clarity on the value streams, targeted scale, and user persona matrices.
+*   [Product Vision & Context](./00-product/product-vision.md)
+*   [Business Goals & OKRs](./00-product/objectives.md)
+*   [Bounded Scope & Boundaries](./00-product/scope.md)
+*   [Quick-Start Developer Manual](./00-product/quick-start.md)
+*   [Sandbox & Demo Verification](./00-product/sandbox-scope.md)
 
 ## 📋 Phase 01: Domain Domain Requirements
 Ubiquitous language definition and atomized flows.
@@ -23,7 +24,7 @@ Ubiquitous language definition and atomized flows.
 
 ## 🏗️ Phase 02: Architectural Specifications (ARC32)
 Technical layout, topology, and C4 Model definitions.
-*   👉 **[Node.js Corporate Reference Blueprint](./02-architecture/reference-architecture-nodejs-arc42.md)** *(Mandatory Reading)*
+*   👉 **[🏛️ Corporate Reference Architecture (Multi-Runtime)](./02-architecture/corporate-reference-architecture-multi-runtime.md)** *(Mandatory Reading)*
 *   [C4 Model Specification & Container View](./02-architecture/architecture-spec.md)
 *   [Bounded Context Domain Mapping](./02-architecture/bounded-context-map.md)
 *   [📊 Design Maturity & Patterns Evaluation](./02-architecture/design-and-maturity-evaluation.md)
