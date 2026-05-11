@@ -46,27 +46,27 @@ graph TD
     end
 
     subgraph BFFLayer["Tier 2: Backend-for-Frontend (BFF)"]
-        WebBFF["NestJS Web BFF (Tailored JSON)"]
-        MobileBFF["NestJS Mobile BFF (Optimized Payload)"]
+        WebBFF["NestJS Web BFF (GraphQL / REST)"]
+        MobileBFF["NestJS Mobile BFF (GraphQL / REST)"]
     end
 
-    subgraph ApplicationLayer["Tier 3: Core Business"]
+    subgraph ApplicationLayer["Tier 3: Core Business Contexts"]
         MainAPI["NestJS Core API (Domain Rules)"]
     end
 
     subgraph StorageLayer["Tier 4: Persistence & State"]
-        PostgresSQL[("PostgreSQL 16 (Multi-Tenant RLS)")]
-        RedisCache[("Redis Cache (Fast Path)")]
+        PostgresSQL[("PostgreSQL 16 (Dual-Layer RLS)")]
+        RedisCache[("Redis Cache (TTL Path)")]
     end
 
-    KongGateway -->|Auth/Limiting| WebBFF
-    KongGateway -->|Auth/Limiting| MobileBFF
+    KongGateway -->|HTTP/REST| WebBFF
+    KongGateway -->|HTTP/REST| MobileBFF
     
-    WebBFF -->|Aggregated Calls| MainAPI
-    MobileBFF -->|Aggregated Calls| MainAPI
+    WebBFF -->|Internal gRPC| MainAPI
+    MobileBFF -->|Internal gRPC| MainAPI
     
-    MainAPI -->|Multi-Tenant Query| PostgresSQL
-    MainAPI <-->|Cached Reads| RedisCache
+    MainAPI -->|Dual-Layer Tenant Isolation| PostgresSQL
+    MainAPI <-->|Read-Aside Cache| RedisCache
 ```
 
 ### Level 3: API Component Diagram (Hexagonal Architecture)
@@ -101,9 +101,9 @@ graph TD
 
 ---
 
-## 📜 2. The Approved Decision Ledger (All 30 ADRs)
+## 📜 2. The Approved Decision Ledger (All 32 ADRs)
 
-As validated by the Principal Architect, all 30 original foundational decisions are **officially Approved** and mandatory for system implementation.
+As validated by the Principal Architect, all 32 foundational decisions are **officially Approved** and mandatory for system implementation.
 
 ### 🟢 Group A: Core Foundation & Standards
 1.  **[ADR 0001: Monorepo Orchestration](../03-adrs/0001-monorepo-orchestration-nx.md)**: Nx and npm workspaces for linear, centralized CI/CD.
@@ -130,6 +130,7 @@ As validated by the Principal Architect, all 30 original foundational decisions 
 18. **[ADR 0027: Dual REST & gRPC Protocols](../03-adrs/0027-dual-protocol-rest-grpc-api-gateway.md)**: Internal performant streaming via gRPC.
 19. **[ADR 0030: Kong Gateway vs NestJS Gateway](../03-adrs/0030-api-gateway-kong-vs-nestjs.md)**: Separation of infrastructure proxies from business orchestration.
 20. **[ADR 0029: Tactical DDD Primitives](../03-adrs/0029-tactical-ddd-primitives-library.md)**: Mandatory utilization of standardized `@nestjslatam/ddd`.
+21. **[ADR 0032: API Protocol Decision Matrix](../03-adrs/0032-api-protocol-decision-matrix-rest-grpc-graphql.md)**: Evaluation framework mandating REST for public exposure, gRPC for internal backbones, and GraphQL for optimized BFF aggregation.
 
 ### 🟣 Group D: Microservices Evolution Readiness
-21. **[ADR 0031: Schema-per-Context & Domain Event Catalog](../03-adrs/0031-schema-per-context-domain-event-catalog.md)**: Each bounded context owns a dedicated PostgreSQL schema (`auth` | `tasks` | `taxonomy` | `audit`). All cross-context communication is governed by a formal Domain Event Catalog with typed payload contracts, enabling zero-migration microservices extraction.
+22. **[ADR 0031: Schema-per-Context & Domain Event Catalog](../03-adrs/0031-schema-per-context-domain-event-catalog.md)**: Each bounded context owns a dedicated PostgreSQL schema (`auth` | `tasks` | `taxonomy` | `audit`). All cross-context communication is governed by a formal Domain Event Catalog with typed payload contracts, enabling zero-migration microservices extraction.
