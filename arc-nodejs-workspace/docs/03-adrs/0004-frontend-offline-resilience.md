@@ -1,1 +1,34 @@
-﻿# ADR 0004: Frontend State Management and React Query Offline Architecture  ## Status Accepted  ## Date 2026-05-08  ## Context The Reference Platform React web client needs to operate reliably, even when the backend API or PostgreSQL database are offline or during network disruptions. Traditional state management patterns often couple UI views tightly with live network endpoints, causing the dashboard to freeze or crash when the backend is unreachable.  ## Decision We decided to implement a highly resilient, offline-first state and data architecture: 1. Use **Zustand** as the lightweight, high-performance global state manager for client-only state (e.g., active user sessions, sidebar toggles, and modal states). 2. Use **TanStack React Query** (v5) to manage server state (fetching, caching, and synchronizing database queries). 3. Implement a **`localStorage` backup fallback** inside React Query hooks: if the API request fails due to offline status or network errors, the client automatically falls back to cached localStorage snapshots, rendering a simulator alert instead of breaking the dashboard.  ## Consequences  ### Positive (Pros) * **High Availability**: The React client remains fully interactive even if the backend NestJS service is down. * **Excellent UX**: Users are presented with simulated alerts showing active state, rather than blank pages or endless spinners. * **Separation of Concerns**: Global client state (Zustand) is decoupled from asynchronous server cache (React Query).  ### Negative (Cons) * Requires managing manual synchronization between the live PostgreSQL DB and the browser's localStorage cache. * Adds slight complexity when updating data, requiring optimistic updates in the cache.
+# ADR 0004: Frontend Offline Resilience
+
+## Status
+Approved
+
+## Date
+2026-05-08
+
+## Context
+Web applications that depend entirely on server connectivity provide a poor user experience when network conditions are degraded (mobile connections, slow corporate VPNs). Users lose unsaved state and receive cryptic error messages instead of graceful degradation.
+
+## Decision
+Implement offline resilience in the frontend layer using **React Query** (TanStack Query) as the primary client-side state and cache management solution.
+
+Key strategies:
+- **Stale-While-Revalidate**: Serve cached data immediately while fetching updates in the background.
+- **Optimistic Updates**: Apply mutations to the UI instantly before the server confirms, with automatic rollback on failure.
+- **Background Sync**: Queue mutations made offline and replay them when connectivity is restored.
+- **Retry Logic**: Automatic exponential backoff for failed requests (configurable per query).
+
+## Consequences
+
+### Positive
+- Users see data immediately on navigation — no loading spinners for cached content.
+- Forms and mutations feel instantaneous via optimistic updates.
+- Graceful offline mode: the app remains usable for read operations even without connectivity.
+
+### Negative
+- Optimistic updates require careful rollback logic for complex, multi-step mutations.
+- Developers must understand the cache invalidation model to prevent stale data issues.
+
+## References
+- [TanStack Query Documentation](https://tanstack.com/query)
+- [ADR-0011: Fault Tolerance & Resiliency Patterns](./0011-fault-tolerance-resiliency-patterns.md)

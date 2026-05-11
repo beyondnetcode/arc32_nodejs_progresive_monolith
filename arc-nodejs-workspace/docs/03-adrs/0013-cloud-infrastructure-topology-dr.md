@@ -1,1 +1,31 @@
-﻿# ADR 0013: Cloud Infrastructure Topology and Disaster Recovery (DR) Strategy  ## Status Proposed  ## Date 2026-05-08  ## Context Mission-critical logistics operations (e.g., vessel unloading, gate dispatches) require 24/7 availability (99.9% SLA). A failure in the primary datacenter cannot cause prolonged operational downtime. The current architecture uses Docker containers, but the overarching cloud topology and failover mechanisms are undefined.  ## Decision We will design the infrastructure to be Cloud-Native and highly available using active/passive (or active/active) multi-region strategies:  1. **Container Orchestration**: The Reference Platform workloads will be deployed on a managed orchestrator (e.g., Azure Kubernetes Service or Azure Container Apps) capable of Horizontal Pod Autoscaling (HPA) to dynamically react to traffic spikes. 2. **Multi-AZ and Region Failover**: Deployments will span multiple Availability Zones (Multi-AZ). A secondary standby region will be configured for Disaster Recovery (DR). 3. **Global Load Balancing**: Implement a global entry point (e.g., Azure Front Door or Cloudflare) to route traffic intelligently and instantly failover to the DR region if the primary region goes offline.  ## Consequences * **Pros**: Guarantees business continuity and high availability during critical regional outages. * **Cons**: Doubles infrastructure costs (for active/active) and increases CI/CD pipeline and IaC (Infrastructure as Code) complexity.
+# ADR 0013: Cloud Infrastructure Topology and Disaster Recovery (DR)
+
+## Status
+Approved
+
+## Date
+2026-05-08
+
+## Context
+The business operations handled by this architecture demand 24/7 continuous execution stability. A datacenter component failure or broad availability zone blackout cannot bring operational critical path processing offline for manual hours. Our distribution plan across target cloud topologies requires explicit policy definitions.
+
+## Decision
+Design infrastructure topology targeting Cloud-Native patterns enforcing high resilience and instant failover potential:
+
+1. **Automated Orchestration**: Containers are strictly deployed into managed cluster platforms (e.g., Kubernetes - AKS/EKS or Container Apps) capable of autonomous Horizontal Pod Autoscaling (HPA) to balance burst events.
+2. **Multi-AZ Strategy**: Standard operation occurs active-active across several explicit Availability Zones. A secondary backup region remains in warm-standby for immediate disaster pivot.
+3. **Global Network Entry**: Deploy a unified external point of ingress (e.g., Cloudflare/Azure Front Door) to analyze health and perform instant routing redirect across regions if local cluster degradation is detected.
+
+## Consequences
+
+### Positive
+- Preserves seamless uptime commitments to global corporate operational chains.
+- Mitigates damage potential from vendor or structural zone outages.
+
+### Negative
+- Active-Active distribution mathematically doubles infrastructure run-costs.
+- Requires sophisticated CI/CD pipelines engineered for multi-target orchestration setups.
+
+## References
+- [ADR-0011: Fault Tolerance](./0011-fault-tolerance-resiliency-patterns.md)
+- [ADR-0028: Self-Hosted Hybrid Strategy](./0028-self-hosted-hybrid-infrastructure-on-premise.md)

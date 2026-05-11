@@ -1,1 +1,31 @@
-﻿# ADR 0012: Advanced Authorization (RBAC/ABAC) and Security Auditing Strategy  ## Status Approved  ## Date 2026-05-08  ## Context While the system currently relies on JWT for authentication, enterprise SaaS applications require robust access control matrices. Users within a specific tenant must have restricted access based on their operational roles (e.g., Admin, Operator, Auditor) and the state of the attributes they are trying to modify.  ## Decision We will implement a hybrid Role-Based Access Control (RBAC) and Attribute-Based Access Control (ABAC) architecture:  1. **NestJS Guards & Decorators**: Implement custom `@Roles()` and `@Permissions()` decorators at the controller/resolver level. A global `RolesGuard` will intercept requests and validate the JWT claims against the required endpoint permissions. 2. **Tenant-Aware Scoping**: Roles are not global; they are strictly bound to a `tenant_id`. A user might be an 'Admin' in Tenant A, but only a 'Viewer' in Tenant B. 3. **Proactive Security Auditing**: Security-critical actions (e.g., elevating privileges, modifying roles) will be automatically flagged and logged into a dedicated security audit stream, preparing the ground for future AI anomaly detection models.  ## Consequences * **Pros**: Highly granular, secure, and compliant access control mechanism suitable for strict enterprise and government audits. * **Cons**: Role and permission matrices can become complex to manage and test. Requires careful design of the JWT payload to avoid token bloat.
+# ADR 0012: Advanced Authorization (RBAC/ABAC) Strategy
+
+## Status
+Approved
+
+## Date
+2026-05-08
+
+## Context
+Basic JWT identification determines *who* is accessing the service, but SaaS applications need to restrict *what* they can physically do. Users in active operational tenants need permission matrix checks depending on dynamic conditions, and role assignments must remain scoped firmly inside their specific Tenant context.
+
+## Decision
+Implement a Hybrid Architecture bridging Role-Based (RBAC) and Attribute-Based (ABAC) access control:
+
+1. **NestJS Guard Framework**: Deploy custom `@Roles()` and `@Permissions()` annotations on controllers. Use native Global Interceptors to read the parsed JWT, fetch metadata associated with claims, and approve/deny execution pipeline entries immediately.
+2. **Strict Tenant Scoping**: Permissions are never global. A user might be a supervisor in Tenant A, and an observer in Tenant B. Checks must intersect the target endpoint context with the active `AsyncLocalStorage` current Tenant token.
+3. **Immutable Security Trail**: Crucial privileges changes or failed privilege elevation attempts automatically broadcast messages to the Audit Log context asynchronously, aiding automated threat surveillance streams.
+
+## Consequences
+
+### Positive
+- Fine-grained access policy that adapts effortlessly to complex regulatory business setups.
+- Protects against lateral internal attacks between system tiers or tenants.
+
+### Negative
+- Management matrix growth requires careful administrative tooling to maintain over time.
+- Designing JWT tokens carefully is necessary to avoid oversized packet payloads causing header bloat.
+
+## References
+- [NestJS Guard Documentation](https://docs.nestjs.com/guards)
+- [ADR-0010: Multi-Tenancy (RLS)](./0010-multi-tenancy-architecture-strategy.md)

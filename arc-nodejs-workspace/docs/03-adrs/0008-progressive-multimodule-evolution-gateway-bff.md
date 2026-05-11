@@ -1,1 +1,55 @@
-﻿# ADR 0008: Progressive Multi-Module Evolution with API Gateway and BFF Patterns  ## Status Accepted  ## Date 2026-05-08  ## Context Currently, the Reference Platform (User Management System) repository serves as an enterprise-grade reference architecture for 100% Node.js-based applications, operating as a single-solution modular monolith (with React frontend and NestJS backend).   However, Reference Platform is intended to scale into a unified gateway. In the future, the frontend application architecture must be preserved, but it will serve as the single entry point for multiple corporate modules and systems (such as Transport Management System - TMS, Warehouse Management System - WMS, etc.). These upcoming systems will be exposed as independent, decoupled servicesÔÇöeach governed by its own business context and database.   To prevent tight coupling between the clients and multiple backends, and to accommodate diverse clients (such as Web Portals, Mobile Applications, or Third-Party B2B integrations), we need a robust, progressive architecture that guides this evolution while strictly adhering to the **Backend For Frontend (BFF)** and **API Gateway** patterns.   Without a BFF layer, different clients (e.g., mobile apps with limited bandwidth vs. rich web dashboards) would be forced to consume the same generic backend endpoints, leading to over-fetching, high network latency, and rigid client-side state management.  ## Decision We decided to adopt a **Progressive Multi-Module and Distributed Backend For Frontend (BFF) Gateway Architecture** for future phases:  1. **Frontend Preservation**: The React architecture (Zustand + TanStack Query) will remain unified as the central user portal, progressively lazy-loading modules (TMS, WMS, Reference Platform) to optimize bundle size and performance. 2. **Exposed Independent Services**: Any new system (e.g., TMS, WMS) will be developed as a separate, decoupled backend service with its own isolated database (Database-per-Service pattern), adhering to bounded contexts. 3. **Backend For Frontend (BFF) Pattern**: Instead of exposing downstream services directly to the public web or using a single monolithic gateway, we will implement dedicated **BFF Gateways** tailored for each specific client type:    * **Web BFF Gateway**: Optimized specifically for the React Web Portal. It aggregates calls to Reference Platform, TMS, and WMS, formats large data payloads suitable for high-speed desktop browsers, and handles cookie-based secure sessions.    * **Mobile BFF Gateway**: Optimized specifically for Mobile Applications (iOS/Android). It compresses payloads, combines multiple downstream HTTP requests into single roundtrips to reduce mobile network latency, translates protocols (e.g., HTTP/JSON to gRPC downstream), and caches mobile-specific resources.    * **B2B API Gateway**: A separate ingress gateway for external clients or third-party integrations, enforcing strict rate-limiting, API keys, and contract-based schemas. 4. **Downstream Isolation**: Public clients never communicate directly with downstream services (Reference Platform, TMS, WMS). All client traffic is routed through their respective BFFs, which act as the security boundary, session manager, and API composer.  ### ­ƒÅø´©Å Progressive System Architecture Diagram  ``` +------------------+     +--------------------+     +-------------------+ |  React Web App   |     | Mobile Client App  |     |  External B2B IP  | |  (Desktop Web)   |     |   (iOS/Android)    |     |   (Third-Party)   | +--------+---------+     +---------+----------+     +---------+---------+          |                         |                          |          | HTTP / HTTPS            | HTTP2 / JSON             | HTTPS / API Key          v                         v                          v +--------+---------+     +---------+----------+     +---------+---------+ |  Web BFF Gateway |     | Mobile BFF Gateway |     |  B2B API Gateway  | |  (Express/Nest)  |     |   (Payload Comp.)  |     |  (Rate Limiter)   | +--------+---------+     +---------+----------+     +---------+---------+          |                         |                          |          +-------------+-----------+--------------------------+                        |                        | Internal gRPC / High-Speed TCP                        v          +-------------+-------------+-------------+          |                           |             |          v                           v             v +--------+--------+           +------+------+  +--------+--------+ |   Reference Platform Service   |           | TMS Service |  |   WMS Service   | | (PostgreSQL DB) |           | (Isolated)  |  | (Isolated DB)   | +-----------------+           +-------------+  +-----------------+ ```  ## Consequences  ### Positive (Pros) * **Tailored Client Performance (BFF)**: Mobile apps suffer zero latency or over-fetching issues, as the Mobile BFF only returns the minimal payload required for mobile screens. * **Independent Scalability**: The Web BFF and Mobile BFF can be scaled, updated, and deployed independently according to the traffic patterns of each platform (e.g., higher scaling of Mobile BFF during peak mobile usage). * **Decoupled Contracts**: Downstream services (Reference Platform, TMS, WMS) can change their internal APIs without breaking the public client apps, as the BFF layers act as an anti-corruption layer mapping the contracts. * **Security & Centralization**: BFFs manage specific security protocols per client (e.g., HTTPOnly secure cookies for Web vs. OAuth2 Bearer Tokens/Keychain for Mobile).  ### Negative (Cons) * **Gateway Proliferation**: Managing multiple BFF codebases (Web BFF, Mobile BFF) increases development overhead. * **Deployment Orchestration**: Requires robust CI/CD pipelines to manage deployment of multiple gateways alongside downstream microservices (easily handled via Nx monorepo configurations).
+# ADR 0008: Progressive Multi-Module Evolution with API Gateway and BFF Patterns
+
+## Status
+Approved
+
+## Date
+2026-05-08
+
+## Context
+Currently, the Reference Platform repository operates as a modular monolith. However, the platform is intended to scale into a unified portal for multiple future corporate modules (Transport Management - TMS, Warehouse Management - WMS). These must be independent, decoupled services with isolated databases.
+
+Without a Backend For Frontend (BFF) layer, diverse clients (rich web, low-bandwidth mobile, B2B) would force generic endpoints, leading to over-fetching and rigid client state management. We need a structure to support diverse client contracts without tightly coupling them to backend microservices.
+
+## Decision
+Adopt a **Progressive Multi-Module and Distributed Backend For Frontend (BFF) Gateway Architecture**:
+
+1. **Dedicated BFF Gateways**: Tailor dedicated gateways for each client type rather than sharing one generic entry point:
+   - **Web BFF**: Handles cookie-based sessions and aggregates payloads for rich desktop displays.
+   - **Mobile BFF**: Compresses data, combines roundtrips for high-latency networks, and translates to mobile-optimized payloads.
+   - **B2B API Gateway**: Handles rate-limiting and API Key authentication for external partners.
+
+2. **Downstream Isolation**: Public clients NEVER communicate directly with internal services (TMS, WMS). All traffic flows through assigned BFFs acting as security and composition boundaries.
+
+3. **Protocol Translation**: Allow internal microservice communication via high-speed gRPC while translating to standard HTTP/REST at the BFF edge.
+
+### System Architecture Overview
+
+```mermaid
+graph TD
+    Web["React Web App"] -->|HTTP/Cookies| WebBFF["Web BFF Gateway"]
+    Mobile["Mobile Client App"] -->|HTTP/JSON| MobileBFF["Mobile BFF Gateway"]
+    B2B["External B2B Integrations"] -->|HTTPS/API Key| B2BGateway["B2B API Gateway"]
+
+    subgraph InternalNetwork["Internal Trust Zone (gRPC)"]
+        WebBFF --> CoreAPI["Reference Platform API"]
+        WebBFF --> TMS["TMS Service"]
+        MobileBFF --> CoreAPI
+        MobileBFF --> TMS
+        B2BGateway --> WMS["WMS Service"]
+    end
+```
+
+## Consequences
+
+### Positive
+- **Client Performance**: Mobile apps get exactly what they need, reducing data usage and network roundtrips.
+- **Independent Scalability**: Scale Mobile BFF independently from Web BFF based on real-time device traffic.
+- **Decoupled Contracts**: Modify downstream internal APIs without breaking existing frontend versions.
+
+### Negative
+- **Gateway Proliferation**: Managing separate codebases for different BFFs increases CI/CD complexity.
+- Requires discipline to keep business logic out of the BFF (it should only orchestrate and compose).
+
+## References
+- [ADR-0030: Kong Gateway vs NestJS BFF](./0030-api-gateway-kong-vs-nestjs.md)

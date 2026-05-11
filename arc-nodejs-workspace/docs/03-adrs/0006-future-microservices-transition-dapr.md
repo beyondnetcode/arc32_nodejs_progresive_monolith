@@ -1,1 +1,39 @@
-﻿# ADR 0006: Future Microservices Transition with Dapr Sidecars  ## Status Proposed (Backlog / Technical Debt)  ## Date 2026-05-08  ## Context Currently, the Reference Platform monorepo is successfully structured as a **Modular Monolith** with a single API (`apps/api`) and a single frontend (`apps/web`). This keeps resource consumption at $0 and minimizes infrastructure complexity during the MVP phase. However, as business requirements scale (e.g., adding high-throughput telemetry, vessel routing, or massive client portals), we need a clear roadmap on when and how to transition to distributed microservices without rewriting core business logic.  ## Proposed Decision We propose to adopt **Dapr (Distributed Application Runtime)** as our microservices sidecar runtime when splitting the monolithic API: 1. Turn the Modular Monolith into independent microservices (e.g., `@Reference Platform/billing-service`, `@Reference Platform/vessels-service`). 2. Implement **Dapr Sidecars** next to each microservice to handle Service-to-Service invocation, Pub/Sub (via Redis or RabbitMQ), and state abstraction without introducing custom infrastructure SDKs in our Clean Architecture code. 3. Keep our business domain (`core`) 100% agnostic, only adapting the infrastructure adapters (`infrastructure`) to communicate via Dapr's HTTP/gRPC local endpoints (e.g., `localhost:3500`). 4. **Dapr Sidecar Abstraction (Dependency Inversion)**: Even Dapr SDKs must be hidden behind ports. For example, if using an `IPubSubPort`, the adapter logic will translate the port call into the Dapr PubSub component call. The core domain must change exactly **0 lines of code** when Dapr is introduced.  ## Consequences  ### Positive (Pros) * **High Extensibility**: Adding or replacing databases, queues, or secrets stores requires zero code changes - only updating a declarative YAML component in Dapr. * **Polyglot Architecture**: Microservices can be written in any language (Go, Python, NestJS) while sharing the same sidecar capabilities. * **Resiliency**: Native support for retry policies, circuit breakers, and state locks.  ### Negative (Cons) * Adds architectural overhead (requires managing Kubernetes or local Dapr sidecars). * Increases network latency slightly due to local HTTP/gRPC loopback calls.
+# ADR 0006: Future Microservices Transition with Dapr Sidecars
+
+## Status
+Approved — Backlog (Phase 3 Milestone)
+
+## Date
+2026-05-08
+
+## Context
+The system is currently a Modular Monolith (single process, logically isolated bounded contexts). As business requirements scale — higher traffic, independent deployment cycles, or polyglot service integration — a clear and safe path to microservices is required. The transition must not require rewriting any domain logic.
+
+## Decision
+Adopt **Dapr (Distributed Application Runtime)** as the microservices sidecar runtime when splitting the monolith into independent services.
+
+**Migration milestones:**
+
+| Milestone | Description |
+| :--- | :--- |
+| **M1 — Modular Monolith** | Current state. Single process with isolated bounded context modules. |
+| **M2 — Service Extraction** | High-traffic or independently-deployable contexts extracted as Nx micro-projects. Each gets its own database schema (ADR-0031) and communicates via gRPC or Dapr. |
+| **M3 — Full Mesh** | All services run with Dapr Sidecars. Service-to-Service invocation, Pub/Sub, and State are managed by Dapr components (declarative YAML). |
+
+**Key constraint:** The domain Core must change **zero lines** when Dapr is introduced. All Dapr SDK calls are wrapped behind existing `IEventBusPort` and `ICachePort` abstractions (ADR-0015, ADR-0014).
+
+## Consequences
+
+### Positive
+- Polyglot architecture: other services can be written in Go or Python while sharing Dapr capabilities.
+- Swapping infrastructure (Redis → Kafka, PostgreSQL → Cosmos DB) requires only a Dapr component YAML change.
+- Native retry policies, circuit breakers, and distributed tracing built into Dapr sidecar.
+
+### Negative
+- Adds Kubernetes/container orchestration as a prerequisite for the full mesh phase.
+- Local Dapr development adds sidecar process overhead per service.
+
+## References
+- [ADR-0015: Event-Driven Architecture](./0015-event-driven-architecture-intra-domain.md)
+- [ADR-0031: Schema-per-Context & Domain Event Catalog](./0031-schema-per-context-domain-event-catalog.md)
+- [Dapr Documentation](https://dapr.io)

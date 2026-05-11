@@ -1,1 +1,32 @@
-﻿# ADR 0011: Fault Tolerance and Resiliency Patterns (Circuit Breakers & Retries)  ## Status Approved  ## Date 2026-05-08  ## Context In a mission-critical logistics and customs environment, the Reference Platform and downstream systems must communicate with volatile external third-party APIs (e.g., SUNAT transmission services, external OCR APIs). Synchronous network failures, high latency, or timeouts in these external dependencies can cascade, causing our internal NestJS threads to hang and potentially crashing the entire service.   We need a standardized fault-tolerance mechanism to gracefully handle external system outages without degrading the core user experience or losing transactional consistency.  ## Decision We will implement strict Resiliency Patterns for all outbound HTTP communications:  1. **Circuit Breaker Pattern (Infrastructure Adapter)**: We will utilize a Circuit Breaker library (such as `opossum`) strictly wrapped within infrastructure-level Adapters that implement Core Interfaces (Ports). The core domain remains 100% unaware of `opossum`. If an external service fails continuously, the circuit will "open," failing fast and preventing resource exhaustion. 2. **Exponential Backoff & Retries (Transparent to Core)**: For transient network errors, HTTP clients (e.g., Axios Interceptors) will be configured at the infrastructure layer to automatically retry the request with exponential backoff before failing completely. The Application/Use Case layers merely call `port.transmitData()` and receive success or an expected custom `DomainException`. 3. **Fallback Mechanisms**: In the event of an open circuit, the infrastructure adapter must provide a fallback mechanism (e.g., enqueueing the payload in a Dead Letter Queue or local database for delayed asynchronous transmission).  ## Consequences * **Pros**: Prevents cascading failures, ensures 24/7 internal operability even when third-party services are down, and guarantees no data loss for critical transmissions. * **Cons**: Adds complexity to the outbound API adapters and requires careful tuning of timeout and retry thresholds to avoid overwhelming recovering services.
+# ADR 0011: Fault Tolerance and Resiliency Patterns
+
+## Status
+Approved
+
+## Date
+2026-05-08
+
+## Context
+Mission-critical deployments must integrate with volatile third-party APIs (e.g., customs services, bank networks). Synchronous network failures, excessive latency, or transient timeouts at external API points frequently cascade backwards, eating local resource threads and crashing our system availability.
+
+## Decision
+Implement explicit Resilience Patterns protecting all outbound system exits:
+
+1. **Circuit Breaker (Opossum)**: Wrap outbound network calls in high-level infrastructure adapters using the Circuit Breaker pattern. If target endpoint errors surpass established thresholds, the circuit switches to "Open" immediately, returning explicit errors before even attempting the slow call, thus saving local execution time and thread pools.
+2. **Retry with Backoff**: Configure interceptors for non-fatal transient codes to execute transparent exponential backoff attempts natively within adapter logic before handing up an error result.
+3. **Decoupled Domain logic**: The core business domain must remain 100% agnostic to these patterns. It invokes a standard port, and receives either the business entity response or a standardized `DomainException` mapped inside the failing adapter.
+
+## Consequences
+
+### Positive
+- Prevents slow dependency outages from starving and drowning local CPU cycles.
+- Maintains overall local availability during peripheral remote crashes.
+- Delivers much safer user failure flows than infinite browser timeouts.
+
+### Negative
+- Adds extra operational logic when debugging integration points.
+- Requires sophisticated parameter calibration (how many errors before break, timeout limit, restore cooldown).
+
+## References
+- [Martin Fowler on Circuit Breakers](https://martinfowler.com/bliki/CircuitBreaker.html)
+- [ADR-0002: Clean Hexagonal Architecture](./0002-clean-architecture-nestjs.md)

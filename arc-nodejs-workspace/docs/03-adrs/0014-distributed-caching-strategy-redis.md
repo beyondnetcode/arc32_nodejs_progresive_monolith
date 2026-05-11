@@ -1,1 +1,32 @@
-﻿# ADR 0014: Distributed Caching Strategy with Redis  ## Status Approved  ## Date 2026-05-08  ## Context High-concurrency portals (like appointment scheduling or inventory checking) can overwhelm the primary PostgreSQL database with redundant read operations during peak traffic hours, drastically degrading response times.  ## Decision We will introduce a distributed caching layer using **Redis**:  1. **Cache Adapter (Tool Transparency)**: We will integrate the `@nestjs/cache-manager` module configured with a Redis store, but it will be strictly implemented as an Infrastructure Adapter. The Core domain will only interact with a pure `ICachePort` interface, remaining completely unaware of Redis or `@nestjs/cache-manager`. 2. **Read-Aside Caching**: High-frequency, low-mutation queries (e.g., master data catalogs, active operational statuses) will query the `ICachePort` first. If a cache miss occurs, the database is queried, and the result is stored in the cache with an appropriate TTL (Time To Live). 3. **Cache Invalidation**: Mutations to cached entities must synchronously trigger cache invalidation events to ensure data consistency.  ## Consequences * **Pros**: Drastically reduces database CPU load, lowers API latency to <150ms for cached routes, and improves overall system elasticity. * **Cons**: Introduces a new infrastructure component (Redis) to maintain. Cache invalidation logic is notoriously prone to edge-case bugs leading to stale data.
+# ADR 0014: Distributed Caching Strategy with Redis
+
+## Status
+Approved
+
+## Date
+2026-05-08
+
+## Context
+Repetitive, high-intensity read throughput during peak operational hours can completely starve physical PostgreSQL resources. Reading generic configuration catalogues, constant status lookups, or frequently access aggregates from raw disks leads to slow responses and unmanageable load scales.
+
+## Decision
+Incorporate a high-speed **Redis** distributed cluster to implement side-channel fast read pathways:
+
+1. **Transparent Architecture**: Integrate `@nestjs/cache-manager` solely behind our Infrastructure Adapter walls. Core domains communicate with explicit `ICachePort` interfaces, remaining 100% ignorant of concrete Redis dependencies.
+2. **Read-Aside Execution**: Cache-compatible reads must seek the cache gateway first. If hit: return immediately under <20ms. If missed: fetch authoritative DB rows, synchronously populate the cache via TTL settings, then return the result to requester.
+3. **Eviction Enforcement**: Data write use cases executing mutative changes must publish explicit trigger paths that command synchronous cache entry invalidation to prevent stale reading periods.
+
+## Consequences
+
+### Positive
+- Offloads immense query volume from the relational SQL engine.
+- Achieves sustained API latency spikes frequently under <50ms for pre-warmed objects.
+- Boosts user engagement and experience smoothness for critical app zones.
+
+### Negative
+- Cache Invalidation logic creates a non-trivial surface area for synchronization bugs ("Cache is hard" rule).
+- Introduces additional persistence-related hardware node setup in operation blueprints.
+
+## References
+- [Redis Cache-Aside Pattern](https://redis.io/docs/develop/cache/)
+- [ADR-0002: Clean Hexagonal Architecture](./0002-clean-architecture-nestjs.md)

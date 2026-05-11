@@ -1,1 +1,49 @@
-﻿# ADR 0003: Strict TypeScript Standards and SonarJS Static Analysis  ## Status Accepted  ## Date 2026-05-08  ## Context Code quality, security (OWASP Top 10), and type safety are critical pillars for Reference Platform. Permitting the `any` type leads to runtime exceptions, makes code reviews difficult, and degrades our compiler's safety nets. Additionally, we need a way to detect cognitive complexity, bugs, and security hotspots early, without incurring external license costs (such as SonarCloud's paid tier for private repositories).  ## Decision We decided to enforce strict TypeScript and static analysis rules: 1. Ban the use of `any` across all workspaces by enforcing `@typescript-eslint/no-explicit-any` and its safety sub-rules. 2. Force the use of `interface` over `type` aliases for object contracts via `@typescript-eslint/consistent-type-definitions`, optimizing compiler execution speed and enabling declaration merging. 3. Integrate **`eslint-plugin-sonarjs`** directly into the root `.eslintrc.js` to run Sonar's official code quality, security hotspot, and cognitive complexity analysis rules at $0 cost, both locally and in CI, without requiring cloud secrets or paid accounts.  ## Consequences  ### Positive (Pros) * **Robust Type Safety**: Eliminating `any` prevents silent runtime crashes and guarantees reliable data shapes across layers. * **$0 Cost Sonar Analysis**: Developers receive real-time feedback on code complexity, duplicate code blocks, and bugs directly inside VS Code and pre-commit hooks, with zero infrastructure costs. * **Better Performance**: Interfaces are indexed and cached more efficiently by the TypeScript compiler (`tsc`) compared to intersections of `type` aliases.  ### Negative (Cons) * Developers must write explicit type casts (e.g., using `unknown` and custom typings) for external libraries or catch blocks, slightly increasing initial development time. * Minor execution overhead during `eslint` commands (fully neutralized by using `lint-staged`).
+# ADR 0003: Strict TypeScript Standards
+
+## Status
+Approved
+
+## Date
+2026-05-08
+
+## Context
+Loosely typed TypeScript (`any` usage, missing return types, implicit `any` from libraries) creates the same class of bugs as plain JavaScript while maintaining a false sense of type safety. This negates the primary value of TypeScript in enterprise development.
+
+## Decision
+Enforce strict TypeScript configuration and ESLint rules across the entire monorepo.
+
+**`tsconfig.json` mandatory flags:**
+```json
+{
+  "compilerOptions": {
+    "strict": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true
+  }
+}
+```
+
+**ESLint mandatory rules:**
+- `@typescript-eslint/no-explicit-any`: error
+- `@typescript-eslint/explicit-function-return-type`: error
+- `@typescript-eslint/no-floating-promises`: error
+- `eslint-plugin-boundaries`: enforces layer import rules (Core cannot import Infrastructure)
+
+All rules are enforced in CI — PRs with TypeScript errors are blocked from merging.
+
+## Consequences
+
+### Positive
+- Eliminates an entire class of null/undefined runtime errors at compile time.
+- Enforces self-documenting code via explicit return types.
+- `eslint-plugin-boundaries` makes hexagonal layer violations a build error, not a code review finding.
+
+### Negative
+- Higher initial development overhead — developers must be explicit about all types.
+- Third-party libraries with poor TypeScript definitions require careful wrapper typing.
+
+## References
+- [ADR-0001: Monorepo Orchestration](./0001-monorepo-orchestration-nx.md)
+- [ADR-0002: Clean Hexagonal Architecture](./0002-clean-architecture-nestjs.md)

@@ -1,1 +1,41 @@
-﻿# ADR 0007: Observability Telemetry with Grafana Loki and OpenTelemetry  ## Status Approved  ## Date 2026-05-08  ## Context As the Reference Platform applications move to production, we need an advanced observability system to monitor performance, log errors, and trace database executions in real-time. Traditional enterprise stacks like Elastic (ELK) consume massive RAM and CPU, which violates our zero-cost and lightweight architecture goals.  ## Proposed Decision We propose to adopt the **Grafana LGTM Stack (Loki + Grafana + Tempo)** combined with **OpenTelemetry (OTel)**: 1. Instrument our NestJS API natively using **OpenTelemetry SDKs** to emit standard logs, metrics, and traces without coupling to any specific APM vendor. 2. Ship logs to **Grafana Loki** due to its lightweight, metadata-only indexing model that uses 10x less RAM than Elasticsearch. 3. Use **Grafana Tempo** for distributed tracing, allowing developers to see exact database execution paths and pinpoint latencies across use cases.  ## Consequences  ### Positive (Pros) * **Lightweight and Free**: The complete LGTM stack can run easily with under 500MB of RAM, making it extremely cost-effective. * **Aspect-Oriented Logs**: Real-time logging is handled transparently via our shared `libs-aop` library without polluting core use cases. * **Unified Dashboard**: Grafana combines metrics, logs, and traces into a single glass-morphic pane of glass.  ### Negative (Cons) * Requires running a local or cloud Grafana Loki collector daemon.
+# ADR 0007: Observability with OpenTelemetry, Loki, and Jaeger
+
+## Status
+Approved
+
+## Date
+2026-05-08
+
+## Context
+Without structured logging and distributed tracing, diagnosing production issues requires guesswork. Log messages without correlation IDs make it impossible to trace a single user request across multiple service layers (Kong → BFF → Core API → Database). Observability must be a first-class citizen, not an afterthought.
+
+## Decision
+Adopt the **OpenTelemetry (OTel)** standard as the unified observability backbone, with the following toolchain:
+
+| Signal | Technology | Purpose |
+| :--- | :--- | :--- |
+| **Traces** | OpenTelemetry SDK + Jaeger | Distributed request tracing across all tiers |
+| **Logs** | Pino + Grafana Loki | Structured JSON log aggregation and querying |
+| **Metrics** | Prometheus + Grafana | SRE metrics: latency, error rate, throughput |
+
+**Implementation rules:**
+
+1. **Auto-instrumentation**: NestJS HTTP, TypeORM, and Redis calls are automatically instrumented via OTel auto-instrumentation packages — no manual span creation required for standard flows.
+2. **Manual spans**: Business-significant operations (use case execution, cache misses) get explicit `tracer.startSpan()` wrapping.
+3. **Trace propagation**: All outbound HTTP calls include `traceparent` headers (W3C Trace Context standard).
+4. **Structured logs**: Every log entry includes `traceId`, `spanId`, `tenantId`, and `userId` for full correlation.
+
+## Consequences
+
+### Positive
+- Single `traceId` traces a request from the Kong gateway log all the way to the PostgreSQL query plan.
+- Grafana dashboards provide SRE-level visibility with P50/P95/P99 latency breakdowns.
+- Zero code changes to the domain Core — all instrumentation lives in the infrastructure and adapter layers.
+
+### Negative
+- OTel Collector is an additional infrastructure component to deploy and maintain.
+- Careless span creation can introduce performance overhead; auto-instrumentation must be profiled.
+
+## References
+- [OpenTelemetry Documentation](https://opentelemetry.io)
+- [ADR-0002: Clean Hexagonal Architecture](./0002-clean-architecture-nestjs.md)

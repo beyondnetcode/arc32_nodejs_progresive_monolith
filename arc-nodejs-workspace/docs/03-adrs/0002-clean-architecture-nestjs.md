@@ -1,1 +1,37 @@
-﻿# ADR 0002: Clean Architecture and Hexagonal Boundaries on NestJS  ## Status Accepted  ## Date 2026-05-08  ## Context Our core backend business logic for Reference Platform must be highly decoupled from databases, HTTP frameworks, and third-party libraries to prevent technical debt, ensure easy testing, and maintain long-term stability. Clean Architecture (Hexagonal Architecture) was chosen, but without automated boundaries, developers could easily import outer layer details (e.g., infrastructure entities or controllers) into inner layer components (e.g., pure domain entities or use cases).  ## Decision We decided to strictly enforce **Clean and Hexagonal Architecture** boundaries: 1. Divide `apps/api/src` into three distinct architectural layers:    * **`core/`**: Pure Domain (Entities, interfaces of ports/repositories, exceptions). No outer dependencies.    * **`application/`**: Use cases, orchestrators, payload DTOs. Can only depend on `core`.    * **`infrastructure/`**: Adapters (controllers, database entities, repositories, security hashing implementations). Can depend on `core` and `application`. 2. Configure **`eslint-plugin-boundaries`** inside `.eslintrc.js` to map these folder patterns and block invalid imports (e.g., blocking `core` from importing from `infrastructure`) with custom, human-readable compilation errors. 3. **Absolute Tool Transparency (Dependency Inversion Principle)**: Any third-party tool, library, or framework (e.g., TypeORM, Redis, Axios, Opossum, Unleash) **MUST NOT** be imported directly into the `core` or `application` layers. Instead, the `core` defines abstract Interfaces (Ports), and the `infrastructure` provides implementations (Adapters) that wrap these tools. If a tool is replaced in the future, exactly zero lines of code in the core business logic will change.  ## Consequences  ### Positive (Pros) * **Architectural Integrity**: The architecture is automatically governed by the compiler/linter. Developers are prevented from violating boundaries locally (via Husky hooks) and in CI. * **Flawless Testability**: Since the `core` and `application` layers do not depend on databases, they can be tested using simple, fast, and secure Jest mocks. * **Framework Agnosticism**: If Reference Platform decides to migrate from NestJS/TypeORM to another framework, the core business domain remains 100% untouched.  ### Negative (Cons) * Requires minor initial overhead to define interfaces (ports) and implement them in the infrastructure layer (adapters). * Requires the linter to run on every commit (already optimized to under 2 seconds with `lint-staged`).
+# ADR 0002: Clean Hexagonal Architecture with NestJS
+
+## Status
+Approved
+
+## Date
+2026-05-08
+
+## Context
+Standard NestJS tutorials encourage placing business logic directly inside services decorated with `@Injectable()`, creating tight coupling between the domain and the framework. This makes the codebase hard to test (requires NestJS test module bootstrapping even for pure business logic) and impossible to migrate to a different framework without a full rewrite.
+
+## Decision
+Adopt **Hexagonal Architecture (Ports & Adapters)** as the mandatory structural pattern for all NestJS applications in this monorepo.
+
+The architecture is divided into three explicit layers:
+
+1. **Core (Domain)** — Pure TypeScript classes. Zero imports from NestJS, TypeORM, or any external SDK. Contains entities, value objects, and port interfaces (`IUserRepository`, `IPasswordHasher`).
+2. **Application** — Use-case classes that orchestrate Core logic. May import NestJS for DI decorators only (`@Injectable`). No infrastructure imports.
+3. **Infrastructure (Adapters)** — Concrete implementations of Core ports (`TypeOrmUserRepository`, `BcryptPasswordHasher`). All framework and SDK imports live here.
+
+Dependency direction is strictly enforced: Infrastructure → Application → Core. Never the reverse.
+
+## Consequences
+
+### Positive
+- Pure domain tests run in milliseconds with no database or framework setup.
+- The entire Core layer can be extracted and reused in a different framework (Fastify, Express) with zero changes.
+- `eslint-plugin-boundaries` can statically enforce the dependency direction in CI.
+
+### Negative
+- Requires additional mapping code (Entity → ORM Model) in the infrastructure layer.
+- Steeper learning curve for developers accustomed to the standard NestJS service pattern.
+
+## References
+- [ADR-0003: Strict TypeScript Standards](./0003-strict-typescript-standards.md)
+- [ADR-0029: Tactical DDD Primitives](./0029-tactical-ddd-primitives-library.md)
+- [Architecture Spec — Level 3 Component Diagram](../02-architecture/architecture-spec.md)
