@@ -41,8 +41,8 @@ The organization promotes a deliberate polyglot architecture where runtimes are 
 
 #### 🔍 Supplemental Strategic Frameworks
 To deeply understand the mathematical and risk posture of this architecture, consult:
-*   👉 **[Design Maturity & Patterns Evaluation](./design-and-maturity-evaluation.md)**
-*   👉 **[CAP Theorem Strategic Analysis](./cap-theorem-strategic-analysis.md)**
+*   👉 **[Design Maturity & Patterns Evaluation](../00-vision/maturity-evaluation.md)**
+*   👉 **[CAP Theorem Strategic Analysis](./cap-strategic-analysis.md)**
 
 ---
 
