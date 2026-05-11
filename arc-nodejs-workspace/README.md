@@ -4,6 +4,12 @@ Welcome to the **To-Do Reference System**, a highly resilient, modular monolith 
 
 Built using the **BMAD Method**, it enforces **Clean Architecture (Hexagonal)** principles, $0-cost observability (OpenTelemetry), and rigorous CI/CD quality gates.
 
+> [!IMPORTANT]
+> ### 🏛️ CORPORATE BLUEPRINT (ARC32 / ARC42)
+> This repository contains the authoritative **Corporate Reference Architecture Blueprint** based on international **arc42 standards**. 
+> 👉 **[VIEW CORPORATE REFERENCE ARCHITECTURE DOCUMENT](./docs/02-architecture/reference-architecture-nodejs-arc42.md)**
+> *Use this canonical blueprint as the foundational design spec for developing scalable, API-driven modular monoliths that successfully evolve into distributed microservices.*
+
 ---
 
 ## 🛠️ Technology Stack

@@ -1,7 +1,7 @@
-﻿# 🏛️ Arquitectura de Referencia Evolutiva para Sistemas API-Driven (Node.js Stack)
+# 🏛️ Arquitectura de Referencia Evolutiva para Sistemas API-Driven (Node.js Stack)
 
 > [!IMPORTANT]
-> **Corporate Reference Architecture (Monolito-a-Microservicios)**: Este documento define el estándar para construir aplicaciones que inician su ciclo de vida como un **Monolito Modular** altamente desacoplado, con una ruta clara y sin refactorización para evolucionar hacia una malla de **Microservicios Distribuidos**. Utiliza el proyecto base como la implementación canónica de este estándar internacional (**arc42 v8**).
+> **Corporate Reference Architecture Blueprint (ARC32 / Arc42)**: Este documento define el estándar corporativo para construir aplicaciones altamente desacopladas que inician como un **Monolito Modular** y evolucionan hacia **Microservicios**. El proyecto base (To-Do Reference) implementa físicamente este estándar internacional.
 
 ---
 
