@@ -30,25 +30,54 @@ This matrix rates our current infrastructure and design readiness against standa
 Our architecture intentionally deploys specific "antibodies" to guarantee we don't devolve into traditional legacy architectures.
 
 ### 2.1 The "Distributed Monolith" Anti-pattern
-*   **Risk**: Microservices coupled via synchronous network calls where failure in Service A crashes Service B automatically.
-*   **Our Immunization**:
-    1.  **Async Inter-Context Events (ADR-0015)**: Domain boundaries interact via agnostic event emission, not direct dependency chains.
-    2.  **Hexagonal Boundaries (ADR-0002)**: Logic lives isolated inside pure TypeScript entities, preventing direct cross-border import smuggling.
+Coupling separate components over the network where one down node halts the entire chain.
+
+| Field | Definition & Impact Analysis |
+| :--- | :--- |
+| **Criticality** | 🔴 **EXTREME** (Paralyzes scalability and reliability simultaneously) |
+| **Concrete Example** | The Inventory module synchronously HTTP calls the Email module inside a checkout loop. The SMTP relay lags, causing total checkout timeouts for all users. |
+| **Production Impact** | A single localized bug in a non-critical service cascades backward, killing the primary revenue stream. Total application blackout. |
+| **Operational Risks** | Exponential growth in mean-time-to-recovery (MTTR). Developers cannot deploy one service independently of the other. |
+| **Immunization Defense** | **ADR-0015 (Injectable Bus)** + **ADR-0002 (Hexagonal)**. Operations happen asynchronously via event fire-and-forget. If the secondary service dies, the message waits safely in RabbitMQ while the primary completes instantly. |
+
+---
 
 ### 2.2 The "Shared Database Entanglement" Anti-pattern
-*   **Risk**: Multiple microservices running SQL joins across each other’s internal tables, making internal schema evolution impossible.
-*   **Our Immunization**:
-    1.  **Strict Multi-Schema Isolation (ADR-0031)**: Even though data sits on the same PostgreSQL instance today, no cross-schema SQL joins are ever allowed in application logic. Database connections are scoped contextually.
+Bypassing service APIs to run direct SQL joins across private data owned by another context.
+
+| Field | Definition & Impact Analysis |
+| :--- | :--- |
+| **Criticality** | 🔴 **VERY HIGH** (Permanent architectural lock-in) |
+| **Concrete Example** | Reporting queries `SELECT * FROM users JOIN orders` directly. Team A alters the `users` table column name, instantly breaking Team B's Order system in production. |
+| **Production Impact** | "Change Paralysis". Modifying a simple database column requires coordinated downtime and simultaneous deploys across 5 different dev teams. |
+| **Operational Risks** | Data corruption, leaking unauthorized tenant data, complete inability to extract microservices to their own physical hardware. |
+| **Immunization Defense** | **ADR-0031 (Isolated PostgreSQL Schema)**. Cross-schema SQL joins are physically blocked. Data communication MUST pass through official Domain APIs or Eventual-Consistent Projections. |
+
+---
 
 ### 2.3 The "Fat Controller / Smart Pipe" Anti-pattern
-*   **Risk**: Logic accumulates inside API Gateways (Kong) or Message Buses, making changes complex and untestable.
-*   **Our Immunization**:
-    1.  **Dumb Pipes / Smart Endpoints**: The Bus just passes messages. Kong just routes and authenticates. ALL logic remains trapped in Domain/Application layers where full Jest testing maintains sovereignty.
+Leaking vital business validation or orchestration rules into the API gateway (Kong) or message queues.
+
+| Field | Definition & Impact Analysis |
+| :--- | :--- |
+| **Criticality** | 🟠 **HIGH** (Degrades maintainability and testing) |
+| **Concrete Example** | Writing 500 lines of custom Lua code inside Kong to validate dynamic discounts, or hardcoding workflow logic inside RabbitMQ binding keys. |
+| **Production Impact** | Logic becomes untestable by standard CI/CD units. "Invisible bugs" appear in production that do not replicate in local engineer development environments. |
+| **Operational Risks** | Vendor lock-in (locking logic to Kong-specific Lua). Infrastructure engineers accidentally overwrite business logic during server patches. |
+| **Immunization Defense** | **Dumb Pipes / Smart Endpoints Strategy**. Kong only executes agnostic policies (JWT, SSL, Rate Limit). All business decisions MUST live inside the Typescript Application Hexagon where they are Jest-tested. |
+
+---
 
 ### 2.4 The "Log Shards" (Blindness) Anti-pattern
-*   **Risk**: Log streams scattered across servers with zero ability to trace a user action across the distributed flow.
-*   **Our Immunization**:
-    1.  **OpenTelemetry Distributed Tracing (ADR-0007)**: Strict enforcement of `TraceParent` transmission through Kong -> BFF -> Core -> PostgreSQL ensures a unified diagnostic graph.
+Generating uncoordinated console logs across pods with no centralized identifier correlation.
+
+| Field | Definition & Impact Analysis |
+| :--- | :--- |
+| **Criticality** | 🟠 **HIGH** (Paralyzes SRE debugging capabilities) |
+| **Concrete Example** | A high-value customer reports error "500 - ID XJ92". SRE checks Kong logs, BFF logs, and Core API logs independently and cannot tell which exact SQL query triggered that specific user failure. |
+| **Production Impact** | Average troubleshooting time skyrockets from 5 minutes to 4 hours. Engineers must "grep" scattered text files trying to reconstruct history manually. |
+| **Operational Risks** | High burnout of support staff, lost customer trust due to extremely slow reaction times to severe outages. |
+| **Immunization Defense** | **ADR-0007 (OTel Distributed Tracing)**. A single `TraceParent ID` travels from the request inception to the DB response. Entering that ID into Jaeger displays the complete tree-map timeline instantly. |
 
 ---
 
