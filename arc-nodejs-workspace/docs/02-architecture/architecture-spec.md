@@ -17,6 +17,10 @@ graph TD
         ThirdParty["B2B External Services (API keys)"]
     end
 
+    subgraph EdgeNet["Network Edge"]
+        CDN["CDN (Global Distributed Cache)"]
+    end
+
     subgraph CoreSystem["[The Reference Platform System]"]
         MainCore["Modular Monolith Core"]
         BFFGateway["BFF API Gateways"]
@@ -27,9 +31,11 @@ graph TD
         MessageBus["Enterprise Bus (RabbitMQ/Kafka)"]
     end
 
-    WebPortal -->|HTTP/REST| BFFGateway
-    MobileApp -->|HTTP/REST| BFFGateway
-    ThirdParty -->|gRPC/REST| BFFGateway
+    WebPortal -->|HTTP/REST| CDN
+    MobileApp -->|HTTP/REST| CDN
+    ThirdParty -->|gRPC/REST| CDN
+    
+    CDN -->|Origin Requests| BFFGateway
     BFFGateway -->|Internal Routing| MainCore
     
     MainCore -->|Validate Trust| ExternalIdP
@@ -41,6 +47,10 @@ Demonstrates the physical segregation of communication entry-points (BFFs) down 
 
 ```mermaid
 graph TD
+    subgraph PublicEdge["Layer 0: Static Cache"]
+        CDN["CDN / Browser Cache (Cloudflare)"]
+    end
+
     subgraph EntryLayer["Tier 1: Ingress & Routing"]
         KongGateway["Kong Gateway / API Management"]
     end
@@ -56,17 +66,21 @@ graph TD
 
     subgraph StorageLayer["Tier 4: Persistence & State"]
         PostgresSQL[("PostgreSQL 16 (Dual-Layer RLS)")]
-        RedisCache[("Redis Cache (TTL Path)")]
+        RedisCache[("Redis Distributed Cache")]
     end
 
+    CDN -->|Dynamic Forward| KongGateway
     KongGateway -->|HTTP/REST| WebBFF
     KongGateway -->|HTTP/REST| MobileBFF
     
+    WebBFF <-->|BFF Cache Reads| RedisCache
     WebBFF -->|Internal gRPC| MainAPI
+    
+    MobileBFF <-->|BFF Cache Reads| RedisCache
     MobileBFF -->|Internal gRPC| MainAPI
     
     MainAPI -->|Dual-Layer Tenant Isolation| PostgresSQL
-    MainAPI <-->|Read-Aside Cache| RedisCache
+    MainAPI <-->|Core Cache Reads| RedisCache
 ```
 
 ### Level 3: API Component Diagram (Hexagonal Architecture)

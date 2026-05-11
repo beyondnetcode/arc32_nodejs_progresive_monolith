@@ -1,4 +1,4 @@
-# ADR 0014: Distributed Caching Strategy with Redis
+# ADR 0014: Multi-Layer Distributed Caching Strategy
 
 ## Status
 Approved
@@ -10,11 +10,22 @@ Approved
 Repetitive, high-intensity read throughput during peak operational hours can completely starve physical PostgreSQL resources. Reading generic configuration catalogues, constant status lookups, or frequently access aggregates from raw disks leads to slow responses and unmanageable load scales.
 
 ## Decision
-Incorporate a high-speed **Redis** distributed cluster to implement side-channel fast read pathways:
+Evolve to a comprehensive **Multi-Layer Tiered Caching Strategy** utilizing CDN edge caching and distributed Redis nodes to intercept and resolve read requests as close to the user as possible:
 
-1. **Transparent Architecture**: Integrate `@nestjs/cache-manager` solely behind our Infrastructure Adapter walls. Core domains communicate with explicit `ICachePort` interfaces, remaining 100% ignorant of concrete Redis dependencies.
-2. **Read-Aside Execution**: Cache-compatible reads must seek the cache gateway first. If hit: return immediately under <20ms. If missed: fetch authoritative DB rows, synchronously populate the cache via TTL settings, then return the result to requester.
-3. **Eviction Enforcement**: Data write use cases executing mutative changes must publish explicit trigger paths that command synchronous cache entry invalidation to prevent stale reading periods.
+### Level 1: Public Edge (CDN & Browser Cache)
+Mandate the usage of a Content Delivery Network (CDN) (e.g., Cloudflare, Akamai) deployed in front of the Kong Edge Gateway.
+*   **Scope**: Static application assets (JS, CSS, images), multi-tenant branding files, and read-only public catalog APIs with low volatility.
+*   **Impact**: Zero server origin utilization for matching requests.
+
+### Level 2: Application Edge (BFF-Level Redis Cache)
+Deploy Redis caching namespaces directly bound to the Tier-2 NestJS BFF instances.
+*   **Scope**: Tailored View-Models, compiled dashboard JSON responses, and GraphQL aggregate segments.
+*   **Impact**: Intercepts repeat request cycles AT THE PERIMETER, preventing downstream synchronous gRPC traversals into the core API layer entirely.
+
+### Level 3: Deep Core (Application Redis Cache)
+Retain dedicated shared Redis namespaces serving the Core API domain.
+*   **Scope**: Relational query sets, Authorization Graphs, active permission matrices, and dehydrated Domain aggregates.
+*   **Abstraction**: Access remains governed strictly via the `ICachePort` interface adhering to Hexagonal purity rules.
 
 ## Consequences
 
