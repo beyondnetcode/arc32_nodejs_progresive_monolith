@@ -1,4 +1,4 @@
-# ADR 0036: Message Bus Delivery Strategy (FIFO, Fire & Forget, DLQ)
+# ADR 0036: Message Bus Delivery & Flow Control Strategy
 
 ## Status
 Approved
@@ -35,6 +35,24 @@ Adopt the following **Event Delivery Decision Framework** mapping business conte
     *   Upon 4th consecutive failure (Poison Pill), the message MUST be auto-rerouted to a `.{queue_name}.dlq` holding container.
     *   Prevents a single corrupt JSON/Buggy logic point from blocking the entire main pipeline infinitely.
 *   **Required Action**: Establish automated alerts when DLQ size > 0. Support personnel must inspect and either Re-Drive (Retry) or Archive corrupted packets.
+
+### 4. Mode: "Delayed / Scheduled Delivery"
+*   **Definition**: Messages pushed to the broker with a mandatory delay Header, rendering them invisible to consumers until the designated time.
+*   **Inflection Points**:
+    *   **Business Timeouts**: "If Order is not paid in 30 minutes, trigger cancellation check".
+    *   **Throttled Reminders**: Pushing a notification email intended for tomorrow at 8:00 AM without using system cronjobs.
+*   **Mechanism**: Relies on Broker-native delayed exchange plugins or TTL + DLX routing loops.
+
+### 5. Performance Tiering: "Priority Queues"
+*   **Definition**: Numerical weighting of messages allowing high-priority packets to bypass non-critical packets sitting in the queue.
+*   **Inflection Points**:
+    *   **Customer Tier SLAs**: Fast-tracking VIP user requests during high traffic volume bursts.
+    *   **Emergency Signals**: Critical administrative revocations bypassing standard audit telemetry flow.
+*   **Rule**: Do not over-use (max 3-5 levels), as infinite low-level starvation can occur.
+
+### 6. Architecture Rule: "Idempotent Consumer Mandate"
+*   **Rule**: ALL message consumption MUST assume "At-Least-Once Delivery" semantics.
+*   **Requirement**: The Consumer application must record processed `MessageId` keys (in Redis or DB) and check for existence BEFORE proceeding with internal logic. If `MessageId` was already processed, it MUST be instantly acknowledged and discarded as a duplicate WITHOUT side-effects.
 
 ## Consequences
 
