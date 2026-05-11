@@ -14,8 +14,8 @@ This matrix rates our current infrastructure and design readiness against standa
 | **Composition** | **BFF (Backend for Frontend)** | **Core Mandatory** | 🟢 100% Adopted | Officially implemented via specialized NestJS layers per device (ADR-0008). Prevents cross-channel pollution. |
 | **Reliability** | **Circuit Breaker** | **Operational** | 🟢 90% Adopted | Implemented via `opossum` wrapper around external infrastructure/B2B integrations (ADR-0011). Prevents cascading failure. |
 | **Database** | **Schema Per Context** | **Core Mandatory** | 🟢 100% Adopted | Solves coupling from day one. Prevents raw SQL join poisoning across domains (ADR-0031). Zero-refactor DB portability. |
-| **Scalability** | **CQRS (Basic)** | **High Value** | 🟡 75% (Roadmap) | Read/Write logic separations utilized inside BFF aggregates. Full Command/Query event-store architecture is roadmap-driven if required. |
-| **Consistency** | **Saga Pattern** | **Distributed Future** | 🟡 60% (Ready) | Infrastructure exists (`IEventBusPort`). Currently relies on DB transactions, but design accepts asynchronous choreography if extracted. |
+| **Scalability** | **CQRS (Basic)** | **High Value** | 🟢 100% Adopted | Formally governed via Matrix (ADR-0034). Applied as aggregate Read-Models at BFF and isolated storage for high contention. |
+| **Consistency** | **Saga Pattern** | **Distributed Future** | 🟢 100% Adopted | Formal Strategy established (ADR-0035) utilizing Choreography/Orchestration mechanics tailored to workflow size. |
 | **Messaging** | **Transactional Outbox** | **High Criticality** | 🟢 100% Adopted | Mandated via ADR-0033. Guarantees absolute atomic consistency between DB state and RabbitMQ event forwarding via outbox relay table. |
 
 **Score Legend:**

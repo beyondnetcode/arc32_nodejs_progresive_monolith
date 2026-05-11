@@ -30,7 +30,7 @@ The primary goal of this repository is **not** simply to build an application, b
 *   🏗️ **[Phase 02 - ARC32 Specifications](./docs/02-architecture/)**:
     *   **[Reference Architecture blueprint](./docs/02-architecture/reference-architecture-nodejs-arc42.md)**
     *   [C4 Topology (Level 1-3) Specification](./docs/02-architecture/architecture-spec.md)
-*   📜 **[Phase 03 - 33 Approved ADRs](./docs/03-adrs/)**: The exhaustive baseline ledger defining the sovereign technology ecosystem.
+*   📜 **[Phase 03 - 35 Approved ADRs](./docs/03-adrs/)**: The exhaustive baseline ledger defining the sovereign technology ecosystem.
 
 ---
 

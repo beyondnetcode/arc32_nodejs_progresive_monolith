@@ -7,7 +7,7 @@
 
 ## 1. Introduction and Goals
 
-This reference architecture provides a standardized blueprint for building modern, highly scalable, multi-tenant SaaS systems. All 33 Architectural Decision Records (ADRs) are reflected throughout the diagrams of this document.
+This reference architecture provides a standardized blueprint for building modern, highly scalable, multi-tenant SaaS systems. All 35 Architectural Decision Records (ADRs) are reflected throughout the diagrams of this document.
 
 ### 1.1 Purpose and Applicability
 This pattern is designed specifically for systems that:
@@ -393,6 +393,8 @@ graph TD
 | **Domain Event Catalog** | ADR-0031 | Multi-schema extraction + Async Contracts | §5, §6.2 |
 | **Protocol Selection** | ADR-0032 | gRPC (Int) vs REST (Ext) vs GraphQL | §3.1, §5, §6.1 |
 | **Transactional Outbox** | ADR-0033 | Atomic DB + Event atomic guarantee | §6.2 |
+| **CQRS Separation** | ADR-0034 | Evaluation Matrix for Read/Write Models | §5, §6.1 |
+| **Distributed Sagas** | ADR-0035 | Compensating Transaction Strategy | §6.2 |
 
 ---
 
