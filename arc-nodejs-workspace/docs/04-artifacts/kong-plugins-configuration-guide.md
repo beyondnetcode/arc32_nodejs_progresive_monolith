@@ -1,135 +1,124 @@
-﻿# Guía de Configuración de Kong Gateway (Tier 1)
+# 🛡️ Kong Plugins Config Guide (DB-less Mode)
 
-Para integrar **Kong Open Source** frente a tu **NestJS BFF (Tier 2)**, la mejor práctica moderna es utilizar el modo **DB-less (sin base de datos)**. En lugar de guardar la configuración en PostgreSQL, defines todas las rutas y plugins en un archivo YAML (`kong.yml`) que vive en tu repositorio. Esto se alinea perfectamente con la filosofía de **GitOps** y la arquitectura de monorepo.
+To integrate **Kong Open Source** in front of your **NestJS BFF (Tier 2)**, the modern best practice is using **DB-less mode**. Instead of storing configuration in PostgreSQL, you define all routes and plugins in a YAML file (`kong.yml`) living in your repository. This aligns perfectly with **GitOps** philosophy.
 
-A continuación, te muestro cómo estructurar este archivo para implementar Rate Limiting, Validación JWT y Enrutamiento hacia tu NestJS BFF.
+Below is how to structure this file to implement Rate Limiting, JWT Validation, and Routing to your NestJS BFF.
 
-## 1. Archivo Declarativo (`kong.yml`)
+---
 
-Este es el esqueleto principal que define los servicios (tu backend de NestJS), las rutas (qué URLs exponen) y los plugins (reglas de infraestructura).
+## 1. Main Skeleton (`kong.yml`)
+
+This main skeleton defines the services (your NestJS backend), routes (exposed URLs), and plugins (infrastructure infrastructure rules).
 
 ```yaml
 _format_version: "3.0"
 _transform: true
 
-# 1. DEFINICIÓN DEL SERVICIO (Tu NestJS BFF)
 services:
   - name: nestjs-bff-service
-    url: http://nestjs-bff:3000 # La URL interna de tu contenedor NestJS
-    connect_timeout: 60000
-    read_timeout: 60000
-    write_timeout: 60000
-    
-    # 2. DEFINICIÓN DE LAS RUTAS
+    url: http://nestjs-bff:3000  # The internal URL of your NestJS Docker container
     routes:
-      - name: frontend-api-route
+      - name: public-api-route
         paths:
           - /api/v1
-        strip_path: false # Mantiene el '/api/v1' cuando le pasa la petición a NestJS
+        strip_path: false # Keeps /api/v1 when forwarding to NestJS
 
-    # 3. PLUGINS APLICADOS A ESTE SERVICIO
+    # 2. PLUGINS APPLIED AT SERVICE LEVEL
     plugins:
-      # A. Rate Limiting (Prevención de abusos/DDoS)
+      # A) Rate Limiting: Protects NestJS from excessive load
       - name: rate-limiting
-        enabled: true
         config:
-          second: 10      # Máximo 10 peticiones por segundo por IP
-          minute: 100     # Máximo 100 peticiones por minuto por IP
-          policy: local   # Almacena los contadores en la memoria de Kong
+          second: 10     # Maximum 10 requests per second
+          hour: 10000    # Max 10k per hour
+          policy: local   # Stores counters in Kong memory
           fault_tolerant: true
           hide_client_headers: false
 
-      # B. Validación de JWT (Seguridad)
+      # B) JWT Validation: Blocks unauthenticated traffic at Tier 1
       - name: jwt
-        enabled: true
         config:
-          key_claim_name: kid
           claims_to_verify:
-            - exp # Verifica que el token no haya expirado
-          run_on_preflight: false # No pide token para las peticiones OPTIONS (CORS)
+            - exp # Verifies the token has not expired
+          run_on_preflight: false # Doesn't require token for OPTIONS (CORS) requests
+          uri_param_names:
+            - jwt
 
-      # C. CORS (Cross-Origin Resource Sharing)
+      # C) CORS: Resolves Preflights without touching the backend
       - name: cors
-        enabled: true
         config:
           origins:
-            - "https://misistema-Reference Skeleton.com"
+            - "*" # Replace with whitelist like https://myapp.com
           methods:
             - GET
             - POST
-            - PUT
+            - PATCH
             - DELETE
             - OPTIONS
           headers:
             - Accept
-            - Accept-Version
-            - Content-Length
-            - Content-MD5
-            - Content-Type
-            - Date
             - Authorization
+            - Content-Type
           exposed_headers:
-            - X-Auth-Token
+            - X-Request-Id
           credentials: true
           max_age: 3600
 
-# 4. CONSUMIDORES Y CREADENCIALES (Para validar los JWT)
-# Aquí Kong sabe cuáles son los secretos válidos para firmar tokens.
+# 4. CONSUMERS AND CREDENTIALS (To validate JWTs)
+# Kong needs to know valid secrets for verifying token signatures.
 consumers:
-  - username: frontend-app
+  - username: app-frontend-consumer
     jwt_secrets:
-      - key: "mi-frontend-app-key"
-        secret: "super-secreto-compartido-con-el-auth-server" # En producción se inyecta por variable de entorno
-        algorithm: HS256
+      - key: "myapp-issuer"         # Matches 'iss' claim inside the JWT
+        secret: "my-super-secret-key" # Same secret shared with NestJS
 ```
 
-## 2. Explicación del Flujo (Cómo se integra)
+---
 
-1. **El Cliente hace una petición:** El frontend en React hace un `POST /api/v1/orders` e incluye un `Authorization: Bearer <token>`.
-2. **Kong intercepta (Tier 1):**
-    * **Rate Limiting:** Verifica si la IP del cliente no ha excedido las 10 peticiones por segundo. Si las excede, Kong devuelve un `429 Too Many Requests` inmediatamente. *NestJS ni siquiera se entera.*
-    * **CORS:** Resuelve los preflights (`OPTIONS`) sin cargar al backend.
-    * **JWT:** Abre el token, verifica que la firma coincida con el secreto y que el token no haya expirado (`exp`). Si es inválido, Kong devuelve un `401 Unauthorized`. *NestJS ni siquiera se entera.*
-3. **Paso al BFF (Tier 2):** Si todas las verificaciones pasan, Kong reenvía la petición HTTP intacta (con el JWT en el header) hacia `http://nestjs-bff:3000/api/v1/orders`.
-4. **NestJS actúa:** NestJS recibe una petición pre-validada. Solo tiene que leer el payload del JWT (para saber quién es el usuario, ya que Kong ya garantizó que el token es legal) y proceder a orquestar las llamadas a los microservicios (TMS, WMS, etc.).
+## 2. Architectural Data Flow
 
-## 3. ¿Cómo pasar la información de Kong a NestJS?
+1. **Client performs request:** `GET /api/v1/orders` with Header `Authorization: Bearer <token>`.
+2. **Kong intercepts (Tier 1):**
+    * **Rate Limiting:** Verifies client IP has not exceeded limit. Returns `429 Too Many Requests` immediately if violated. *NestJS never hears about it.*
+    * **CORS:** Resolves `OPTIONS` preflights automatically.
+    * **JWT:** Decodes token, validates signature against secret and checks `exp`. Returns `401 Unauthorized` if invalid. *NestJS never hears about it.*
+3. **Relay to BFF (Tier 2):** If checks pass, Kong forwards the HTTP request intact to `http://nestjs-bff:3000/api/v1/orders`.
+4. **NestJS acts:** Receives pre-validated traffic. It only reads the JWT payload to identify the user and proceeds with business workflows.
 
-Por defecto, cuando Kong valida un JWT, inyecta headers adicionales antes de mandarle la petición a NestJS. Puedes configurar Kong para que pase el Consumer ID o los claims del JWT en headers específicos:
+---
+
+## 3. Advanced: Injecting User Info to NestJS
+
+By default, when Kong validates a JWT, it can inject additional headers. You can configure Kong to pass claims in specific headers:
 
 ```yaml
-      - name: request-transformer
-        enabled: true
+      - name: jwt
         config:
-          add:
-            headers:
-              - x-consumer-id:$(consumer.id)
-              - x-credential-username:$(credential.username)
+          claims_to_verify:
+            - exp
+          header_names:
+            - X-Authenticated-Userid # Maps custom claim if specified
 ```
 
-En tu código de **NestJS**, en lugar de volver a validar la criptografía del token (lo cual gasta CPU), simplemente confías en Kong y lees los headers en tu AuthGuard:
+In your **NestJS** code, instead of re-validating cryptography (wasting CPU), you simply trust Kong and read headers in your AuthGuard:
 
 ```typescript
-// NestJS: KongAuthGuard.ts
-import { Injectable, CanActivate, ExecutionContext } from '@nestjs/common';
-
 @Injectable()
 export class KongAuthGuard implements CanActivate {
   canActivate(context: ExecutionContext): boolean {
     const request = context.switchToHttp().getRequest();
-    // Kong ya validó que el token existe y no está modificado.
-    // Solo leemos el header que Kong inyectó.
-    const consumerId = request.headers['x-consumer-id'];
     
-    if (!consumerId) {
-      return false; // Por si alguien logra saltarse Kong
-    }
+    // Kong guaranteed token legitimacy. We just read claims injected.
+    const userId = request.headers['x-consumer-username']; 
     
+    if (!userId) throw new UnauthorizedException();
+    
+    request.user = { id: userId };
     return true;
   }
 }
 ```
 
-## Resumen de Beneficios
-* **Ahorro de CPU en Node.js:** La criptografía (validar JWTs) es pesada en Node.js. Al delegarla a Kong (escrito en C/Lua), tu BFF puede manejar muchos más requests concurrentes.
-* **Seguridad como Infraestructura:** Si en el futuro agregas otro servicio (ej. Python o Go), Kong los protegerá con las mismas reglas de JWT y Rate Limiting sin tener que reescribir la lógica de seguridad.
+## 4. Benefits of this Strategy
+
+* **Zero Cost Protection:** Attacks or expired tokens are dropped at the proxy level, preserving NestJS Node.js event loop threads for actual valid users.
+* **Infrastructure Security:** If you add another backend service (e.g., Go or Python), Kong protects them identically without duplicating auth logic.

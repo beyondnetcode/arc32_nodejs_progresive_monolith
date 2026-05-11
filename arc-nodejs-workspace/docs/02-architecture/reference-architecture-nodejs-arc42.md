@@ -1,102 +1,102 @@
-# 🏛️ Arquitectura de Referencia Evolutiva para Sistemas API-Driven (Node.js Stack)
+# 🏛️ Evolutionary Reference Architecture for API-Driven Systems (Node.js Stack)
 
 > [!IMPORTANT]
-> **Corporate Reference Architecture Blueprint (ARC32 / Arc42)**: Este documento define el estándar corporativo para construir aplicaciones altamente desacopladas que inician como un **Monolito Modular** y evolucionan hacia **Microservicios**. El proyecto base (To-Do Reference) implementa físicamente este estándar internacional.
+> **Corporate Reference Architecture Blueprint (ARC32 / Arc42)**: This document defines the corporate standard for building highly decoupled applications that start as a **Modular Monolith** and evolve toward **Microservices**. The base project (To-Do Reference) physically implements this international standard.
 
 ---
 
-## 1. Introducción y Objetivos
+## 1. Introduction and Goals
 
-Esta arquitectura de referencia proporciona un plano estandarizado para construir sistemas empresariales modernos, altamente escalables y modulares. 
+This reference architecture provides a standardized blueprint for building modern, highly scalable, and modular enterprise systems.
 
-### 1.1 Propósito y Aplicabilidad
-Este patrón está diseñado específicamente para sistemas que:
-*   Tienen una orientación fuerte al **uso intensivo de APIs**.
-*   Requieren procesamiento concurrente y asíncrono nativo.
-*   **No** dependen de servicios con bloqueos de entrada/salida (I/O) constantes o procesamiento matemático pesado que bloquee el event loop.
+### 1.1 Purpose and Applicability
+This pattern is designed specifically for systems that:
+*   Have a strong orientation towards **intensive API utilization**.
+*   Require native concurrent and asynchronous processing.
+*   **Do not** depend heavily on services with constant input/output (I/O) blocking or heavy mathematical processing that locks the main event loop.
 
-### 1.2 Objetivos de Calidad Mandatorios
-1.  **Evolución Progresiva**: Diseño "Monolith-First" que permite extraer microservicios en el futuro sin cambiar código del Dominio.
-2.  **Desacoplamiento Estricto**: Módulos con alta cohesión interna y bajo acoplamiento externo protegidos por linting de fronteras (boundaries).
-3.  **Resiliencia**: Patrones nativos de tolerancia a fallos para operaciones aisladas o en malla.
-
----
-
-## 2. Restricciones de Arquitectura y Pilares Base
-
-Cualquier sistema basado en este blueprint debe adherirse a los siguientes pilares del ecosistema:
-
-*   **Gobernanza del Stack**: Base tecnológica en Node.js/TypeScript gestionada mediante un entorno modular (Monorepo Nx o similar para cohesión de contratos).
-*   **Mandato bMAD / Global Engineering Standards**: Aplicación estricta de SOLID, Clean Code y principios de Arquitectura Hexagonal.
-*   **Manejo de I/O**: Aprovechamiento del modelo no bloqueante de Node.js. Evitar operaciones sincrónicas en el hilo principal.
+### 1.2 Mandatory Quality Attributes
+1.  **Progressive Evolution**: "Monolith-First" design enabling future microservices extraction without changing Domain code.
+2.  **Strict Decoupling**: Highly cohesive modules with low external coupling enforced via linting boundary rules.
+3.  **Resilience**: Native fault-tolerance patterns for standalone or mesh operations.
 
 ---
 
-## 3. Contexto y Alcance (Modelo Operacional)
+## 2. Architecture Constraints and Baseline Pillars
 
-Define cómo interactúan los sistemas basados en este stack con el ecosistema corporativo. 
+Any system based on this blueprint must adhere to the following ecosystem pillars:
 
-### 3.1 Patrón de Contexto General
-*(Ejemplo de Instanciación Técnica usando Reference Skeleton como referencia)*
+*   **Stack Governance**: Node.js/TypeScript technology base managed within a modular environment (Nx Monorepo or similar for contract cohesion).
+*   **bMAD / Global Engineering Standards Mandate**: Strict application of SOLID, Clean Code, and Hexagonal Architecture principles.
+*   **I/O Management**: Leveraging Node.js non-blocking model. Avoid synchronous operations on the main thread.
+
+---
+
+## 3. Context and Scope (Operational Model)
+
+Defines how systems based on this stack interact with the corporate ecosystem.
+
+### 3.1 General Context Pattern
+*(Technical Instantiation Example using Reference Skeleton as a reference)*
 
 ```mermaid
 graph TD
-    Users["Usuarios / Canales Digitales"]
-    System["[Sistema Core Node.js API]"]
-    ExternalAPI["Servicios Externos (REST / gRPC)"]
-    Identity["Proveedores de Identidad Federada"]
-    MessageBroker["Bus de Mensajería (Asíncrono)"]
+    Users["Users / Digital Channels"]
+    System["[Node.js API Core System]"]
+    ExternalAPI["External Services (REST / gRPC)"]
+    Identity["Federated Identity Providers"]
+    MessageBroker["Messaging Bus (Async)"]
 
     Users -->|HTTP/REST + JSON| System
-    System -->|Consulta / Validación| Identity
-    System -->|Consumo de Eventos / Publicación| MessageBroker
-    System -->|Llamadas no bloqueantes| ExternalAPI
+    System -->|Queries / Validation| Identity
+    System -->|Event Consuming / Publishing| MessageBroker
+    System -->|Non-blocking calls| ExternalAPI
 ```
 
 ---
 
-## 4. Estrategia de Solución
+## 4. Solution Strategy
 
-Las decisiones técnicas fundamentales invariantes para esta arquitectura de referencia son:
+Fundamental invariant technical decisions for this reference architecture are:
 
-### 4.1 Arquitectura Hexagonal (Puertos y Adaptadores)
-Mandatorio aislar la lógica de negocio (Domain & Application) de los detalles de entrada/salida (Infrastructure). 
-*   **Beneficio**: Permite cambiar la base de datos (ej. de Postgres a MongoDB) o el framework (ej. de Express a NestJS o Fastify) sin reescribir el core del sistema.
+### 4.1 Hexagonal Architecture (Ports & Adapters)
+Mandatory isolation of business logic (Domain & Application) from input/output details (Infrastructure).
+*   **Benefit**: Allows switching the database (e.g., from Postgres to MongoDB) or the framework (e.g., from Express to NestJS or Fastify) without rewriting the system core.
 
-### 4.2 Persistencia y Aislamiento
-Uso preferente de estrategias agnósticas de persistencia. En entornos SQL, se recomienda el uso de **Row-Level Security (RLS)** para delegar la seguridad multi-tenant al motor de base de datos, optimizando el performance de la capa Node.js.
+### 4.2 Persistence and Isolation
+Preferential use of agnostic persistence strategies. In SQL environments, the use of **Row-Level Security (RLS)** is recommended to delegate multi-tenant security to the DB engine, optimizing Node.js layer performance.
 
-### 4.3 Estrategia de Comunicación e Integración
-*   **API-First**: Todos los servicios exponen contratos claros.
-*   **Backend For Frontend (BFF)**: Obligatorio para optimizar payloads a dispositivos clientes y proteger el sistema core de lógica de presentación.
+### 4.3 Communication & Integration Strategy
+*   **API-First**: All services expose clear contracts.
+*   **Backend For Frontend (BFF)**: Mandatory to optimize payloads for client devices and safeguard the core system from presentation logic.
 
-### 4.4 Ruta de Evolución Progresiva (Progressive Blueprint)
-El roadmap de evolución física sigue tres hitos clave definidos en los ADRs asociados:
-1.  **Hito 1: Monolito Modular (Estado Actual)**: Una sola instancia en ejecución física pero con dominios aislados lógicamente mediante `apps/api` y `libs` que consumen el mismo proceso.
-2.  **Hito 2: Extracción de Servcios de Alto Rendimiento**: Mover librerías de dominios críticos a sus propios micro-proyectos NX, convirtiéndolos en microservicios con su propia base de datos, consumidos vía gRPC/Dapr.
-3.  **Hito 3: Malla de Microservicios Completa**: Implementación de Sidecars (Dapr) y una Malla de Servicios completa, donde el Monolito original se convierte en el API Gateway/BFF orquestador.
+### 4.4 Progressive Evolution Route (Progressive Blueprint)
+The physical evolution roadmap follows three key milestones defined in associated ADRs:
+1.  **Milestone 1: Modular Monolith (Current State)**: Single physical runtime instance with logically isolated domains via `apps/api` and `libs` sharing the same process.
+2.  **Milestone 2: High-Performance Service Extraction**: Move critical domain libraries to dedicated Nx micro-projects, converting them to microservices with their own isolated database, consumed via gRPC/Dapr.
+3.  **Milestone 3: Full Microservices Mesh**: Deployment of Sidecars (Dapr) and a complete Service Mesh, where the original Monolith evolves into the orchestrating API Gateway/BFF.
 
 ---
 
-## 5. Vista de Bloques Técnica (Plantilla de Contenedores)
+## 5. Technical Building Blocks (Container Template)
 
-La topología física recomendada para este ecosistema incluye tres capas de distribución:
+The recommended physical topology for this ecosystem includes three distribution layers:
 
 ```mermaid
 graph TD
-    subgraph Clients["Capa de Presentación"]
-        FrontApp["Aplicación Cliente (React/Angular)"]
-        MobileApp["Aplicación Mobile"]
+    subgraph Clients["Presentation Layer"]
+        FrontApp["Client App (React/Angular)"]
+        MobileApp["Mobile Application"]
     end
 
-    subgraph GatewayLayer["Capa de Orquestación"]
-        BFF["BFF Gateway (Carga Liviana / Agregación)"]
+    subgraph GatewayLayer["Orchestration Layer"]
+        BFF["BFF Gateway (Light Load / Aggregation)"]
     end
 
-    subgraph CoreServices["Capa de Servicios de Dominio"]
-        NodeAPI["Node.js API Core (Asíncrono)"]
-        FastCache["Capa de Caché Distribuida (Redis)"]
-        MainDB["Base de Datos (Relacional/NoSQL)"]
+    subgraph CoreServices["Domain Services Layer"]
+        NodeAPI["Node.js API Core (Async)"]
+        FastCache["Distributed Cache Layer (Redis)"]
+        MainDB["Database (Relational/NoSQL)"]
     end
 
     FrontApp --> BFF
@@ -108,62 +108,62 @@ graph TD
 
 ---
 
-## 6. Vista de Tiempo de Ejecución (Patrones de Flujo)
+## 6. Runtime View (Flow Patterns)
 
-Para maximizar el rendimiento del Event Loop de Node.js:
-1.  **Validación Inmediata**: Toda petición se valida sintácticamente antes de tocar cualquier base de datos o servicio externo.
-2.  **Delegación Asíncrona**: Procesos pesados o secundarios (envío de correos, auditoría extendida) se delegan a colas de mensajes de inmediato, respondiendo al cliente con latencia mínima.
-3.  **Estrategia de Caché Activa**: Los datos de lectura intensiva y baja mutación deben resolverse en la capa de caché distribuida (latencias < 5ms) liberando al hilo de Node de consultas pesadas.
-
----
-
-## 7. Vista de Despliegue (Target Cloud)
-
-Recomendado: Contenerización Docker, orquestación en Kubernetes (K8s) y autoescalado basado en métricas de CPU/Memoria, asegurando alta disponibilidad multi-zona.
+To maximize Node.js Event Loop performance:
+1.  **Immediate Validation**: Every request is syntactically validated before touching any database or external service.
+2.  **Asynchronous Delegation**: Heavy or secondary processes (emails, extended audits) are offloaded to message queues instantly, responding to the client with minimal latency.
+3.  **Active Cache Strategy**: High-read/low-mutation data must be resolved in the distributed cache layer (latency < 5ms), freeing the Node thread from heavy queries.
 
 ---
 
-## 8. Conceptos Transversales Corporativos
+## 7. Deployment View (Target Cloud)
 
-Independientemente del sistema implementado, se deben integrar estos estándares:
-
-*   **Seguridad Centralizada**: Implementación obligatoria de modelos basados en Claims/Scopes (ej. RBAC/ABAC).
-*   **Observabilidad Nativa**:
-    *   Logging Estructurado (JSON).
-    *   Tracing Distribuido (OpenTelemetry) para rastrear peticiones entre múltiples saltos de red.
-*   **Manejo de Errores**: Evitar el uso de Excepciones para control de flujo de negocio; preferir patrones funcionales (Result/Either Type).
+Recommended: Docker containerization, Kubernetes (K8s) orchestration, and autoscaling based on CPU/Memory metrics, guaranteeing high availability across multi-zone clusters.
 
 ---
 
-## 9. Matriz de Decisiones de Referencia (ADR Baseline)
+## 8. Transversal Corporate Concepts
 
-Cualquier implementación de este stack hereda por defecto estas estrategias:
+Regardless of the chosen system, these standards must be integrated:
 
-| Enfoque de Diseño | Estrategia Técnica | Justificación Técnica |
+*   **Centralized Security**: Mandatory implementation of Claim/Scope-based authorization (e.g., RBAC/ABAC).
+*   **Native Observability**:
+    *   Structured Logging (JSON).
+    *   Distributed Tracing (OpenTelemetry) to track requests across network hops.
+*   **Error Handling**: Avoid Exception abuse for business flow control; favor functional patterns (Result/Either Type).
+
+---
+
+## 9. Decision Reference Matrix (ADR Baseline)
+
+Any implementation of this stack inherits these strategies by default:
+
+| Design Focus | Technical Strategy | Technical Rationale |
 | :--- | :--- | :--- |
-| **Gobierno Interno** | `eslint-plugin-boundaries` | Evita el acoplamiento cíclico y protege las capas del Hexágono. |
-| **Resiliencia** | Circuit Breakers (`opossum` o similar) | Previene el fallo en cascada en sistemas orientados a APIs. |
-| **Caché** | Patrón Read-Aside distribuido | Protege la base de datos y optimiza el throughput del API. |
-| **Testing** | Pirámide de Pruebas Automatizada | Garantiza la calidad con fuerte énfasis en Pruebas de Unidad y Contrato. |
+| **Internal Governance** | `eslint-plugin-boundaries` | Prevents circular coupling and protects Hexagon layers. |
+| **Resilience** | Circuit Breakers (`opossum` or similar) | Prevents cascading failures in API-oriented systems. |
+| **Caching** | Distributed Read-Aside Pattern | Shields the DB and optimizes API throughput. |
+| **Testing** | Automated Testing Pyramid | Guarantees quality with heavy focus on Unit and Contract tests. |
 
 ---
 
-## 10. Requerimientos de Calidad del Stack (NFR Benchmark)
+## 10. Stack Quality Requirements (NFR Benchmark)
 
-Valores objetivo que toda implementación bajo este stack debería certificar:
-*   **Latencia API Interna**: P95 < 50ms.
-*   **Seguridad**: 0 vulnerabilidades "High/Critical" (escaneo estático SAST).
-*   **Eficiencia**: Bajo consumo base de memoria (Idle memory footprint) facilitando la densidad de microservicios.
+Target values every stack implementation should certify:
+*   **Internal API Latency**: P95 < 50ms.
+*   **Security**: 0 "High/Critical" vulnerabilities (SAST scanning).
+*   **Efficiency**: Low base memory footprint facilitating high microservice density.
 
 ---
 
-## 11. Implementación de Referencia Canónica
+## 11. Canonical Reference Implementation
 
-Para ver el ejemplo vivo de la aplicación de todos estos conceptos teóricos en código real y arquitectura física, consulte el repositorio/módulo de:
+To witness the live application of these concepts in real code and physical architecture, consult the following module:
 
 👉 **[To-Do Reference Template Codebase](./README.md)**
 
-Donde se materializan estos conceptos usando:
+Where these theoretical concepts materialize utilizing:
 *   **Framework**: NestJS.
-*   **ORM**: TypeORM con soporte PostgreSQL RLS nativo.
-*   **Testing**: Jest para lógica hexagonal.
+*   **ORM**: TypeORM with native PostgreSQL RLS support.
+*   **Testing**: Jest for pure hexagonal logic.
