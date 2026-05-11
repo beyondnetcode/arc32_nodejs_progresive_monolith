@@ -15,11 +15,17 @@ As the system matures into a SaaS offering, we must isolate data for multiple te
 We need absolute leakage prevention alongside efficient resource scaling.
 
 ## Decision
-Adopt a **Hybrid "Pooled" Multi-Tenancy Strategy with PostgreSQL Row-Level Security (RLS)** as the default mode:
+Adopt a **Hybrid "Pooled" Multi-Tenancy Strategy** utilizing a mandatory **"Defense in Depth" Dual-Layer Isolation Framework**:
 
-1. **Database-Level Isolation**: Leverage PostgreSQL native **Row-Level Security (RLS)**. The database engine filters rows directly using transaction variables set by the driver. Even if an ORM query neglects a filter, the database blocks leaking cross-tenant data automatically.
-2. **Execution Scoping**: Pass `tenant_id` claims in the JWT. Use NestJS `AsyncLocalStorage` to store the current tenant context per-request, which the Persistence Adapter picks up to lock down the SQL session at connection instantiation.
-3. **VIP Isolation Readiness**: While 90% share the pool, the infrastructure must abstraction must support routing Enterprise clients to fully isolated physical databases via separate connection pools based on their `tenant_id` context.
+1. **Layer 1: Application-Level Isolation (Primary - Engine Agnostic)**:
+   The persistence adapter layer MUST automatically inject the active `tenant_id` filter into all queries executed via ORM/Query Builders (e.g., using global filters or base repository query interceptors). This ensures functional data isolation remains completely agnostic of specific database engine capabilities.
+
+2. **Layer 2: Database-Level Failsafe (PostgreSQL RLS)**:
+   As an absolute safety net against human error (e.g., developer-written raw SQL queries skipping ORM filters), we leverage native **PostgreSQL Row-Level Security (RLS)**. The PostgreSQL engine enforces physical row filtering using transaction session variables set immediately upon opening the connection pool checkout.
+
+3. **Execution Scoping**: Pass `tenant_id` claims securely within verified JWTs. Utilize NestJS `AsyncLocalStorage` to hold the immutable context per-request, serving as the single source of truth used by both Layer 1 and Layer 2 resolvers.
+
+4. **VIP Isolation Readiness**: While 90% of tenants share the pool, the persistence abstraction layer must inherently support routing Enterprise clients to completely isolated physical database cluster end-points based on resolved tenant metadata, completely transparent to the domain.
 
 ## Consequences
 
