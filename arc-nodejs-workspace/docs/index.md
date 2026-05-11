@@ -32,7 +32,7 @@ Technical layout, topology, and C4 Model definitions.
 ---
 
 ## 📜 Phase 03: Architectural Decision Records (ADRs)
-The canonical system blueprint ledger consisting of all 35 fully approved records.
+The canonical system blueprint ledger consisting of all 36 fully approved records.
 
 ### Core Foundation & Tooling
 *   [ADR 0001: Monorepo Orchestration with Nx](./03-adrs/0001-monorepo-orchestration-nx.md)
@@ -58,6 +58,7 @@ The canonical system blueprint ledger consisting of all 35 fully approved record
 *   [ADR 0033: Transactional Outbox Pattern](./03-adrs/0033-transactional-outbox-pattern.md)
 *   [ADR 0034: CQRS Pattern Applicability Matrix](./03-adrs/0034-cqrs-pattern-applicability-matrix.md)
 *   [ADR 0035: Distributed Saga Pattern Strategy](./03-adrs/0035-distributed-saga-pattern-strategy.md)
+*   [ADR 0036: Message Bus Delivery Strategy (FIFO, DLQ)](./03-adrs/0036-message-bus-delivery-strategy-fifo-dlq.md)
 
 ### Security & Features Governance
 *   [ADR 0012: Advanced Authorization (RBAC/ABAC)](./03-adrs/0012-advanced-authorization-rbac-abac.md)
