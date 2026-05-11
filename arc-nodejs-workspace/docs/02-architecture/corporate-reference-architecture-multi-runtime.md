@@ -414,6 +414,9 @@ graph TD
 | **Performance Testing** | ADR-0037 | K6 Load + Pact Contract Verification | §5, §6.3 |
 | **Error Management** | ADR-0038 | Result Pattern + Unified Boundaries | §5, §6.3 |
 | **Deployment Switcher** | ADR-0039 | Factory-based Topology Abstraction | §7 |
+| **Polyglot Selection** | ADR-0040 | Workload Matrix & Type-Safe Contracts | §1.2 |
+| **.NET Arch Canonical** | ADR-0041 | Clean Arch C# / Minimal APIs | §1.2 |
+| **Android Arch Canonical** | ADR-0042 | Native Kotlin / Compose / Offline | §1.2 |
 
 ---
 

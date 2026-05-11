@@ -34,7 +34,7 @@ Technical layout, topology, and C4 Model definitions.
 ---
 
 ## 📜 Phase 03: Architectural Decision Records (ADRs)
-The canonical system blueprint ledger consisting of all 39 fully approved records.
+The canonical system blueprint ledger consisting of all 42 fully approved records.
 
 ### Core Foundation & Tooling
 *   [ADR 0001: Monorepo Orchestration with Nx](./03-adrs/0001-monorepo-orchestration-nx.md)
@@ -81,6 +81,11 @@ The canonical system blueprint ledger consisting of all 39 fully approved record
 *   [ADR 0027: Dual-Protocol REST & gRPC](./03-adrs/0027-dual-protocol-rest-grpc-api-gateway.md)
 *   [ADR 0028: Self-Hosted OSS Infrastructure](./03-adrs/0028-self-hosted-hybrid-infrastructure-on-premise.md)
 *   [ADR 0029: Tactical DDD Primitives](./03-adrs/0029-tactical-ddd-primitives-library.md)
+
+### Multi-Runtime & Polyglot Governance
+*   [ADR 0040: Multi-Runtime Selection Matrix & Contracts](./03-adrs/0040-multi-runtime-selection-contracts.md)
+*   [ADR 0041: Canonical .NET (C#) Backend Architecture](./03-adrs/0041-canonical-dotnet-backend-architecture.md)
+*   [ADR 0042: Canonical Android Native Mobile Architecture](./03-adrs/0042-canonical-android-mobile-architecture.md)
 
 ---
 

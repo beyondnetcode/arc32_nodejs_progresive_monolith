@@ -32,7 +32,7 @@ The primary goal of this repository is **not** simply to build an application, b
     *   [C4 Topology (Level 1-3) Specification](./docs/02-architecture/architecture-spec.md)
     *   [Design Maturity & Patterns Evaluation](./docs/02-architecture/design-and-maturity-evaluation.md)
     *   [CAP Theorem Strategic Analysis](./docs/02-architecture/cap-theorem-strategic-analysis.md)
-*   📜 **[Phase 03 - 39 Approved ADRs](./docs/03-adrs/)**: The exhaustive baseline ledger defining the sovereign technology ecosystem.
+*   📜 **[Phase 03 - 42 Approved ADRs](./docs/03-adrs/)**: The exhaustive baseline ledger defining the sovereign technology ecosystem.
 
 ---
 
