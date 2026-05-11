@@ -46,7 +46,7 @@ graph TD
     Client["Web UI"] -->|HTTPS / JWT| BFF["NestJS BFF / Controller Gateway"]
     
     subgraph CoreApp ["Hexagon Boundary"]
-        BFF -->|Commands/Queries| Application["Use Case Services"]
+        BFF -->|gRPC| Application["Use Case Services"]
         Application -->|Execute Domain Logic| Domain["Domain Entities"]
     end
 

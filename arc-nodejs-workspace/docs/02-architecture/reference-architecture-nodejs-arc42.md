@@ -150,25 +150,25 @@ graph TD
         B2BClient["B2B Client (API Key)"]
     end
 
-    subgraph GatewayTier["Gateway Tiers (ADR-0030, ADR-0008, ADR-0027)"]
+    subgraph GatewayTier["Gateway Tiers (ADR-0030, ADR-0008, ADR-0027, ADR-0032)"]
         Kong["Kong OSS Edge Gateway\n[Rate Limiting · SSL · JWT · CORS]"]
         WebBFF["NestJS Web BFF\n[REST/GraphQL Aggregation]"]
         MobileBFF["NestJS Mobile BFF\n[Compact Payloads]"]
     end
 
-    subgraph CoreTier["Core Application Tier (ADR-0002, ADR-0010, ADR-0012, ADR-0016, ADR-0019)"]
-        CoreAPI["NestJS Core API\nHexagonal + RBAC/ABAC + Audit"]
+    subgraph CoreTier["Core Application Tier (ADR-0002, ADR-0012, ADR-0016, ADR-0019, ADR-0029)"]
+        CoreAPI["NestJS Core API\nHexagonal + Audit + UnitOfWork"]
         FeatureFlags["Feature Flag Engine\n[ADR-0017, ADR-0025]"]
         ConfigPlatform["Config Platform\n[ADR-0024]"]
     end
 
     subgraph PersistenceTier["Persistence Tier (ADR-0014, ADR-0022)"]
-        PgSQL[("PostgreSQL 16\n[RLS Multi-Tenant · ADR-0010]")]
+        PgSQL[("PostgreSQL 16\n[Dual-Layer RLS · ADR-0010]")]
         Redis[("Redis Cluster\n[Read-Aside Cache · ADR-0014]")]
         AuditLog[("Audit Log (Append-Only)\n[ADR-0016]")]
     end
 
-    subgraph MessagingTier["Async Messaging Tier (ADR-0015)"]
+    subgraph MessagingTier["Async Messaging Tier (ADR-0015, ADR-0031)"]
         IBusPort["«Port» IEventBusPort"]
         InMemoryBus["In-Memory Bus\n(Dev/Test)"]
         RabbitMQBus["RabbitMQ\n(Production)"]
@@ -194,10 +194,11 @@ graph TD
         MinIO["MinIO\n[Object Storage]"]
     end
 
-    WebApp & MobileApp & B2BClient --> Kong
-    Kong --> WebBFF & MobileBFF & CoreAPI
+    WebApp & MobileApp & B2BClient -->|TLS/HTTP| Kong
+    Kong -->|Route| WebBFF & MobileBFF & CoreAPI
 
-    WebBFF & MobileBFF --> CoreAPI
+    WebBFF & MobileBFF -->|gRPC| CoreAPI
+    CoreAPI -->|SQL/Dual-Layer RLS| PgSQL
 
     CoreAPI --> PgSQL & Redis & AuditLog
     CoreAPI --> IBusPort
