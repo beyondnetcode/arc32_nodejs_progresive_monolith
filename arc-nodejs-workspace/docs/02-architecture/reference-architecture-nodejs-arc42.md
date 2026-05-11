@@ -151,7 +151,7 @@ graph TD
     end
 
     subgraph EdgeNet["Network Level 0: Static Cache"]
-        CDN["CDN (Content Delivery Network)\n[Cloudflare / Akamai]"]
+        CDN["CDN (Content Delivery Network)\n[Cloudflare / Akamai / Optional]"]
     end
 
     subgraph GatewayTier["Gateway Tiers (ADR-0030, ADR-0008, ADR-0027, ADR-0032)"]

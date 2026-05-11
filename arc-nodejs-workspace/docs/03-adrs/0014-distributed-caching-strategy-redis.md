@@ -12,8 +12,8 @@ Repetitive, high-intensity read throughput during peak operational hours can com
 ## Decision
 Evolve to a comprehensive **Multi-Layer Tiered Caching Strategy** utilizing CDN edge caching and distributed Redis nodes to intercept and resolve read requests as close to the user as possible:
 
-### Level 1: Public Edge (CDN & Browser Cache)
-Mandate the usage of a Content Delivery Network (CDN) (e.g., Cloudflare, Akamai) deployed in front of the Kong Edge Gateway.
+### Level 1: Public Edge (Optional & Configurable CDN)
+The system supports the integration of a Content Delivery Network (CDN) (e.g., Cloudflare, Akamai) deployed in front of the Kong Edge Gateway. This layer is **fully optional and dynamically configurable** in the infrastructure topology settings; small-scale deployments can disable this layer to route direct-to-origin, while Enterprise scaling can activate it via environment configuration.
 *   **Scope**: Static application assets (JS, CSS, images), multi-tenant branding files, and read-only public catalog APIs with low volatility.
 *   **Impact**: Zero server origin utilization for matching requests.
 

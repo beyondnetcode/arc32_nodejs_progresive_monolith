@@ -48,7 +48,7 @@ Demonstrates the physical segregation of communication entry-points (BFFs) down 
 ```mermaid
 graph TD
     subgraph PublicEdge["Layer 0: Static Cache"]
-        CDN["CDN / Browser Cache (Cloudflare)"]
+        CDN["CDN / Browser Cache (Optional)"]
     end
 
     subgraph EntryLayer["Tier 1: Ingress & Routing"]
