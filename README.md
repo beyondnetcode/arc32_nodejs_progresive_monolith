@@ -57,3 +57,14 @@ No crees nada desde cero. Sigue la guía oficial de andamiaje para clonar, confi
 
 ---
 **🔒 Estatus Legal del Repositorio**: 100% Sanitizado. Licencias Apache 2.0 / MIT / BSD-3 (Valkey, OpenTofu, OpenBao validados).
+
+---
+
+## 🤖 AI-Augmented Architecture (Opcional)
+
+Extensión opcional para equipos y productos que desean incorporar agentes IA,
+harness engineering y MCP en su arquitectura. No modifica ni reemplaza ningún
+estándar corporativo existente.
+
+→ [Explorar sección AI-Augmented](./arc-nodejs-workspace/corporate-standards/ai-augmented/README.md)
+

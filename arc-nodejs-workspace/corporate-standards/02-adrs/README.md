@@ -67,3 +67,18 @@ Decisiones ligadas al runtime de alto procesamiento.
 Decisiones ligadas al cliente móvil resiliente.
 
 *   **[ADR 0042: Canonical Android Mobile Architecture](./android/0042-canonical-android-mobile-architecture.md)**
+
+---
+
+## ADRs de AI-Augmented Architecture (Sección opcional)
+
+| ID | Título | Estado |
+|----|--------|--------|
+| ADR-AI-001 | Harness Engineering como estándar agéntico | Proposed |
+| ADR-AI-002 | MCP como protocolo de integración agente-servicio | Proposed |
+| ADR-AI-003 | Criterios de selección y gobernanza de modelos | Proposed |
+| ADR-AI-004 | AGENTS.md como artefacto obligatorio (nivel 1+) | Proposed |
+| ADR-AI-005 | Política Human-in-the-Loop para operaciones irreversibles | Proposed |
+
+→ [Ver todos los ADRs AI](../ai-augmented/06-adrs/README.md)
+

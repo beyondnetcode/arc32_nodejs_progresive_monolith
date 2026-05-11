@@ -1,4 +1,4 @@
-﻿# Reference Skeleton Architecture Maturity Model (AMM)
+# Reference Skeleton Architecture Maturity Model (AMM)
 
 ## Framework Reference: TOGAF ACMM & Well-Architected Framework
 
@@ -85,3 +85,13 @@ Based on the TOGAF ACMM criteria applied to our current BMAD-driven architecture
 The Reference Skeleton architecture is currently transitioning from a perfectly documented system (Level 3) to a fully automated and governed system (Level 4). The strict enforcement of ADRs, static boundaries (`eslint-plugin-boundaries`), and CI/CD quality gates ensures that the system will not degrade into technical debt. 
 
 To reach **Level 5 (Optimizing)**, the engineering organization must focus on Chaos Engineering, Multi-Region Active-Active deployments, and the eventual split into Dapr microservices as operational load demands it.
+
+---
+
+## Dimensión AI-Augmented (Opcional)
+
+Para productos que adoptan la sección AI-Augmented, existe una matriz de madurez
+complementaria con 3 niveles: AI-Assisted, AI-Integrated, AI-Orchestrated.
+
+→ [Ver matriz de madurez AI](../ai-augmented/07-maturity-model/ai-maturity-matrix.md)
+

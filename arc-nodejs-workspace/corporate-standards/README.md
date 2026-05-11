@@ -43,3 +43,14 @@ Playbooks de implementación táctica, seguridad defensiva y validación de merc
 
 ---
 *Esta documentación es agnóstica al dominio de negocio y regula estrictamente la estructura tecnológica del holding.*
+
+---
+
+## 🤖 AI-Augmented Architecture (Opcional)
+
+Extensión opcional para equipos y productos que desean incorporar agentes IA,
+harness engineering y MCP en su arquitectura. No modifica ni reemplaza ningún
+estándar corporativo existente.
+
+→ [Explorar sección AI-Augmented](./ai-augmented/README.md)
+
