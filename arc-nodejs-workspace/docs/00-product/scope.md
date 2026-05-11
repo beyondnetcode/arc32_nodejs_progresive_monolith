@@ -3,7 +3,11 @@
 ## 1. In-Scope Capabilities
 The system delivers atomic task management scoped to isolated users, demonstrating modular architectural patterns.
 
-### A. User Authentication & Ownership
+### A. Multi-Tenant SaaS Strategy
+- Absolute data isolation using shared database schemas bounded by PostgreSQL **Row-Level Security (RLS)**.
+- Multi-channel routing via dedicated **BFF Gateways** to safeguard internal core.
+
+### B. User Authentication & Ownership
 - Support for basic login via email/password.
 - Return of signed JWTs for authorization.
 - Strict relational association: Users only see tasks belonging to their specific database key.

@@ -6,14 +6,23 @@ The core domain model utilizes a **Hybrid Audit Strategy** (ADR-0014). Every tra
 
 ```mermaid
 erDiagram
+    TENANT ||--o{ USER : hosts
+    TENANT ||--o{ TASK : isolates
     USER ||--o{ TASK : creates
     USER ||--o{ CATEGORY : defines
     CATEGORY ||--o{ TASK : classifies
     TASK }o--o{ TAG : associated_with
     
+    %% System Multi-Tenancy Root
+    TENANT {
+        uuid id PK
+        string name
+        string domain_scope
+    }
     %% Core Business Entities
     USER {
         uuid id PK
+        uuid tenant_id FK
         string email
         string password_hash
         datetime created_at

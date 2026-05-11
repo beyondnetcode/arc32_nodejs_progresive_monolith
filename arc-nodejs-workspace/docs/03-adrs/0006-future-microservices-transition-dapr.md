@@ -1,17 +1,1 @@
-# ADR 0006: Future Microservices Transition via Dapr Sidecars
-
-## Status
-Proposed / Deferred
-
-## Context
-Currently, the Reference Solution monorepo is structured as a **Modular Monolith**. This minimizes infrastructure cost and complexity during prototyping. However, as traffic scales or domain contexts (e.g., Notification Engines, Data Analytics) grow highly coupled, we need a clear roadmap to transition to distributed microservices without refactoring core business logic.
-
-## Decision
-We establish a path where if a domain context needs elastic scalability independently, it can be broken out into an independent deployment node. 
-
-1. We will use the **Dapr (Distributed Application Runtime)** sidecar model.
-2. Domain Core will NEVER contain Dapr-specific imports. It communicates with local ports (e.g., `IPubSubPort`), and infrastructure adapters map to local `EventEmitter2` during the monolith phase, instantly switchable to `Dapr SDK` adapters for distributed environments.
-
-## Consequences
-- **Pros**: Zero rewrite required when transitioning.
-- **Cons**: Requires careful domain event discipline early on.
+﻿# ADR 0006: Future Microservices Transition with Dapr Sidecars  ## Status Proposed (Backlog / Technical Debt)  ## Date 2026-05-08  ## Context Currently, the Reference Platform monorepo is successfully structured as a **Modular Monolith** with a single API (`apps/api`) and a single frontend (`apps/web`). This keeps resource consumption at $0 and minimizes infrastructure complexity during the MVP phase. However, as business requirements scale (e.g., adding high-throughput telemetry, vessel routing, or massive client portals), we need a clear roadmap on when and how to transition to distributed microservices without rewriting core business logic.  ## Proposed Decision We propose to adopt **Dapr (Distributed Application Runtime)** as our microservices sidecar runtime when splitting the monolithic API: 1. Turn the Modular Monolith into independent microservices (e.g., `@Reference Platform/billing-service`, `@Reference Platform/vessels-service`). 2. Implement **Dapr Sidecars** next to each microservice to handle Service-to-Service invocation, Pub/Sub (via Redis or RabbitMQ), and state abstraction without introducing custom infrastructure SDKs in our Clean Architecture code. 3. Keep our business domain (`core`) 100% agnostic, only adapting the infrastructure adapters (`infrastructure`) to communicate via Dapr's HTTP/gRPC local endpoints (e.g., `localhost:3500`). 4. **Dapr Sidecar Abstraction (Dependency Inversion)**: Even Dapr SDKs must be hidden behind ports. For example, if using an `IPubSubPort`, the adapter logic will translate the port call into the Dapr PubSub component call. The core domain must change exactly **0 lines of code** when Dapr is introduced.  ## Consequences  ### Positive (Pros) * **High Extensibility**: Adding or replacing databases, queues, or secrets stores requires zero code changes - only updating a declarative YAML component in Dapr. * **Polyglot Architecture**: Microservices can be written in any language (Go, Python, NestJS) while sharing the same sidecar capabilities. * **Resiliency**: Native support for retry policies, circuit breakers, and state locks.  ### Negative (Cons) * Adds architectural overhead (requires managing Kubernetes or local Dapr sidecars). * Increases network latency slightly due to local HTTP/gRPC loopback calls.
