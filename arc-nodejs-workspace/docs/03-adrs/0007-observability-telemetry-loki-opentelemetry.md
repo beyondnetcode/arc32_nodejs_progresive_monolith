@@ -21,9 +21,10 @@ Adopt the **OpenTelemetry (OTel)** standard as the unified observability backbon
 **Implementation rules:**
 
 1. **Auto-instrumentation**: NestJS HTTP, TypeORM, and Redis calls are automatically instrumented via OTel auto-instrumentation packages — no manual span creation required for standard flows.
-2. **Manual spans**: Business-significant operations (use case execution, cache misses) get explicit `tracer.startSpan()` wrapping.
-3. **Trace propagation**: All outbound HTTP calls include `traceparent` headers (W3C Trace Context standard).
-4. **Structured logs**: Every log entry includes `traceId`, `spanId`, `tenantId`, and `userId` for full correlation.
+2. **Vendor-Agnostic Routing**: The application MUST ONLY emit vendor-neutral telemetry to a local **OpenTelemetry Collector**. Switching final backends (e.g., from Jaeger to Datadog, or Loki to Elastic) requires changing ONLY the Collector's YAML config, with **zero modifications or redeployments** to application source code.
+3. **Manual spans**: Business-significant operations (use case execution, cache misses) get explicit `tracer.startSpan()` wrapping.
+4. **Trace propagation**: All outbound HTTP calls include `traceparent` headers (W3C Trace Context standard).
+5. **Structured logs**: Every log entry includes `traceId`, `spanId`, `tenantId`, and `userId` for full correlation.
 
 ## Consequences
 
@@ -31,6 +32,7 @@ Adopt the **OpenTelemetry (OTel)** standard as the unified observability backbon
 - Single `traceId` traces a request from the Kong gateway log all the way to the PostgreSQL query plan.
 - Grafana dashboards provide SRE-level visibility with P50/P95/P99 latency breakdowns.
 - Zero code changes to the domain Core — all instrumentation lives in the infrastructure and adapter layers.
+- **Absolute Tech Sovereignty**: Zero vendor lock-in. The OTel protocol decouples us from Datadog, Dynatrace, Grafana, or any commercial vendor natively.
 
 ### Negative
 - OTel Collector is an additional infrastructure component to deploy and maintain.
