@@ -1,24 +1,32 @@
-﻿# ­ƒô£ ADR-0024 ÔÇö Centralized Configuration & Feature Management Platform  **Status:** Accepted   **Date:** 2026-05-09   **Deciders:** Enterprise Architect, Product Owner, Lead Developer   **ADR Type:** New Capability ÔÇö Cross-Cutting Concern   **Related Specs:** [`Reference Platform-configuration-platform-spec.md`](../../04-artifacts/Reference Platform-configuration-platform-spec.md)  ---
+# ADR 0024: Centralized Configuration & Feature Platform
 
-## ­ƒôï Context  The Reference Platform serves as the central authorization kernel for a multi-tenant enterprise SaaS ecosystem. As the platform scales and onboards new B2B tenants and client systems, three recurring operational pain points have emerged:
-1. **Static IdP Coupling**: Adding or switching Identity Providers requires code changes and redeployment, violating the zero-downtime operational mandate. 2. **Hardcoded System Behavior**: Runtime behaviors (MFA enforcement, session expiry, module toggles, branding) are either hardcoded or managed via environment variables ÔÇö neither auditable nor tenant-specific. 3. **No Structured Feature Rollout**: Progressive feature delivery (Canary, Beta, A/B) has no centralized governance, causing fragmented flags scattered across client applications.  These gaps violate the Reference Platform design principles of **vendor neutrality**, **zero-deployment governance**, and **centralized auditability**.  ---
+## Status
+Approved
 
-## ÔÜû´©Å Decision  We will introduce a **Configuration & Feature Management Context** as a first-class bounded context within the Reference Platform platform. This context owns three cohesive capability domains:
+## Date
+2026-05-09
 
-### 1. Multi-IdP Configuration Engine A dynamic registry of Identity Provider configurations (per tenant, per system, with priority/fallback rules) exposed via a secure, cached API (`/v1/config/idp`). Credentials are encrypted at rest using AES-256 with vault-based secret references. The Auth Gateway reads this configuration at login time, enabling zero-downtime IdP switching and hybrid authentication.
+## Context
+Modern SaaS demands total runtime agility. Rigidly encoding Identity Provider bindings, operational variables (e.g. session TTL, company branding), or feature flag parameters directly into application environment variables creates heavy deploy friction, invalidates immediate auditing, and kills flexible tenant-specific personalization at runtime.
 
-### 2. System Behavioral Configuration Model A versioned, auditable, multi-tenant JSON configuration store (`/v1/config/system/{system_id}`) that governs runtime behavior: authentication strategies, session policies, MFA enforcement, onboarding flows, branding, and module enablement. Client systems consume this configuration at startup and on real-time push events.
+## Decision
+Introduce an authoritative **Configuration & Feature Management Bounded Context** consolidating system behaviors:
 
-### 3. Feature Flag Management Framework A centralized flag engine supporting Boolean, Variant, and Percentage flag types with multi-dimensional targeting (tenant, org, branch, role, user, environment, system). Evaluated at runtime via `/v1/flags/evaluate`. Supports Canary, Beta, and A/B rollout strategies. Flags are cached in Redis for sub-3ms evaluation on cache hits.  ---
+1. **Dynamic IdP Store**: Shift identity configurations out of environment files into multi-tenant database pools, encrypted with AES-256 referencing external secret vaults. Allows changing tenant SSO providers instantly with zero code push.
+2. **System Dynamics**: Deliver versioned JSON settings governing behaviors (MFA requirements, branding, feature access) read directly by application controllers at lifecycle instantiation or real-time socket pushes.
+3. **Flag Framework**: Deploy an integrated Boolean/Variant Flag engine supporting deep multidimensional targeting (Role, Environment, Branch, Group) and percentage-based traffic splitting.
+4. **Redis Velocity Layer**: Isolate config evaluations into dedicated Redis namespaces (`cfg:*`, `flags:*`), guaranteeing sub-3ms decision evaluations at execution intersections.
 
-## ­ƒôÉ Architecture Constraints  - The new context is implemented as a **dedicated NestJS module** within the existing monorepo (not a separate service), following Hexagonal Architecture patterns. - All config and flag entities are governed by **PostgreSQL RLS** using the active `tenant_id` context. - Config mutations trigger **domain events** (`IdpConfigUpdatedEvent`, `SystemConfigPublishedEvent`, `FeatureFlagStateChangedEvent`) consumed by the Audit Context and Redis eviction hooks. - The config API is read-optimized: Redis cache namespaces `cfg:*` (IdP + system config) and `flags:*` (evaluated flag sets) reduce DB load during high-concurrency read patterns. - **Secret management**: OAuth client secrets, SAML certs, and LDAP credentials are **never** stored in plaintext. They are referenced via `config_secret_ref` pointing to an external vault (e.g., AWS Secrets Manager, HashiCorp Vault).  ---
+## Consequences
 
-## Ô£à Consequences
+### Positive
+- True dynamic multitenancy: systems adapt in real-time per company profile without reloads.
+- Complete lifecycle tracking: any configuration pivot creates absolute historical records.
+- Direct risk isolation through safe incremental rollout gates.
 
-### Positive - **Zero-Deployment IdP Switching**: Tenants can switch or add IdPs without redeployment. - **Tenant-Personalized Runtime**: Each B2B client system behaves according to its configured parameters without shared code changes. - **Controlled Feature Rollout**: Engineering teams can release features to 5% of users, validate metrics, and graduate rollouts ÔÇö reducing incident risk. - **Full Auditability**: Every configuration change and flag state transition is logged immutably. - **Separation of Concerns**: Feature flags are no longer scattered across client applications.
+### Negative
+- Modest expansion of database schema topology and active Redis key governance strategies.
 
-### Negative - **New cache namespace complexity**: Redis key space grows. Requires namespace governance (`cfg:*`, `flags:*`, `auth_graph:*`). - **Secret vault dependency**: Introduces an optional but recommended external vault for production credential security. - **Slight initial schema complexity**: Four new entity types (`IDP_CONFIGURATION`, `SYSTEM_CONFIGURATION`, `FEATURE_FLAG`, `FLAG_EVALUATION_LOG`) require migrations.
-
-### Neutral - Feature flag evaluation at p95 < 3ms (cache hit) does not affect the existing authorization graph SLA of p95 < 5ms.  ---
-
-## ­ƒöù ADR Impact Cross-References  | ADR | Impact | | :--- | :--- | | ADR-0010 (Multi-Tenancy) | No change ÔÇö RLS tenant isolation applies automatically to new entities | | ADR-0014 (Redis Caching) | Extended: new cache namespaces `cfg:*` and `flags:*` added to Redis governance | | ADR-0016 (Immutable Audit) | Extended: config mutation subscribers added alongside existing permission subscribers | | ADR-0017 (Feature Flagging) | **Superseded by this ADR** for the centralized flag engine design | | ADR-0020 (IdP Abstraction) | **Extended**: Multi-IdP with priority/fallback model expands ADR-0020's single-IdP-per-tenant scope |
+## References
+- [ADR-0025: Feature Flag Abstraction Strategy](./0025-feature-flag-provider-abstraction.md)
+- [ADR-0014: Redis Cache Strategy](./0014-distributed-caching-strategy-redis.md)

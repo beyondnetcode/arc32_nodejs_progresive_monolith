@@ -1,13 +1,33 @@
-﻿# ADR 0020: Identity Provider Abstraction Strategy
+# ADR 0020: Identity Provider Abstraction Strategy
 
-## Status Accepted
+## Status
+Approved
 
-## Context Traditional enterprise systems tightly couple their authentication flows to a specific proprietary Identity Provider (IdP) SDK (e.g., Zitadel, AWS Cognito, Okta), leading to high migration costs, severe vendor lock-in, and the inability to cater to enterprise B2B clients demanding SAML/OIDC SSO federation or air-gapped standalone environments requiring internal username/password authentication.  Under the **bMAD Method**, all critical platform capabilities must remain highly decoupled, extensible, and future-proof.
+## Date
+2026-05-09
 
-## Decision We will decouple authentication from the core authorization domain using the **Strategy Pattern** wrapped behind a clean Hexagonal Port (`IAuthenticationPort`). While Zitadel remains the default external reference implementation, the platform core is entirely agnostic of the physical identity provider.  The architecture will dynamically select and execute pluggable adapters at runtime (based on the `Tenant-ID` context or configuration parameters) supporting: *   **Internal Authentication**: Managed user stores utilizing Bcrypt hashing. *   **External Enterprise IdPs**: Zitadel, AWS Cognito, Microsoft Entra ID (Azure AD), Okta, Auth0, Keycloak, or generic OIDC/OAuth2/SAML providers. *   **Modern Security Standards**: Federated Single Sign-On (SSO), WebAuthn (Passkeys), Multi-Factor Authentication (MFA), and OpenID Connect (OIDC).
+## Context
+Enterprise authentication needs migrate, shift, and fragment over time. Tying system internals direct to vendor SDKs (e.g., Zitadel, Okta) causes total lock-in and leaves the platform incapable of answering air-gapped deployment needs, SAML requirements from external corporate hubs, or standard internal legacy hashing flows.
+
+## Decision
+Separate credential verification from the business layer via polymorphic **Strategy injection** secured by a local Hexagonal interface (`IAuthenticationPort`):
+
+1. **Zero Lock-in**: The core core trusts a single validation Port logic. It cares only if credentials resolve to a verified user vector.
+2. **Dynamic Execution**: The resolver activates correct concrete Adapters at runtime (via `Tenant` configuration flags) feeding off of:
+    - Local Store (Bcrypt storage)
+    - Enterprise Identity Providers (Cognito, Azure AD, Okta, Zitadel, Auth0)
+    - General federated endpoints (OIDC/SAML)
+3. **Progressive Security**: Wire current protocols supporting Modern Standards (Passkeys, MFA, WebAuthn) natively into the abstracted provider pool.
 
 ## Consequences
 
-### Positive *   **Zero Vendor Lock-In**: Switching identity providers is a zero-cost configuration change requiring no modifications to the core business logic. *   **Enterprise Multi-Tenancy**: Individual tenants can self-manage and federate their own corporate identity stores (SAML/OIDC). *   **Deployment Versatility**: Supports both standard cloud SaaS deployments (external federated IdP) and air-gapped standalone deployments (local credentials).
+### Positive
+- High deployment fluidity. Deploy same code inside Azure cloud or within private disconnected local hardware.
+- Clients retain sovereignty: each enterprise Tenant may configure and point towards their own respective company AD/SAML.
 
-### Negative *   **Factory Complexity**: Requires the maintenance of a dynamic authentication factory to resolve the appropriate adapter based on tenant context at runtime.
+### Negative
+- Increases initialization factory complexity required to correctly instantiate correct credential drivers based on runtime host context.
+
+## References
+- [ADR-0026: MFA and Passwordless](./0026-mfa-passwordless-adaptive-authentication.md)
+- [ADR-0002: Clean Hexagonal Architecture](./0002-clean-architecture-nestjs.md)

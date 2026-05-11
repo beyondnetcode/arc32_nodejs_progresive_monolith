@@ -1,43 +1,47 @@
-﻿# ADR 0030: API Gateway Implementation: Kong Open Source vs NestJS
+# ADR 0030: API Gateway Strategy - Kong Edge vs NestJS BFF
 
-## Status Proposed
+## Status
+Approved
 
-## Date 2026-05-10
+## Date
+2026-05-10
 
-## Context During architectural reviews of the Reference Platform (User Management System) gateway design, a question was raised regarding the choice of technology for the API Gateway layer. The current architectural documentation mentions using NestJS for gateway/BFF (Backend For Frontend) responsibilities. However, there is a proposal to use an open-source version of Kong (an NGINX-based API Gateway) instead.   We need to clarify the distinction between these two technologies, determine if they serve the exact same purpose, and establish whether adopting Kong is a sound architectural decision for our specific use case.
+## Context
+Utilizing Node.js application threads to perform pure network-level infrastructure routing, massive volume rate-limiting, or generic SSL termination wastes single-threaded event loops on overhead, degrading critical application speed. Conversely, pushing complex API payload merges or recursive database aggregates into raw proxy Lua scripts creates operational gridlock.
 
-## Analysis
+## Decision
+Formalize a rigid **Two-Tier Distributed Gateway Model** to correctly decouple infrastructure from orchestration:
 
-### 1. Are Kong and NestJS the "same thing" in the context of a Gateway? **No. They serve fundamentally different architectural purposes within the gateway tier.**
-*   **Kong (API Gateway):** Kong is a highly performant, infrastructure-level API Gateway built on top of NGINX (via OpenResty). It is designed to operate at the network edge. Its primary concerns are cross-cutting infrastructure policies:   
-*   Reverse Proxying and Load Balancing   
-*   SSL/TLS Termination   
-*   Rate Limiting & Traffic Control (Spike Arrests)   
-*   Authentication verification (e.g., JWT validation, OAuth2 introspection) at the edge   
-*   Security (WAF, CORS, IP Allow/Deny lists)   
-*   Metrics and Logging (Prometheus, Datadog integrations)   
-*   Protocol translation (e.g., HTTP to gRPC)
-*   **NestJS (BFF / Orchestrator):** NestJS is a Node.js application framework. When used as a "Gateway" in microservices, it typically acts as a **Backend For Frontend (BFF)** or an **API Composition / Orchestration Layer**. Its primary concerns are business-logic-adjacent:   
-*   Data Aggregation (calling Reference Platform, TMS, and WMS to build a single composite response)   
-*   Data Transformation & Filtering (removing sensitive fields before sending to the client, mapping data structures)   
-*   GraphQL federation or REST endpoint orchestration   
-*   Client-specific logic (e.g., one NestJS BFF for Mobile, one for Web)
+1. **Tier 1 - Edge Gateway (Kong OSS)**: High-throughput NGINX-based barrier. Sits on the literal public cluster perimeter. Manages only non-functional transversal rules: SSL, API key throttling, simple JWT origin signature validation, path forwarding, and WAF rules.
+2. **Tier 2 - Application Gateway (NestJS BFF)**: Custom Node logic deployed safely within Tier 1 security zone. Responsible for composing heterogeneous data responses, stripping PII for generic UI formats, tailoring device payloads, and managing user cookie mechanics.
 
-### 2. Is it "okay" to use Kong? **Yes, it is highly recommended and represents an architectural maturation.**   Using NestJS to handle pure API Gateway concerns (like high-throughput rate limiting or basic proxying) is an anti-pattern. Node.js (and by extension NestJS) runs on a single-threaded event loop. While it handles asynchronous I/O well, it cannot match the raw throughput, low latency, and memory efficiency of an NGINX-based proxy like Kong for simply moving bytes from point A to point B and applying infrastructure policies.  Conversely, using Kong to do complex data aggregation (e.g., writing custom Lua plugins to fetch a user profile from Reference Platform, then fetch their orders from TMS, merge the JSON, and return it) is also an anti-pattern. Kong is not an orchestration engine.
+### Updated Two-Tier Architecture
 
-## Decision We will adopt a **Two-Tiered Gateway Pattern**, differentiating between the *Edge API Gateway* and the *Application/BFF Gateway*:
-1.  **Tier 1: Edge API Gateway (Kong Open Source)**   
-*   Deployed at the edge of the network (Ingress).   
-*   Handles all north-south traffic entering the cluster.   
-*   Responsible for strictly non-business cross-cutting concerns: Rate Limiting, SSL termination, Bot detection, JWT validation (verifying signatures before traffic hits our apps), and routing traffic to the appropriate downstream service or BFF. 2.  **Tier 2: Application/BFF Gateway (NestJS)**   
-*   Deployed behind Kong within the protected network.   
-*   Handles API composition, GraphQL federation, data formatting, and client-specific (Web/Mobile) orchestration.   
-*   Does *not* need to worry about basic rate limiting or SSL termination, as Kong has already handled these.
-
-### ­ƒÅø´©Å Updated Two-Tier Gateway Architecture Diagram  ```text +------------------+     +--------------------+ |  React Web App   |     | Mobile Client App  | +--------+---------+     +---------+----------+          |                         |          | HTTP / HTTPS            | HTTP / HTTPS          v                         v +---------------------------------------------+ |               Tier 1: Kong OSS              | |               (Edge API Gateway)            | |  [Rate Limiting, JWT Validation, Routing]   | +--------+-------------------------+----------+          |                         |          v                         v +--------+---------+     +---------+----------+ |  Tier 2: NestJS  |     |  Tier 2: NestJS    | | (Web BFF Gateway)|     | (Mobile BFF Gateway| | [Aggregation]    |     | [Transformation]   | +--------+---------+     +---------+----------+          |                         |          +-------------+-----------+                        |                        v          +-------------+-------------+          |                           |          v                           v +--------+--------+           +------+------+ |   Reference Platform Service   |           | TMS Service | +-----------------+           +-------------+ ```
+```mermaid
+graph TD
+    U["Public Clients (Mobile / Web)"] -->|TLS/HTTP| K["[Tier 1] Kong Edge Gateway"]
+    
+    subgraph SecureCluster["Protected Network"]
+        K -->|Forward| W["[Tier 2] NestJS Web BFF"]
+        K -->|Forward| M["[Tier 2] NestJS Mobile BFF"]
+        
+        W --> API["Reference Platform Core"]
+        W --> TMS["Transport Service"]
+        M --> API
+    end
+```
 
 ## Consequences
 
-### Positive (Pros) *   **Separation of Concerns:** Developers can focus on business logic and composition in NestJS without writing custom middleware for rate limiting or security policies. *   **Performance:** Kong acts as a highly efficient shield, dropping bad requests (invalid JWTs, rate-limit exceeders) at the edge, freeing up Node.js event loop cycles in the NestJS tier. *   **Scalability:** The Edge Gateway (Kong) and the Application Gateways (NestJS) can scale independently based on bottleneck type (network I/O vs CPU/Memory).
+### Positive
+- Separates raw binary concerns from logical aggregation. Node doesn't waste cycles blocking DDOS/Spams.
+- Extreme throughput scale capability. NGINX core comfortably eats traffic volumes Node alone cannot.
+- Improves backend isolation (Tier 1 explicitly shields Tier 2).
 
-### Negative (Cons) *   **Operational Complexity:** Introduces a new infrastructure component (Kong, and potentially its backing datastore like PostgreSQL if not using DB-less mode) that must be deployed, monitored, and maintained. *   **Network Hop:** Adds an additional network hop (Client -> Kong -> NestJS -> Microservice) which adds marginal latency, though usually offset by Kong's performance and caching capabilities.
+### Negative
+- Adds a second hop latency variable (typically negligible <1ms overhead if deployed correctly).
+- Introduces Kong management operational stack lifecycle.
+
+## References
+- [ADR-0008: Progressive BFF Patterns](./0008-progressive-multimodule-evolution-gateway-bff.md)
+- [ADR-0027: Dual Protocol Edge](./0027-dual-protocol-rest-grpc-api-gateway.md)

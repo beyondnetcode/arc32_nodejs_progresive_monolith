@@ -1,21 +1,34 @@
-﻿# ­ƒô£ ADR-0029 ÔÇö Adoption of `@nestjslatam/ddd` for Optional Tactical DDD Primitives  **Status:** Accepted   **Date:** 2026-05-09   **Deciders:** Solutions Architect, Principal Software Architect, Lead Developer   **ADR Type:** Tactical Design Standard   **Related Specs:** [`nestjslatam-ddd-evaluation.md`](../02-architecture/nestjslatam-ddd-evaluation.md)  ---
+# ADR 0029: Adoption of Tactical DDD Primitives Library
 
-## ­ƒôï Context  The **User Management System (Reference Platform)** is designed as an abstract, modular identity and authorization kernel. While the adoption of Domain-Driven Design (DDD) is currently **optional** (governed by context complexity), standardizing tactical design components (Value Objects, Entities, Aggregate Roots, and Domain Events) is critical to stabilizing business rules and preventing technical drift.  Writing custom base classes for deep property equality, entity ID comparisons, and aggregate domain-event accumulators introduces significant boilerplate and maintenance overhead. To accelerate development and enforce uniform software patterns, we require a lightweight, pure TypeScript library of DDD primitives that integrates seamlessly with our NestJS architecture while respecting our non-negotiable **zero-dependency hexagonal domain rule**.  ---
+## Status
+Approved
 
-## ÔÜû´©Å Decision  We will adopt the **`@nestjslatam/ddd`** package as the authoritative, pre-approved standard library of tactical primitives in any Reference Platform bounded context where Domain-Driven Design is utilized.
+## Date
+2026-05-09
 
-### ­ƒÅø´©Å Key Capabilities Approved: 1.  **`ValueObject`**: Used for properties with structural equality (e.g., Email, IPAddress, Geolocation coordinates) and immutable invariants. 2.  **`Entity<ID>`**: Used for domain models with durable identities (e.g., `UserIdentity`, `AuthPolicy`). 3.  **`AggregateRoot<ID>`**: Used as transactional boundaries managing state and collecting in-memory **Domain Events** for dispatching. 4.  **`DomainEvent`**: Used to record state mutations and communicate asynchronously across bounded contexts.  ---
+## Context
+Crafting robust Hexagonal core logic invites repetitive, boiler-heavy development. Creating base comparison methods for IDs, structural identity for Value Objects, and collecting in-memory Domain Events inside Aggregate Roots results in thousands of duplicated utility lines. We require standardized, pure-TypeScript primitives without breaking Hexagonal boundaries.
 
-## ­ƒôÉ Architecture Constraints & Guidelines  To prevent library coupling and ensure complete domain sovereignty, the adoption of `@nestjslatam/ddd` is subject to three strict constraints:
+## Decision
+Standardize on utilizing the **`@nestjslatam/ddd`** primitives ecosystem within core domains to accelerate velocity:
 
-### 1. Barrel Export Abstraction (Anti-Coupling) Developers must never import `@nestjslatam/ddd` directly inside domain logic. All primitives must be imported and re-exported via a central domain barrel file inside our Nx Monorepo (e.g., `libs/domain/src/core-primitives.ts`). Domain classes must import from this local file, making replacement or customization a zero-impact change.
+1. **Pure Typescript Only**: Adhering to core purity constraints, this specific package has 0 external NPM dependencies, making it totally safe for placement directly in the Domain innermost layer.
+2. **Tactical Classes**: Deploy standard base parent implementations of `AggregateRoot`, `Entity<T>`, `ValueObject`, and native `DomainEvent` definitions.
+3. **Local Barrel Barrier**: To prevent long-term library lock-in, developers import and re-export these types via a local shared library proxy file. The business code imports from local paths, permitting future drops-in replacement without widespread edits.
 
-### 2. Strict Immutability All properties defined on classes extending `ValueObject` must be marked as `readonly` to prevent side effects and enforce structural immutability.
+## Constraints
+- **Readonly Restriction**: All properties mapped to `ValueObject` extension classes MUST remain `readonly` immutable.
+- **Zero-ORM pollution**: Explicitly forbidden to utilize relational decorators (`@Entity`, `@Column`) inside code extending DDD primitives. Domain rules remain pure; SQL maps remain outside in Infrastructure.
 
-### 3. Absolute Decoupling from Database ORMs Relational persistence decorators (such as TypeORM's `@Entity` or `@Column`) are **strictly prohibited** on classes extending `@nestjslatam/ddd` primitives. Mappings between domain entities and relational schemas must be performed exclusively in the Infrastructure Adapters layer using specialized Mappers.  ---
+## Consequences
 
-## Ô£à Consequences
+### Positive
+- Shreds heavy routine boilerplate.
+- Establishes uniform coding vernacular across multiple distributed backend teams instantly.
 
-### Positive *   **Reduced Boilerplate:** Dramatically reduces code volume for deep property comparisons, ID allocations, and event accumulators. *   **Engineering Standardization:** Standardizes core POJO models across development teams, ensuring readable and high-quality domain code. *   **NestJS Alignment:** Designed from the ground up for NestJS environments, enabling clean integration with NestJS CQRS modules. *   **Preserved Sovereignty:** Library abstractions are pure TypeScript and have no dependencies on databases, transport protocols, or HTTP frameworks.
+### Negative
+- Introduces another shallow internal dependency. (Mitigated cleanly via the Barrel abstraction).
 
-### Negative *   **Library Dependency:** Introduces an external tactical dependency, completely mitigated by the local barrel abstraction.
+## References
+- [ADR-0002: Hexagonal Architecture](./0002-clean-architecture-nestjs.md)
+- [@nestjslatam/ddd docs](https://github.com/nestjslatam/ddd)

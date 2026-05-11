@@ -1,14 +1,31 @@
-﻿# ADR 0021: High-Performance Authentication and Authorization Graph Compilation
+# ADR 0021: High-Performance Authentication Graph Compilation
 
-## Status Accepted
+## Status
+Approved
 
-## Context In a federated B2B SaaS ecosystem, user login is the highest-concurrency entry point. Generating complex dynamic role-resolution trees and querying PostgreSQL relational tables on every HTTP request to build custom menus and permission structures is highly resource-intensive, resulting in high database load and poor latency profiles.  Under the **bMAD Method**, all high-concurrency gateways must be stateless, horizontally scalable, and optimized for sub-millisecond response profiles.
+## Date
+2026-05-08
 
-## Decision We will expose a unified, stateless `/api/v1/auth/login` endpoint that abstracts internal/external identity providers (using the Strategy Pattern) and returns a pre-compiled, Redis-cached **Hierarchical Authorization Graph** mapping: `Organization Ô×ö System Ô×ö Role Ô×ö Menu Ô×ö Submenu Ô×ö Option Ô×ö Action`
-*   **Stateless Handshake**: Session validity is cryptographically verified on-the-fly using RS256-signed Access Tokens coupled with cryptographically rotated Refresh Tokens (RTR). *   **Read-Aside Cache**: The compiled authorization graph is cached inside Redis utilizing `user_id:target_system_id:org_id` as the composite key, keeping resolution latency under **5ms**. *   **Explicit-Deny Precedence**: The graph compilation engine enforces that any explicit `DENY` rule overrides all other inherited `ALLOW` permissions.
+## Context
+Login processes generate the absolute heaviest initial load footprint. Traversing dynamic recursive nested roles, generating dynamic menu matrices, and filtering multi-tenant capabilities directly from SQL tables upon every transaction generates unbearable latencies and kills total gateway throughput.
+
+## Decision
+Standardize authentication login gateways to yield lightweight, pre-digested **Hierarchical Authorization Graphs** boosted via Distributed memory side-caches:
+
+1. **Stateless Signing**: Session legitimacy verification continues over asymmetric RS256 Token validation, rotated dynamically (RTR).
+2. **Aggregated Graphing**: Instead of repeatedly joining relational tables, resolve the entirety of `Role ➔ System ➔ Menu ➔ Submenu ➔ Action` mappings once.
+3. **Read-Aside Memory Burst**: Serialize this graph structure directly into Redis, partitioned by user and tenant context keys. Keep general access authorization resolution under physical **<5ms benchmarks**.
+4. **Explicit-Deny Superiority**: Hardcode rule precedence such that local overrides (`DENY`) explicitly supersede general permissive structures (`ALLOW`) regardless of hierarchy position.
 
 ## Consequences
 
-### Positive *   **Sub-millisecond Latency**: Redis caching reduces graph resolution to <5ms (Cache Hit). *   **Stateless Scalability**: Authentication servers can scale horizontally without session synchronization bottlenecks. *   **Frontend-Optimized**: A single network call returns both session tokens and UI-rendering configurations.
+### Positive
+- Dramatic latency subtraction. Achieves maximum density performance for end-users on mobile/web immediately post-handshake.
+- Linear scalability: Authentication gateways may horizontally replicate indefinitely without impacting SQL disk capability.
 
-### Negative *   **Cache Invalidation Overhead**: Requires implementing proactive Redis eviction hooks when administrative permission mutations occur.
+### Negative
+- Demands rigorous Redis cache invalidation logic explicitly bound to any permissions management write-events.
+
+## References
+- [ADR-0014: Redis Cache](./0014-distributed-caching-strategy-redis.md)
+- [ADR-0022: Contextual Authorization](./0022-contextual-auth-and-pluggable-projections.md)

@@ -1,13 +1,31 @@
-﻿# ADR 0022: Contextual Authentication and Pluggable Output Projections
+# ADR 0022: Contextual Authentication and Pluggable Output Projections
 
-## Status Accepted
+## Status
+Approved
 
-## Context SaaS platforms require both robust external/internal identity verification and fine-grained, context-aware authorization (incorporating corporate branch contexts). Hardcoding permission models or forcing a single token output format limits integration with diverse microservices and high-fidelity frontends.  Under the **bMAD Method**, all high-concurrency systems must remain decoupled, highly extensible, and future-proof.
+## Date
+2026-05-08
 
-## Decision We will establish a centralized Reference Platform Core capable of decoupling identity validation from hierarchical authorization graph compilation.   The system will: *   **Decouple Concerns**: Swap identity verification strategies dynamically using the Strategy Pattern wrapped behind a Hexagonal Port (`IAuthenticationPort`). *   **Support Pluggable Projections**: Project compiled authorizations into multiple formats (Hierarchical JSON, JWT compressed claims, Graph structures) using pluggable output adapters. *   **Resolve Contextual Access**: Support hierarchical, tenant-level, and branch-level (sedes) multi-tenant authorization routing. *   **Optimize Resolution**: Utilize a high-performance Read-Aside Redis Cache to resolve contextual permission graphs in under **5ms**.
+## Context
+SaaS execution planes face heavy integration friction: lightweight microservices need small condensed binary token formats to prevent data bloat, while heavy Frontend clients (Angular/React) demand full recursive JSON tree outputs to dynamically draw navigational menus. Hardcoding to a single output format limits either bandwidth efficiency or application speed.
+
+## Decision
+Separate Identity Validation logic entirely from output composition capabilities, enforcing specialized runtime projectors:
+
+1. **Pluggable Projector Map**: The Core service emits a universal permission model. Dedicated pluggable projectors capture this payload and reformat it tailored to consumers (e.g., a JWT compressor for internal services, a rich JSON graph generator for browser agents).
+2. **Contextual Node Routing**: Native design support for resolving hierarchy down through Tenant, down into physical Branch ("Sede") node routing dynamically on demand.
+3. **Standard Read Caching**: Route all projections through High-Performance Redis bridges, retaining common target sub-millisecond execution goals for read-intensive validation endpoints.
 
 ## Consequences
 
-### Positive *   **Total Decoupling**: Swapping identity providers is a zero-impact configuration change on core SCM business logic. *   **Extensible Projections**: Simultaneously supports frontend-optimized dynamic menu generation and downstream microservices lightweight JWT validation. *   **Context-Aware**: Flawless support for branch-specific (sedes) multi-tenant authorization routing.
+### Positive
+- Unifies governance under a single security source, while respecting varying downstream protocol tolerances.
+- Natively empowers location-aware and node-specific authorization flows without database hacks.
 
-### Negative *   **Cache Management Overhead**: Requires implementing proactive Redis eviction hooks when administrative permission mutations occur.
+### Negative
+- Inflates initial code volume to support various projection templates.
+- Requires cache invalidation synchrony across the different compiled formats.
+
+## References
+- [ADR-0021: High Performance Auth Graph](./0021-high-performance-auth-and-graph-compilation.md)
+- [ADR-0020: IdP Strategy](./0020-identity-provider-abstraction-strategy.md)
