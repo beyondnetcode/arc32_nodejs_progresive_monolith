@@ -1,0 +1,42 @@
+# 📚 Best Practices for SDLC Documentation
+
+> 🌍 **Bilingual Navigation:** [🇪🇸 Versión en Español](../../corporate-sdlc-es/03-documentation/sdlc-documentation-best-practices.md)
+
+This policy dictates how architectural and technical knowledge MUST mature alongside code deliverables across all lifecycle phases from MVP to production.
+
+---
+
+## 🏆 1. Key Objectives
+To prevent "documentation rot" (stale information) and maintain a single, authoritative, version-controlled truth for the entire engineering ecosystem.
+
+---
+
+## 🛠️ 2. Strategic Core Standards
+
+### 📦 A. Documentation as Code
+Treat documentation exactly like production code. 
+*   Store narrative content as Markdown alongside application code.
+*   Use standard Git Version Control for auditing and diff history.
+*   Subject docs to code reviews (Pull Requests) to ensure factual accuracy.
+
+### 🔄 B. Synchronized Lifecycle & Versioning
+Documents must mature exactly synchronously with functionality increments.
+*   **Rule:** No feature code should merge into stable branches without its delta documentation update.
+*   Documentation state MUST be mapped to Release Git Tags (e.g., v1.2.0 docs reflect exactly v1.2.0 software mechanics).
+
+### 🌱 C. Incremental Maturity (Evolution)
+Do not aim for exhaustive detail on Day 1.
+*   **Phase 1 (MVP):** Maintain high-level, atomic READMEs that only block core engineering comprehension.
+*   **Phase 2+ (Scale):** Expand tutorials, deeper conceptual maps, and detailed failure-mode diagrams iteratively.
+
+### 🤖 D. Automation First (Auto-Gen)
+Maximize non-human artifact updating to ensure reliability.
+*   Expose live API schemas directly from codebase metadata (Swagger/OpenAPI).
+*   Leverage Mermaid.js markup language for diagrams directly inside markdown to support visual tracking without binaries.
+
+---
+
+## 🔍 3. Feedback & Clean-Up Lifecycle
+
+1.  **Continuous Feedback:** Every published page MUST invite corrections via simple ticket creation if details appear ambiguous.
+2.  **Obsolescence Audit:** During the sunsetting or deprecation of any microservice or feature, an explicit sub-task MUST trigger the deletion of expired documentation to clear ambient noise.

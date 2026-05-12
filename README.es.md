@@ -38,7 +38,9 @@ La arquitectura no es exclusiva de Node.js; es una federación políglota que di
 Navegue directamente al conjunto completo de estándares, blueprints y registros de decisiones de arquitectura en su idioma de preferencia:
 
 *   🇪🇸 **[Centro de Documentación en Español](./arc-corporate-ws/corporate-standards-es/README.md)**: Estándares integrales y gobernanza en Español.
+*   ⚙️ **[Centro de Gobernanza SDLC en Español](./arc-corporate-ws/corporate-sdlc-es/README.md)**: Estándares de ciclo de vida y entrega en Español.
 *   🇺🇸 **[English Documentation Center](./arc-corporate-ws/corporate-standards/README.md)**: Comprehensive standards and governance in English.
+*   ⚙️ **[English SDLC Governance Center](./arc-corporate-ws/corporate-sdlc/README.md)**: Lifecycle and delivery standards in English.
 
 ---
 
