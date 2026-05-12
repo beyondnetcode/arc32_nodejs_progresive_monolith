@@ -37,6 +37,7 @@ Decisions applicable to any product built on top of the framework, regardless of
 *   [ADR 0037: Performance & Chaos Verification](../02-adrs/core/0037-performance-concurrency-chaos-strategy.md)
 *   [ADR 0039: Deployment Topology Switcher](../02-adrs/core/0039-deployment-topology-abstraction-switcher.md)
 *   **[ADR 0040: Multi-Runtime Matrix & Contracts](../02-adrs/core/0040-multi-runtime-selection-contracts.md)** *(Root Governance)*
+*   [ADR 0044: Configurable Security Persistence Strategy](../02-adrs/core/0044-configurable-security-persistence-strategy.md)
 
 ---
 
@@ -56,6 +57,7 @@ Decisions tied to the primary runtime for APIs and BFFs.
 *   [ADR 0027: Dual-Protocol Node Setup](../02-adrs/nodejs/0027-dual-protocol-rest-grpc-api-gateway.md)
 *   [ADR 0029: Tactical DDD Primitives](../02-adrs/nodejs/0029-tactical-ddd-primitives-library.md)
 *   [ADR 0038: Result Pattern TS Implementation](../02-adrs/nodejs/0038-error-handling-result-pattern-strategy.md)
+*   [ADR 0043: Data Access Strategy & ORM](../02-adrs/nodejs/0043-data-access-orm-strategy.md)
 
 ---
 
