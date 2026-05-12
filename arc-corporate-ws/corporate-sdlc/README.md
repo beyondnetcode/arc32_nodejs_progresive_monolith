@@ -14,7 +14,7 @@ Procedures dictating how feature requests enter the ecosystem.
 
 ### 🛠️ Phase 02: Engineering & Development
 Normative coding practices, test automation thresholds, and delivery gating.
-*   *Coming Soon: Pull Request Hygiene & Automated Checks.*
+*   👉 **[Construction-Focused SDLC Framework](./02-engineering/construction-focused-sdlc-framework.md)**
 
 ### 📚 Phase 03: Documentation Standards
 The ultimate reference governing how technical knowledge is produced and consumed.

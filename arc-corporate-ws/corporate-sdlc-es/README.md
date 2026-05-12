@@ -14,7 +14,7 @@ Procedimientos que dictan cómo las peticiones de funcionalidades entran al ecos
 
 ### 🛠️ Fase 02: Ingeniería y Desarrollo
 Prácticas de codificación normativa, umbrales de automatización de pruebas y puertas de entrega.
-*   *Próximamente: Higiene de Pull Requests y Controles Automatizados.*
+*   👉 **[Marco de Trabajo SDLC con Énfasis en Construcción](./02-engineering/construction-focused-sdlc-framework.md)**
 
 ### 📚 Fase 03: Estándares Documentales
 La referencia máxima que gobierna cómo se produce y consume el conocimiento técnico.
