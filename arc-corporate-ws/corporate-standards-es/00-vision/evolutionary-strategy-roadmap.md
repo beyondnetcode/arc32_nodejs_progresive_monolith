@@ -19,6 +19,14 @@ Nuestra visión consiste en construir un ecosistema donde la **Infraestructura e
 
 ## 🗺️ 2. Roadmap Evolutivo por Fases
 
+```mermaid
+timeline
+    title Hoja de Ruta Arquitectónica (Evolución Temporal)
+    Fase 1 : The Lean Foundation (MVP) : Monolito Modular : Contratos API First : Seguridad en Capa de Aplicación (Agnóstico)
+    Fase 2 : Scale & Decoupling : Extracción de Servicios Críticos : Activación Híbrida RLS : Observabilidad Total e I/O Optimizada
+    Fase 3 : North Star : Agnosticismo Multi-Cloud : Arquitectura Dirigida por Eventos : Red Zero Trust y Cumplimiento Automatizado
+```
+
 ### 🟢 Fase 1: The Lean Foundation (MVP) — Corto Plazo
 **Enfoque:** Time-to-Market con Integridad de Dominio.
 

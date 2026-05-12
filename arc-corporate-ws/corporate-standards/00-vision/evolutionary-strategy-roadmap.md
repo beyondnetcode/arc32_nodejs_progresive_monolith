@@ -19,6 +19,14 @@ Our core vision states that **Infrastructure is an Implementation Detail**, asse
 
 ## 🗺️ 2. Evolutionary Stage Roadmap
 
+```mermaid
+timeline
+    title Architectural Stage Roadmap (Timeline Overview)
+    Phase 1 : The Lean Foundation (MVP) : Modular Monolith : API-First Contracts : App-Side Security (Agnostic)
+    Phase 2 : Scale & Decoupling : Critical Service Extraction : Hybrid RLS Activation : Full Observability & Optimized I/O
+    Phase 3 : North Star : Multi-Cloud Agnosticism : Event-Driven Architecture : Zero Trust Network & Auto Compliance
+```
+
 ### 🟢 Phase 1: The Lean Foundation (MVP) — Short Term
 **Focus:** Time-to-Market with Uncompromised Domain Integrity.
 
