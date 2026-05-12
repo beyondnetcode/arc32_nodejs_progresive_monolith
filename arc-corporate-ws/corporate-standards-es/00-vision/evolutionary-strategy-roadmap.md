@@ -32,7 +32,7 @@ timeline
 
 | Dominio | Estrategia |
 | :--- | :--- |
-| **Arquitectura** | Monolito Modular con límites estrictos. |
+| **Arquitectura** | Monolito Modular con límites estrictos ([ADR-0047](../02-adrs/core/0047-architectural-patterns-monolith-soa-microservices.md)). |
 | **Persistencia** | Instancia única relacional. Seguridad forzada en Capa de Aplicación (`APP_AGNOSTIC`). |
 | **Foco Crítico** | Definición férrea de Contratos API First y validación exhaustiva de las reglas de negocio core sin ruido de infraestructura. |
 

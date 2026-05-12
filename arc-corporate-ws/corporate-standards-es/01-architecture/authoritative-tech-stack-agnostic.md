@@ -25,7 +25,7 @@ La integración entre servicios sigue la doctrina "Primero el Contrato" (*Contra
 
 | Dominio del Estándar | Definición Requerida | Justificación |
 | :--- | :--- | :--- |
-| **Comunicación Síncrona Interna** | **gRPC (Protocol Buffers)** | Obligatorio desde Fase 2 para invocaciones entre servicios remotos. En Fase 1, la invocación es nativa intra-proceso. |
+| **Comunicación Síncrona Interna** | **gRPC (Protocol Buffers)** | Obligatorio desde Fase 2 para invocaciones entre servicios remotos ([ADR-0047](../02-adrs/core/0047-architectural-patterns-monolith-soa-microservices.md)). En Fase 1, la invocación es nativa intra-proceso. |
 | **Estándar API Web Pública** | **RESTful (OpenAPI v3)** | Interoperabilidad canónica para integradores de terceros y SDKs Frontend. |
 | **Arquitectura de Bus de Eventos** | **AMQP / CloudEvents** | Estructura de eventos autodescriptiva que sigue patrones de Transactional Outbox para una propagación segura. |
 

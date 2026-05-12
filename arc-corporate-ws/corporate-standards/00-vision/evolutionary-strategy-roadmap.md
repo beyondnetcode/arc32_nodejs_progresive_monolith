@@ -32,7 +32,7 @@ timeline
 
 | Dimension | Strategy |
 | :--- | :--- |
-| **Architecture** | Modular Monolith with strongly enforced boundaries. |
+| **Architecture** | Modular Monolith with strongly enforced boundaries ([ADR-0047](../02-adrs/core/0047-architectural-patterns-monolith-soa-microservices.md)). |
 | **Persistence** | Single relational instance. Application-side enforced security (`APP_AGNOSTIC`). |
 | **Critical Focus** | Rigid API-First contract definition and comprehensive validation of core business rules without infrastructure noise. |
 

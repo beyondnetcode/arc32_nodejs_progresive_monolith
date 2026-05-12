@@ -7,7 +7,7 @@ Aprobado
 2026-05-12
 
 ## Contexto
-El [ADR 0006](../core/0006-future-microservices-transition-dapr.md) define los hitos de evolución de la arquitectura de Monolito Modular hacia Microservicios. Sin embargo, carecía de criterios cuantitativos objetivos para activar la transición entre fases. Sin reglas explícitas, las decisiones de extracción de módulos corren el riesgo de estar impulsadas por intuición o presiones políticas, lo que frecuentemente deriva en fallos de migración y sobrecarga operativa prematura.
+El [ADR 0006](../core/0006-future-microservices-transition-dapr.md) define los hitos de evolución de la arquitectura de Monolito Modular hacia Microservicios y el [ADR-0047](../core/0047-architectural-patterns-monolith-soa-microservices.md) provee el marco de selección macro. Sin embargo, se requerían criterios cuantitativos específicos y objetivos para activar físicamente la transición de extracción de un servicio. Sin estas reglas explícitas, las decisiones de división corren el riesgo de estar impulsadas por intuición o presiones, lo que deriva en fallos de migración y sobrecarga operativa prematura.
 
 ## Decisión
 Formalizar la regla **"2 de 4"** como disparador cuantitativo obligatorio para la extracción de un Bounded Context hacia un servicio independiente.
@@ -38,4 +38,5 @@ Un módulo de dominio DEBE considerarse un candidato válido para la fase de ext
 
 ## Referencias
 - [ADR 0006: Future Microservices Transition](../core/0006-future-microservices-transition-dapr.md)
+- [ADR 0047: Marco de Selección: Monolito vs SOA vs Microservicios](../core/0047-architectural-patterns-monolith-soa-microservices.md)
 - Sam Newman — *Building Microservices* (2nd Ed. 2021)

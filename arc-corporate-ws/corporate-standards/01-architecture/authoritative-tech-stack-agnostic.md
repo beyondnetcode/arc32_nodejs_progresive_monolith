@@ -25,7 +25,7 @@ Inter-service integration follows the "Contract First" doctrine to guarantee pol
 
 | Standard Domain | Required Definition | Rationale |
 | :--- | :--- | :--- |
-| **Internal Sync Communication** | **gRPC (Protocol Buffers)** | Mandated from Phase 2 for cross-service invocations. Phase 1 operations are natively intra-process. |
+| **Internal Sync Communication** | **gRPC (Protocol Buffers)** | Mandated from Phase 2 for cross-service invocations ([ADR-0047](../02-adrs/core/0047-architectural-patterns-monolith-soa-microservices.md)). Phase 1 operations are natively intra-process. |
 | **Public Web API Standard** | **RESTful (OpenAPI v3)** | Canonical interoperability for third-party Integrators and downstream Frontend SDKs. |
 | **Async Event Bus Architecture** | **AMQP / CloudEvents** | Self-describing event structure following Transactional Outbox patterns for safe propagation. |
 
