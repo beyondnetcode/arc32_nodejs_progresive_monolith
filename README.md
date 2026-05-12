@@ -9,9 +9,10 @@
 Welcome to the **Unified Corporate Reference Architecture**. This ecosystem serves as the canonical blueprint for enterprise digital systems designed to scale dynamically from Modular Monoliths into fully distributed cloud ecosystems.
 
 ### 🎯 Primary Mission Objectives:
-*   **Decoupling Absolute:** Ensure business logic remains 100% agnostic of frameworks and database dialects through rigorous **Hexagonal Architecture** (Ports & Adapters).
-*   **Security First:** Enforce inherent Isolation through native Row-Level Security (RLS) and strict tenant separation at the root level.
-*   **Standardized Delivery:** Dictate clear, gated software development lifecycles (SDLC) ensuring 100% reproducible quality across polyglot workloads.
+*   **Radical Infrastructure Agnosticism:** Treating persistence layers and global cloud providers strictly as "implementation details," protecting the absolute core domain to facilitate lightning-fast stack migrations (<24h).
+*   **Data Sovereignty & Dynamic Security:** Enforcing ironclad multi-tenant isolation natively compliant with **ISO 27001 & GDPR** via an on-demand configurable security runtime (`SECURITY_STRATEGY_MODE`), hot-swapping logic between App-Tier and Native Hardware tiers.
+*   **Metric-Driven Evolutionary Progression:** Governing the transition from Modular Monoliths to Event-Driven Microservices not by hype, but strictly via quantitative KPIs such as the Agnosticism Index ($PI$) and Planned Tech Debt Ratio ($RTD$).
+*   **Automated Zero-Trust Compliance:** Hardening the corporate perimeter by injecting persistent **Compliance-as-Code** benchmarks and Zero-Trust networking directly into CI/CD delivery pipelines from day zero.
 
 ---
 

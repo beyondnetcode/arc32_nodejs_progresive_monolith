@@ -9,9 +9,10 @@
 Bienvenido a la **Arquitectura de Referencia Corporativa Unificada**. Este ecosistema sirve como el plano canónico para sistemas digitales empresariales diseñados para escalar dinámicamente desde Monolitos Modulares hasta ecosistemas de nube completamente distribuidos.
 
 ### 🎯 Objetivos de Misión Primarios:
-*   **Desacoplamiento Absoluto:** Garantizar que la lógica de negocio permanezca 100% agnóstica a frameworks y dialectos de bases de datos mediante la implementación de **Arquitectura Hexagonal** (Puertos y Adaptadores).
-*   **Seguridad Primero:** Imponer aislamiento inherente a través de Seguridad de Nivel de Fila (RLS) nativa y separación estricta de inquilinos en la raíz.
-*   **Entrega Estandarizada:** Dictar ciclos de vida de desarrollo de software (SDLC) cerrados y regulados que aseguren un 100% de calidad reproducible en todas las cargas de trabajo políglotas.
+*   **Agnosticismo Radical de Infraestructura:** Tratar a la persistencia y a los proveedores de nube como simples "detalles de implementación", blindando el dominio puro y permitiendo migraciones tecnológicas masivas en tiempo récord (<24h).
+*   **Soberanía de Datos y Seguridad Dinámica:** Garantizar aislamiento absoluto cumpliendo nativamente con **ISO 27001 y GDPR** mediante una estrategia de seguridad híbrida configurable (`SECURITY_STRATEGY_MODE`), ajustando la lógica entre la Capa de Aplicación y Hardware Nativo bajo demanda.
+*   **Evolución Basada en Métricas Técnicas:** Gobernar la transición de Monolito Modular a Microservicios Distribuidos no por tendencia, sino bajo controles matemáticos estrictos como el Índice de Agnosticismo ($PI$) y el Ratio de Deuda Técnica ($RTD$).
+*   **Cero Confianza y Cumplimiento Automatizado:** Blindar el perímetro corporativo inyectando controles de **Compliance-as-Code** y redes Zero-Trust directamente en los pipelines de CI/CD desde el primer día.
 
 ---
 
