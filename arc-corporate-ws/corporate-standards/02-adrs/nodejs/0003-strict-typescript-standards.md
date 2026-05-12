@@ -1,4 +1,4 @@
-# ADR 0003: Strict TypeScript Standards
+# [ADR 0003](0003-strict-typescript-standards.md): Strict TypeScript Standards
 
 ## Status
 Approved

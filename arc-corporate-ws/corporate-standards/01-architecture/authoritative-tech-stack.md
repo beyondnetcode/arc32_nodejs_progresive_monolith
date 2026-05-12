@@ -105,7 +105,7 @@
     *   *Distributed Microservices from Day 1*: High operational complexity, deployment overhead, and network latency that would overwhelm a small engineering team.
 
 ### 4.3 CQRS Approach
-*   **Chosen Tool:** **Hybrid CQRS (BFF aggregates + Dedicated Write-Audit tables)** governed by **ADR-0034**.
+*   **Chosen Tool:** **Hybrid CQRS (BFF aggregates + Dedicated Write-Audit tables)** governed by **[ADR-0034](../02-adrs/core/0034-cqrs-pattern-applicability-matrix.md)**.
 *   **Why Chosen:** Separates read/write intensity without over-engineering. A dedicated matrix dictates that Full CQRS is only unleashed when Read:Write ratios surpass 100:1 or DB lock contention spikes. Uses Redis projections for BFF queries and strictly ACID SQL for Commands.
 *   **Alternatives Rejected:**
     *   *Universal CQRS*: Rejected due to severe code complexity inflation when applied to simple CRUD entities.
@@ -115,7 +115,7 @@
 ## 5. Data Layer
 
 ### 5.1 Primary Database + ORM/Query Builder
-*   **Chosen Tool:** **PostgreSQL v16 (Schema Per Context Isolation, ADR-0031)**
+*   **Chosen Tool:** **PostgreSQL v16 (Schema Per Context Isolation, [ADR-0031](../02-adrs/core/0031-schema-per-context-domain-event-catalog.md))**
 *   **Why Chosen:** PostgreSQL 16 provides enterprise ACID capabilities. Mandated **Schema-Per-Context** guarantees that no module ever performs a direct SQL join across another module's private data, maintaining 100% forward-portability for future Microservice extraction.
 *   **Alternatives Rejected:**
     *   *Shared Public Schema*: Causes fatal coupling between modules, making internal schema refactors impossible without massive cross-team impacts.
@@ -139,8 +139,8 @@
     *   *AWS S3*: Rejected as a primary choice because it is a proprietary cloud service that cannot run on-premise for localized deployments.
 
 ### 5.5 Message Queue / Event Bus
-*   **Chosen Tool:** **RabbitMQ governed by Distributed Sagas (ADR-0035) & Flow Control (ADR-0036)**
-*   **Why Chosen:** High-performance AMQP broker. All transmissions MUST adhere to `ADR-0036` rules: **FIFO** for sequences, **Fire & Forget** for side-effects, and **Mandatory DLQ quarantine** for poison pills. Uses **Transactional Outbox (ADR-0033)** to prevent partial-write data loss.
+*   **Chosen Tool:** **RabbitMQ governed by Distributed Sagas ([ADR-0035](../02-adrs/core/0035-distributed-saga-pattern-strategy.md)) & Flow Control ([ADR-0036](../02-adrs/core/0036-message-bus-delivery-strategy-fifo-dlq.md))**
+*   **Why Chosen:** High-performance AMQP broker. All transmissions MUST adhere to `[ADR-0036](../02-adrs/core/0036-message-bus-delivery-strategy-fifo-dlq.md)` rules: **FIFO** for sequences, **Fire & Forget** for side-effects, and **Mandatory DLQ quarantine** for poison pills. Uses **Transactional Outbox ([ADR-0033](../02-adrs/core/0033-transactional-outbox-pattern.md))** to prevent partial-write data loss.
 *   **Alternatives Rejected:**
     *   *Direct Synchronous HTTP calls*: Creates "Distributed Monolith" anti-pattern where a crashed secondary service causes the primary checkout flow to fail.
 
@@ -231,20 +231,20 @@
 *   **Chosen Tool:** **Nx Monorepo**
 *   **Why Chosen:** Simplifies dependency management, allows sharing TypeScript types between frontend and backend instantly, and uses advanced build caching to minimize CI compile times.
 
-### 10.3 Verification Pyramid & Load Strategy (ADR-0037)
+### 10.3 Verification Pyramid & Load Strategy ([ADR-0037](../02-adrs/core/0037-performance-concurrency-chaos-strategy.md))
 *   **Chosen Tools:**
     *   *Unit Tests*: Jest (Mandatory explicit mocks, zero IO).
     *   *Integration*: Jest + **Testcontainers** (Active postgres/redis spun up per run).
     *   *Contract Testing*: **Pact JS** (Guarantees gRPC API safety).
     *   *Load/Concurrency*: **k6 (Grafana)** script-driven TS injection verifying race conditions.
-    *   *Chaos*: Scheduled pod termination verifying Distributed Circuit Breakers (ADR-0011).
+    *   *Chaos*: Scheduled pod termination verifying Distributed Circuit Breakers ([ADR-0011](../02-adrs/core/0011-fault-tolerance-resiliency-patterns.md)).
 
 ---
 
 ## 11. Error Management Strategy
 
 ### 11.1 Pattern Enforcement
-*   **Chosen Tool:** **Functional Result Pattern (neverthrow / Result<T, E> class) (ADR-0038)**
+*   **Chosen Tool:** **Functional Result Pattern (neverthrow / Result<T, E> class) ([ADR-0038](../02-adrs/nodejs/0038-error-handling-result-pattern-strategy.md))**
 *   **Why Chosen:** Eliminates silent runtime crashes for business logic failures. Forces Type-Safe compile-time error checking. Ensures clear boundary propagation from core logic to REST/gRPC controller mappings.
 *   **Alternatives Rejected:**
     *   *Standard Exception Throwing*: Unsafe, untyped, and scatters error management control flow invisibly throughout the execution stack.

@@ -1,4 +1,4 @@
-# ADR 0026: Adaptive MFA and Passwordless Platform
+# [ADR 0026](0026-mfa-passwordless-adaptive-authentication.md): Adaptive MFA and Passwordless Platform
 
 ## Status
 Approved

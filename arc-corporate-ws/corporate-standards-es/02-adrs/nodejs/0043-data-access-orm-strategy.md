@@ -1,4 +1,4 @@
-# ADR 0043: Estrategia de Acceso a Datos y ORM para Node.js
+# [ADR 0043](0043-data-access-orm-strategy.md): Estrategia de Acceso a Datos y ORM para Node.js
 
 ## Estado
 Aprobado
@@ -10,8 +10,8 @@ Aprobado
 La plataforma ARC32 requiere una estrategia de acceso a datos unificada, mantenible y de alto rendimiento a través de sus módulos de monolito progresivo. Operamos en un entorno de base de datos heterogéneo (principalmente PostgreSQL para lógica transaccional, potencialmente MongoDB para almacenamiento de documentos/proyecciones). Necesitamos seleccionar el ecosistema base de Mapeo Objeto-Relacional (ORM) y Mapeo Objeto-Documento (ODM) que equilibre la productividad del desarrollador (DX), características empresariales (migraciones, multi-inquilino) y la alineación con nuestras restricciones de Arquitectura Hexagonal (desacoplamiento del dominio de la infraestructura).
 
 ## Drivers Arquitectónicos
-- **Desacoplamiento**: Separación estricta entre Entidades de Dominio y Modelos de Persistencia (en apoyo al ADR 0002).
-- **Multi-Tenancy**: Soporte nativo o fácilmente integrable para estrategias de aislamiento (separación por Esquema/Base de Datos, alineado con el ADR 0010).
+- **Desacoplamiento**: Separación estricta entre Entidades de Dominio y Modelos de Persistencia (en apoyo al [ADR 0002](0002-clean-architecture-nestjs.md)).
+- **Multi-Tenancy**: Soporte nativo o fácilmente integrable para estrategias de aislamiento (separación por Esquema/Base de Datos, alineado con el [ADR 0010](../core/0010-multi-tenancy-architecture-strategy.md)).
 - **Seguridad de Tipos**: Inferencia de TypeScript de extremo a extremo para reducir errores de consulta en tiempo de ejecución.
 - **Gestión de Migraciones**: Ciclo de vida robusto e integrable en CI/CD para operaciones DDL.
 - **Sobrecarga de Rendimiento**: Mínima, con mecanismos claros de escape para SQL nativo cuando sea necesario.
@@ -30,7 +30,7 @@ La plataforma ARC32 requiere una estrategia de acceso a datos unificada, manteni
 
 ### 1. Persistencia Relacional Principal (RDBMS): **TypeORM**
 Adoptar **TypeORM** utilizando el patrón **Data Mapper** como el estándar corporativo para bases de datos relacionales (PostgreSQL).
-- **Justificación**: Completamente alineado con nuestra Arquitectura Hexagonal (ADR 0002). Permite la definición distinta de la Entidad en el Core separada de los Modelos de Persistencia `@Entity` en Infraestructura. Posee la integración más fuerte con `TypeOrmModule` de NestJS.
+- **Justificación**: Completamente alineado con nuestra Arquitectura Hexagonal ([ADR 0002](0002-clean-architecture-nestjs.md)). Permite la definición distinta de la Entidad en el Core separada de los Modelos de Persistencia `@Entity` en Infraestructura. Posee la integración más fuerte con `TypeOrmModule` de NestJS.
 - **Restricción**: El patrón "Active Record" está estrictamente PROHIBIDO. Todo acceso debe pasar a través de Repositorios inyectados en la capa de infraestructura.
 
 ### 2. Persistencia No Relacional Principal (NoSQL): **Mongoose**
@@ -42,7 +42,7 @@ Para reportes analíticos, JOINs complejos que causen degradación del rendimien
 ## Implicaciones de Diseño
 
 ### Soporte Multi-Tenancy
-El soporte de TypeORM para la clonación de conexiones y la anulación dinámica de `schema` durante las peticiones se alinea con nuestra estrategia de aislamiento basada en RLS/Esquema (ADR 0010). Usar `nestjs-cls` para inyectar el contexto del inquilino en la capa de datos de forma dinámica.
+El soporte de TypeORM para la clonación de conexiones y la anulación dinámica de `schema` durante las peticiones se alinea con nuestra estrategia de aislamiento basada en RLS/Esquema ([ADR 0010](../core/0010-multi-tenancy-architecture-strategy.md)). Usar `nestjs-cls` para inyectar el contexto del inquilino en la capa de datos de forma dinámica.
 
 ### Migraciones
 Las migraciones deben escribirse explícitamente a través de archivos TypeScript generados por el CLI de TypeORM. La sincronización automática de esquemas (`synchronize: true`) está PROHIBIDA en entornos de producción.

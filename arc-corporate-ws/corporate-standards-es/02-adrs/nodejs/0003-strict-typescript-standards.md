@@ -1,4 +1,4 @@
-# ADR 0003: Estándares Estrictos de TypeScript
+# [ADR 0003](0003-strict-typescript-standards.md): Estándares Estrictos de TypeScript
 
 ## Estado
 Aprobado

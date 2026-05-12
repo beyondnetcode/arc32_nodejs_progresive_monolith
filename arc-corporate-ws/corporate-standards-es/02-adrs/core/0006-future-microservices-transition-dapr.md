@@ -1,4 +1,4 @@
-# ADR 0006: Transición Futura a Microservicios con Sidecars Dapr
+# [ADR 0006](0006-future-microservices-transition-dapr.md): Transición Futura a Microservicios con Sidecars Dapr
 
 ## Estado
 Aprobado — Backlog (Hito de Fase 3)
@@ -17,10 +17,10 @@ Adoptar **Dapr (Distributed Application Runtime)** como el runtime sidecar de mi
 | Hito | Descripción |
 | :--- | :--- |
 | **M1 — Monolito Modular** | Estado actual. Proceso único con módulos de contexto delimitado aislados. |
-| **M2 — Extracción de Servicios** | Contextos de alto tráfico o desplegables independientemente extraídos como microproyectos Nx. Cada uno obtiene su propio esquema de base de datos (ADR-0031) y se comunica vía gRPC o Dapr. |
+| **M2 — Extracción de Servicios** | Contextos de alto tráfico o desplegables independientemente extraídos como microproyectos Nx. Cada uno obtiene su propio esquema de base de datos ([ADR-0031](0031-schema-per-context-domain-event-catalog.md)) y se comunica vía gRPC o Dapr. |
 | **M3 — Malla Completa (Full Mesh)** | Todos los servicios corren con Sidecars de Dapr. La invocación de servicio a servicio, Pub/Sub y el Estado son gestionados por componentes Dapr (YAML declarativo). |
 
-**Restricción clave:** El Core de dominio debe cambiar **cero líneas** cuando se introduzca Dapr. Todas las llamadas al SDK de Dapr se envuelven detrás de las abstracciones existentes `IEventBusPort` e `ICachePort` (ADR-0015, ADR-0014).
+**Restricción clave:** El Core de dominio debe cambiar **cero líneas** cuando se introduzca Dapr. Todas las llamadas al SDK de Dapr se envuelven detrás de las abstracciones existentes `IEventBusPort` e `ICachePort` ([ADR-0015](0015-event-driven-architecture-intra-domain.md), [ADR-0014](0014-distributed-caching-strategy-redis.md)).
 
 ## Consecuencias
 

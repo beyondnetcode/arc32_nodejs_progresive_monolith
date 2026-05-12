@@ -1,4 +1,4 @@
-# ADR 0012: Advanced Authorization (RBAC/ABAC) Strategy
+# [ADR 0012](0012-advanced-authorization-rbac-abac.md): Advanced Authorization (RBAC/ABAC) Strategy
 
 ## Status
 Approved

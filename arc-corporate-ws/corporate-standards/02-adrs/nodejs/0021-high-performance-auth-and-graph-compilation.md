@@ -1,4 +1,4 @@
-# ADR 0021: High-Performance Authentication Graph Compilation
+# [ADR 0021](0021-high-performance-auth-and-graph-compilation.md): High-Performance Authentication Graph Compilation
 
 ## Status
 Approved

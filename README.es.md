@@ -17,7 +17,7 @@ La arquitectura implementa el **Método bMAD**, asegurando la adherencia estrict
 Estos marcos centrales gobiernan toda la arquitectura, independientemente del lenguaje de implementación o la región.
 
 ### 🚀 Ecosistema Políglota Autorizado (Horizonte 2026)
-La arquitectura no es exclusiva de Node.js; es una federación políglota que distribuye las cargas de trabajo según la idoneidad técnica (ADR-0040):
+La arquitectura no es exclusiva de Node.js; es una federación políglota que distribuye las cargas de trabajo según la idoneidad técnica ([ADR-0040](./arc-corporate-ws/corporate-standards-es/02-adrs/core/0040-multi-runtime-selection-contracts.md)):
 
 | Entorno de Ejecución | Rol Canónico | Stack Tecnológico Validado |
 | :--- | :--- | :--- |
@@ -46,7 +46,8 @@ Navegue directamente al conjunto completo de estándares, blueprints y registros
 
 ### 🧠 Directivas Arquitectónicas
 *   **[🏛️ Blueprint Corporativo Multi-Runtime](./arc-corporate-ws/corporate-standards-es/01-architecture/reference-blueprint.md)**: La especificación maestra del sistema (arc42).
-*   **[📜 Historial de Decisiones (ADRs)](./arc-corporate-ws/corporate-standards-es/02-adrs/README.md)**: Registro de las 42 decisiones tecnológicas definitivas.
+*   **[📜 Historial de Decisiones (ADRs)](./arc-corporate-ws/corporate-standards-es/02-adrs/README.md)**: Registro de las 44 decisiones tecnológicas definitivas.
+    *   *Acceso Rápido por Dominio:* [🌐 Core](./arc-corporate-ws/corporate-standards-es/02-adrs/README.md#universal-core) | [🟢 Node.js](./arc-corporate-ws/corporate-standards-es/02-adrs/README.md#nodejs-typescript) | [🔵 .NET](./arc-corporate-ws/corporate-standards-es/02-adrs/README.md#net-c) | [🟣 Móvil](./arc-corporate-ws/corporate-standards-es/02-adrs/README.md#android-native)
 
 ### 🛠️ Estándares y Blindaje
 *   **[🔬 Opinión de Auditoría de Stack 2026](./arc-corporate-ws/corporate-standards-es/03-engineering/detailed-stack-audit-2026.md)**: Verificación crítica de licencias (Post-BSL/SSPL) y versiones activas.

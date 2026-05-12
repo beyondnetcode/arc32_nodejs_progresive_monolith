@@ -1,4 +1,4 @@
-# ADR 0022: Contextual Authentication and Pluggable Output Projections
+# [ADR 0022](0022-contextual-auth-and-pluggable-projections.md): Contextual Authentication and Pluggable Output Projections
 
 ## Status
 Approved

@@ -27,17 +27,17 @@ Esta hoja de trucos sirve como referencia autoritativa y de alta densidad de her
 *   **Patrón Arquitectónico:** Arquitectura Hexagonal (Puertos y Adaptadores)
 *   **Estrategia de Monorepo:** Nx Monorepo
 *   **Patrón de Ejecución:** Monolito Modular (Listo para Dapr)
-*   **Patrón de Segregación:** CQRS Híbrido (Regulado por Matriz ADR-0034)
+*   **Patrón de Segregación:** CQRS Híbrido (Regulado por Matriz [ADR-0034](../02-adrs/core/0034-cqrs-pattern-applicability-matrix.md))
 *   **Inyección de Dependencias:** Contenedor DI nativo de NestJS
 
 ### 5. Capa de Datos
-*   **Base de Datos Relacional Principal:** PostgreSQL v16 (Aislamiento Esquema Por Contexto, ADR-0031)
+*   **Base de Datos Relacional Principal:** PostgreSQL v16 (Aislamiento Esquema Por Contexto, [ADR-0031](../02-adrs/core/0031-schema-per-context-domain-event-catalog.md))
 *   **Mapeo Relacional (ORM):** TypeORM (TypeScript)
 *   **Consultas de Alto Rendimiento:** Driver nativo `pg`
 *   **Motor de Migración de Esquema:** Migraciones TypeORM vía Init-Containers de Kubernetes
 *   **Caché en Memoria:** Redis v7.2 (Replicaciones Sentinel / Cluster)
 *   **Almacén de Objetos y Activos:** MinIO (Compatible con S3, Autohospedado)
-*   **Bróker de Mensajes Asíncrono:** RabbitMQ gobernado por control de flujo (ADR-0036) y Outbox (ADR-0033)
+*   **Bróker de Mensajes Asíncrono:** RabbitMQ gobernado por control de flujo ([ADR-0036](../02-adrs/core/0036-message-bus-delivery-strategy-fifo-dlq.md)) y Outbox ([ADR-0033](../02-adrs/core/0033-transactional-outbox-pattern.md))
 
 ### 6. Estrategia de Multi-tenancy
 *   **Modelo de Aislamiento de Datos:** Base de Datos Compartida con Row-Level Security (RLS)
@@ -62,7 +62,7 @@ Esta hoja de trucos sirve como referencia autoritativa y de alta densidad de her
 *   **Auditoría de Dependencias:** CLI de Snyk + `npm audit` dentro de las pipelines de CI/CD
 
 ### 10. Estrategia de Gestión de Errores
-*   **Estándar de Patrón:** Patrón Result Funcional (`neverthrow`) según ADR-0038
+*   **Estándar de Patrón:** Patrón Result Funcional (`neverthrow`) según [ADR-0038](../02-adrs/nodejs/0038-error-handling-result-pattern-strategy.md)
 *   **Barrera Global:** NestJS ExceptionFilter capturando IDs de traza interna opacos.
 
 ### 11. Experiencia del Desarrollador (DevEx)

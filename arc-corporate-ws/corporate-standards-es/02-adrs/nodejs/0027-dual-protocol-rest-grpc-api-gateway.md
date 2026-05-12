@@ -1,4 +1,4 @@
-# ADR 0027: Estrategia de API de Protocolo Dual (REST y gRPC)
+# [ADR 0027](0027-dual-protocol-rest-grpc-api-gateway.md): Estrategia de API de Protocolo Dual (REST y gRPC)
 
 ## Estado
 Aprobado

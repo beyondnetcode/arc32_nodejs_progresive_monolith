@@ -6,7 +6,7 @@ Bienvenido al repositorio legal del sistema. Todas las decisiones contenidas aqu
 
 ---
 
-## 🌐 1. Núcleo Universal (Agnóstico al Runtime)
+## <a name="universal-core"></a>🌐 1. Núcleo Universal (Agnóstico al Runtime)
 Decisiones aplicables a cualquier producto construido sobre el framework, independientemente del lenguaje.
 
 *   [ADR 0001: Orquestación de Monorepo (Nx)](./core/0001-monorepo-orchestration-nx.md)
@@ -40,7 +40,7 @@ Decisiones aplicables a cualquier producto construido sobre el framework, indepe
 
 ---
 
-## 🟢 2. Ecosistema Node.js / TypeScript
+## <a name="nodejs-typescript"></a>🟢 2. Ecosistema Node.js / TypeScript
 Decisiones vinculadas al runtime primario para APIs y BFFs.
 
 *   [ADR 0002: Arquitectura Limpia NestJS](./nodejs/0002-clean-architecture-nestjs.md)
@@ -60,14 +60,14 @@ Decisiones vinculadas al runtime primario para APIs y BFFs.
 
 ---
 
-## 🔵 3. Ecosistema .NET (C#)
+## <a name="net-c"></a>🔵 3. Ecosistema .NET (C#)
 Decisiones vinculadas a runtimes de alto cómputo.
 
 *   **[ADR 0041: Arquitectura de Backend Canónica .NET](./dotnet/0041-canonical-dotnet-backend-architecture.md)**
 
 ---
 
-## 🟣 4. Ecosistema Nativo Android (Kotlin)
+## <a name="android-native"></a>🟣 4. Ecosistema Nativo Android (Kotlin)
 Decisiones vinculadas a clientes móviles resilientes.
 
 *   **[ADR 0042: Arquitectura Canónica Móvil Android](./android/0042-canonical-android-mobile-architecture.md)**

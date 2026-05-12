@@ -16,7 +16,7 @@ Este documento sirve como línea base arquitectónica para evaluar el stack tecn
 ## 1. Frameworks Core y Lenguajes
 **Estado:** ✅ Riesgo Cero
 
-El núcleo de la aplicación está completamente aislado del bloqueo de proveedor gracias a la estricta adherencia a la Arquitectura Hexagonal (ADR-0002).
+El núcleo de la aplicación está completamente aislado del bloqueo de proveedor gracias a la estricta adherencia a la Arquitectura Hexagonal ([ADR-0002](../02-adrs/nodejs/0002-clean-architecture-nestjs.md)).
 * **TypeScript & Node.js**: Código Abierto (Apache 2.0 / MIT).
 * **NestJS**: Código Abierto (MIT), framework empresarial altamente adoptado.
 * **Nx Monorepo**: Código Abierto (MIT). *Nota: Nx Cloud ofrece caché SaaS, pero el caché local es 100% gratuito.*
@@ -33,7 +33,7 @@ El núcleo de la aplicación está completamente aislado del bloqueo de proveedo
 ### ⚠️ Riesgo de Licenciamiento Medio: Caché Distribuido Redis
 * **Contexto**: [ADR-0014](../02-adrs/core/0014-distributed-caching-strategy-redis.md) impone Redis para el almacenamiento en caché.
 * **El Riesgo**: Redis Inc. cambió recientemente su licencia de BSD a RSALv2 (Fuente Disponible, no estrictamente Código Abierto OSI). Aunque es gratuito para uso interno, plantea preocupaciones legales para el alojamiento de servicios gestionados.
-* **Estrategia de Mitigación**: En caso de requisitos estrictos de cumplimiento de código abierto o despliegue autohospedado (ADR-0028), el equipo de operaciones está autorizado a usar **Valkey** (el fork de Código Abierto de Redis de la Linux Foundation) como un reemplazo directo.
+* **Estrategia de Mitigación**: En caso de requisitos estrictos de cumplimiento de código abierto o despliegue autohospedado ([ADR-0028](../02-adrs/core/0028-self-hosted-hybrid-infrastructure-on-premise.md)), el equipo de operaciones está autorizado a usar **Valkey** (el fork de Código Abierto de Redis de la Linux Foundation) como un reemplazo directo.
 
 ### ⚠️ Riesgo de Mantenimiento Medio: Motor de Feature Flags
 * **Contexto**: [ADR-0017](../02-adrs/core/0017-feature-flagging-strategy.md) utiliza adaptadores de Infraestructura para Feature Flags (ej. Unleash, ConfigCat).

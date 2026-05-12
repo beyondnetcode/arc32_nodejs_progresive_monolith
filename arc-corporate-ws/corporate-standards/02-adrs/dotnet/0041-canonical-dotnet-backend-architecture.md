@@ -1,4 +1,4 @@
-# ADR 0041: Canonical .NET (C#) Backend Architecture
+# [ADR 0041](0041-canonical-dotnet-backend-architecture.md): Canonical .NET (C#) Backend Architecture
 
 ## 1. Status
 **Status**: Approved  
@@ -24,7 +24,7 @@ The canonical .NET framework consists of:
 *   **Dependency Injection**: Native Microsoft.Extensions.DependencyInjection.
 *   **Database/ORM**: Entity Framework Core for transactional CRUD; **Dapper** authorized for performance-sensitive ETL/Batch high-read workloads.
 *   **Validation**: FluentValidation (mirroring Node's class-validator intent).
-*   **Error Flow**: Return-Type based using libraries like `OneOf` or Custom `Result` objects, matching ADR-0038 functional mindset.
+*   **Error Flow**: Return-Type based using libraries like `OneOf` or Custom `Result` objects, matching [ADR-0038](../nodejs/0038-error-handling-result-pattern-strategy.md) functional mindset.
 *   **Async/Workers**: Use of `BackgroundService` (IHostedService) for native high-concurrency batch processing.
 
 ### C. Testing Standard

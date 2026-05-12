@@ -1,4 +1,4 @@
-# ADR 0002: Arquitectura Hexagonal Limpia con NestJS
+# [ADR 0002](0002-clean-architecture-nestjs.md): Arquitectura Hexagonal Limpia con NestJS
 
 ## Estado
 Aprobado

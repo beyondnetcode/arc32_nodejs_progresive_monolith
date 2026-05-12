@@ -1,4 +1,4 @@
-# ADR 0041: Arquitectura de Backend Canónica para .NET (C#)
+# [ADR 0041](0041-canonical-dotnet-backend-architecture.md): Arquitectura de Backend Canónica para .NET (C#)
 
 ## 1. Estado
 **Estado**: Aprobado  
@@ -24,7 +24,7 @@ El marco canónico de .NET consiste en:
 *   **Inyección de Dependencias**: Microsoft.Extensions.DependencyInjection nativa.
 *   **Base de Datos/ORM**: Entity Framework Core para CRUD transaccional; **Dapper** autorizado para cargas de trabajo de lectura intensiva de ETL/Lotes sensibles al rendimiento.
 *   **Validación**: FluentValidation (reflejando la intención del class-validator de Node).
-*   **Flujo de Errores**: Basado en Tipos de Retorno usando librerías como `OneOf` u objetos `Result` personalizados, coincidiendo con la mentalidad funcional del ADR-0038.
+*   **Flujo de Errores**: Basado en Tipos de Retorno usando librerías como `OneOf` u objetos `Result` personalizados, coincidiendo con la mentalidad funcional del [ADR-0038](../nodejs/0038-error-handling-result-pattern-strategy.md).
 *   **Asíncronos/Trabajadores**: Uso de `BackgroundService` (IHostedService) para procesamiento nativo de lotes de alta concurrencia.
 
 ### C. Estándar de Pruebas

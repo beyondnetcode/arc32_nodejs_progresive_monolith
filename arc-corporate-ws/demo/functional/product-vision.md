@@ -25,27 +25,27 @@ By choosing the universally-understood "To-Do" domain, all cognitive load is dir
 ### B. Enterprise SaaS Demo Application
 - The demo application is **not** a toy. It implements the full enterprise SaaS capability set:
   - **Multi-Tenancy** via PostgreSQL Row-Level Security (RLS).
-  - **Two-Tier API Gateway** (Kong Edge + NestJS BFF) per ADR-0030, ADR-0008.
-  - **Injectable Event Bus** (In-Memory → RabbitMQ) per ADR-0015.
-  - **Immutable Audit Trail** per ADR-0016.
-  - **Distributed Caching** per ADR-0014.
+  - **Two-Tier API Gateway** (Kong Edge + NestJS BFF) per [ADR-0030](../../corporate-standards/02-adrs/core/0030-api-gateway-kong-vs-nestjs.md), [ADR-0008](../../corporate-standards/02-adrs/nodejs/0008-progressive-multimodule-evolution-gateway-bff.md).
+  - **Injectable Event Bus** (In-Memory → RabbitMQ) per [ADR-0015](../../corporate-standards/02-adrs/core/0015-event-driven-architecture-intra-domain.md).
+  - **Immutable Audit Trail** per [ADR-0016](../../corporate-standards/02-adrs/core/0016-immutable-business-audit-trail.md).
+  - **Distributed Caching** per [ADR-0014](../../corporate-standards/02-adrs/core/0014-distributed-caching-strategy-redis.md).
 - Any of these capabilities can be replicated as-is into a production system simply by replacing the `Task` domain with the target business domain.
 
 ### C. Observability & Resilience by Default
-- Production telemetry is not an afterthought. Distributed tracing via OpenTelemetry and log aggregation via Loki are fully wired from day one per ADR-0007.
-- Fault tolerance patterns (Circuit Breakers, Retries) are demonstrated at the infrastructure adapter level per ADR-0011.
+- Production telemetry is not an afterthought. Distributed tracing via OpenTelemetry and log aggregation via Loki are fully wired from day one per [ADR-0007](../../corporate-standards/02-adrs/nodejs/0007-observability-telemetry-loki-opentelemetry.md).
+- Fault tolerance patterns (Circuit Breakers, Retries) are demonstrated at the infrastructure adapter level per [ADR-0011](../../corporate-standards/02-adrs/core/0011-fault-tolerance-resiliency-patterns.md).
 
 ### D. Testing Pyramid Pre-configured
 - The skeleton eliminates setup paralysis. It ships with 100% pre-configured setups for:
   - **Unit Testing** — Pure domain logic (zero infrastructure mocks).
   - **Integration Testing** — Adapter-level wiring with real Postgres/Redis.
   - **Contract Testing** — Pact consumer/provider contracts.
-- Per ADR-0018, a 70% coverage gate is enforced in CI.
+- Per [ADR-0018](../../corporate-standards/02-adrs/core/0018-testing-pyramid-quality-gates.md), a 70% coverage gate is enforced in CI.
 
 ---
 
 ## 3. Core Philosophy & Future Readiness
 
-By keeping the Domain Core completely pure and decoupled from external frameworks, this repository proves how a monolithic application can remain clean enough to evolve gracefully into independent microservices without a rewrite. It embodies the concept of a **Progressive Monolith** (ADR-0006).
+By keeping the Domain Core completely pure and decoupled from external frameworks, this repository proves how a monolithic application can remain clean enough to evolve gracefully into independent microservices without a rewrite. It embodies the concept of a **Progressive Monolith** ([ADR-0006](../../corporate-standards/02-adrs/core/0006-future-microservices-transition-dapr.md)).
 
 The 30 approved ADRs are not aspirational — they are **implemented, tested, and running** in the demo application. They form the reusable institutional knowledge base that any engineering team can adopt as their own architectural baseline.

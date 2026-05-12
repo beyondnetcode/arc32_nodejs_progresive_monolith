@@ -1,4 +1,4 @@
-# ADR 0006: Future Microservices Transition with Dapr Sidecars
+# [ADR 0006](0006-future-microservices-transition-dapr.md): Future Microservices Transition with Dapr Sidecars
 
 ## Status
 Approved — Backlog (Phase 3 Milestone)
@@ -17,10 +17,10 @@ Adopt **Dapr (Distributed Application Runtime)** as the microservices sidecar ru
 | Milestone | Description |
 | :--- | :--- |
 | **M1 — Modular Monolith** | Current state. Single process with isolated bounded context modules. |
-| **M2 — Service Extraction** | High-traffic or independently-deployable contexts extracted as Nx micro-projects. Each gets its own database schema (ADR-0031) and communicates via gRPC or Dapr. |
+| **M2 — Service Extraction** | High-traffic or independently-deployable contexts extracted as Nx micro-projects. Each gets its own database schema ([ADR-0031](0031-schema-per-context-domain-event-catalog.md)) and communicates via gRPC or Dapr. |
 | **M3 — Full Mesh** | All services run with Dapr Sidecars. Service-to-Service invocation, Pub/Sub, and State are managed by Dapr components (declarative YAML). |
 
-**Key constraint:** The domain Core must change **zero lines** when Dapr is introduced. All Dapr SDK calls are wrapped behind existing `IEventBusPort` and `ICachePort` abstractions (ADR-0015, ADR-0014).
+**Key constraint:** The domain Core must change **zero lines** when Dapr is introduced. All Dapr SDK calls are wrapped behind existing `IEventBusPort` and `ICachePort` abstractions ([ADR-0015](0015-event-driven-architecture-intra-domain.md), [ADR-0014](0014-distributed-caching-strategy-redis.md)).
 
 ## Consequences
 

@@ -1,4 +1,4 @@
-# ADR 0029: Adopción de Librería de Primitivas DDD Tácticas
+# [ADR 0029](0029-tactical-ddd-primitives-library.md): Adopción de Librería de Primitivas DDD Tácticas
 
 ## Estado
 Aprobado

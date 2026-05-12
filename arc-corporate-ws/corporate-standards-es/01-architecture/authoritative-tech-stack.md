@@ -105,7 +105,7 @@
     *   *Microservicios Distribuidos desde el Día 1*: Alta complejidad operativa, sobrecarga de despliegue y latencia de red que abrumarían a un equipo de ingeniería pequeño.
 
 ### 4.3 Enfoque CQRS
-*   **Herramienta Elegida:** **CQRS Híbrido (agregados BFF + tablas dedicadas de Escritura-Auditoría)** gobernado por **ADR-0034**.
+*   **Herramienta Elegida:** **CQRS Híbrido (agregados BFF + tablas dedicadas de Escritura-Auditoría)** gobernado por **[ADR-0034](../02-adrs/core/0034-cqrs-pattern-applicability-matrix.md)**.
 *   **Por qué se eligió:** Separa la intensidad de lectura/escritura sin sobre-ingeniería. Una matriz dedicada dicta que el CQRS Completo solo se desata cuando las proporciones de Lectura:Escritura superan 100:1 o los picos de contención de bloqueo de BD aumentan. Utiliza proyecciones de Redis para consultas BFF y SQL estrictamente ACID para Comandos.
 *   **Alternativas Rechazadas:**
     *   *CQRS Universal*: Rechazado debido a la severa inflación de complejidad del código cuando se aplica a entidades CRUD simples.
@@ -115,7 +115,7 @@
 ## 5. Capa de Datos
 
 ### 5.1 Base de Datos Principal + ORM/Constructor de Consultas
-*   **Herramienta Elegida:** **PostgreSQL v16 (Aislamiento de Esquema Por Contexto, ADR-0031)**
+*   **Herramienta Elegida:** **PostgreSQL v16 (Aislamiento de Esquema Por Contexto, [ADR-0031](../02-adrs/core/0031-schema-per-context-domain-event-catalog.md))**
 *   **Por qué se eligió:** PostgreSQL 16 proporciona capacidades ACID empresariales. El **Esquema-Por-Contexto** obligatorio garantiza que ningún módulo realice nunca un join SQL directo a través de los datos privados de otro módulo, manteniendo una portabilidad al 100% para futuras extracciones de Microservicios.
 *   **Alternativas Rechazadas:**
     *   *Esquema Público Compartido*: Causa un acoplamiento fatal entre módulos, haciendo imposibles los refactores de esquemas internos sin impactos masivos entre equipos.
@@ -139,8 +139,8 @@
     *   *AWS S3*: Rechazado como opción primaria porque es un servicio en la nube propietario que no se puede ejecutar localmente para despliegues on-premise.
 
 ### 5.5 Cola de Mensajes / Bus de Eventos
-*   **Herramienta Elegida:** **RabbitMQ gobernado por Sagas Distribuidas (ADR-0035) y Control de Flujo (ADR-0036)**
-*   **Por qué se eligió:** Bróker AMQP de alto rendimiento. Todas las transmisiones DEBEN adherirse a las reglas de `ADR-0036`: **FIFO** para secuencias, **Fuego y Olvido** para efectos secundarios, y **cuarentena obligatoria en DLQ** para píldoras venenosas. Utiliza **Transactional Outbox (ADR-0033)** para prevenir la pérdida de datos por escritura parcial.
+*   **Herramienta Elegida:** **RabbitMQ gobernado por Sagas Distribuidas ([ADR-0035](../02-adrs/core/0035-distributed-saga-pattern-strategy.md)) y Control de Flujo ([ADR-0036](../02-adrs/core/0036-message-bus-delivery-strategy-fifo-dlq.md))**
+*   **Por qué se eligió:** Bróker AMQP de alto rendimiento. Todas las transmisiones DEBEN adherirse a las reglas de `[ADR-0036](../02-adrs/core/0036-message-bus-delivery-strategy-fifo-dlq.md)`: **FIFO** para secuencias, **Fuego y Olvido** para efectos secundarios, y **cuarentena obligatoria en DLQ** para píldoras venenosas. Utiliza **Transactional Outbox ([ADR-0033](../02-adrs/core/0033-transactional-outbox-pattern.md))** para prevenir la pérdida de datos por escritura parcial.
 *   **Alternativas Rechazadas:**
     *   *Llamadas HTTP Síncronas Directas*: Crea el anti-patrón de "Monolito Distribuido" donde un servicio secundario caído hace que el flujo principal de pago falle.
 
@@ -231,20 +231,20 @@
 *   **Herramienta Elegida:** **Nx Monorepo**
 *   **Por qué se eligió:** Simplifica la gestión de dependencias, permite compartir tipos de TypeScript entre frontend y backend instantáneamente, y utiliza almacenamiento en caché de construcción avanzado para minimizar los tiempos de compilación de CI.
 
-### 10.3 Pirámide de Verificación y Estrategia de Carga (ADR-0037)
+### 10.3 Pirámide de Verificación y Estrategia de Carga ([ADR-0037](../02-adrs/core/0037-performance-concurrency-chaos-strategy.md))
 *   **Herramientas Elegidas:**
     *   *Pruebas Unitarias*: Jest (Mocks explícitos obligatorios, cero IO).
     *   *Integración*: Jest + **Testcontainers** (Postgres/Redis activos levantados por ejecución).
     *   *Pruebas de Contrato*: **Pact JS** (Garantiza la seguridad de la API gRPC).
     *   *Carga/Concurrencia*: Inyección TS impulsada por scripts de **k6 (Grafana)** verificando condiciones de carrera.
-    *   *Caos*: Terminación programada de pods verificando los Circuit Breakers Distribuidos (ADR-0011).
+    *   *Caos*: Terminación programada de pods verificando los Circuit Breakers Distribuidos ([ADR-0011](../02-adrs/core/0011-fault-tolerance-resiliency-patterns.md)).
 
 ---
 
 ## 11. Estrategia de Gestión de Errores
 
 ### 11.1 Cumplimiento de Patrones
-*   **Herramienta Elegida:** **Patrón Result Funcional (clase neverthrow / Result<T, E>) (ADR-0038)**
+*   **Herramienta Elegida:** **Patrón Result Funcional (clase neverthrow / Result<T, E>) ([ADR-0038](../02-adrs/nodejs/0038-error-handling-result-pattern-strategy.md))**
 *   **Por qué se eligió:** Elimina caídas silenciosas en tiempo de ejecución por fallos de lógica de negocio. Obliga a la comprobación de errores segura en tipos en tiempo de compilación. Asegura una propagación clara de límites desde la lógica central a los mapeos de controladores REST/gRPC.
 *   **Alternativas Rechazadas:**
     *   *Lanzamiento de Excepciones Estándar*: Inseguro, no tipado, y dispersa el flujo de control de gestión de errores de forma invisible a lo largo de la pila de ejecución.

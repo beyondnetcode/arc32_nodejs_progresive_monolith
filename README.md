@@ -17,7 +17,7 @@ The architecture implements the **bMAD Method**, ensuring strict adherence to he
 These core frameworks govern the entire architecture regardless of the implementation language or locale.
 
 ### 🚀 Authorized Polyglot Ecosystem (Horizon 2026)
-The architecture is not exclusive to Node.js; it is a polyglot federation that distributes workloads according to technical suitability (ADR-0040):
+The architecture is not exclusive to Node.js; it is a polyglot federation that distributes workloads according to technical suitability ([ADR-0040](./arc-corporate-ws/corporate-standards/02-adrs/core/0040-multi-runtime-selection-contracts.md)):
 
 | Runtime | Canonical Role | Validated Tech Stack |
 | :--- | :--- | :--- |
@@ -46,7 +46,8 @@ Navigate directly to the comprehensive set of standards, blueprints, and archite
 
 ### 🧠 Architectural Directives
 *   **[🏛️ Corporate Multi-Runtime Blueprint](./arc-corporate-ws/corporate-standards/01-architecture/reference-blueprint.md)**: The master system specification (arc42).
-*   **[📜 Decision History (ADRs)](./arc-corporate-ws/corporate-standards/02-adrs/README.md)**: Register of the 42 definitive technology decisions.
+*   **[📜 Decision History (ADRs)](./arc-corporate-ws/corporate-standards/02-adrs/README.md)**: Register of the 44 definitive technology decisions.
+    *   *Quick Access By Domain:* [🌐 Core](./arc-corporate-ws/corporate-standards/02-adrs/README.md#universal-core) | [🟢 Node.js](./arc-corporate-ws/corporate-standards/02-adrs/README.md#nodejs-typescript) | [🔵 .NET](./arc-corporate-ws/corporate-standards/02-adrs/README.md#net-c) | [🟣 Mobile](./arc-corporate-ws/corporate-standards/02-adrs/README.md#android-native)
 
 ### 🛠️ Standards and Shielding
 *   **[🔬 2026 Stack Audit Opinion](./arc-corporate-ws/corporate-standards/03-engineering/detailed-stack-audit-2026.md)**: Critical verification of licenses (Post-BSL/SSPL) and active versions.

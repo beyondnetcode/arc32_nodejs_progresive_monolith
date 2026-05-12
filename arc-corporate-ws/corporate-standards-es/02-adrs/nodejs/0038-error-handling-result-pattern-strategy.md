@@ -1,4 +1,4 @@
-# ADR 0038: Estrategia Empresarial de Manejo de Errores y Patrón Result
+# [ADR 0038](0038-error-handling-result-pattern-strategy.md): Estrategia Empresarial de Manejo de Errores y Patrón Result
 
 ## Estado
 Aprobado
@@ -22,7 +22,7 @@ Mandar que TODOS los Casos de Uso de Aplicación y Entidades de Dominio devuelva
 | Clase de Error | Tipo | Mecanismo de Recuperación | Código HTTP Final |
 | :--- | :--- | :--- | :--- |
 | **Lógica de Negocio (No Transitorio)** | Esperado | **Patrón Result**. Pasado por cadena explícita. | 400, 403, 409, 422 |
-| **Infraestructura (Transitorio)** | Inesperado | **Reintento con Backoff** (ADR-0011). Si es permanente, lanzar excepción genérica. | 500, 503 |
+| **Infraestructura (Transitorio)** | Inesperado | **Reintento con Backoff** ([ADR-0011](../core/0011-fault-tolerance-resiliency-patterns.md)). Si es permanente, lanzar excepción genérica. | 500, 503 |
 | **Violación de Seguridad** | Guardado | Terminación Inmediata. Manejado por la capa Guard de NestJS. | 401, 403 |
 
 ### 3. Propagación y Mapeo de Límites

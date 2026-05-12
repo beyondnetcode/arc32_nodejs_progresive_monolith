@@ -6,7 +6,7 @@ Este documento detalla la arquitectura de telemetría, propagación de trazas, e
 
 ## 🏛️ 1. Los Tres Pilares de la Telemetría
 
-Para asegurar la visibilidad absoluta a través de nuestro monolito modular y prepararnos para futuros microservicios, implementamos tres pilares sincronizados de observabilidad según se especifica en el **ADR 0007**:
+Para asegurar la visibilidad absoluta a través de nuestro monolito modular y prepararnos para futuros microservicios, implementamos tres pilares sincronizados de observabilidad según se especifica en el **[ADR 0007](../02-adrs/nodejs/0007-observability-telemetry-loki-opentelemetry.md)**:
 
 ```mermaid
 graph TD

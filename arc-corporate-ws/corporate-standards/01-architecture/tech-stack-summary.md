@@ -27,17 +27,17 @@ This cheat sheet serves as the authoritative, high-density tool reference by arc
 *   **Architectural Pattern:** Hexagonal Architecture (Ports & Adapters)
 *   **Monorepo Strategy:** Nx Monorepo
 *   **Execution Pattern:** Modular Monolith (Dapr-Ready)
-*   **Segregation Pattern:** Hybrid CQRS (ADR-0034 Matrix regulated)
+*   **Segregation Pattern:** Hybrid CQRS ([ADR-0034](../02-adrs/core/0034-cqrs-pattern-applicability-matrix.md) Matrix regulated)
 *   **Dependency Injection:** Native NestJS DI Container
 
 ### 5. Data Layer
-*   **Primary Relational Database:** PostgreSQL v16 (Schema Per Context isolation, ADR-0031)
+*   **Primary Relational Database:** PostgreSQL v16 (Schema Per Context isolation, [ADR-0031](../02-adrs/core/0031-schema-per-context-domain-event-catalog.md))
 *   **Relational Mapping (ORM):** TypeORM (TypeScript)
 *   **High-Performance Queries:** Native `pg` driver
 *   **Schema Migration Engine:** TypeORM Migrations via Kubernetes Init-Containers
 *   **In-Memory Caching:** Redis v7.2 (Sentinel / Cluster Replications)
 *   **Object & Asset Store:** MinIO (S3-Compatible, Self-hosted)
-*   **Asynchronous Message Broker:** RabbitMQ governed by flow control (ADR-0036) & Outbox (ADR-0033)
+*   **Asynchronous Message Broker:** RabbitMQ governed by flow control ([ADR-0036](../02-adrs/core/0036-message-bus-delivery-strategy-fifo-dlq.md)) & Outbox ([ADR-0033](../02-adrs/core/0033-transactional-outbox-pattern.md))
 
 ### 6. Multi-tenancy Strategy
 *   **Data Isolation Model:** Shared Database with Row-Level Security (RLS)
@@ -62,7 +62,7 @@ This cheat sheet serves as the authoritative, high-density tool reference by arc
 *   **Dependency Audit:** Snyk CLI + `npm audit` inside CI/CD pipelines
 
 ### 10. Error Management Strategy
-*   **Pattern Standard:** Functional Result Pattern (`neverthrow`) per ADR-0038
+*   **Pattern Standard:** Functional Result Pattern (`neverthrow`) per [ADR-0038](../02-adrs/nodejs/0038-error-handling-result-pattern-strategy.md)
 *   **Global Barrier:** NestJS ExceptionFilter capturing opaque internal trace IDs.
 
 ### 11. Developer Experience (DevEx)

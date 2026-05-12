@@ -23,8 +23,9 @@ El diseño estructural del sistema detallado en vistas C4 y CAP.
 *   [Resumen Rápido del Stack](./01-architecture/tech-stack-summary.md)
 
 ### 📜 Fase 02: Registros de Decisión Arquitectónica (ADRs)
-La historia consolidada y clasificada de las 42 decisiones técnicas activas.
-*   👉 **[Navegador Central de ADRs (Core / Node / .NET / Android)](./02-adrs/README.md)**
+La historia consolidada y clasificada de las 44 decisiones técnicas activas.
+*   👉 **[Navegador Central de ADRs](./02-adrs/README.md)**
+    *   ⚡ *Ir A:* [🌐 Core](./02-adrs/README.md#universal-core) | [🟢 Node.js](./02-adrs/README.md#nodejs-typescript) | [🔵 .NET](./02-adrs/README.md#net-c) | [🟣 Móvil](./02-adrs/README.md#android-native)
 
 ### 🛠️ Fase 03: Estándares de Ingeniería y Auditoría de Stack
 Playbooks de implementación táctica, seguridad defensiva y validación de mercado.

@@ -1,4 +1,4 @@
-# ADR 0001: Monorepo Orchestration with Nx
+# [ADR 0001](0001-monorepo-orchestration-nx.md): Monorepo Orchestration with Nx
 
 ## Status
 Approved

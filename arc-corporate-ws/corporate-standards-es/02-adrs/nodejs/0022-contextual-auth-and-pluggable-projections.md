@@ -1,4 +1,4 @@
-# ADR 0022: Autenticación Contextual y Proyecciones de Salida Enchufables
+# [ADR 0022](0022-contextual-auth-and-pluggable-projections.md): Autenticación Contextual y Proyecciones de Salida Enchufables
 
 ## Estado
 Aprobado

@@ -9,7 +9,7 @@ This repository possesses a strict physical segmentation to shield immutable law
 
 ### 🏛️ Layer 1: Corporate Standards (CSL)
 **For**: Tech Leads, Architects, Vendors, and Teams starting a development.
-Here resides the "Law": 42 authorized ADRs, the arc42 Blueprint, 2026 stack audit opinions, and global engineering standards.
+Here resides the "Law": 44 authorized ADRs, the arc42 Blueprint, 2026 stack audit opinions, and global engineering standards.
 👉 **[See Corporate Standards](./corporate-standards/README.md)**
 
 ---
@@ -22,13 +22,13 @@ Includes the demonstrative application validating hexagonal boundaries, Row-Leve
 ---
 
 ## 🚀 Official Authorized Runtimes (Horizon 2026)
-The architecture is agnostic and authorizes the following selection matrix based on workload (ADR-0040):
+The architecture is agnostic and authorizes the following selection matrix based on workload ([ADR-0040](./corporate-standards/02-adrs/core/0040-multi-runtime-selection-contracts.md)):
 
 | Runtime | Validated Ecosystem | Canonical Role | Guide Status |
 | :--- | :--- | :--- | :--- |
-| **Node.js / TS** | NestJS 11.1 / Node 24 LTS | Transactional APIs and BFF | [ADR 0002 / 0003] |
-| **.NET (C#)** | ASP.NET Core / .NET 10 LTS | High Compute / Batch / Workers | [ADR 0041] |
-| **Android** | Kotlin 2.3 / Compose 1.11 | Native Mobile Applications | [ADR 0042] |
+| **Node.js / TS** | NestJS 11.1 / Node 24 LTS | Transactional APIs and BFF | [[ADR 0002]](./corporate-standards/02-adrs/nodejs/0002-clean-architecture-nestjs.md) / [[0003]](./corporate-standards/02-adrs/nodejs/0003-strict-typescript-standards.md) |
+| **.NET (C#)** | ASP.NET Core / .NET 10 LTS | High Compute / Batch / Workers | [[ADR 0041]](./corporate-standards/02-adrs/dotnet/0041-canonical-dotnet-backend-architecture.md) |
+| **Android** | Kotlin 2.3 / Compose 1.11 | Native Mobile Applications | [[ADR 0042]](./corporate-standards/02-adrs/android/0042-canonical-android-mobile-architecture.md) |
 
 ---
 

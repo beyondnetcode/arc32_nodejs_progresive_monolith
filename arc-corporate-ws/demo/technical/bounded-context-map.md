@@ -1,6 +1,6 @@
 # 🗺️ Bounded Context Map — To-Do Reference Skeleton
 
-This document establishes the formal **Domain-Driven Design (DDD) Bounded Context Map** for the Reference Template. Each context owns its own **PostgreSQL schema** (ADR-0031), enabling zero-migration microservices extraction.
+This document establishes the formal **Domain-Driven Design (DDD) Bounded Context Map** for the Reference Template. Each context owns its own **PostgreSQL schema** ([ADR-0031](../../corporate-standards/02-adrs/core/0031-schema-per-context-domain-event-catalog.md)), enabling zero-migration microservices extraction.
 
 ---
 
@@ -110,7 +110,7 @@ graph TD
 **Mission:** Maintain an immutable, append-only record of all significant domain state changes.
 
 **Owns:**
-- `audit.audit_log` table (database-level INSERT-only trigger enforced per ADR-0016)
+- `audit.audit_log` table (database-level INSERT-only trigger enforced per [ADR-0016](../../corporate-standards/02-adrs/core/0016-immutable-business-audit-trail.md))
 
 **Subscribes to:** All events from all contexts.
 
@@ -130,7 +130,7 @@ graph TD
 
 ---
 
-## 🔄 4. Microservices Extraction Map (ADR-0031, ADR-0006)
+## 🔄 4. Microservices Extraction Map ([ADR-0031](../../corporate-standards/02-adrs/core/0031-schema-per-context-domain-event-catalog.md), [ADR-0006](../../corporate-standards/02-adrs/core/0006-future-microservices-transition-dapr.md))
 
 When the system evolves to microservices, each context extracts cleanly:
 

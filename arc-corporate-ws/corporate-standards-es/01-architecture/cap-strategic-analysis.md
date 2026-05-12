@@ -45,9 +45,9 @@ Nuestra arquitectura no elige ciegamente un solo lado. En su lugar, segmenta el 
 
 | Divergencia del Eje CAP | Escenario de Riesgo Real | Defensa y Mitigación Arquitectónica |
 | :--- | :--- | :--- |
-| **Consistencia vs Disponibilidad** | El Caché Redis retiene una versión antigua de los permisos de un inquilino tras un cambio de rol dinámico. | **Mitigación**: Políticas de desalojo cache-aside en escritura + compilación de Auth Híbrida imponiendo búsqueda inmediata de gráfico en BD para alcances de alta seguridad (ADR-0021). |
-| **Fallos de Particionado** | La red del Bus de Mensajes cae mientras se escriben las actualizaciones de la BD (Fallo de escritura doble). | **Mitigación**: **Patrón Transactional Outbox (ADR-0033)** guarda el evento en Postgres (zona CP) y garantiza que se empuje a RabbitMQ más tarde, convirtiendo una crisis en un retraso gestionado. |
-| **Sincronización de Estado** | Dos microservicios separados procesan eventos fuera de secuencia debido al lag de la red. | **Mitigación**: **Estándar de Consumidor Idempotente e imposición de FIFO (ADR-0036)** asegura que la convergencia eventual regrese exactamente al estado correcto. |
+| **Consistencia vs Disponibilidad** | El Caché Redis retiene una versión antigua de los permisos de un inquilino tras un cambio de rol dinámico. | **Mitigación**: Políticas de desalojo cache-aside en escritura + compilación de Auth Híbrida imponiendo búsqueda inmediata de gráfico en BD para alcances de alta seguridad ([ADR-0021](../02-adrs/nodejs/0021-high-performance-auth-and-graph-compilation.md)). |
+| **Fallos de Particionado** | La red del Bus de Mensajes cae mientras se escriben las actualizaciones de la BD (Fallo de escritura doble). | **Mitigación**: **Patrón Transactional Outbox ([ADR-0033](../02-adrs/core/0033-transactional-outbox-pattern.md))** guarda el evento en Postgres (zona CP) y garantiza que se empuje a RabbitMQ más tarde, convirtiendo una crisis en un retraso gestionado. |
+| **Sincronización de Estado** | Dos microservicios separados procesan eventos fuera de secuencia debido al lag de la red. | **Mitigación**: **Estándar de Consumidor Idempotente e imposición de FIFO ([ADR-0036](../02-adrs/core/0036-message-bus-delivery-strategy-fifo-dlq.md))** asegura que la convergencia eventual regrese exactamente al estado correcto. |
 
 ---
 

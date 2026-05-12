@@ -7,7 +7,7 @@ Welcome to the system's legal repository. All decisions contained herein have be
 
 ---
 
-## 🧠 1. Universal Core (Runtime Agnostic)
+## <a name="universal-core"></a>🧠 1. Universal Core (Runtime Agnostic)
 Decisions applicable to any product built on top of the framework, regardless of the language.
 
 *   [ADR 0001: Monorepo Orchestration (Nx)](../02-adrs/core/0001-monorepo-orchestration-nx.md)
@@ -41,7 +41,7 @@ Decisions applicable to any product built on top of the framework, regardless of
 
 ---
 
-## 🟢 2. Node.js / TypeScript Ecosystem
+## <a name="nodejs-typescript"></a>🟢 2. Node.js / TypeScript Ecosystem
 Decisions tied to the primary runtime for APIs and BFFs.
 
 *   [ADR 0002: Clean Architecture NestJS](../02-adrs/nodejs/0002-clean-architecture-nestjs.md)
@@ -61,14 +61,14 @@ Decisions tied to the primary runtime for APIs and BFFs.
 
 ---
 
-## 🔵 3. .NET (C#) Ecosystem
+## <a name="net-c"></a>🔵 3. .NET (C#) Ecosystem
 Decisions tied to high-compute runtimes.
 
 *   **[ADR 0041: Canonical .NET Backend Architecture](../02-adrs/dotnet/0041-canonical-dotnet-backend-architecture.md)**
 
 ---
 
-## 🟣 4. Android Native (Kotlin) Ecosystem
+## <a name="android-native"></a>🟣 4. Android Native (Kotlin) Ecosystem
 Decisions tied to resilient mobile clients.
 
 *   **[ADR 0042: Canonical Android Mobile Architecture](../02-adrs/android/0042-canonical-android-mobile-architecture.md)**

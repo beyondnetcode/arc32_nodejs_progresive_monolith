@@ -1,4 +1,4 @@
-﻿# 📈 End-to-End Distributed Observability & Telemetry Strategy
+# 📈 End-to-End Distributed Observability & Telemetry Strategy
 
 This document details the telemetry architecture, trace propagation, logging standards, and cost-effective monitoring stack for the SCM/Reference Template under the **bMAD Method**.
 
@@ -6,7 +6,7 @@ This document details the telemetry architecture, trace propagation, logging sta
 
 ## 🏛️ 1. The Three Pillars of Telemetry
 
-To ensure absolute visibility across our modular monolith and prepare for future microservices, we implement three synchronized pillars of observability as specified in **ADR 0007**:
+To ensure absolute visibility across our modular monolith and prepare for future microservices, we implement three synchronized pillars of observability as specified in **[ADR 0007](../02-adrs/nodejs/0007-observability-telemetry-loki-opentelemetry.md)**:
 
 ```mermaid
 graph TD

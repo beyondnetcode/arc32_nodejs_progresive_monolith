@@ -1,4 +1,4 @@
-# ADR 0005: Puertas de Calidad de Seguridad CI/CD con CodeQL
+# [ADR 0005](0005-ci-cd-quality-codeql.md): Puertas de Calidad de Seguridad CI/CD con CodeQL
 
 ## Estado
 Aprobado

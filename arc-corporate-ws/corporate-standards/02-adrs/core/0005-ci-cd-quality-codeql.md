@@ -1,4 +1,4 @@
-# ADR 0005: CI/CD Security Quality Gates with CodeQL
+# [ADR 0005](0005-ci-cd-quality-codeql.md): CI/CD Security Quality Gates with CodeQL
 
 ## Status
 Approved

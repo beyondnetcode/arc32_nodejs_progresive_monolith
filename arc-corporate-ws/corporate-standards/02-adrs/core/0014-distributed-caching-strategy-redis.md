@@ -1,4 +1,4 @@
-# ADR 0014: Multi-Layer Distributed Caching Strategy
+# [ADR 0014](0014-distributed-caching-strategy-redis.md): Multi-Layer Distributed Caching Strategy
 
 ## Status
 Approved

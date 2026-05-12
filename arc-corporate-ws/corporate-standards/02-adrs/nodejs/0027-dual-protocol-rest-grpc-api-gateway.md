@@ -1,4 +1,4 @@
-# ADR 0027: Dual-Protocol API Strategy (REST & gRPC)
+# [ADR 0027](0027-dual-protocol-rest-grpc-api-gateway.md): Dual-Protocol API Strategy (REST & gRPC)
 
 ## Status
 Approved

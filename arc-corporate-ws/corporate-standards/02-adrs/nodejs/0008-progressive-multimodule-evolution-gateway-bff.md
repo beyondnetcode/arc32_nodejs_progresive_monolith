@@ -1,4 +1,4 @@
-# ADR 0008: Progressive Multi-Module Evolution with API Gateway and BFF Patterns
+# [ADR 0008](0008-progressive-multimodule-evolution-gateway-bff.md): Progressive Multi-Module Evolution with API Gateway and BFF Patterns
 
 ## Status
 Approved

@@ -1,4 +1,4 @@
-# ADR 0030: Estrategia de Gateway de API - Kong Edge vs NestJS BFF
+# [ADR 0030](0030-api-gateway-kong-vs-nestjs.md): Estrategia de Gateway de API - Kong Edge vs NestJS BFF
 
 ## Estado
 Aprobado

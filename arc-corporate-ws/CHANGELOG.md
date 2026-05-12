@@ -2,7 +2,7 @@
 
 ### 🚀 Features
 
-- **devops:** enforce 70% coverage gate for ADR 0018 ([7f957ec](https://github.com/beyondnetcode/ums/commit/7f957ec))
+- **devops:** enforce 70% coverage gate for [ADR 0018](corporate-standards/02-adrs/core/0018-testing-pyramid-quality-gates.md) ([7f957ec](https://github.com/beyondnetcode/ums/commit/7f957ec))
 
 ### ❤️ Thank You
 
@@ -12,7 +12,7 @@
 
 ### 🚀 Features
 
-- **devops:** provide FF dependencies for ADR 0017 ([d7eaef7](https://github.com/beyondnetcode/ums/commit/d7eaef7))
+- **devops:** provide FF dependencies for [ADR 0017](corporate-standards/02-adrs/core/0017-feature-flagging-strategy.md) ([d7eaef7](https://github.com/beyondnetcode/ums/commit/d7eaef7))
 
 ### ❤️ Thank You
 
@@ -22,7 +22,7 @@
 
 ### 🚀 Features
 
-- **devops:** provide context storage dependency for ADR 0016 ([c2a7d8b](https://github.com/beyondnetcode/ums/commit/c2a7d8b))
+- **devops:** provide context storage dependency for [ADR 0016](corporate-standards/02-adrs/core/0016-immutable-business-audit-trail.md) ([c2a7d8b](https://github.com/beyondnetcode/ums/commit/c2a7d8b))
 
 ### ❤️ Thank You
 
@@ -32,7 +32,7 @@
 
 ### 🚀 Features
 
-- **devops:** provide EDA dependencies for ADR 0015 ([320f33e](https://github.com/beyondnetcode/ums/commit/320f33e))
+- **devops:** provide EDA dependencies for [ADR 0015](corporate-standards/02-adrs/core/0015-event-driven-architecture-intra-domain.md) ([320f33e](https://github.com/beyondnetcode/ums/commit/320f33e))
 
 ### ❤️ Thank You
 
@@ -42,7 +42,7 @@
 
 ### 🚀 Features
 
-- **devops:** provide caching dependencies for ADR 0014 ([3d97238](https://github.com/beyondnetcode/ums/commit/3d97238))
+- **devops:** provide caching dependencies for [ADR 0014](corporate-standards/02-adrs/core/0014-distributed-caching-strategy-redis.md) ([3d97238](https://github.com/beyondnetcode/ums/commit/3d97238))
 
 ### ❤️ Thank You
 
@@ -52,7 +52,7 @@
 
 ### 🚀 Features
 
-- **devops:** provide authentication dependencies for ADR 0012 ([0da5161](https://github.com/beyondnetcode/ums/commit/0da5161))
+- **devops:** provide authentication dependencies for [ADR 0012](corporate-standards/02-adrs/nodejs/0012-advanced-authorization-rbac-abac.md) ([0da5161](https://github.com/beyondnetcode/ums/commit/0da5161))
 
 ### ❤️ Thank You
 
@@ -62,17 +62,17 @@
 
 ### 🚀 Features
 
-- **bmad:** introduce Configuration & Feature Management Platform - Multi-IdP, System Config, Feature Flags, ADR-0024, bounded context update ([6f0161f](https://github.com/beyondnetcode/ums/commit/6f0161f))
-- **bmad:** enhance Feature Flag framework with pluggable IFeatureFlagPort - ADR-0025, LaunchDarkly/Unleash/ConfigCat/Azure adapters, provider selector strategy ([07d41fb](https://github.com/beyondnetcode/ums/commit/07d41fb))
+- **bmad:** introduce Configuration & Feature Management Platform - Multi-IdP, System Config, Feature Flags, [ADR-0024](corporate-standards/02-adrs/core/0024-configuration-feature-management-platform.md), bounded context update ([6f0161f](https://github.com/beyondnetcode/ums/commit/6f0161f))
+- **bmad:** enhance Feature Flag framework with pluggable IFeatureFlagPort - [ADR-0025](corporate-standards/02-adrs/core/0025-feature-flag-provider-abstraction.md), LaunchDarkly/Unleash/ConfigCat/Azure adapters, provider selector strategy ([07d41fb](https://github.com/beyondnetcode/ums/commit/07d41fb))
 - **bmad:** integrate hierarchical config resolution & C4 updates - UC-09, overrides strategy, business-context alignment ([a7d036b](https://github.com/beyondnetcode/ums/commit/a7d036b))
 - **bmad:** update Strategic OKRs & Product Vision - optional external IdPs/FFs design mandate, native fallback core ([6330316](https://github.com/beyondnetcode/ums/commit/6330316))
 - **bmad:** decouple UMS from Product Planner - declare as 100% abstract, API/Message Bus driven standalone security kernel ([2202272](https://github.com/beyondnetcode/ums/commit/2202272))
 - **bmad:** update business-context diagram with pluggable auth/config/FF architecture ([00628d8](https://github.com/beyondnetcode/ums/commit/00628d8))
 - **bmad:** create master audit alignment and enterprise architecture spec - unified B-M-A-D pillars ([dfd76b4](https://github.com/beyondnetcode/ums/commit/dfd76b4))
 - **bmad:** introduce Customizable Hosted Login Page feature - UC-10, schema properties, scope, and alignment ([2388cf4](https://github.com/beyondnetcode/ums/commit/2388cf4))
-- **core:** add ADR 0008 for progressive multi-module evolution, API Gateway, and BFF patterns ([630a05c](https://github.com/beyondnetcode/ums/commit/630a05c))
-- **core:** implement ADR 0009 strict dependency pinning and CI vulnerability shield ([a813c68](https://github.com/beyondnetcode/ums/commit/a813c68))
-- **core:** implement Result pattern (ADR 0019) and update tracking matrix ([e5a4ee3](https://github.com/beyondnetcode/ums/commit/e5a4ee3))
+- **core:** add [ADR 0008](corporate-standards/02-adrs/nodejs/0008-progressive-multimodule-evolution-gateway-bff.md) for progressive multi-module evolution, API Gateway, and BFF patterns ([630a05c](https://github.com/beyondnetcode/ums/commit/630a05c))
+- **core:** implement [ADR 0009](corporate-standards/02-adrs/core/0009-strict-dependency-pinning-vulnerability-management.md) strict dependency pinning and CI vulnerability shield ([a813c68](https://github.com/beyondnetcode/ums/commit/a813c68))
+- **core:** implement Result pattern ([ADR 0019](corporate-standards/02-adrs/core/0019-tactical-design-patterns-future-proofing.md)) and update tracking matrix ([e5a4ee3](https://github.com/beyondnetcode/ums/commit/e5a4ee3))
 - **devops:** provide production-grade docker files and complete agnostic docker-compose stack ([4df1bb1](https://github.com/beyondnetcode/ums/commit/4df1bb1))
 - **devops:** integrate LGTM stack and circuit breaker patterns ([ef760b0](https://github.com/beyondnetcode/ums/commit/ef760b0))
 

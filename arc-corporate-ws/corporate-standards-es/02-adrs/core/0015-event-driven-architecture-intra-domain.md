@@ -1,4 +1,4 @@
-# ADR 0015: Arquitectura Dirigida por Eventos (EDA) para la Comunicación Intra-Dominio
+# [ADR 0015](0015-event-driven-architecture-intra-domain.md): Arquitectura Dirigida por Eventos (EDA) para la Comunicación Intra-Dominio
 
 ## Estado
 Aprobado
@@ -7,10 +7,10 @@ Aprobado
 2026-05-08
 
 ## Actualizado
-2026-05-11 — Se añadió referencia al Catálogo de Eventos de Dominio ADR-0031. Las definiciones de eventos y el mapa de suscripción entre contextos están ahora formalmente especificados en ese registro.
+2026-05-11 — Se añadió referencia al Catálogo de Eventos de Dominio [ADR-0031](0031-schema-per-context-domain-event-catalog.md). Las definiciones de eventos y el mapa de suscripción entre contextos están ahora formalmente especificados en ese registro.
 
 ## Contexto
-A medida que el Monolito Modular crece, permitir que los contextos delimitados se llamen entre sí de forma síncrona crea un acoplamiento estrecho. Si un contexto es lento o falla, no debería propagar fallos en cascada hacia otros contextos. Adicionalmente, la comunicación entre contextos debe definirse como contratos tipados explícitos para permitir una extracción futura segura a microservicios (ADR-0006).
+A medida que el Monolito Modular crece, permitir que los contextos delimitados se llamen entre sí de forma síncrona crea un acoplamiento estrecho. Si un contexto es lento o falla, no debería propagar fallos en cascada hacia otros contextos. Adicionalmente, la comunicación entre contextos debe definirse como contratos tipados explícitos para permitir una extracción futura segura a microservicios ([ADR-0006](0006-future-microservices-transition-dapr.md)).
 
 ## Decisión
 
@@ -44,16 +44,16 @@ Cada evento que cruza un límite de contexto delimitado debe ser una clase tipad
 
 ### 3. Eventos Intra-Contexto (Internos) vs Eventos Entre-Contextos
 - **Eventos Intra-contexto** (dentro del mismo contexto delimitado): Pueden usar emisores de eventos de NestJS síncronos sin restricciones de esquema.
-- **Eventos Entre-contextos** (cruzando límites de contexto delimitado): DEBEN usar `IEventBusPort` y DEBEN ajustarse a las definiciones de carga útil tipada en el ADR-0031.
+- **Eventos Entre-contextos** (cruzando límites de contexto delimitado): DEBEN usar `IEventBusPort` y DEBEN ajustarse a las definiciones de carga útil tipada en el [ADR-0031](0031-schema-per-context-domain-event-catalog.md).
 
-### 4. Preparación para Futuros Microservicios (ADR-0006)
+### 4. Preparación para Futuros Microservicios ([ADR-0006](0006-future-microservices-transition-dapr.md))
 Cuando un contexto delimitado sea extraído a un microservicio independiente:
 - Se reemplaza la implementación del bus `in-memory` con `rabbitmq` o `kafka` — **cero cambios de código en el dominio requeridos**.
 - La abstracción `IEventBusPort` garantiza que el dominio permanezca agnóstico a la capa de transporte.
 
 ## Consecuencias
 * **Positivas**: Alto desacoplamiento, aislamiento de fallos, contratos de integración explícitos, ruta fluida de transición a microservicios.
-* **Negativas**: Se debe abrazar la consistencia eventual a través de los contextos. Se requiere trazado distribuido (ADR-0007) para seguir los flujos de eventos a través de los límites de los contextos.
+* **Negativas**: Se debe abrazar la consistencia eventual a través de los contextos. Se requiere trazado distribuido ([ADR-0007](../nodejs/0007-observability-telemetry-loki-opentelemetry.md)) para seguir los flujos de eventos a través de los límites de los contextos.
 
 ## Referencias
 - [ADR-0006: Futuros Microservicios vía Dapr](../02-adrs/core/0006-future-microservices-transition-dapr.md)

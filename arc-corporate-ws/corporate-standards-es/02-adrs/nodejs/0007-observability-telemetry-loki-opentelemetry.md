@@ -1,4 +1,4 @@
-# ADR 0007: Observabilidad con OpenTelemetry, Loki y Jaeger
+# [ADR 0007](0007-observability-telemetry-loki-opentelemetry.md): Observabilidad con OpenTelemetry, Loki y Jaeger
 
 ## Estado
 Aprobado

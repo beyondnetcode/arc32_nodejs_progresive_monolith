@@ -1,4 +1,4 @@
-# ADR 0037: Estrategia Empresarial de Verificación de Rendimiento, Concurrencia y Caos
+# [ADR 0037](0037-performance-concurrency-chaos-strategy.md): Estrategia Empresarial de Verificación de Rendimiento, Concurrencia y Caos
 
 ## Estado
 Aprobado
@@ -27,11 +27,11 @@ Producto y Arquitectura requieren pruebas contra los siguientes flujos extremos 
 
 #### Escenario B: "El Gateway Envenenado (Inyección de Latencia)"
 *   **Concepto**: Utilizando Chaos Mesh, inyectar 5 segundos de retraso artificial en todas las respuestas del endpoint externo de la API de Banca/Aduanas.
-*   **Meta de Verificación**: Confirmar que los Circuit Breakers Distribuidos (ADR-0011) se disparan globalmente en 3 segundos, recurriendo al estado cacheado o mensajes amigables para el usuario sin propagar fallos en cascada a servicios de la app no relacionados.
+*   **Meta de Verificación**: Confirmar que los Circuit Breakers Distribuidos ([ADR-0011](0011-fault-tolerance-resiliency-patterns.md)) se disparan globalmente en 3 segundos, recurriendo al estado cacheado o mensajes amigables para el usuario sin propagar fallos en cascada a servicios de la app no relacionados.
 
 #### Escenario C: "El Apagón Logístico"
 *   **Concepto**: Desconectar el contenedor de RabbitMQ por completo mientras se empujan 1,000 transacciones por segundo a la BD.
-*   **Meta de Verificación**: La **Outbox Transaccional (ADR-0033)** registra todos los eventos en PostgreSQL. Una vez reconectado, verificar una reproducción de consumición con 100% cero pérdida y sin ejecución de lógica duplicada.
+*   **Meta de Verificación**: La **Outbox Transaccional ([ADR-0033](0033-transactional-outbox-pattern.md))** registra todos los eventos en PostgreSQL. Una vez reconectado, verificar una reproducción de consumición con 100% cero pérdida y sin ejecución de lógica duplicada.
 
 ### 3. Puertas de Verificación Obligatorias
 - **Instantáneas de Línea Base**: Pruebas de carga semanales con K6 contra el entorno de staging para detectar regresiones de latencia > 10% comparado con la semana anterior.

@@ -1,4 +1,4 @@
-# ADR 0004: Resiliencia Offline del Frontend
+# [ADR 0004](0004-frontend-offline-resilience.md): Resiliencia Offline del Frontend
 
 ## Estado
 Aprobado

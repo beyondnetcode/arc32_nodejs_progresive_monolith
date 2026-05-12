@@ -1,4 +1,4 @@
-# ADR 0038: Enterprise Error Handling & Result Pattern Strategy
+# [ADR 0038](0038-error-handling-result-pattern-strategy.md): Enterprise Error Handling & Result Pattern Strategy
 
 ## Status
 Approved
@@ -22,7 +22,7 @@ Mandate that ALL Application Use Cases and Domain Entities return errors explici
 | Error Class | Type | Recovery Mechanism | Ultimate HTTP Code |
 | :--- | :--- | :--- | :--- |
 | **Business Logic (Non-Transient)** | Expected | **Result Pattern**. Passed up explicit chain. | 400, 403, 409, 422 |
-| **Infrastructure (Transient)** | Unexpected | **Retry with Backoff** (ADR-0011). If permanent, throw generic exception. | 500, 503 |
+| **Infrastructure (Transient)** | Unexpected | **Retry with Backoff** ([ADR-0011](../core/0011-fault-tolerance-resiliency-patterns.md)). If permanent, throw generic exception. | 500, 503 |
 | **Security Violation** | Guarded | Immediate Termination. Handled by NestJS Guard layer. | 401, 403 |
 
 ### 3. Propagation & Boundary Mapping

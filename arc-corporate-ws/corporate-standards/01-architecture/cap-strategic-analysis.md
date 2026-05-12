@@ -45,9 +45,9 @@ Our architecture does not blindly choose a single side. Instead, it segments the
 
 | CAP Axis Divergence | Real-World Risk Scenario | Architectural Defense & Mitigation |
 | :--- | :--- | :--- |
-| **Consistency vs Availability** | Redis Cache holds an older version of a tenant's user permissions after a dynamic role change. | **Mitigation**: Cache-aside eviction policies on write + Hybrid Auth compilation enforcing immediate DB graph lookup for high-security scopes (ADR-0021). |
-| **Partitioning Failures** | The Message Bus network drops while DB updates are writing (Dual Write failure). | **Mitigation**: **Transactional Outbox Pattern (ADR-0033)** saves the event to Postgres (CP zone) and guarantees it pushes to RabbitMQ later, turning a crisis into managed delay. |
-| **State Synchronization** | Two separate microservices process events out of sequence due to network lag. | **Mitigation**: **Idempotent Consumer Standard & FIFO enforcement (ADR-0036)** ensures the eventual convergence returns to exactly the correct state. |
+| **Consistency vs Availability** | Redis Cache holds an older version of a tenant's user permissions after a dynamic role change. | **Mitigation**: Cache-aside eviction policies on write + Hybrid Auth compilation enforcing immediate DB graph lookup for high-security scopes ([ADR-0021](../02-adrs/nodejs/0021-high-performance-auth-and-graph-compilation.md)). |
+| **Partitioning Failures** | The Message Bus network drops while DB updates are writing (Dual Write failure). | **Mitigation**: **Transactional Outbox Pattern ([ADR-0033](../02-adrs/core/0033-transactional-outbox-pattern.md))** saves the event to Postgres (CP zone) and guarantees it pushes to RabbitMQ later, turning a crisis into managed delay. |
+| **State Synchronization** | Two separate microservices process events out of sequence due to network lag. | **Mitigation**: **Idempotent Consumer Standard & FIFO enforcement ([ADR-0036](../02-adrs/core/0036-message-bus-delivery-strategy-fifo-dlq.md))** ensures the eventual convergence returns to exactly the correct state. |
 
 ---
 

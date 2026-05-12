@@ -1,4 +1,4 @@
-# ADR 0023: Estrategia de Núcleo de Autorización Centralizado
+# [ADR 0023](0023-centralized-ums-vs-decentralized-access.md): Estrategia de Núcleo de Autorización Centralizado
 
 ## Estado
 Aprobado

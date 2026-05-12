@@ -11,12 +11,12 @@ This matrix rates our current infrastructure and design readiness against standa
 | Pattern Cluster | Specific Pattern | Applicability to Current Stack | Maturity / Risk Score | Implementation Rationale |
 | :--- | :--- | :--- | :--- | :--- |
 | **Integration** | **Strangler Fig** | **Critical Core** | 🟢 100% Ready | The foundational strategy of the architecture. Modules are logically isolated for incremental microservice splitting without service downtime. |
-| **Composition** | **BFF (Backend for Frontend)** | **Core Mandatory** | 🟢 100% Adopted | Officially implemented via specialized NestJS layers per device (ADR-0008). Prevents cross-channel pollution. |
-| **Reliability** | **Circuit Breaker** | **Operational** | 🟢 100% Adopted | Implemented via **Distributed Circuit Breakers** sharing state via Redis (ADR-0011) combined with active upstream healthcheck monitoring at Kong Ingress Edge. |
-| **Database** | **Schema Per Context** | **Core Mandatory** | 🟢 100% Adopted | Solves coupling from day one. Prevents raw SQL join poisoning across domains (ADR-0031). Zero-refactor DB portability. |
-| **Scalability** | **CQRS (Basic)** | **High Value** | 🟢 100% Adopted | Formally governed via Matrix (ADR-0034). Applied as aggregate Read-Models at BFF and isolated storage for high contention. |
-| **Consistency** | **Saga Pattern** | **Distributed Future** | 🟢 100% Adopted | Formal Strategy established (ADR-0035) utilizing Choreography/Orchestration mechanics tailored to workflow size. |
-| **Messaging** | **Transactional Outbox** | **High Criticality** | 🟢 100% Adopted | Mandated via ADR-0033. Guarantees absolute atomic consistency between DB state and RabbitMQ event forwarding via outbox relay table. |
+| **Composition** | **BFF (Backend for Frontend)** | **Core Mandatory** | 🟢 100% Adopted | Officially implemented via specialized NestJS layers per device ([ADR-0008](../02-adrs/nodejs/0008-progressive-multimodule-evolution-gateway-bff.md)). Prevents cross-channel pollution. |
+| **Reliability** | **Circuit Breaker** | **Operational** | 🟢 100% Adopted | Implemented via **Distributed Circuit Breakers** sharing state via Redis ([ADR-0011](../02-adrs/core/0011-fault-tolerance-resiliency-patterns.md)) combined with active upstream healthcheck monitoring at Kong Ingress Edge. |
+| **Database** | **Schema Per Context** | **Core Mandatory** | 🟢 100% Adopted | Solves coupling from day one. Prevents raw SQL join poisoning across domains ([ADR-0031](../02-adrs/core/0031-schema-per-context-domain-event-catalog.md)). Zero-refactor DB portability. |
+| **Scalability** | **CQRS (Basic)** | **High Value** | 🟢 100% Adopted | Formally governed via Matrix ([ADR-0034](../02-adrs/core/0034-cqrs-pattern-applicability-matrix.md)). Applied as aggregate Read-Models at BFF and isolated storage for high contention. |
+| **Consistency** | **Saga Pattern** | **Distributed Future** | 🟢 100% Adopted | Formal Strategy established ([ADR-0035](../02-adrs/core/0035-distributed-saga-pattern-strategy.md)) utilizing Choreography/Orchestration mechanics tailored to workflow size. |
+| **Messaging** | **Transactional Outbox** | **High Criticality** | 🟢 100% Adopted | Mandated via [ADR-0033](../02-adrs/core/0033-transactional-outbox-pattern.md). Guarantees absolute atomic consistency between DB state and RabbitMQ event forwarding via outbox relay table. |
 
 **Score Legend:**
 *   🟢 **Adopted**: Fully designed, verified in specs, zero configuration changes required.
@@ -38,7 +38,7 @@ Coupling separate components over the network where one down node halts the enti
 | **Concrete Example** | The Inventory module synchronously HTTP calls the Email module inside a checkout loop. The SMTP relay lags, causing total checkout timeouts for all users. |
 | **Production Impact** | A single localized bug in a non-critical service cascades backward, killing the primary revenue stream. Total application blackout. |
 | **Operational Risks** | Exponential growth in mean-time-to-recovery (MTTR). Developers cannot deploy one service independently of the other. |
-| **Immunization Defense** | **ADR-0015 (Injectable Bus)** + **ADR-0002 (Hexagonal)**. Operations happen asynchronously via event fire-and-forget. If the secondary service dies, the message waits safely in RabbitMQ while the primary completes instantly. |
+| **Immunization Defense** | **[ADR-0015](../02-adrs/core/0015-event-driven-architecture-intra-domain.md) (Injectable Bus)** + **[ADR-0002](../02-adrs/nodejs/0002-clean-architecture-nestjs.md) (Hexagonal)**. Operations happen asynchronously via event fire-and-forget. If the secondary service dies, the message waits safely in RabbitMQ while the primary completes instantly. |
 
 ---
 
@@ -51,7 +51,7 @@ Bypassing service APIs to run direct SQL joins across private data owned by anot
 | **Concrete Example** | Reporting queries `SELECT * FROM users JOIN orders` directly. Team A alters the `users` table column name, instantly breaking Team B's Order system in production. |
 | **Production Impact** | "Change Paralysis". Modifying a simple database column requires coordinated downtime and simultaneous deploys across 5 different dev teams. |
 | **Operational Risks** | Data corruption, leaking unauthorized tenant data, complete inability to extract microservices to their own physical hardware. |
-| **Immunization Defense** | **ADR-0031 (Isolated PostgreSQL Schema)**. Cross-schema SQL joins are physically blocked. Data communication MUST pass through official Domain APIs or Eventual-Consistent Projections. |
+| **Immunization Defense** | **[ADR-0031](../02-adrs/core/0031-schema-per-context-domain-event-catalog.md) (Isolated PostgreSQL Schema)**. Cross-schema SQL joins are physically blocked. Data communication MUST pass through official Domain APIs or Eventual-Consistent Projections. |
 
 ---
 
@@ -77,15 +77,15 @@ Generating uncoordinated console logs across pods with no centralized identifier
 | **Concrete Example** | A high-value customer reports error "500 - ID XJ92". SRE checks Kong logs, BFF logs, and Core API logs independently and cannot tell which exact SQL query triggered that specific user failure. |
 | **Production Impact** | Average troubleshooting time skyrockets from 5 minutes to 4 hours. Engineers must "grep" scattered text files trying to reconstruct history manually. |
 | **Operational Risks** | High burnout of support staff, lost customer trust due to extremely slow reaction times to severe outages. |
-| **Immunization Defense** | **ADR-0007 (OTel Distributed Tracing)**. A single `TraceParent ID` travels from the request inception to the DB response. Entering that ID into Jaeger displays the complete tree-map timeline instantly. |
+| **Immunization Defense** | **[ADR-0007](../02-adrs/nodejs/0007-observability-telemetry-loki-opentelemetry.md) (OTel Distributed Tracing)**. A single `TraceParent ID` travels from the request inception to the DB response. Entering that ID into Jaeger displays the complete tree-map timeline instantly. |
 
 ---
 
 ## 🚀 3. Final Maturity & Risk Assessment
 
 ### 🛡️ Resiliency Strength: **HIGH**
-*   The insertion of native **Circuit Breakers (ADR-0011)** and the strict contract testing regime shields the backend from total failure if external systems collapse.
-*   **Dual-Layer Isolation (ADR-0010)** creates mathematically provable security containment for Multi-Tenancy.
+*   The insertion of native **Circuit Breakers ([ADR-0011](../02-adrs/core/0011-fault-tolerance-resiliency-patterns.md))** and the strict contract testing regime shields the backend from total failure if external systems collapse.
+*   **Dual-Layer Isolation ([ADR-0010](../02-adrs/core/0010-multi-tenancy-architecture-strategy.md))** creates mathematically provable security containment for Multi-Tenancy.
 
 ### ⚡ Performance Overhead: **LOW/OPTIMIZED**
 *   **4-Tier Caching** (Client -> CDN -> BFF -> Core) handles read intensity intelligently before reaching raw disk.
@@ -93,8 +93,8 @@ Generating uncoordinated console logs across pods with no centralized identifier
 
 ### 🚧 Remaining Risks / Immediate Action Recommendations
 The remaining operational risks are now formally governed and zeroed-out through mandated framework controls:
-1.  **Formalized Chaos & Load Injection**: Performance regressions and concurrency races are now captured via automated **Weekly K6 Snapshots** (ADR-0037).
-2.  **Contract Testing Enforcement**: Safety during progressive microservice extraction is mathematically guaranteed via **Pact JS CI verification** mandated by ADR-0037.
+1.  **Formalized Chaos & Load Injection**: Performance regressions and concurrency races are now captured via automated **Weekly K6 Snapshots** ([ADR-0037](../02-adrs/core/0037-performance-concurrency-chaos-strategy.md)).
+2.  **Contract Testing Enforcement**: Safety during progressive microservice extraction is mathematically guaranteed via **Pact JS CI verification** mandated by [ADR-0037](../02-adrs/core/0037-performance-concurrency-chaos-strategy.md).
 
 ---
 **Approval Status**: Evaluated by Principal Architect  

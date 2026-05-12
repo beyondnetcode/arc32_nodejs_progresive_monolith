@@ -1,4 +1,4 @@
-# ADR 0031: Schema-per-Bounded-Context and Domain Event Catalog
+# [ADR 0031](0031-schema-per-context-domain-event-catalog.md): Schema-per-Bounded-Context and Domain Event Catalog
 
 ## Status
 Approved
@@ -8,11 +8,11 @@ Approved
 
 ## Context
 
-As the system is designed as a **Progressive Monolith** (ADR-0006) intended to evolve toward microservices, two structural risks exist that are not addressed by the current ADR baseline:
+As the system is designed as a **Progressive Monolith** ([ADR-0006](0006-future-microservices-transition-dapr.md)) intended to evolve toward microservices, two structural risks exist that are not addressed by the current ADR baseline:
 
-1. **Flat PostgreSQL Schema**: ADR-0010 defines Row-Level Security (RLS) for multi-tenant isolation, but all tables reside in a single flat schema. When extracting a bounded context into an independent microservice, there is no clear ownership boundary at the database level. Cross-table joins become cross-service calls, and migration plans become ambiguous.
+1. **Flat PostgreSQL Schema**: [ADR-0010](0010-multi-tenancy-architecture-strategy.md) defines Row-Level Security (RLS) for multi-tenant isolation, but all tables reside in a single flat schema. When extracting a bounded context into an independent microservice, there is no clear ownership boundary at the database level. Cross-table joins become cross-service calls, and migration plans become ambiguous.
 
-2. **No Domain Event Catalog**: ADR-0015 defines the injectable `IEventBusPort` abstraction, but does not specify **which events cross bounded context boundaries**, nor the **typed payload contracts** for those events. Without this catalog, inter-context dependencies are implicit and undocumented, making microservice extraction unsafe.
+2. **No Domain Event Catalog**: [ADR-0015](0015-event-driven-architecture-intra-domain.md) defines the injectable `IEventBusPort` abstraction, but does not specify **which events cross bounded context boundaries**, nor the **typed payload contracts** for those events. Without this catalog, inter-context dependencies are implicit and undocumented, making microservice extraction unsafe.
 
 Both issues are zero-cost to solve during the Modular Monolith phase but become extremely expensive to fix post-extraction.
 
@@ -58,7 +58,7 @@ When the `TaskService` is extracted as an independent microservice:
 
 ### Part 2: Domain Event Catalog
 
-All cross-bounded-context communication must occur exclusively via **Domain Events** published through `IEventBusPort` (ADR-0015). The following catalog defines all approved events, their owning context, and their typed payload contracts.
+All cross-bounded-context communication must occur exclusively via **Domain Events** published through `IEventBusPort` ([ADR-0015](0015-event-driven-architecture-intra-domain.md)). The following catalog defines all approved events, their owning context, and their typed payload contracts.
 
 > **Rule**: A bounded context may only read from its own schema tables. To obtain data owned by another context, it must subscribe to that context's published Domain Events.
 
@@ -155,7 +155,7 @@ class CategoryDeletedEvent {
 ### Negative (Cons)
 - **No cross-schema transactions**: Operations spanning multiple schemas cannot use a single database transaction. Eventual consistency via Domain Events must be embraced for cross-context operations.
 - **TypeORM multi-datasource complexity**: Requires configuring and managing multiple `DataSource` instances, one per schema. NestJS DI must be set up carefully to inject the correct datasource per repository.
-- **Developer discipline**: Developers must respect schema ownership rules. ESLint boundary rules (ADR-0003) should be configured to prevent direct imports across context boundaries.
+- **Developer discipline**: Developers must respect schema ownership rules. ESLint boundary rules ([ADR-0003](../nodejs/0003-strict-typescript-standards.md)) should be configured to prevent direct imports across context boundaries.
 
 ## References
 - [ADR-0006: Future Microservices Transition with Dapr](../02-adrs/core/0006-future-microservices-transition-dapr.md)

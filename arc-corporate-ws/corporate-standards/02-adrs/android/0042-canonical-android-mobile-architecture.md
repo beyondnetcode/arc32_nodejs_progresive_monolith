@@ -1,4 +1,4 @@
-# ADR 0042: Canonical Android Native Mobile Architecture
+# [ADR 0042](0042-canonical-android-mobile-architecture.md): Canonical Android Native Mobile Architecture
 
 ## 1. Status
 **Status**: Approved  

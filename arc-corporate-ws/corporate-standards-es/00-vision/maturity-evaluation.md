@@ -11,12 +11,12 @@ Esta matriz califica nuestra infraestructura actual y preparación de diseño fr
 | Cluster de Patrón | Patrón Específico | Aplicabilidad al Stack Actual | Madurez / Puntuación de Riesgo | Razón de Implementación |
 | :--- | :--- | :--- | :--- | :--- |
 | **Integración** | **Strangler Fig** | **Núcleo Crítico** | 🟢 100% Listo | La estrategia fundamental de la arquitectura. Los módulos están lógicamente aislados para la división incremental de microservicios sin tiempo de inactividad del servicio. |
-| **Composición** | **BFF (Backend for Frontend)** | **Núcleo Obligatorio** | 🟢 100% Adoptado | Implementado oficialmente a través de capas NestJS especializadas por dispositivo (ADR-0008). Previene la contaminación cruzada entre canales. |
-| **Fiabilidad** | **Circuit Breaker** | **Operacional** | 🟢 100% Adoptado | Implementado a través de **Circuit Breakers Distribuidos** compartiendo estado vía Redis (ADR-0011) combinado con monitoreo de salud activo en Kong Ingress Edge. |
-| **Base de Datos** | **Schema Per Context** | **Núcleo Obligatorio** | 🟢 100% Adoptado | Resuelve el acoplamiento desde el primer día. Previene la intoxicación por joins de SQL puro a través de dominios (ADR-0031). Portabilidad de BD con cero refactorización. |
-| **Escalabilidad** | **CQRS (Básico)** | **Alto Valor** | 🟢 100% Adoptado | Gobernado formalmente vía Matriz (ADR-0034). Aplicado como Modelos de Lectura agregados en BFF y almacenamiento aislado para alta contienda. |
-| **Consistencia** | **Saga Pattern** | **Futuro Distribuido** | 🟢 100% Adoptado | Estrategia formal establecida (ADR-0035) utilizando mecánicas de Coreografía/Orquestación adaptadas al tamaño del flujo de trabajo. |
-| **Mensajería** | **Transactional Outbox** | **Alta Criticidad** | 🟢 100% Adoptado | Obligatorio a través de ADR-0033. Garantiza la consistencia atómica absoluta entre el estado de la BD y el reenvío de eventos de RabbitMQ a través de la tabla de relevo outbox. |
+| **Composición** | **BFF (Backend for Frontend)** | **Núcleo Obligatorio** | 🟢 100% Adoptado | Implementado oficialmente a través de capas NestJS especializadas por dispositivo ([ADR-0008](../02-adrs/nodejs/0008-progressive-multimodule-evolution-gateway-bff.md)). Previene la contaminación cruzada entre canales. |
+| **Fiabilidad** | **Circuit Breaker** | **Operacional** | 🟢 100% Adoptado | Implementado a través de **Circuit Breakers Distribuidos** compartiendo estado vía Redis ([ADR-0011](../02-adrs/core/0011-fault-tolerance-resiliency-patterns.md)) combinado con monitoreo de salud activo en Kong Ingress Edge. |
+| **Base de Datos** | **Schema Per Context** | **Núcleo Obligatorio** | 🟢 100% Adoptado | Resuelve el acoplamiento desde el primer día. Previene la intoxicación por joins de SQL puro a través de dominios ([ADR-0031](../02-adrs/core/0031-schema-per-context-domain-event-catalog.md)). Portabilidad de BD con cero refactorización. |
+| **Escalabilidad** | **CQRS (Básico)** | **Alto Valor** | 🟢 100% Adoptado | Gobernado formalmente vía Matriz ([ADR-0034](../02-adrs/core/0034-cqrs-pattern-applicability-matrix.md)). Aplicado como Modelos de Lectura agregados en BFF y almacenamiento aislado para alta contienda. |
+| **Consistencia** | **Saga Pattern** | **Futuro Distribuido** | 🟢 100% Adoptado | Estrategia formal establecida ([ADR-0035](../02-adrs/core/0035-distributed-saga-pattern-strategy.md)) utilizando mecánicas de Coreografía/Orquestación adaptadas al tamaño del flujo de trabajo. |
+| **Mensajería** | **Transactional Outbox** | **Alta Criticidad** | 🟢 100% Adoptado | Obligatorio a través de [ADR-0033](../02-adrs/core/0033-transactional-outbox-pattern.md). Garantiza la consistencia atómica absoluta entre el estado de la BD y el reenvío de eventos de RabbitMQ a través de la tabla de relevo outbox. |
 
 **Leyenda de Puntuación:**
 *   🟢 **Adoptado**: Totalmente diseñado, verificado en especificaciones, requiere cero cambios de configuración.
@@ -38,7 +38,7 @@ Acoplamiento de componentes separados sobre la red donde un nodo caído detiene 
 | **Ejemplo Concreto** | El módulo de Inventario llama sincrónicamente vía HTTP al módulo de Email dentro de un flujo de pago. El relé SMTP se retrasa, causando tiempos de espera totales de pago para todos los usuarios. |
 | **Impacto en Producción** | Un solo error localizado en un servicio no crítico se propaga hacia atrás, matando el flujo principal de ingresos. Apagón total de la aplicación. |
 | **Riesgos Operativos** | Crecimiento exponencial en el tiempo medio de recuperación (MTTR). Los desarrolladores no pueden desplegar un servicio independientemente del otro. |
-| **Defensa de Inmunización** | **ADR-0015 (Bus Inyectable)** + **ADR-0002 (Hexagonal)**. Las operaciones ocurren asíncronamente vía eventos fire-and-forget. Si el servicio secundario muere, el mensaje espera de forma segura en RabbitMQ mientras el principal se completa instantáneamente. |
+| **Defensa de Inmunización** | **[ADR-0015](../02-adrs/core/0015-event-driven-architecture-intra-domain.md) (Bus Inyectable)** + **[ADR-0002](../02-adrs/nodejs/0002-clean-architecture-nestjs.md) (Hexagonal)**. Las operaciones ocurren asíncronamente vía eventos fire-and-forget. Si el servicio secundario muere, el mensaje espera de forma segura en RabbitMQ mientras el principal se completa instantáneamente. |
 
 ---
 
@@ -51,7 +51,7 @@ Evadir las APIs de servicio para ejecutar joins SQL directos a través de datos 
 | **Ejemplo Concreto** | Consultas de reportes haciendo `SELECT * FROM users JOIN orders` directamente. El Equipo A altera el nombre de la columna de la tabla `users`, rompiendo instantáneamente el sistema de Pedidos del Equipo B en producción. |
 | **Impacto en Producción** | "Parálisis del Cambio". Modificar una simple columna de base de datos requiere un tiempo de inactividad coordinado y despliegues simultáneos en 5 equipos de desarrollo diferentes. |
 | **Riesgos Operativos** | Corrupción de datos, filtración de datos de inquilinos no autorizados, incapacidad completa para extraer microservicios a su propio hardware físico. |
-| **Defensa de Inmunización** | **ADR-0031 (Esquema de PostgreSQL Aislado)**. Los joins SQL entre esquemas están físicamente bloqueados. La comunicación de datos DEBE pasar a través de APIs oficiales de Dominio o Proyecciones Eventualmente Consistentes. |
+| **Defensa de Inmunización** | **[ADR-0031](../02-adrs/core/0031-schema-per-context-domain-event-catalog.md) (Esquema de PostgreSQL Aislado)**. Los joins SQL entre esquemas están físicamente bloqueados. La comunicación de datos DEBE pasar a través de APIs oficiales de Dominio o Proyecciones Eventualmente Consistentes. |
 
 ---
 
@@ -77,15 +77,15 @@ Generación de logs de consola no coordinados a través de pods sin correlación
 | **Ejemplo Concreto** | Un cliente de alto valor reporta el error "500 - ID XJ92". SRE revisa los logs de Kong, los logs de BFF y los logs de Core API independientemente y no puede decir qué consulta SQL exacta disparó esa falla de usuario específica. |
 | **Impacto en Producción** | El tiempo promedio de resolución de problemas se dispara de 5 minutos a 4 horas. Los ingenieros deben hacer "grep" en archivos de texto dispersos intentando reconstruir la historia manualmente. |
 | **Riesgos Operativos** | Alto desgaste del personal de soporte, pérdida de confianza del cliente debido a tiempos de reacción extremadamente lentos ante interrupciones graves. |
-| **Defensa de Inmunización** | **ADR-0007 (Trazado Distribuido OTel)**. Un único `TraceParent ID` viaja desde el inicio de la solicitud hasta la respuesta de la BD. Ingresar ese ID en Jaeger muestra la línea de tiempo completa del mapa de árbol instantáneamente. |
+| **Defensa de Inmunización** | **[ADR-0007](../02-adrs/nodejs/0007-observability-telemetry-loki-opentelemetry.md) (Trazado Distribuido OTel)**. Un único `TraceParent ID` viaja desde el inicio de la solicitud hasta la respuesta de la BD. Ingresar ese ID en Jaeger muestra la línea de tiempo completa del mapa de árbol instantáneamente. |
 
 ---
 
 ## 🚀 3. Evaluación Final de Madurez y Riesgo
 
 ### 🛡️ Fortaleza de Resiliencia: **ALTA**
-*   La inserción de **Circuit Breakers (ADR-0011)** nativos y el estricto régimen de pruebas de contrato protegen al backend de un fallo total si los sistemas externos colapsan.
-*   El **Aislamiento de Doble Capa (ADR-0010)** crea una contención de seguridad matemáticamente demostrable para el Multi-Tenancy.
+*   La inserción de **Circuit Breakers ([ADR-0011](../02-adrs/core/0011-fault-tolerance-resiliency-patterns.md))** nativos y el estricto régimen de pruebas de contrato protegen al backend de un fallo total si los sistemas externos colapsan.
+*   El **Aislamiento de Doble Capa ([ADR-0010](../02-adrs/core/0010-multi-tenancy-architecture-strategy.md))** crea una contención de seguridad matemáticamente demostrable para el Multi-Tenancy.
 
 ### ⚡ Sobrecarga de Rendimiento: **BAJA/OPTIMIZADA**
 *   La **Caché de 4 Niveles** (Cliente -> CDN -> BFF -> Core) maneja la intensidad de lectura de manera inteligente antes de llegar al disco puro.
@@ -93,8 +93,8 @@ Generación de logs de consola no coordinados a través de pods sin correlación
 
 ### 🚧 Riesgos Restantes / Recomendaciones de Acción Inmediata
 Los riesgos operativos restantes están ahora formalmente gobernados y neutralizados a través de los controles del framework establecidos:
-1.  **Formalización de Caos e Inyección de Carga**: Las regresiones de rendimiento y las carreras de concurrencia se capturan ahora a través de **Instantáneas Semanales Automáticas de K6** (ADR-0037).
-2.  **Cumplimiento de Pruebas de Contrato**: La seguridad durante la extracción progresiva de microservicios está matemáticamente garantizada a través de la **verificación de CI Pact JS** ordenada por el ADR-0037.
+1.  **Formalización de Caos e Inyección de Carga**: Las regresiones de rendimiento y las carreras de concurrencia se capturan ahora a través de **Instantáneas Semanales Automáticas de K6** ([ADR-0037](../02-adrs/core/0037-performance-concurrency-chaos-strategy.md)).
+2.  **Cumplimiento de Pruebas de Contrato**: La seguridad durante la extracción progresiva de microservicios está matemáticamente garantizada a través de la **verificación de CI Pact JS** ordenada por el [ADR-0037](../02-adrs/core/0037-performance-concurrency-chaos-strategy.md).
 
 ---
 **Estado de Aprobación**: Evaluado por el Arquitecto Principal  

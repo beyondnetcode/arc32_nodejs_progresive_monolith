@@ -16,7 +16,7 @@ This document serves as the architectural baseline for evaluating the current te
 ## 1. Core Frameworks & Languages
 **Status:** ?? Zero Risk
 
-The application core is completely insulated from vendor lock-in thanks to strict adherence to Hexagonal Architecture (ADR-0002).
+The application core is completely insulated from vendor lock-in thanks to strict adherence to Hexagonal Architecture ([ADR-0002](../02-adrs/nodejs/0002-clean-architecture-nestjs.md)).
 * **TypeScript & Node.js**: Open Source (Apache 2.0 / MIT).
 * **NestJS**: Open Source (MIT), highly adopted enterprise framework.
 * **Nx Monorepo**: Open Source (MIT). *Note: Nx Cloud offers SaaS caching, but local caching is 100% free.*
@@ -33,7 +33,7 @@ The application core is completely insulated from vendor lock-in thanks to stric
 ### ?? Medium Licensing Risk: Redis Distributed Caching
 * **Context**: [ADR-0014](../02-adrs/core/0014-distributed-caching-strategy-redis.md) mandates Redis for caching.
 * **The Risk**: Redis Inc. recently changed its licensing from BSD to RSALv2 (Source Available, not strictly OSI Open Source). While free for internal usage, it poses legal concerns for managed service hosting.
-* **Mitigation Strategy**: In case of strict open-source compliance requirements or self-hosted deployment (ADR-0028), the operations team is authorized to use **Valkey** (the Linux Foundation Open Source fork of Redis) as a drop-in replacement.
+* **Mitigation Strategy**: In case of strict open-source compliance requirements or self-hosted deployment ([ADR-0028](../02-adrs/core/0028-self-hosted-hybrid-infrastructure-on-premise.md)), the operations team is authorized to use **Valkey** (the Linux Foundation Open Source fork of Redis) as a drop-in replacement.
 
 ### ?? Medium Maintenance Risk: Feature Flag Engine
 * **Context**: [ADR-0017](../02-adrs/core/0017-feature-flagging-strategy.md) utilizes Infrastructure adapters for Feature Flags (e.g., Unleash, ConfigCat).

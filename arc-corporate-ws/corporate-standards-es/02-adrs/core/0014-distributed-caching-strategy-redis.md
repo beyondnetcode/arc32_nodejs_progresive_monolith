@@ -1,4 +1,4 @@
-# ADR 0014: Estrategia de Caché Distribuido Multi-Capa
+# [ADR 0014](0014-distributed-caching-strategy-redis.md): Estrategia de Caché Distribuido Multi-Capa
 
 ## Estado
 Aprobado

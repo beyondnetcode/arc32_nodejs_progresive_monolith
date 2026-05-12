@@ -1,4 +1,4 @@
-# ADR 0015: Event-Driven Architecture (EDA) for Intra-Domain Communication
+# [ADR 0015](0015-event-driven-architecture-intra-domain.md): Event-Driven Architecture (EDA) for Intra-Domain Communication
 
 ## Status
 Approved
@@ -7,10 +7,10 @@ Approved
 2026-05-08
 
 ## Updated
-2026-05-11 — Added reference to ADR-0031 Domain Event Catalog. Event definitions and the cross-context subscription map are now formally specified in that record.
+2026-05-11 — Added reference to [ADR-0031](0031-schema-per-context-domain-event-catalog.md) Domain Event Catalog. Event definitions and the cross-context subscription map are now formally specified in that record.
 
 ## Context
-As the Modular Monolith grows, allowing bounded contexts to call each other synchronously creates tight coupling. If one context is slow or fails, it should not cascade failures into other contexts. Additionally, inter-context communication must be defined as explicit typed contracts to enable safe future microservices extraction (ADR-0006).
+As the Modular Monolith grows, allowing bounded contexts to call each other synchronously creates tight coupling. If one context is slow or fails, it should not cascade failures into other contexts. Additionally, inter-context communication must be defined as explicit typed contracts to enable safe future microservices extraction ([ADR-0006](0006-future-microservices-transition-dapr.md)).
 
 ## Decision
 
@@ -44,16 +44,16 @@ Every event that crosses a bounded context boundary must be a typed class with a
 
 ### 3. Intra-Context (Internal) vs Cross-Context Events
 - **Intra-context events** (within the same bounded context): May use synchronous NestJS event emitters with no schema constraints.
-- **Cross-context events** (crossing bounded context boundaries): MUST use `IEventBusPort` and MUST conform to the typed payload definitions in ADR-0031.
+- **Cross-context events** (crossing bounded context boundaries): MUST use `IEventBusPort` and MUST conform to the typed payload definitions in [ADR-0031](0031-schema-per-context-domain-event-catalog.md).
 
-### 4. Future Microservices Readiness (ADR-0006)
+### 4. Future Microservices Readiness ([ADR-0006](0006-future-microservices-transition-dapr.md))
 When a bounded context is extracted into an independent microservice:
 - Replace the `in-memory` bus implementation with `rabbitmq` or `kafka` — **zero domain code changes required**.
 - The `IEventBusPort` abstraction guarantees the domain remains agnostic to the transport layer.
 
 ## Consequences
 * **Pros**: High decoupling, fault isolation, explicit integration contracts, smooth microservices transition path.
-* **Cons**: Eventual consistency across contexts must be embraced. Distributed tracing (ADR-0007) is required to follow event flows across context boundaries.
+* **Cons**: Eventual consistency across contexts must be embraced. Distributed tracing ([ADR-0007](../nodejs/0007-observability-telemetry-loki-opentelemetry.md)) is required to follow event flows across context boundaries.
 
 ## References
 - [ADR-0006: Future Microservices via Dapr](../02-adrs/core/0006-future-microservices-transition-dapr.md)
