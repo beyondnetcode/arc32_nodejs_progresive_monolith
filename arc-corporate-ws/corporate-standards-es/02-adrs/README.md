@@ -39,6 +39,7 @@ Decisiones aplicables a cualquier producto construido sobre el framework, indepe
 *   [ADR 0044: Estrategia de Persistencia de Seguridad Configurable](./core/0044-configurable-security-persistence-strategy.md)
 *   [ADR 0045: Criterios de Aceptación para Extracción de Microservicios](./core/0045-microservice-extraction-readiness-criteria.md)
 *   [ADR 0046: Adopción de Dapr y Observabilidad Unificada](./core/0046-dapr-observabilidad-unificada.md)
+*   [ADR 0047: Marco de Selección: Monolito vs SOA vs Microservicios](./core/0047-architectural-patterns-monolith-soa-microservices.md)
 
 ---
 
