@@ -53,23 +53,46 @@ Our core vision states that **Infrastructure is an Implementation Detail**, asse
 To ensure zero structural drift over time, every phase is measured via strict deterministic equations.
 
 ### 📈 3.1 Agnosticism Index ($PI$)
-Quantifies healthy decoupling versus logic leaks into dirty infrastructure layers.
-$$PI = \frac{\text{Lines of Code (Domain + App)}}{\text{Lines of Code (Infrastructure)}}$$
-*   **Goal:** The $PI$ value must demonstrate growth or absolute stability. Any contraction flags urgent refactoring where business logic is filtering into specific persistence dialects or external SDKs.
+Quantifies healthy decoupling versus logic leaks into messy infrastructure layers.
+
+```math
+PI = \frac{\text{Lines of Code (Domain + App)}}{\text{Lines of Code (Infrastructure)}}
+```
+
+*   **Goal:** Growth or absolute stability over time. A shrinking score warns of leaks into persistence or frameworks.
+*   💡 **Practical Example:**
+    *   Business Logic Code: 10,000 lines.
+    *   Persistence/Infra Code: 2,000 lines.
+    *   **Current PI:** $10,000 / 2,000 = 5.0$ (Healthy state). If dropped to 2.0, urgent isolation review is flagged.
 
 ### ⚡ 3.2 Security Performance Delta ($\Delta P$)
-Tracks latency discrepancies between software and hardware-backed containment strategies.
-$$\Delta P = P95_{\text{APP\_AGNOSTIC}} - P95_{\text{INFRA\_NATIVE}}$$
-*   **Goal:** Percentile penalty under `APP_AGNOSTIC` mode for non-trivial processes must sustain **below 15%**.
+Tracks the relative latency delta observed between application-tier and hardware-enforced containment.
+
+```math
+\Delta P = P95_{\text{APP\_AGNOSTIC}} - P95_{\text{INFRA\_NATIVE}}
+```
+
+*   **Goal:** Percentile latency penalty under 15% when executing the Agnostic path.
+*   💡 **Practical Example:**
+    *   Native RLS Mode: 40ms read response.
+    *   Agnostic App Mode: 45ms read response.
+    *   **Impact:** 5ms increase (+12.5%). **PASSED** (Threshold below 15%).
 
 ### ⏱️ 3.3 Mean Time to Migration (MTTM)
-Assesses velocity Effort (Man-Hours) required to wholly hot-swap a Persistence Adapter (e.g., transitioning fully from TypeORM to Drizzle or MySQL to PostgreSQL).
-*   **Goal:** Less than 24 man-hours total for critical services by entering Phase 3.
+Objective effort assessed in transitioning or hot-swapping a foundational infrastructural component.
+
+*   **Goal:** Under 24 man-hours total elapsed effort for primary services by entering Phase 3.
+*   💡 **Practical Example:** A concentrated team of 3 staff engineers executes a full adapter swap from TypeORM to Drizzle within a single shared 8-hour workday (8h x 3 = 24h total effort).
 
 ### 🧹 3.4 Planned Technical Debt Ratio ($RTD$)
-Secures the code health benchmark shielding against high-frequency product demands.
-$$RTD = \frac{\text{Refactoring / Technical Debt Tickets}}{\text{Feature Delivery Tickets}}$$
-*   **Goal:** Retain a non-negotiable capacity band of **20%** dedicated exclusively to iteratively resolving technical corners cut during standard MVP prototyping.
+Protects code core stability against aggressive external product feature velocity.
+
+```math
+RTD = \frac{\text{Refactoring Tickets}}{\text{Feature Tickets}}
+```
+
+*   **Goal:** Retain a constant capacity band of 20% devoted exclusively to ongoing sanitary discipline.
+*   💡 **Practical Example:** For every 10 completed User Stories inside a delivery cycle, the squad completes at least 2 Refactoring tickets (`tech-debt`) directed towards foundational clean-up.
 
 ---
 

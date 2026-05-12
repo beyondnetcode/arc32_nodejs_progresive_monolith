@@ -54,22 +54,45 @@ Para asegurar la deriva arquitectónica cero, evaluamos cada fase con el siguien
 
 ### 📈 3.1 Índice de Agnosticismo ($PI$)
 Mide el acoplamiento saludable vs. contaminación de infraestructura.
-$$PI = \frac{\text{Líneas de Código (Dominio + Aplicación)}}{\text{Líneas de Código (Infraestructura)}}$$
-*   **Meta:** El valor de $PI$ debe ser creciente o mantenerse estable en el tiempo. Si cae, indica una filtración de lógica de negocio hacia la capa de persistencia o dependencias externas.
+
+```math
+PI = \frac{\text{Líneas de Código (Dominio + Aplicación)}}{\text{Líneas de Código (Infraestructura)}}
+```
+
+*   **Meta:** Valor creciente o estable. Si cae, indica "sangrado" de lógica de negocio hacia el ORM o Framework.
+*   💡 **Ejemplo Práctico:**
+    *   Código de Negocio: 10,000 líneas.
+    *   Código de Persistencia/Infra: 2,000 líneas.
+    *   **PI Actual:** $10,000 / 2,000 = 5.0$ (Estado Sano). Si baja a 2.0, se requiere auditoría urgente.
 
 ### ⚡ 3.2 Delta de Rendimiento de Seguridad ($\Delta P$)
-Impacto de latencia comparativo entre los modos de seguridad.
-$$\Delta P = P95_{\text{APP\_AGNOSTIC}} - P95_{\text{INFRA\_NATIVE}}$$
-*   **Meta:** La penalización porcentual en modo `APP_AGNOSTIC` para procesos transaccionales críticos debe ser **menor al 15%**.
+Impacto de latencia comparativo entre el filtrado por software vs. el filtrado nativo por hardware.
+
+```math
+\Delta P = P95_{\text{APP\_AGNOSTIC}} - P95_{\text{INFRA\_NATIVE}}
+```
+
+*   **Meta:** Penalización porcentual de latencia inferior al 15% en modo Agnóstico.
+*   💡 **Ejemplo Práctico:**
+    *   Modo Nativo RLS: 40ms de respuesta en lectura.
+    *   Modo Agnóstico App: 45ms de respuesta.
+    *   **Impacto:** Aumento de 5ms (+12.5%). **PASA EL CONTROL** (Menor al 15%).
 
 ### ⏱️ 3.3 Tiempo de Recuperación y Migración (MTTM)
-Esfuerzo en Horas/Hombre necesario para reemplazar un Adaptador de Persistencia completo (ej: cambiar TypeORM por Drizzle o MySQL por PostgreSQL).
-*   **Meta:** Menor a 24 horas hombre para servicios críticos al llegar a la Fase 3.
+Esfuerzo real necesario para reemplazar por completo un adaptador de infraestructura crítica.
+
+*   **Meta:** Menor a 24 horas hombre para servicios críticos en la Fase 3.
+*   💡 **Ejemplo Práctico:** Un equipo de 3 desarrolladores debe ser capaz de migrar de TypeORM a Drizzle en una sola jornada laboral (8h x 3 = 24h) gracias al desacoplamiento de la interfaz `IRepositoryPort`.
 
 ### 🧹 3.4 Ratio de Deuda Técnica Planeada ($RTD$)
 Garantía de salud del código base contra la presión de producto.
-$$RTD = \frac{\text{Tickets de Refactorización / Deuda}}{\text{Tickets de Nuevas Funcionalidades}}$$
-*   **Meta:** Mantener un ratio constante del **20%** para la limpieza iterativa de 'atajos' técnicos tomados durante el MVP.
+
+```math
+RTD = \frac{\text{Tickets de Refactorización}}{\text{Tickets de Funcionalidades}}
+```
+
+*   **Meta:** Mantener un ratio constante del 20% para saneamiento continuo.
+*   💡 **Ejemplo Práctico:** Por cada 10 User Stories finalizadas en un Sprint, el equipo debe procesar 2 Tickets de Refactoring (`tech-debt`) dedicados a la limpieza del MVP foundation.
 
 ---
 
