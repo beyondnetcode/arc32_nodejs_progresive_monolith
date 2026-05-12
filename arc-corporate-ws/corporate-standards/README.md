@@ -11,6 +11,7 @@ Welcome to the central repository of architectural truth. Every document present
 ### 👁️ Phase 00: Vision and Internal Audit
 Non-negotiable principles of growth, consistency diagnostics, and self-assessment models.
 *   [Architectural Directives and Evolution](./00-vision/architectural-directives.md)
+*   **[🚀 Evolutionary Strategy and Dashboard](./00-vision/evolutionary-strategy-roadmap.md)** *(Global Vision)*
 *   [Corporate Maturity Matrix](./00-vision/maturity-matrix.md)
 *   [Dynamic Maturity Evaluation](./00-vision/maturity-evaluation.md)
 

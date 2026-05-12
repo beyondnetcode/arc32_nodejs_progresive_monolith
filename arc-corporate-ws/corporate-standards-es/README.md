@@ -11,6 +11,7 @@ Bienvenido al repositorio central de la verdad arquitectónica. Cada documento p
 ### 👁️ Fase 00: Visión y Auditoría Interna
 Principios no negociables de crecimiento, diagnósticos de consistencia y modelos de autoevaluación.
 *   [Directivas Arquitectónicas y Evolución](./00-vision/architectural-directives.md)
+*   **[🚀 Estrategia Evolutiva y Tablero de Control](./00-vision/evolutionary-strategy-roadmap.md)** *(Visión Global)*
 *   [Matriz de Madurez Corporativa](./00-vision/maturity-matrix.md)
 *   [Evaluación de Madurez Dinámica](./00-vision/maturity-evaluation.md)
 
