@@ -13,8 +13,6 @@ Principios no negociables de crecimiento, diagnósticos de consistencia y modelo
 *   [Directivas Arquitectónicas y Evolución](./00-vision/architectural-directives.md)
 *   [Matriz de Madurez Corporativa](./00-vision/maturity-matrix.md)
 *   [Evaluación de Madurez Dinámica](./00-vision/maturity-evaluation.md)
-*   [Reporte de Consistencia de Auditoría Maestra bMAD](./00-vision/bmad-master-audit-consistency-report.md)
-*   [Reporte de Alineación de Auditoría Maestra bMAD](./00-vision/bmad-master-audit-alignment-report.md)
 
 ### 📐 Fase 01: Blueprint y Topología (arc42)
 El diseño estructural del sistema detallado en vistas C4 y CAP.

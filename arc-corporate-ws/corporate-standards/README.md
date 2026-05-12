@@ -13,8 +13,6 @@ Non-negotiable principles of growth, consistency diagnostics, and self-assessmen
 *   [Architectural Directives and Evolution](./00-vision/architectural-directives.md)
 *   [Corporate Maturity Matrix](./00-vision/maturity-matrix.md)
 *   [Dynamic Maturity Evaluation](./00-vision/maturity-evaluation.md)
-*   [bMAD Master Audit Consistency Report](./00-vision/bmad-master-audit-consistency-report.md)
-*   [bMAD Master Audit Alignment Report](./00-vision/bmad-master-audit-alignment-report.md)
 
 ### 📐 Phase 01: Blueprint and Topology (arc42)
 The structural design of the system detailed in C4 and CAP views.
