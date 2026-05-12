@@ -9,7 +9,7 @@
 Welcome to the **Unified Corporate Reference Architecture**. This ecosystem serves as the canonical blueprint for enterprise digital systems designed to scale dynamically from Modular Monoliths into fully distributed cloud ecosystems.
 
 ### 🎯 Primary Mission Objectives:
-*   **Decoupling Absolute:** Ensure business logic remains 100% agnostic of frameworks and database dialects via the **bMAD Method** (Hexagonal boundaries).
+*   **Decoupling Absolute:** Ensure business logic remains 100% agnostic of frameworks and database dialects through rigorous **Hexagonal Architecture** (Ports & Adapters).
 *   **Security First:** Enforce inherent Isolation through native Row-Level Security (RLS) and strict tenant separation at the root level.
 *   **Standardized Delivery:** Dictate clear, gated software development lifecycles (SDLC) ensuring 100% reproducible quality across polyglot workloads.
 

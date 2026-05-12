@@ -9,7 +9,7 @@
 Bienvenido a la **Arquitectura de Referencia Corporativa Unificada**. Este ecosistema sirve como el plano canónico para sistemas digitales empresariales diseñados para escalar dinámicamente desde Monolitos Modulares hasta ecosistemas de nube completamente distribuidos.
 
 ### 🎯 Objetivos de Misión Primarios:
-*   **Desacoplamiento Absoluto:** Garantizar que la lógica de negocio permanezca 100% agnóstica a frameworks y dialectos de bases de datos mediante el **Método bMAD** (fronteras Hexagonales).
+*   **Desacoplamiento Absoluto:** Garantizar que la lógica de negocio permanezca 100% agnóstica a frameworks y dialectos de bases de datos mediante la implementación de **Arquitectura Hexagonal** (Puertos y Adaptadores).
 *   **Seguridad Primero:** Imponer aislamiento inherente a través de Seguridad de Nivel de Fila (RLS) nativa y separación estricta de inquilinos en la raíz.
 *   **Entrega Estandarizada:** Dictar ciclos de vida de desarrollo de software (SDLC) cerrados y regulados que aseguren un 100% de calidad reproducible en todas las cargas de trabajo políglotas.
 

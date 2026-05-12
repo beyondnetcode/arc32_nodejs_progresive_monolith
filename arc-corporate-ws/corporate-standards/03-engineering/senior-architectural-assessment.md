@@ -14,7 +14,8 @@
 The repository presents a corporate reference architecture with a notable level of documentation maturity. The following stand out positively:
 
 - **44 Formalized and Traceable ADRs**, with bidirectional linking between blueprint and technical decisions.
-- **bMAD Method** (Hexagonal + Optional DDD + Polyglot) correctly justified rather than enforced.
+- **Architectural Model** (Hexagonal + Optional DDD + Polyglot) correctly justified rather than enforced.
+- **bMAD Method Delivery** optimized via AI-Agent spec-driven workflows.
 - **Injectable IEventBusPort** — the right decision; enables the In-Memory → RabbitMQ → Kafka transition without touching the domain.
 - **Dual-Layer RLS** (ORM + PostgreSQL native) as a multi-tenant isolation mechanism — architecturally solid.
 - **Result<T,E> Pattern** ([ADR-0019](../02-adrs/core/0019-tactical-design-patterns-future-proofing.md)) over exceptions — excellent choice for TypeScript, eliminating implicit side-effects.
