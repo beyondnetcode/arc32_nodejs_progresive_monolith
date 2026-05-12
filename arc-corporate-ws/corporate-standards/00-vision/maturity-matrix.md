@@ -78,7 +78,7 @@ We evaluate the Reference Skeleton architecture against the 5 critical pillars o
 
 ## 3. Executive Summary & Scoring
 
-Based on the TOGAF ACMM criteria applied to our current BMAD-driven architecture:
+Based on the TOGAF ACMM criteria applied to our current bMAD-driven architecture:
 
 **Overall Reference Skeleton Architectural Maturity Score: 3.8 / 5.0 (Defined to Managed)**
 

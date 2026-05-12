@@ -1,6 +1,6 @@
-# 📈 Estrategia de Auditoría Continua y Versionado Automatizado (BMAD)
+# 📈 Estrategia de Auditoría Continua y Versionado Automatizado (bMAD)
 
-Para mantener un registro de auditoría estricto y rastreable sincronizado con GitHub, el Método BMAD no se basa en la redacción manual de documentos. En su lugar, aprovechamos el ecosistema que ya hemos construido (**Conventional Commits**) combinado con el poder nativo de nuestro orquestador: **Nx Release**.
+Para mantener un registro de auditoría estricto y rastreable sincronizado con GitHub, el Método [bMAD](https://github.com/bmad-code-org/BMAD-METHOD) no se basa en la redacción manual de documentos. En su lugar, aprovechamos el ecosistema que ya hemos construido (**Conventional Commits**) combinado con el poder nativo de nuestro orquestador: **Nx Release**.
 
 ## 1. El Pilar: Conventional Commits
 Dado que ya hemos implementado `commitlint`, el repositorio sabe exactamente qué tipo de cambio ocurrió.

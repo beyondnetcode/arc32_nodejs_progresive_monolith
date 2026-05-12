@@ -1,7 +1,7 @@
 {
   "name": "arc-corporate-ws",
   "version": "1.0.0",
-  "description": "Enterprise Monorepo for User Management System (UMS) using NestJS, React, PostgreSQL, and BMAD Method",
+  "description": "Enterprise Monorepo for User Management System (UMS) using NestJS, React, PostgreSQL, and bMAD Method",
   "private": true,
   "workspaces": [
     "apps/api",

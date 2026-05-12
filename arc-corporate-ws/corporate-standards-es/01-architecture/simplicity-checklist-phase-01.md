@@ -12,7 +12,7 @@ Este documento sirve como salvaguarda contra la sobre-ingeniería prematura. Ant
 - [ ] **2. Cómputo de Despliegue Mínimo**: ¿Se ha evitado el uso de orquestadores complejos (Kubernetes, Nomad) en favor de soluciones directas (Docker Compose, App Services o una VM estándar)?
 - [ ] **3. Inyección Asíncrona Simplificada**: ¿Se ha implementado un EventBus "In-Memory" para el desarrollo inicial, posponiendo el levantamiento de clústeres RabbitMQ/Kafka hasta el desacoplamiento real?
 - [ ] **4. Patrones Transaccionales Simples**: ¿Se han evitado patrones distribuidos como **Saga**, **Transactional Outbox** o **CQRS**, confiando en transacciones ACID nativas de la base de datos mientras exista un solo esquema?
-- [ ] **5. Diseño sin Abstracción Prematura**: ¿El diseño utiliza una estructura modular de 3 capas legible (Controller -> Service -> Repository) en lugar de forzar mallas complejas de Puertos y Adaptadores hexagonales?
+- [ ] **5. Puertos Esenciales Sin Wrappers**: ¿Se han utilizado Puertos (Contratos) y Adaptadores (Implementaciones directas) OBLIGATORIOS para proteger el dominio, evitando wrappers complejos o capas de anti-corrupción redundantes?
 - [ ] **6. Seguridad de Red Local**: ¿Se han pospuesto los requisitos de malla de servicio mTLS o firewall interno, confiando en el aislamiento de la infraestructura del host único?
 - [ ] **7. Observabilidad Suficiente**: ¿La telemetría se enfoca exclusivamente en logs estructurados JSON y métricas base, posponiendo el trazado distribuido complejo hasta que haya múltiples saltos de red?
 - [ ] **8. Documentación Justo a Tiempo**: ¿Se han redactado notas de diseño y diagramas ligeros enfocados en el dominio en lugar de generar blueprints arc42 exhaustivos antes de codificar?

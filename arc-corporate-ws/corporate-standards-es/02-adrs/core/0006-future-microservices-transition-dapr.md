@@ -53,7 +53,16 @@ routes:
 - Añade Kubernetes/orquestación de contenedores como un prerrequisito para la fase de malla completa.
 - El desarrollo local con Dapr añade una sobrecarga de proceso sidecar por servicio.
 
+---
+
+## ➕ Addenda: Integración de Observabilidad (Dapr + App)
+Con la introducción de Dapr en fases avanzadas, se formalizan los siguientes mandatos de observabilidad para evitar duplicidad de hilos de correlación:
+1. **Cero SDKs en Core**: La instrumentación de Dapr en la lógica de dominio debe invocarse EXCLUSIVAMENTE a través del sidecar HTTP/gRPC, nunca importando el SDK nativo de Dapr en capas de dominio.
+2. **Unificación TraceContext**: El identificador de correlación manual pre-Dapr (`x-correlation-id`) debe converger con el estándar W3C TraceContext (`traceparent`) inyectado automáticamente por Dapr, gobernado por el **[ADR-0046](0046-dapr-observabilidad-unificada.md)**.
+3. **Exportación Centralizada**: Ambas fuentes de telemetría (Sidecar + App) deben utilizar el recolector OpenTelemetry unificado para garantizar vistas de traza de extremo a extremo coherentes.
+
 ## Referencias
 - [ADR-0015: Arquitectura Dirigida por Eventos](../02-adrs/core/0015-event-driven-architecture-intra-domain.md)
 - [ADR-0031: Esquema por Contexto y Catálogo de Eventos de Dominio](../02-adrs/core/0031-schema-per-context-domain-event-catalog.md)
+- [ADR-0046: Observabilidad Unificada Dapr](./0046-dapr-observabilidad-unificada.md)
 - [Documentación de Dapr](https://dapr.io)

@@ -53,7 +53,16 @@ routes:
 - Adds Kubernetes/container orchestration as a prerequisite for the full mesh phase.
 - Local Dapr development adds sidecar process overhead per service.
 
+---
+
+## ➕ Addenda: Observability Integration (Dapr + App)
+With the subsequent introduction of Dapr, explicit observability mandates are enacted to prevent fragmented correlation strands:
+1. **Zero SDKs in Core**: Dapr instrumentation must be invoked EXCLUSIVELY via sidecar HTTP/gRPC, strictly preventing native Dapr SDK leakage into domain layers.
+2. **TraceContext Convergence**: Pre-Dapr manual correlation identifiers (`x-correlation-id`) must merge seamlessly into the W3C TraceContext (`traceparent`) injected by Dapr, governed by **[ADR-0046](0046-dapr-unified-observability.md)**.
+3. **Unified Export**: Both telemetry streams (Sidecar + App) must funnel via the unified OpenTelemetry collector to maintain true end-to-end spanning visualizations.
+
 ## References
 - [ADR-0015: Event-Driven Architecture](../02-adrs/core/0015-event-driven-architecture-intra-domain.md)
 - [ADR-0031: Schema-per-Context & Domain Event Catalog](../02-adrs/core/0031-schema-per-context-domain-event-catalog.md)
+- [ADR-0046: Dapr Unified Observability](./0046-dapr-unified-observability.md)
 - [Dapr Documentation](https://dapr.io)

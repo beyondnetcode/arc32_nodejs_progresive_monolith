@@ -12,7 +12,7 @@
 
 Regardless of the concrete technology stack chosen (Node.js, .NET, or Kotlin), every component integrating into the ecosystem MUST strictly adhere to these systemic architectural invariants. Violation of these constraints will automatically fail Architecture Gate validation.
 
-*   **Architectural Core:** Modular Architecture (Evolution towards Hexagonal). Phase 1 permits a standard layered design (Controller-Service-Repository); Hexagonal Architecture with Ports & Adapters is strictly mandated starting from Phase 2 (Extraction). 
+*   **Architectural Core:** Hexagonal Architecture (Ports & Adapters). In Phase 1, Ports (domain contracts) and Adapters (concrete implementations) are MANDATORY but must remain simple and direct. Each port should have a single direct implementation, without additional layers. Complex anti-corruption wrappers and facades are postponed to phases involving external integration. 
 *   **Zero SDK Policy:** The absolute Domain layer MUST contain ZERO references, imports, or dependencies to Cloud-Provider SDKs (AWS, Azure), ORM libraries, or specific HTTP Frameworks.
 *   **Infrastructure as Detail:** Persistence layers, message buses, and caching stores MUST only be interacted with via abstract Domain Ports.
 *   **Progressive Deployment Guarantee:** All backend components MUST be packaged as standard containers (OCI). Infrastructure complexity evolves alongside system maturity: Phase 1 allows deployment on minimum compute (VM, App Service, or Docker Compose); Kubernetes is mandatory from decoupled service architectures onward (Phase 3+). Air-gapped compatibility is planned from onset but scales into full execution later.

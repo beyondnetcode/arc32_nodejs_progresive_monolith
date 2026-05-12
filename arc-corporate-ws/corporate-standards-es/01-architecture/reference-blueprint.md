@@ -55,7 +55,7 @@ Para comprender profundamente la postura matemática y de riesgo de esta arquite
 Cualquier sistema basado en este blueprint debe adherirse a los siguientes pilares no negociables:
 
 *   **Gobernanza del Stack ([ADR-0001](../02-adrs/core/0001-monorepo-orchestration-nx.md))**: Nx Monorepo + npm Workspaces para una gobernanza centralizada de dependencias.
-*   **Mandato de Ingeniería bMAD ([ADR-0002](../02-adrs/nodejs/0002-clean-architecture-nestjs.md), [ADR-0003](../02-adrs/nodejs/0003-strict-typescript-standards.md))**: SOLID, Código Limpio, Evolución hacia Hexagonal (obligatoria desde Fase 2), TypeScript estricto.
+*   **Mandato de Ingeniería bMAD ([ADR-0002](../02-adrs/nodejs/0002-clean-architecture-nestjs.md), [ADR-0003](../02-adrs/nodejs/0003-strict-typescript-standards.md))**: SOLID, Código Limpio, Arquitectura Hexagonal (Puertos/Adaptadores simples obligatorios), TypeScript estricto.
 *   **Seguridad de Dependencias ([ADR-0009](../02-adrs/core/0009-strict-dependency-pinning-vulnerability-management.md))**: Todas las versiones de dependencias fijadas. Sin rangos `^` o `~`. Escaneo automatizado de vulnerabilidades en CI.
 *   **Puertas de Calidad ([ADR-0018](../02-adrs/core/0018-testing-pyramid-quality-gates.md))**: Pirámide de pruebas automatizada. Mínimo 70% de cobertura obligatoria en CI.
 *   **Portabilidad de Infraestructura ([ADR-0028](../02-adrs/core/0028-self-hosted-hybrid-infrastructure-on-premise.md))**: Prioridad de OSS autohospedado (MinIO, RabbitMQ, Vault) sobre el bloqueo de nube.

@@ -1,4 +1,4 @@
-# 🏛️ Estándares Globales de Ingeniería y Guías para Desarrolladores (Manifiesto BMAD)
+# 🏛️ Estándares Globales de Ingeniería y Guías para Desarrolladores (Manifiesto [bMAD](https://github.com/bmad-code-org/BMAD-METHOD))
 
 ## 1. 🌟 Principios Core de Ingeniería (Obligatorios)
 Todo código, wrappers y diseños arquitectónicos dentro de este monorepo **DEBEN** adherirse estrictamente a los siguientes principios. Las revisiones de código rechazarán cualquier Pull Request que viole estos fundamentos:
@@ -8,7 +8,7 @@ Todo código, wrappers y diseños arquitectónicos dentro de este monorepo **DEB
 *   **KISS (Keep It Simple, Stupid)**: Evitar la sobre-ingeniería. Escribir código que sea fácil de leer, entender y depurar.
 *   **YAGNI (You Aren't Gonna Need It)**: No añadir funcionalidad, abstracciones o herramientas hasta que sean estrictamente necesarias.
 *   **SoC (Separation of Concerns)**: Mantener las capas completamente aisladas. Un controlador no debe escribir lógica de negocio; un caso de uso no debe ejecutar SQL puro.
-*   **Clean Code y Arquitectura Limpia**: Respetar límites lógicos. Se permite y recomienda el patrón clásico de 3 capas (Controller-Service-Repository) para prototipos de Fase 1; la Arquitectura Hexagonal es mandatoria al avanzar a la Fase 2.
+*   **Clean Code y Arquitectura Limpia**: Proteger el dominio. Los Puertos (interfaces) y Adaptadores (implementaciones simples) son OBLIGATORIOS desde la Fase 1 para evitar acoplamiento técnico estructural. La complejidad adicional (wrappers) se difiere.
 *   **Seguro por Diseño & OWASP**: Validar todas las entradas (DTOs), sanear las salidas, imponer RBAC de forma nativa y prevenir inyecciones SQL/NoSQL por defecto.
 
 ---
@@ -30,8 +30,22 @@ Para garantizar una alta mantenibilidad y una baja deuda técnica, se prohíben 
 
 ---
 
-## 4. ⚙️ Gobernanza Técnica y Mecanismos de Aplicación
-La revisión humana es imperfecta. Confiamos en la **Aplicación Automatizada** para asegurar que estos principios sean sostenibles a lo largo del tiempo dentro del marco BMAD:
+## 4. 🧩 Puertos y Adaptadores: Qué es Esencial vs. Accidental
+Para evitar deuda estructural técnica y garantizar que el núcleo de dominio nunca se contamine con detalles de frameworks o infraestructura, la arquitectura hexagonal no se "pospone", sino que se implementa de forma simplificada.
+
+| Concepto | ¿Esencial o Accidental? | ¿Fase 1? | ¿Fase 2+? |
+| :--- | :--- | :--- | :--- |
+| **Puerto (Interfaz/Contrato)** | **Esencial** | **OBLIGATORIO** | Obligatorio |
+| **Adaptador (Implementación directa)** | **Esencial** | **OBLIGATORIO, simple** | Puede evolucionar |
+| **Wrapper anticorrupción complejo** | Accidental | Prohibido (posponer) | Permitido si hay integración externa |
+| **Fachada / Capa adicional** | Accidental | Prohibido (posponer) | Permitido si es justificado por ADR |
+
+> ⚠️ **Regla de Oro**: Un adaptador simple en Fase 1 es una sola clase que implementa el puerto y llama directamente a la librería (ej. TypeORM o Prisma), sin crear capas de abstracción intermedias redundantes.
+
+---
+
+## 5. ⚙️ Gobernanza Técnica y Mecanismos de Aplicación
+La revisión humana es imperfecta. Confiamos en la **Aplicación Automatizada** para asegurar que estos principios sean sostenibles a lo largo del tiempo dentro del marco bMAD:
 
 1.  **Linters y Reglas Arquitectónicas**:
     *   `eslint-plugin-boundaries` fallará automáticamente la construcción si un desarrollador importa una capa exterior (infraestructura) en una capa interior (core).
@@ -48,7 +62,7 @@ La revisión humana es imperfecta. Confiamos en la **Aplicación Automatizada** 
 
 ---
 
-## 5. 🎯 Matriz de Prioridad de Decisión
+## 6. 🎯 Matriz de Prioridad de Decisión
 Cada vez que se toma una decisión técnica (ej. escribir un nuevo ADR, elegir una librería o diseñar un módulo), el arquitecto y los desarrolladores deben priorizar los siguientes atributos, en orden:
 1.  **Mantenibilidad**
 2.  **Escalabilidad**
@@ -63,7 +77,7 @@ Cada vez que se toma una decisión técnica (ej. escribir un nuevo ADR, elegir u
 
 ---
 
-## 6. 📉 Complejidad de Plataforma Progresiva
+## 7. 📉 Complejidad de Plataforma Progresiva
 > [!IMPORTANT]
 > **Canon de Evolución Progresiva**: La arquitectura evoluciona en complejidad incremental. La Fase 1 es deliberadamente simple y no exige tecnologías, patrones o procesos que excedan las necesidades de un monolito modular. Cada requisito adicional se introduce en la fase donde la arquitectura lo justifica objetivamente, no antes.
 
@@ -75,7 +89,7 @@ La preparación para escenarios físicamente desconectados (Air-Gapped) se garan
 
 ---
 
-## 7. 📝 Checklist de Calidad de Pull Request
+## 8. 📝 Checklist de Calidad de Pull Request
 Antes de enviar un PR, los desarrolladores deben verificar:
 - [ ] No se filtra lógica de capa externa en el Dominio.
 - [ ] Los intereses transversales (Registro, Caché) usan Decoradores o Puertos (No hay lógica de herramientas a fuego en el core).
