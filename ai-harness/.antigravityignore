@@ -1,0 +1,46 @@
+# Token Optimization & Ingestion Exclusion List
+# Prevents Antigravity / Gemini from wasting context window tokens on heavy/noise files.
+
+# Project artifacts
+node_modules/
+dist/
+build/
+out/
+bin/
+obj/
+.next/
+.cache/
+coverage/
+npm-debug.log*
+yarn-error.log*
+
+# Heavy & non-readable media
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.svg
+*.ico
+*.webp
+*.mp4
+*.zip
+*.tar.gz
+*.pdf
+*.exe
+*.dll
+
+# IDE / Cache
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+*.suo
+*.user
+
+# Massive Logs / Databases
+*.log
+*.sqlite
+*.db
+*.sql
+tmp/
+temp/
