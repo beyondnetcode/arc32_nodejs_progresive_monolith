@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="./arc32_hero_banner.png" width="100%" height="100" alt="arc32 Banner" />
+  <img src="./arc32_hero_banner.png" width="100%" alt="arc32 Banner" />
 
   # 🌐 arc32: Ecosistema de Arquitectura Progresiva
   
