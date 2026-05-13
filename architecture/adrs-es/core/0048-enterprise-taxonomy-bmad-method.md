@@ -8,14 +8,14 @@ A medida que el ecosistema evoluciona hacia un Monolito Progresivo, la prolifera
 Se requería una política inmutable que unificara la estructura de directorios, la separación por dominios y la ubicación de los artefactos de gobernanza en la raíz del repositorio, garantizando el principio de Single Source of Truth (SSoT) en la documentación (Docs-as-Code).
 
 ## Decisión
-Se ha decidido adoptar e imponer la **Política de Taxonomía y Estructuración del Repositorio (Enterprise)** como un estándar global, inmutable y heredable para este repositorio y todos los ecosistemas satélites.
+Se ha decidido evolucionar el estándar hacia el modelo **Source-Centric Monorepo (v2.0)**. Esta política impone la segregación absoluta entre la gobernanza humana (Raíz) y la maquinaria técnica (Src).
 
 Las reglas clave obligatorias son:
-1. **The Blue-Map Layout:** La raíz del proyecto debe mantenerse plana y estrictamente dividida por capas de abstracción (`governance`, `architecture`, `src`, `03-infrastructure`, `04-operations`, `knowledge`).
-2. **Prohibición de Carpetas Comunes:** No se permiten carpetas como `utils`, `misc` o `shared` a nivel global ni de dominio sin un contexto de negocio justificado.
-3. **Encapsulamiento DDD:** Todo el código fuente de las aplicaciones y librerías debe migrarse desde un enfoque técnico (ej. `apps/` y `libs/`) hacia un enfoque de Dominio (`src/[nombre-del-dominio]`).
-4. **Naming Conventions:** Uso estricto de `kebab-case` y prefijos para identificar tipos de artefactos (`app-`, `lib-`).
-5. **Dot-Folders para Tooling:** Herramientas técnicas como la IA (`.harness`), automatizaciones (`.github`) o motores (`.bmad-core`) deben ubicarse en carpetas ocultas que comienzan con punto.
+1.  **The Blue-Map Layout (v2.0)**: La raíz del proyecto es un **Portal de Gobernanza** que solo contiene documentación ejecutiva (`README`, `MASTER_INDEX`) y carpetas de alto nivel (`governance/`, `architecture/`).
+2.  **Centralización Técnica (`src/.workspace/`)**: Todo artefacto relacionado con build, dependencias, tooling o configuración técnica del monorepo (`package.json`, `nx.json`, `node_modules`, etc.) debe vivir exclusivamente dentro de `src/.workspace/`.
+3.  **Encapsulamiento DDD**: El código y su lógica de dominio residen en `src/[dominio]/`, siendo unidades autónomas que contienen su propio código, gobernanza local y arquitectura.
+4.  **Naming Conventions**: Uso estricto de `kebab-case` y prefijos `app-` / `lib-`.
+5.  **Directivas de Plataforma**: Solo se permiten en la raíz archivos requeridos por el host (ej. `.github/`, `.gitignore`) o el contexto de IA (`.harness/`).
 
 ## Consecuencias
 ### Positivas:
