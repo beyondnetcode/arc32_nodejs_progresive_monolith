@@ -1,6 +1,6 @@
 # 📜 Política de Taxonomía y Estructuración del Repositorio (Enterprise)
 
-> **Estado:** 🟡 Propuesto | **Versión:** 1.0.0 | **Framework:** BMAD-METHOD & Clean Architecture
+> **Estado:** 🟡 Propuesto | **Versión:** 3.0.0 | **Framework:** BMAD-METHOD & Enterprise Taxonomy
 
 Este documento establece la **política oficial e inmutable** de estructuración, taxonomía y gobernanza para este repositorio empresarial.
 
@@ -9,18 +9,20 @@ Este documento establece la **política oficial e inmutable** de estructuración
 ## 🏗️ 1. Estructura Estándar de Directorios (The Blue-Map Layout)
 
 ```text
-/ (Repository Root)
-├── 📜 README.md                 # Portal Ejecutivo (Visión y navegación inicial)
-├── 📜 MASTER_INDEX.md           # Ruteo por Rol (Navegación basada en perfiles)
-├── 📁 .bmad-core/               # ⚡ MOTOR: Implementación del BMAD-Method (Agentes, Tooling)
-├── 📁 .github/                  # 🤖 CI/CD: Workflows, Actions, Templates de PR/Issue
-├── 📁 .harness/                 # 🧠 CONTEXTO AI: Reglas base, Playbooks, Prompts y Memoria
-├── 📁 governance/            # ⚖️ LEYES: Normativas, Políticas, SDLC y Estándares
-├── 📁 architecture/          # 🏗️ PLANOS: ADRs, Blueprints, Diagramas (C4 Model)
-├── 📁 src/               # 📦 NEGOCIO: Código fuente encapsulado por dominios (DDD). Contiene el 100% del código fuente del producto.
-├── 📁 infrastructure/        # 🛠️ CIMIENTOS: Infraestructura como Código (IaC), DevOps
-├── 📁 operations/            # 🚀 RUN: Playbooks de Operaciones, Observabilidad, Alertas
-└── 📁 knowledge/             # 🎓 APRENDIZAJE: Onboarding, POCs, Ejemplos, Capacitación
+/ (Repository Root) — [CAPA DE GOBERNANZA]
+├── 📜 README.md                 # Portal Ejecutivo (Visión y onboarding)
+├── 📜 MASTER_INDEX.md           # Hub de Navegación SSoT
+├── 📁 .harness/                 # Contexto de IA (Reglas, Memoria)
+├── 📁 governance/               # ⚖️ LEYES: Políticas, Requisitos y Roadmap
+├── 📁 architecture/             # 🏗️ PLANOS: ADRs, Blueprints y C4 Model
+├── 📁 infrastructure/           # 🛠️ CIMIENTOS: IaC, Docker, despliegue
+├── 📁 operations/               # 🚀 RUN: Observabilidad y Playbooks
+├── 📁 knowledge/                # 🎓 APRENDIZAJE: POCs y Onboarding
+└── 📁 src/                      # [CAPA TÉCNICA / SOURCE]
+    ├── 📁 apps/                 # Aplicaciones desplegables (app-*)
+    ├── 📁 libs/                 # Librerías compartidas (lib-*)
+    ├── 📜 package.json          # Orquestación del Monorepo
+    └── 📜 nx.json               # Grafo de tareas
 ```
 
 > [!IMPORTANT]
@@ -40,6 +42,10 @@ Este documento establece la **política oficial e inmutable** de estructuración
 2. **Docs-as-Code:** Prohibido repetir estándares; siempre enlazar a `governance/`.
 3. **Breadcrumbs:** Todo documento Markdown profundo debe contener un enlace de retroceso a `MASTER_INDEX.md`.
 
-## 🧩 4. Separación por Dominios (DDD)
+## 🧩 4. Separación de Responsabilidades
 
-El código en `src/` se organiza por **Capacidad de Negocio**. El código dentro de `user-management` no puede importar directamente archivos internos de otro dominio. La comunicación inter-dominio debe resolverse mediante contratos formales (Interfaces, APIs, Eventos).
+1.  **Código Fuente (`src/apps`, `src/libs`)**: Contiene la lógica de negocio, implementaciones técnicas y pruebas unitarias.
+2.  **Gobernanza Arquitectónica (`architecture/`)**: Contiene la justificación de las decisiones (ADRs) y la visión técnica a largo plazo.
+3.  **Gobernanza de Producto (`governance/`)**: Contiene el alcance, los requisitos y la validación de negocio.
+
+Está terminantemente prohibido duplicar información de gobernanza dentro de los directorios de código fuente. Toda referencia técnica debe apuntar a la raíz del repositorio.

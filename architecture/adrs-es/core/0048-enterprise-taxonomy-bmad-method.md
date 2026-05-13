@@ -8,14 +8,21 @@ A medida que el ecosistema evoluciona hacia un Monolito Progresivo, la prolifera
 Se requería una política inmutable que unificara la estructura de directorios, la separación por dominios y la ubicación de los artefactos de gobernanza en la raíz del repositorio, garantizando el principio de Single Source of Truth (SSoT) en la documentación (Docs-as-Code).
 
 ## Decisión
-Se ha decidido evolucionar el estándar hacia el modelo **Source-Centric Monorepo (v2.0)**. Esta política impone la segregación absoluta entre la gobernanza humana (Raíz) y la maquinaria técnica (Src).
+Se ha decidido evolucionar el estándar hacia la **Taxonomía Enterprise v3.0 (Separated Governance & Source)**. Esta política impone una arquitectura de repositorio de dos capas para maximizar la visibilidad del negocio y la limpieza técnica.
 
-Las reglas clave obligatorias son:
-1.  **The Blue-Map Layout (v2.0)**: La raíz del proyecto es un **Portal de Gobernanza** que solo contiene documentación ejecutiva (`README`, `MASTER_INDEX`) y carpetas de alto nivel (`governance/`, `architecture/`).
-2.  **Centralización Técnica (`src/.workspace/`)**: Todo artefacto relacionado con build, dependencias, tooling o configuración técnica del monorepo (`package.json`, `nx.json`, `node_modules`, etc.) debe vivir exclusivamente dentro de `src/.workspace/`.
-3.  **Encapsulamiento DDD**: El código y su lógica de dominio residen en `src/[dominio]/`, siendo unidades autónomas que contienen su propio código, gobernanza local y arquitectura.
-4.  **Naming Conventions**: Uso estricto de `kebab-case` y prefijos `app-` / `lib-`.
-5.  **Directivas de Plataforma**: Solo se permiten en la raíz archivos requeridos por el host (ej. `.github/`, `.gitignore`) o el contexto de IA (`.harness/`).
+Las reglas inmutables son:
+1.  **Portal de Gobernanza (Raíz)**: Los dominios transversales de gobernanza deben vivir exclusivamente en la raíz del repositorio:
+    *   `governance/`: Visión, requisitos (BMAD Phase 00-01) y roadmap (Phase 05).
+    *   `architecture/`: ADRs (Phase 03) y Blueprints (Phase 02).
+    *   `infrastructure/`: Configuraciones de plataforma e IaC.
+    *   `operations/`: Observabilidad y monitoreo.
+    *   `knowledge/`: Onboarding y POCs.
+2.  **Source Root (`src/`)**: Único contenedor de la implementación técnica. No debe contener carpetas redundantes de dominio intermedio (ej. NO usar `src/ums/`).
+3.  **Monorepo Standard (Nx)**: Dentro de `src/`, el código se organiza siguiendo las mejores prácticas de Nx:
+    *   `src/apps/`: Aplicaciones desplegables.
+    *   `src/libs/`: Librerías compartidas.
+    *   `src/package.json` & `src/nx.json`: El motor técnico reside en la raíz de `src/`.
+4.  **Límites de Responsabilidad**: El código fuente debe ser agnóstico a la documentación de negocio, permitiendo que la gobernanza evolucione sin afectar el build path.
 
 ## Consecuencias
 ### Positivas:
