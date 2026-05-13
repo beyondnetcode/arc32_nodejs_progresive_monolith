@@ -68,6 +68,7 @@ Decisions tied to the primary runtime for APIs and BFFs.
 Decisions tied to high-compute runtimes.
 
 *   **[ADR 0041: Canonical .NET Backend Architecture](../02-adrs/dotnet/0041-canonical-dotnet-backend-architecture.md)**
+*   [ADR 0048: .NET API Endpoint Strategy](../02-adrs/dotnet/0048-enterprise-minimal-apis-adoption.md)
 
 ---
 
