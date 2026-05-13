@@ -4,14 +4,14 @@
   "description": "Enterprise Monorepo for User Management System (UMS) using NestJS, React, PostgreSQL, and BMAD-METHOD (Spec-driven AI Strategy)",
   "private": true,
   "workspaces": [
-    "apps/api",
-    "apps/web",
-    "libs/aop"
+    "app-api",
+    "app-web",
+    "lib-aop"
   ],
   "scripts": {
     "dev": "npm run dev --workspaces --if-present",
     "build": "npm run build --workspaces --if-present",
-    "start": "npm run start --workspace=apps/api",
+    "start": "npm run start --workspace=app-api",
     "lint": "npm run lint --workspaces --if-present",
     "test": "npm run test --workspaces --if-present"
   },

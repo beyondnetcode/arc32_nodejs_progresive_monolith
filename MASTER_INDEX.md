@@ -12,10 +12,10 @@ Identify your current relationship with the project to unlock the tailored compu
 
 | Enterprise Role | Recommended Reading Path | Compliance Expected |
 | :--- | :--- | :--- |
-| **External Software Vendor** | 1. [Product Quick Start](./arc-corporate-ws/corporate-standards/05-onboarding/product-quick-start.md)<br>2. [Agnostic Tech Baseline](./arc-corporate-ws/corporate-standards/01-architecture/authoritative-tech-stack-agnostic.md) + [Runtime Addendum](./arc-corporate-ws/corporate-standards/01-architecture/authoritative-tech-stack.md)<br>3. [Reference Blueprint (Deep Dive)](./arc-corporate-ws/corporate-standards/01-architecture/reference-blueprint.md) | Validate local stack matching and boundary isolation before initiating work order. |
-| **Backend Developer / QA** | 1. [Agnostic Tech Baseline](./arc-corporate-ws/corporate-standards/01-architecture/authoritative-tech-stack-agnostic.md) + [Runtime Addendum](./arc-corporate-ws/corporate-standards/01-architecture/authoritative-tech-stack.md)<br>2. [Construction-Focused SDLC Framework](./arc-corporate-ws/corporate-sdlc/02-engineering/construction-focused-sdlc-framework.md)<br>3. [Best Practices for SDLC Docs](./arc-corporate-ws/corporate-sdlc/03-documentation/sdlc-documentation-best-practices.md) | Guarantee Unit Test thresholds, DoD alignment, and zero logic-leaks in PRs. |
-| **Solutions Architect** | 1. [Reference Blueprint](./arc-corporate-ws/corporate-standards/01-architecture/reference-blueprint.md)<br>2. [Evolutionary Strategy Roadmap](./arc-corporate-ws/corporate-standards/00-vision/evolutionary-strategy-roadmap.md)<br>3. [Architecture Decision Records (ADR Hub)](./arc-corporate-ws/corporate-standards/02-adrs/README.md) | Uphold pattern integrity and assess alignment of new extraction triggers. |
-| **Team Lead / Product Manager** | 1. [Evolutionary Strategy Roadmap](./arc-corporate-ws/corporate-standards/00-vision/evolutionary-strategy-roadmap.md)<br>2. [Corporate SDLC Governance Hub](./arc-corporate-ws/corporate-sdlc/README.md)<br>3. [Product Quick Start](./arc-corporate-ws/corporate-standards/05-onboarding/product-quick-start.md) | Synchronize delivery milestones with architecture phase transitions. |
+| **External Software Vendor** | 1. [Product Quick Start](./00-governance/standards/05-onboarding/product-quick-start.md)<br>2. [Agnostic Tech Baseline](./01-architecture/blueprints/authoritative-tech-stack-agnostic.md) + [Runtime Addendum](./01-architecture/blueprints/authoritative-tech-stack.md)<br>3. [Reference Blueprint (Deep Dive)](./01-architecture/blueprints/reference-blueprint.md) | Validate local stack matching and boundary isolation before initiating work order. |
+| **Backend Developer / QA** | 1. [Agnostic Tech Baseline](./01-architecture/blueprints/authoritative-tech-stack-agnostic.md) + [Runtime Addendum](./01-architecture/blueprints/authoritative-tech-stack.md)<br>2. [Construction-Focused SDLC Framework](./00-governance/sdlc/02-engineering/construction-focused-sdlc-framework.md)<br>3. [Best Practices for SDLC Docs](./00-governance/sdlc/03-documentation/sdlc-documentation-best-practices.md) | Guarantee Unit Test thresholds, DoD alignment, and zero logic-leaks in PRs. |
+| **Solutions Architect** | 1. [Reference Blueprint](./01-architecture/blueprints/reference-blueprint.md)<br>2. [Evolutionary Strategy Roadmap](./00-governance/standards/00-vision/evolutionary-strategy-roadmap.md)<br>3. [Architecture Decision Records (ADR Hub)](./01-architecture/adrs/README.md) | Uphold pattern integrity and assess alignment of new extraction triggers. |
+| **Team Lead / Product Manager** | 1. [Evolutionary Strategy Roadmap](./00-governance/standards/00-vision/evolutionary-strategy-roadmap.md)<br>2. [Corporate SDLC Governance Hub](./00-governance/sdlc/README.md)<br>3. [Product Quick Start](./00-governance/standards/05-onboarding/product-quick-start.md) | Synchronize delivery milestones with architecture phase transitions. |
 
 ---
 
@@ -23,11 +23,11 @@ Identify your current relationship with the project to unlock the tailored compu
 
 All ecosystem participants—regardless of role seniority—MUST adhere to and enforce the foundational pillars hosted below. Failure to respect these anchors nullifies artifact acceptance into the codebase.
 
-*   📄 **[Universal Agnostic Baseline](./arc-corporate-ws/corporate-standards/01-architecture/authoritative-tech-stack-agnostic.md)**: Universal systems constraints for all runtimes.
-*   📄 **[Target Runtime Appendices](./arc-corporate-ws/corporate-standards/01-architecture/authoritative-tech-stack.md)**: Framework mappings for Node.js, .NET, and Android.
-*   📄 **[Reference Architectural Blueprint](./arc-corporate-ws/corporate-standards/01-architecture/reference-blueprint.md)**: Conceptual grounding for Hexagonal boundaries and Ports/Adapters logic.
-*   📄 **[SDLC Governance Definition of Done](./arc-corporate-ws/corporate-sdlc/02-engineering/construction-focused-sdlc-framework.md#✅-4-engineering-definition-of-done-dod-checklist)**: Final quality gate blocking production integration.
-*   📄 **[Phase 1 Simplicity Checklist](./arc-corporate-ws/corporate-standards/01-architecture/simplicity-checklist-phase-01.md)**: Normative safeguard against premature over-engineering.
+*   📄 **[Universal Agnostic Baseline](./01-architecture/blueprints/authoritative-tech-stack-agnostic.md)**: Universal systems constraints for all runtimes.
+*   📄 **[Target Runtime Appendices](./01-architecture/blueprints/authoritative-tech-stack.md)**: Framework mappings for Node.js, .NET, and Android.
+*   📄 **[Reference Architectural Blueprint](./01-architecture/blueprints/reference-blueprint.md)**: Conceptual grounding for Hexagonal boundaries and Ports/Adapters logic.
+*   📄 **[SDLC Governance Definition of Done](./00-governance/sdlc/02-engineering/construction-focused-sdlc-framework.md#✅-4-engineering-definition-of-done-dod-checklist)**: Final quality gate blocking production integration.
+*   📄 **[Phase 1 Simplicity Checklist](./01-architecture/blueprints/simplicity-checklist-phase-01.md)**: Normative safeguard against premature over-engineering.
 
 ---
 
@@ -48,6 +48,6 @@ graph TD
     SDLC --> Docs["03-Documentation"]
 ```
 
-*   👉 **[English Documentation Center Root](./arc-corporate-ws/corporate-standards/README.md)**
-*   👉 **[English SDLC Governance Center Root](./arc-corporate-ws/corporate-sdlc/README.md)**
+*   👉 **[English Documentation Center Root](./00-governance/standards/README.md)**
+*   👉 **[English SDLC Governance Center Root](./00-governance/sdlc/README.md)**
 *   👉 **[Central Navigation Map (Back to Main README)](./README.md#⚡-4-central-navigation-quick-map-english-context)**

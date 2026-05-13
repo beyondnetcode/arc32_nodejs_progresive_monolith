@@ -5,11 +5,15 @@
   "files.insertFinalNewline": true,
   "markdown.preview.breaks": true,
   "editor.rulers": [80, 100],
-  "bmad.rules.path": "ai-harness/rules/global-rules.md",
-  "bmad.rules.index": "ai-harness/gemini.md",
-  "search.exclude": {
-    "**/.git": true,
-    "**/node_modules": true,
-    "**/dist": true
-  }
+  "bmad.rules.path": ".harness/rules/global-rules.md",
+  "bmad.rules.index": ".harness/gemini.md",
+  "search.exclude": {},
+  "files.exclude": {
+    "**/.git": false,
+    "**/node_modules": false,
+    "**/dist": false,
+    "**/*.pyc": false,
+    "**/__pycache__": false
+  },
+  "explorer.excludeGitIgnore": false
 }
