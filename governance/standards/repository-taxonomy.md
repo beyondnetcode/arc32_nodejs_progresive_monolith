@@ -17,9 +17,9 @@ This document establishes the **official and immutable policy** for the structur
 ├── 📁 .harness/                 # 🧠 AI CONTEXT: Base rules, Playbooks, Prompts
 ├── 📁 governance/            # ⚖️ LAWS: Policies, SDLC, and Standards
 ├── 📁 architecture/          # 🏗️ BLUEPRINTS: ADRs, Architecture, C4 Models
-├── 📁 src/               # 📦 BUSINESS: Source code encapsulated by domain (DDD)
-├── 📁 03-infrastructure/        # 🛠️ FOUNDATION: Infrastructure as Code (IaC), DevOps
-├── 📁 04-operations/            # 🚀 RUN: Operations Playbooks, Observability
+├── 📁 src/               # 📦 BUSINESS: Source code encapsulated by domain (DDD). Contains 100% of the product's source code.
+├── 📁 infrastructure/        # 🛠️ FOUNDATION: Infrastructure as Code (IaC), DevOps
+├── 📁 operations/            # 🚀 RUN: Operations Playbooks, Observability
 └── 📁 knowledge/             # 🎓 LEARNING: Onboarding, POCs, Examples, Training
 ```
 

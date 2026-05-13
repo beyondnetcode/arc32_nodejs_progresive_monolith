@@ -17,9 +17,9 @@ Este documento establece la **política oficial e inmutable** de estructuración
 ├── 📁 .harness/                 # 🧠 CONTEXTO AI: Reglas base, Playbooks, Prompts y Memoria
 ├── 📁 governance/            # ⚖️ LEYES: Normativas, Políticas, SDLC y Estándares
 ├── 📁 architecture/          # 🏗️ PLANOS: ADRs, Blueprints, Diagramas (C4 Model)
-├── 📁 src/               # 📦 NEGOCIO: Código fuente encapsulado por dominios (DDD)
-├── 📁 03-infrastructure/        # 🛠️ CIMIENTOS: Infraestructura como Código (IaC), DevOps
-├── 📁 04-operations/            # 🚀 RUN: Playbooks de Operaciones, Observabilidad, Alertas
+├── 📁 src/               # 📦 NEGOCIO: Código fuente encapsulado por dominios (DDD). Contiene el 100% del código fuente del producto.
+├── 📁 infrastructure/        # 🛠️ CIMIENTOS: Infraestructura como Código (IaC), DevOps
+├── 📁 operations/            # 🚀 RUN: Playbooks de Operaciones, Observabilidad, Alertas
 └── 📁 knowledge/             # 🎓 APRENDIZAJE: Onboarding, POCs, Ejemplos, Capacitación
 ```
 
