@@ -1,64 +1,100 @@
-# 🌐 Arquitectura de Referencia Políglota Corporativa (BMAD-METHOD)
+<div align="center">
+  <img src="./arc32_hero_banner.png" width="100%" alt="arc32 Banner" />
 
-> 🌍 **Selector de Idioma:** [🇪🇸 Español](./README.es.md) | [🇺🇸 English](./README.md)
+  # 🌐 arc32: Ecosistema de Arquitectura Progresiva
+  
+  [![Status](https://img.shields.io/badge/Status-Active-brightgreen?style=for-the-badge)]()
+  [![Version](https://img.shields.io/badge/Version-3.0.0-blue?style=for-the-badge)]()
+  [![Method](https://img.shields.io/badge/Method-BMAD--METHOD-blueviolet?style=for-the-badge)]()
+  [![Architecture](https://img.shields.io/badge/Pattern-Clean--Architecture-orange?style=for-the-badge)]()
 
----
+  ### *El plano canónico para sistemas empresariales que escalan del Monolito a la Nube.*
 
-## 💡 1. Introducción y Objetivos Clave
-
-Bienvenido a la **Arquitectura de Referencia Corporativa Unificada**. Este ecosistema sirve como el plano canónico para sistemas digitales empresariales diseñados para escalar dinámicamente desde Monolitos Modulares hasta ecosistemas de nube completamente distribuidos.
-
-### 🎯 Objetivos de Misión Primarios:
-*   **Agnosticismo Radical de Infraestructura:** Tratar a la persistencia y a los proveedores de nube como simples "detalles de implementación", blindando el dominio puro y permitiendo migraciones tecnológicas masivas en tiempo récord (<24h).
-*   **Soberanía de Datos y Seguridad Dinámica:** Garantizar aislamiento absoluto cumpliendo nativamente con **ISO 27001 y GDPR** mediante una estrategia de seguridad híbrida configurable (`SECURITY_STRATEGY_MODE`), ajustando la lógica entre la Capa de Aplicación y Hardware Nativo bajo demanda.
-*   **Evolución Basada en Métricas Técnicas:** Gobernar la transición de Monolito Modular a Microservicios Distribuidos no por tendencia, sino bajo controles matemáticos estrictos como el Índice de Agnosticismo ($PI$) y el Ratio de Deuda Técnica ($RTD$).
-*   **Cero Confianza y Cumplimiento Automatizado:** Blindar el perímetro corporativo inyectando controles de **Compliance-as-Code** y redes Zero-Trust directamente en los pipelines de CI/CD desde el primer día.
-
----
-
-## 🧭 2. Hub Unificado de Navegación Maestro
-
-🚀 **No explores los directorios al azar.** Todas las rutas de cumplimiento y ejecución de flujo de trabajo están gobernadas explícitamente por el perfil del usuario:
-
-1.  👉 **[Índice Maestro Global](./MASTER_INDEX.es.md)**: La línea de salida canónica. Identifica tu rol (Proveedor, Dev, Arquitecto, PM) y encuentra tu jerarquía de lectura obligatoria exacta de inmediato.
-2.  🇪🇸 **[Centro de Estándares Corporativos](./governance/standards-es/README.md)**: Especificaciones arquitectónicas integrales y pilares de gobernanza en español.
-3.  ⚙️ **[Centro de Gobernanza SDLC](./governance/sdlc-es/README.md)**: Requisitos detallados de ingeniería del ciclo de vida y Puertas de Calidad.
+  [🇺🇸 English](./README.md) | [🇪🇸 Español](./README.es.md)
+</div>
 
 ---
 
-## ⚠️ 3. Disclaimers Críticos y Recomendaciones de Uso
-
-Para interactuar de manera segura con esta federación de activos, todos los miembros DEBEN respetar las siguientes limitaciones sistémicas y reglas de uso:
-
-### 🛑 Disclaimers Importantes:
-*   **Solo Laboratorio de Patrones:** La implementación del sandbox es un vehículo de validación de alta fidelidad diseñado para estresar las fronteras arquitectónicas. NO es un producto comercial "de estantería" destinado a producción instantánea de marca blanca.
-*   **Intención Educativa:** El código prioriza la limpieza demostrativa sobre las micro-eficiencias densas y optimizadas.
-*   **Integridad de Licencia:** Todas las opciones de código abierto han sido revisadas (sanitización post-era BSL), sin embargo, el cumplimiento legal organizacional final reside en el proveedor que adopta el framework.
-
-### ✅ Recomendaciones de Uso Cruciales:
-1.  **Nunca Saltarse los Puertos:** No inyectar lógica de frameworks externos dentro de las carpetas `/domain`.
-2.  **Sincronización con ADRs:** Cada desviación de estos estándares exige la consulta de las **46 Decisiones Arquitectónicas** existentes antes de realizar cualquier propuesta.
-3.  **Adoptar Docs-as-Code:** No se evaluará ninguna pull request si faltan los mapeos de documentación correspondientes.
+## 🎯 Visión de Misión
+**arc32** es una arquitectura de referencia políglota diseñada para maximizar el **agnosticismo técnico** y la **soberanía de datos**. Implementa un modelo de **Monolito Progresivo**, permitiendo que los dominios de negocio evolucionen independientemente sin los costos operativos prematuros de los microservicios distribuidos.
 
 ---
 
-## ⚡ 4. Arquitectura de Alto Nivel y Mapa Rápido del Ecosistema
+## 🧭 Centro de Navegación Maestro
+No explores los directorios al azar. Selecciona tu perfil para acceder a tu ruta de lectura obligatoria.
 
-### 🚀 Federación Políglota Autorizada (Horizonte 2026)
-Las cargas de trabajo se distribuyen globalmente según restricciones de entorno validadas ([ADR-0040](./architecture/adrs-es/core/0040-multi-runtime-selection-contracts.md)):
-
-| Entorno de Ejecución | Rol Canónico | Stack Base Autorizado |
-| :--- | :--- | :--- |
-| **🟢 Node.js / TS** | APIs Transaccionales y BFFs | NestJS 11.1 / Node 24 LTS / Drizzle |
-| **🔵 .NET (C#)** | Cómputo Alto / Pesado Async | ASP.NET Core / .NET 10.0 LTS / EF Core |
-| **🟣 Android** | Móvil Nativo Desconectado | Kotlin 2.3 / Jetpack Compose 1.11 / Room |
-
-### 🛠️ Directorio de Accesos Rápidos
-*   📂 **[Política de Taxonomía del Repositorio](./governance/standards-es/repository-taxonomy.es.md)**: Estructura de directorios y convenciones de nombres.
-*   🏛️ **[Blueprint de Referencia](./architecture/blueprints-es/reference-blueprint.md)**: Especificación maestra del sistema.
-*   🚀 **[Estrategia Evolutiva](./governance/standards-es/vision/evolutionary-strategy-roadmap.md)**: Tablero de KPIs y horizontes de escala.
-*   📜 **[Hub de Registro ADR](./architecture/adrs-es/README.md)**: Búsqueda acelerada de decisiones universales.
-*   🧪 **[Sandbox Ejecutable (Demo)](./arc-corporate-ws/demo/README.md)**: Probar patrones de arquitectura en código real y vivo.
+<table align="center">
+  <tr>
+    <td align="center" width="200">
+      <a href="./MASTER_INDEX.es.md">
+        <br />
+        <img src="https://raw.githubusercontent.com/microsoft/fluentui-system-icons/main/assets/Map/SVG/ic_fluent_map_48_filled.svg" width="48" />
+        <br />
+        <strong>Índice Maestro</strong>
+      </a>
+    </td>
+    <td align="center" width="200">
+      <a href="./governance/standards-es/README.md">
+        <br />
+        <img src="https://raw.githubusercontent.com/microsoft/fluentui-system-icons/main/assets/Shield%20Checkmark/SVG/ic_fluent_shield_checkmark_48_filled.svg" width="48" />
+        <br />
+        <strong>Gobernanza</strong>
+      </a>
+    </td>
+    <td align="center" width="200">
+      <a href="./architecture/adrs-es/README.md">
+        <br />
+        <img src="https://raw.githubusercontent.com/microsoft/fluentui-system-icons/main/assets/Text%20Bullet%20List/SVG/ic_fluent_text_bullet_list_48_filled.svg" width="48" />
+        <br />
+        <strong>Registro de ADRs</strong>
+      </a>
+    </td>
+  </tr>
+</table>
 
 ---
-🤖 **Habilitación Aumentada por IA:** ¿Buscas arquitecturas de agentes MCP y LLM? → [Explorar Módulo de IA](./governance/standards-es/ai-augmented/README.md)
+
+## 🏗️ Anatomía del Repositorio (Taxonomía v3.0)
+Este repositorio sigue una estructura de dos capas para separar la **Gobernanza** de la **Implementación**.
+
+```mermaid
+graph LR
+    ROOT[Raíz] --> GOV[⚖️ Gobernanza]
+    ROOT --> ARC[🏗️ Arquitectura]
+    ROOT --> INF[🛠️ Infraestructura]
+    ROOT --> OPS[🚀 Operaciones]
+    ROOT --> SRC[📁 Capa Técnica]
+    
+    SRC --> APPS[📱 Apps: Todo-API/Web]
+    SRC --> LIBS[📦 Libs: Domain/Tech]
+```
+
+---
+
+## ⚡ Inicio Rápido (Demo Mode)
+Prueba la arquitectura en acción con nuestro sistema de **Todo List** (Clean Architecture).
+
+```bash
+# 1. Instalar dependencias del monorepo
+cd src/ && npm install
+
+# 2. Levantar infraestructura (Docker)
+cd ../infrastructure/ && docker-compose up -d
+
+# 3. Iniciar servicios (Modo Dev)
+cd ../src/ && npm run dev
+```
+
+---
+
+## 🛡️ Pilares Fundacionales
+- **Agnosticismo Radical:** La infraestructura es un detalle. El dominio es sagrado.
+- **Seguridad Dinámica:** Cumplimiento nativo de ISO 27001 y GDPR.
+- **Evolución Basada en Métricas:** Transición a microservicios guiada por el Índice de Agnosticismo ($PI$).
+- **Compliance-as-Code:** Reglas automáticas en el pipeline de CI/CD.
+
+---
+
+<div align="center">
+  <sub>© 2026 arc32 | Habilitado por BMAD-METHOD & IA Aumentada</sub>
+</div>

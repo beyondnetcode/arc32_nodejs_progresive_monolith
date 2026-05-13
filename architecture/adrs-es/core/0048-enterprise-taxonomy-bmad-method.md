@@ -1,14 +1,15 @@
-# ADR-0048: Estandarización de Taxonomía Empresarial y Layout (BMAD-METHOD)
+# ADR-0048: Estandarización de Taxonomía Empresarial y Layout (Enterprise Standards)
 
 ## Estado
 Aceptado
 
 ## Contexto
-A medida que el ecosistema evoluciona hacia un Monolito Progresivo, la proliferación de carpetas anidadas y la falta de convenciones estrictas de nombres han generado confusión cognitiva ("Cognitive Load") para los desarrolladores y dificultades para el enrutamiento de agentes de Inteligencia Artificial (BMAD-Method).
-Se requería una política inmutable que unificara la estructura de directorios, la separación por dominios y la ubicación de los artefactos de gobernanza en la raíz del repositorio, garantizando el principio de Single Source of Truth (SSoT) en la documentación (Docs-as-Code).
+A medida que el ecosistema evoluciona hacia un Monolito Progresivo, la proliferación de carpetas anidadas y la falta de convenciones estrictas de nombres han generado una alta carga cognitiva para los equipos de ingeniería. Se requería una política inmutable que unificara la estructura de directorios, la separación por dominios y la ubicación de los artefactos de gobernanza en la raíz del repositorio, garantizando el principio de **Docs-as-Code**.
+
+Esta estandarización también optimiza la interacción con agentes de Inteligencia Artificial mediante el soporte de la metodología **BMAD-METHOD**, pero el driver principal es la mantenibilidad y la arquitectura enterprise.
 
 ## Decisión
-Se ha decidido evolucionar el estándar hacia la **Taxonomía Enterprise v3.0 (Separated Governance & Source)**. Esta política impone una arquitectura de repositorio de dos capas para maximizar la visibilidad del negocio y la limpieza técnica.
+Se ha decidido adoptar la **Taxonomía Enterprise v3.0 (Separated Governance & Source)** como el estándar arquitectónico oficial. Esta política impone la segregación absoluta entre la gobernanza documental (Raíz) y la implementación técnica (`src/`).
 
 Las reglas inmutables son:
 1.  **Portal de Gobernanza (Raíz)**: Los dominios transversales de gobernanza deben vivir exclusivamente en la raíz del repositorio:

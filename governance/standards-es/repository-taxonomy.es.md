@@ -1,6 +1,6 @@
 # 📜 Política de Taxonomía y Estructuración del Repositorio (Enterprise)
 
-> **Estado:** 🟡 Propuesto | **Versión:** 3.0.0 | **Framework:** BMAD-METHOD & Enterprise Taxonomy
+> **Estado:** 🟡 Propuesto | **Versión:** 3.0.0 | **Framework:** Enterprise Repository Taxonomy & Docs-as-Code
 
 Este documento establece la **política oficial e inmutable** de estructuración, taxonomía y gobernanza para este repositorio empresarial.
 

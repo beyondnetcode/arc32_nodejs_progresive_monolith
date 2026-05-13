@@ -1,64 +1,100 @@
-# 🌐 Corporate Polyglot Reference Architecture 
+<div align="center">
+  <img src="./arc32_hero_banner.png" width="100%" alt="arc32 Banner" />
 
-> 🌍 **Language Selector:** [🇺🇸 English](./README.md) | [🇪🇸 Español](./README.es.md)
+  # 🌐 arc32: Progressive Architecture Ecosystem
+  
+  [![Status](https://img.shields.io/badge/Status-Active-brightgreen?style=for-the-badge)]()
+  [![Version](https://img.shields.io/badge/Version-3.0.0-blue?style=for-the-badge)]()
+  [![Method](https://img.shields.io/badge/Method-BMAD--METHOD-blueviolet?style=for-the-badge)]()
+  [![Architecture](https://img.shields.io/badge/Pattern-Clean--Architecture-orange?style=for-the-badge)]()
 
----
+  ### *The canonical blueprint for enterprise systems scaling from Monolith to Cloud.*
 
-## 💡 1. Introduction & Key Objectives
-
-Welcome to the **Unified Corporate Reference Architecture**. This ecosystem serves as the canonical blueprint for enterprise digital systems designed to scale dynamically from Modular Monoliths into fully distributed cloud ecosystems.
-
-### 🎯 Primary Mission Objectives:
-*   **Radical Infrastructure Agnosticism:** Treating persistence layers and global cloud providers strictly as "implementation details," protecting the absolute core domain to facilitate lightning-fast stack migrations (<24h).
-*   **Data Sovereignty & Dynamic Security:** Enforcing ironclad multi-tenant isolation natively compliant with **ISO 27001 & GDPR** via an on-demand configurable security runtime (`SECURITY_STRATEGY_MODE`), hot-swapping logic between App-Tier and Native Hardware tiers.
-*   **Metric-Driven Evolutionary Progression:** Governing the transition from Modular Monoliths to Event-Driven Microservices not by hype, but strictly via quantitative KPIs such as the Agnosticism Index ($PI$) and Planned Tech Debt Ratio ($RTD$).
-*   **Automated Zero-Trust Compliance:** Hardening the corporate perimeter by injecting persistent **Compliance-as-Code** benchmarks and Zero-Trust networking directly into CI/CD delivery pipelines from day zero.
-
----
-
-## 🧭 2. Unified Master Navigation Hub
-
-🚀 **Do not explore the directories randomly.** All compliance and workflow execution routes are governed explicitly by persona:
-
-1.  👉 **[Global Master Index](./MASTER_INDEX.md)**: The canonical starting line. Identify your role (Vendor, Dev, Architect, PM) and find your exact compulsory reading hierarchy immediately.
-2.  🇺🇸 **[Corporate Standards Center](./governance/standards/README.md)**: Comprehensive architectural specifications and governance pillars.
-3.  ⚙️ **[SDLC Governance Center](./governance/sdlc/README.md)**: Detailed lifecycle engineering requirements and quality Gates.
+  [🇺🇸 English](./README.md) | [🇪🇸 Español](./README.es.md)
+</div>
 
 ---
 
-## ⚠️ 3. Critical Disclaimers & Usage Recommendations
-
-To interact safely with this asset federation, all members MUST respect the following systemic limitations and usage rules:
-
-### 🛑 Important Disclaimers:
-*   **Pattern Laboratory Only:** The sandbox implementation is a high-fidelity validation vehicle designed to stress-test architectural boundaries. It is NOT an off-the-shelf commercial product intended for instant white-label production.
-*   **Educational Intent:** The code prioritizes demonstrative cleanliness over dense, optimized micro-efficiencies.
-*   **License Integrity:** All open-source choices have been vetted (Post-BSL era sanitization), however, final organizational legal compliance resides with the adopting vendor.
-
-### ✅ Crucial Usage Recommendations:
-1.  **Never Bypass Ports:** Do not inject external framework logic into the `/domain` folders.
-2.  **Sync with ADRs:** Every deviation from these standards demands the consultation of the existing **46 Architectural Decisions** before proposal.
-3.  **Adopt Docs-as-Code:** No pull requests will be evaluated if corresponding documentation mappings are missing.
+## 🎯 Mission Vision
+**arc32** is a polyglot reference architecture designed to maximize **technical agnosticism** and **data sovereignty**. It implements a **Progressive Monolith** model, allowing business domains to evolve independently without the premature operational costs of distributed microservices.
 
 ---
 
-## ⚡ 4. High-Level Architecture & Ecosystem Quick Map
+## 🧭 Master Navigation Hub
+Do not explore directories at random. Select your profile to access your mandatory reading path.
 
-### 🚀 Authorized Polyglot Federation (Horizon 2026)
- Workloads distribute globally according to validated runtime constraints ([ADR-0040](./architecture/adrs/core/0040-multi-runtime-selection-contracts.md)):
-
-| Runtime | Canonical Role | Authorized Baseline Stack |
-| :--- | :--- | :--- |
-| **🟢 Node.js / TS** | Transactional APIs & BFFs | NestJS 11.1 / Node 24 LTS / Drizzle |
-| **🔵 .NET (C#)** | High Compute / Heavy Async | ASP.NET Core / .NET 10.0 LTS / EF Core |
-| **🟣 Android** | Offline Native Mobile | Kotlin 2.3 / Jetpack Compose 1.11 / Room |
-
-### 🛠️ Fast Shortcuts Directory
-*   📂 **[Repository Taxonomy Policy](./governance/standards/repository-taxonomy.md)**: Standard directory structure and naming conventions.
-*   🏛️ **[Reference Blueprint](./architecture/blueprints/reference-blueprint.md)**: Master system specification.
-*   🚀 **[Evolutionary Strategy](./governance/standards/vision/evolutionary-strategy-roadmap.md)**: KPI dashboard and scale horizons.
-*   📜 **[ADR Registry Hub](./architecture/adrs/README.md)**: Fast-track lookup for universal decisions.
-*   🧪 **[Executable Sandbox Demo](./arc-corporate-ws/demo/README.md)**: Test architecture patterns in live running code.
+<table align="center">
+  <tr>
+    <td align="center" width="200">
+      <a href="./MASTER_INDEX.md">
+        <br />
+        <img src="https://raw.githubusercontent.com/microsoft/fluentui-system-icons/main/assets/Map/SVG/ic_fluent_map_48_filled.svg" width="48" />
+        <br />
+        <strong>Master Index</strong>
+      </a>
+    </td>
+    <td align="center" width="200">
+      <a href="./governance/standards/README.md">
+        <br />
+        <img src="https://raw.githubusercontent.com/microsoft/fluentui-system-icons/main/assets/Shield%20Checkmark/SVG/ic_fluent_shield_checkmark_48_filled.svg" width="48" />
+        <br />
+        <strong>Governance</strong>
+      </a>
+    </td>
+    <td align="center" width="200">
+      <a href="./architecture/adrs/README.md">
+        <br />
+        <img src="https://raw.githubusercontent.com/microsoft/fluentui-system-icons/main/assets/Text%20Bullet%20List/SVG/ic_fluent_text_bullet_list_48_filled.svg" width="48" />
+        <br />
+        <strong>ADR Registry</strong>
+      </a>
+    </td>
+  </tr>
+</table>
 
 ---
-🤖 **AI-Augmented Enablement:** Seeking MCP and LLM agent architectures? → [Explore AI Module](./governance/standards/ai-augmented/README.md)
+
+## 🏗️ Repository Anatomy (Taxonomy v3.0)
+This repository follows a two-layer structure to separate **Governance** from **Implementation**.
+
+```mermaid
+graph LR
+    ROOT[Root] --> GOV[⚖️ Governance]
+    ROOT --> ARC[🏗️ Architecture]
+    ROOT --> INF[🛠️ Infrastructure]
+    ROOT --> OPS[🚀 Operations]
+    ROOT --> SRC[📁 Source Layer]
+    
+    SRC --> APPS[📱 Apps: Todo-API/Web]
+    SRC --> LIBS[📦 Libs: Domain/Tech]
+```
+
+---
+
+## ⚡ Quick Start (Demo Mode)
+Experience the architecture in action with our **Todo List** system (Clean Architecture).
+
+```bash
+# 1. Install monorepo dependencies
+cd src/ && npm install
+
+# 2. Spin up infrastructure (Docker)
+cd ../infrastructure/ && docker-compose up -d
+
+# 3. Start services (Dev Mode)
+cd ../src/ && npm run dev
+```
+
+---
+
+## 🛡️ Foundational Pillars
+- **Radical Agnosticism:** Infrastructure is a detail. Domain is sacred.
+- **Dynamic Security:** Native compliance with ISO 27001 and GDPR.
+- **Metric-Driven Evolution:** Transition to microservices guided by the Agnosticism Index ($PI$).
+- **Compliance-as-Code:** Automated rules in the CI/CD pipeline.
+
+---
+
+<div align="center">
+  <sub>© 2026 arc32 | Enabled by BMAD-METHOD & Augmented AI</sub>
+</div>
