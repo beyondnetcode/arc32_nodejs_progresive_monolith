@@ -1,4 +1,4 @@
-# 🌐 Corporate Polyglot Reference Architecture (bMAD)
+# 🌐 Corporate Polyglot Reference Architecture 
 
 > 🌍 **Language Selector:** [🇺🇸 English](./README.md) | [🇪🇸 Español](./README.es.md)
 
