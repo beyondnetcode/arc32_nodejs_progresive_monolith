@@ -26,3 +26,6 @@ The mandatory key rules are:
 ### Negative/Risks:
 * **Initial Refactoring:** It implied a major change (Breaking Change at the folder level) that required updating `nx.json`, `package.json`, and rewriting internal hyperlinks throughout the documentation.
 * **Learning Curve:** New developers must be obligatorily trained on the taxonomy policy (located in `governance/standards/repository-taxonomy.md`) before creating new folders.
+
+---
+[? Back to Index](./README.md)

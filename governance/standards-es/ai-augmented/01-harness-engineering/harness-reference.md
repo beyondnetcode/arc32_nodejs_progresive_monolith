@@ -1,7 +1,7 @@
 # Referencia del Harness: La Armadura del Agente
 
-## Definición Formal de Harness
-En esta arquitectura corporativa, definimos el **Harness** (Arnés) como la infraestructura técnica determinista que envuelve a un modelo probabilístico. Su objetivo es restringir, potenciar y validar las capacidades de razonamiento del LLM, convirtiéndolo en un agente capaz de operar de forma segura en entornos productivos.
+## DefiniciÃ³n Formal de Harness
+En esta arquitectura corporativa, definimos el **Harness** (ArnÃ©s) como la infraestructura tÃ©cnica determinista que envuelve a un modelo probabilÃ­stico. Su objetivo es restringir, potenciar y validar las capacidades de razonamiento del LLM, convirtiÃ©ndolo en un agente capaz de operar de forma segura en entornos productivos.
 
 No es el "cerebro" (ese es el modelo); es el "sistema nervioso y el exoesqueleto".
 
@@ -10,37 +10,37 @@ No es el "cerebro" (ese es el modelo); es el "sistema nervioso y el exoesqueleto
 ```mermaid
 graph TD
     A[Usuario / Disparador] --> B[Capa 1: Prompt de Sistema & Identidad]
-    B --> C[Capa 2: Selección del Modelo]
-    C <--> D[Capa 3: Inyección de Contexto / RAG / MCP]
-    C <--> E[Capa 4: Catálogo de Herramientas]
+    B --> C[Capa 2: SelecciÃ³n del Modelo]
+    C <--> D[Capa 3: InyecciÃ³n de Contexto / RAG / MCP]
+    C <--> E[Capa 4: CatÃ¡logo de Herramientas]
     E --> F{Capa 5: Permisos & Sandbox}
-    F -- Aprobado --> G[Ejecución Determinista]
-    G --> H[Capa 6: Capas de Verificación / Hooks]
+    F -- Aprobado --> G[EjecuciÃ³n Determinista]
+    G --> H[Capa 6: Capas de VerificaciÃ³n / Hooks]
     H --> C
 ```
 
 ## Los Cuatro Pilares de un Harness Robusto
 
-### 1. Documentación como Código (AGENTS.md)
-Un agente es un "usuario nuevo" permanente. No asume nada. El primer paso del harness es inyectarle la verdad fundacional del proyecto: comandos de construcción, tecnologías, reglas de estilo y dependencias, centralizadas en el archivo estandarizado `AGENTS.md`.
+### 1. DocumentaciÃ³n como CÃ³digo (AGENTS.md)
+Un agente es un "usuario nuevo" permanente. No asume nada. El primer paso del harness es inyectarle la verdad fundacional del proyecto: comandos de construcciÃ³n, tecnologÃ­as, reglas de estilo y dependencias, centralizadas en el archivo estandarizado `AGENTS.md`.
 
-### 2. Restricciones Arquitectónicas
-Establecer límites legibles por máquina. En lugar de rogarle al agente que no use una librería obsoleta, el harness debe configurar herramientas que prevengan importaciones no autorizadas o usar linters estrictos que fallen si el agente intenta romper los límites hexagonales (`eslint-plugin-boundaries`).
+### 2. Restricciones ArquitectÃ³nicas
+Establecer lÃ­mites legibles por mÃ¡quina. En lugar de rogarle al agente que no use una librerÃ­a obsoleta, el harness debe configurar herramientas que prevengan importaciones no autorizadas o usar linters estrictos que fallen si el agente intenta romper los lÃ­mites hexagonales (`eslint-plugin-boundaries`).
 
-### 3. Verificación por Capas
+### 3. VerificaciÃ³n por Capas
 Confiar ciegamente en la salida del LLM es inaceptable. El harness debe implementar un ciclo automatizado de "Red, Green, Refactor":
-*   **Hook Post-Herramienta:** Inmediatamente después de una edición, ejecutar el linter.
-*   **Pre-commit:** Ejecutar pruebas unitarias para el área modificada.
-*   **CI:** Suite de pruebas de regresión completa.
+*   **Hook Post-Herramienta:** Inmediatamente despuÃ©s de una ediciÃ³n, ejecutar el linter.
+*   **Pre-commit:** Ejecutar pruebas unitarias para el Ã¡rea modificada.
+*   **CI:** Suite de pruebas de regresiÃ³n completa.
 
-### 4. Recolección de Basura (Garbage Collection)
-Los agentes pueden generar silenciosamente deuda técnica, redundancia o archivos fantasma. Un harness avanzado orquesta "agentes limpiadores" periódicos (Linter Agents) cuya única misión es patrullar el código buscando inconsistencias estilísticas e incongruencias de contexto introducidas por pasadas previas de IA.
+### 4. RecolecciÃ³n de Basura (Garbage Collection)
+Los agentes pueden generar silenciosamente deuda tÃ©cnica, redundancia o archivos fantasma. Un harness avanzado orquesta "agentes limpiadores" periÃ³dicos (Linter Agents) cuya Ãºnica misiÃ³n es patrullar el cÃ³digo buscando inconsistencias estilÃ­sticas e incongruencias de contexto introducidas por pasadas previas de IA.
 
 ---
 
-## Ciclo Agéntico Base (Pseudocódigo)
+## Ciclo AgÃ©ntico Base (PseudocÃ³digo)
 
-El motor de ejecución del harness sigue este patrón de control:
+El motor de ejecuciÃ³n del harness sigue este patrÃ³n de control:
 
 ```python
 messages = [system_prompt, user_input]
@@ -49,19 +49,19 @@ while True:
     # 1. Inferencia del modelo
     response = call_model(messages)
     
-    # 2. Detección de llamadas a herramientas
+    # 2. DetecciÃ³n de llamadas a herramientas
     tool_requests = extract_tool_calls(response)
     
-    # Si el modelo no desea usar más herramientas, el ciclo termina.
+    # Si el modelo no desea usar mÃ¡s herramientas, el ciclo termina.
     if not tool_requests: 
         return response
     
-    # 3. Ejecución secuencial o paralela de herramientas autorizadas
+    # 3. EjecuciÃ³n secuencial o paralela de herramientas autorizadas
     for request in tool_requests:
         if check_permissions(request.name):
             result = execute_tool(request.name, request.args)
             
-            # Hook de validación inmediata (determinista)
+            # Hook de validaciÃ³n inmediata (determinista)
             validated_result = run_post_tool_hooks(request.name, result)
             
             messages.append({
@@ -78,4 +78,7 @@ while True:
 ```
 
 > [!WARNING]
-> **Advertencia sobre la Manipulación del Harness:** El modelo no tiene visibilidad del código fuente de una herramienta a menos que se le provea específicamente. Solo entiende la **Descripción (Metadatos)** de la misma. Descripciones ambiguas generan alucinaciones de uso catastróficas.
+> **Advertencia sobre la ManipulaciÃ³n del Harness:** El modelo no tiene visibilidad del cÃ³digo fuente de una herramienta a menos que se le provea especÃ­ficamente. Solo entiende la **DescripciÃ³n (Metadatos)** de la misma. Descripciones ambiguas generan alucinaciones de uso catastrÃ³ficas.
+
+---
+[? Volver al Índice](./README.es.md)

@@ -1,4 +1,4 @@
-# 🔬 Functional Domain Scope - To-Do Sandbox App
+# ðŸ”¬ Functional Domain Scope - To-Do Sandbox App
 
 ## 1. Scope of Demonstration
 The To-Do application delivers atomic task management scoped to isolated users, utilized exclusively to physically validate the underlying architectural patterns.
@@ -31,3 +31,6 @@ To prevent bloating the pure reference architecture:
 - **Team Collaboration**: Tasks cannot be shared between users.
 - **Advanced Search Engines**: No Elasticsearch integrations.
 - **Recurring Tasks**: Temporal recurrence loops are omitted.
+
+---
+[? Back to Index](./README.md)

@@ -29,3 +29,6 @@ Used in conjunction with the Plan-and-Execute pattern. The Agent generates the l
 
 ## Critical Anti-Pattern: The Illusion of Control
 **Agents with unrestricted access to destructive tools relying solely on their System Prompt ("Please do not delete anything important") represent severe operational negligence.** Control MUST reside in the compiled code of the Harness, not in the textual intentions of the model.
+
+---
+[? Back to Index](./README.md)

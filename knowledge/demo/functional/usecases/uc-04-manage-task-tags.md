@@ -1,8 +1,8 @@
-# 🧪 Use Case 4: Manage Task Tags
+# ðŸ§ª Use Case 4: Manage Task Tags
 
 Specification for decorating atomic tasks with searchable metadata tags.
 
-## 🏛️ 1. Use Case Definition
+## ðŸ›ï¸ 1. Use Case Definition
 
 | Attribute | Specification |
 | :--- | :--- |
@@ -11,7 +11,7 @@ Specification for decorating atomic tasks with searchable metadata tags.
 | **Preconditions** | User owns the target Task entity. |
 | **Postconditions** | Many-to-many mapping is established in the bridge table. |
 
-## 🔄 2. Transaction Flow
+## ðŸ”„ 2. Transaction Flow
 
 ```mermaid
 sequenceDiagram
@@ -33,3 +33,6 @@ sequenceDiagram
 2.  Client delivers array of tag IDs to the endpoint.
 3.  System verifies task ownership (security check).
 4.  Infrastructure persistence adapter recalculates relationship mapping, clearing obsolete bridge records and inserting new pairings.
+
+---
+[? Back to Index](./README.md)

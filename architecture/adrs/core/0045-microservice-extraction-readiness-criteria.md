@@ -39,4 +39,7 @@ A domain module MUST be deemed a valid candidate for the extraction phase (Miles
 ## References
 - [ADR 0006: Future Microservices Transition](../core/0006-future-microservices-transition-dapr.md)
 - [ADR 0047: Selection Framework: Monolith vs SOA vs Microservices](../core/0047-architectural-patterns-monolith-soa-microservices.md)
-- Sam Newman — *Building Microservices* (2nd Ed. 2021)
+- Sam Newman â€” *Building Microservices* (2nd Ed. 2021)
+
+---
+[? Back to Index](./README.md)

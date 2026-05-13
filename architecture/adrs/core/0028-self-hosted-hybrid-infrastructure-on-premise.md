@@ -28,5 +28,8 @@ Strictly govern internal tooling selection based on the **100% Open-Source, Self
 - Increases administrative overhead. Local DevOps must maintain replication, backups, and scale patching that major clouds typically handle automatically.
 
 ## References
-- [ADR-0013: Cloud Topology](../02-adrs/core/0013-cloud-infrastructure-topology-dr.md)
+- [ADR-0013: Cloud Topology](../adrs/core/0013-cloud-infrastructure-topology-dr.md)
 - [Stack Definition Reference](../../02-architecture/stack.md)
+
+---
+[? Back to Index](./README.md)

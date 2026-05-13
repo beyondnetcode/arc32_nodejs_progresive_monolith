@@ -1,6 +1,6 @@
-# 📐 Authoritative Tech Stack: .NET & C# Ecosystem
+# ðŸ“ Authoritative Tech Stack: .NET & C# Ecosystem
 
-> 🌍 **Bilingual Navigation:** [🇪🇸 Versión en Español](../../corporate-standards-es/architecture/authoritative-tech-stack-dotnet.md)
+> ðŸŒ **Bilingual Navigation:** [ðŸ‡ªðŸ‡¸ VersiÃ³n en EspaÃ±ol](../../standards-es/architecture/authoritative-tech-stack-dotnet.md)
 
 **Document Type:** Runtime Addendum  
 **Prerequisite:** MUST be read after the **[Agnostic Baseline](./authoritative-tech-stack-agnostic.md)**.  
@@ -8,7 +8,7 @@
 
 ---
 
-## 📋 1. Executive Compliance Matrix (Vendor Mandates)
+## ðŸ“‹ 1. Executive Compliance Matrix (Vendor Mandates)
 
 All engineering squads developing within the .NET ecosystem MUST strictly enforce the authorized artifacts below. Any replacement attempts demand an approved ADR BEFORE writing code.
 
@@ -25,7 +25,7 @@ All engineering squads developing within the .NET ecosystem MUST strictly enforc
 
 ---
 
-## 🏗️ 2. Architecture Implementation (.NET Mapping)
+## ðŸ—ï¸ 2. Architecture Implementation (.NET Mapping)
 
 To comply with the overall Hexagonal architecture mandate, the following .NET project organization rules are enforced:
 
@@ -41,7 +41,7 @@ Teams MUST utilize the **Result Pattern** to propagate business logic failures s
 
 ---
 
-## 💾 3. Persistence Details (Entity Framework Core)
+## ðŸ’¾ 3. Persistence Details (Entity Framework Core)
 
 ### 3.1 Multi-Tenancy Isolation (RLS)
 When utilizing the `INFRA_NATIVE` strategy via PostgreSQL Row-Level Security in .NET:
@@ -57,7 +57,10 @@ Automatic `context.Database.Migrate()` executed directly by the Web host during 
 
 ---
 
-## 🚀 4. Final Integration Warning for Vendors
+## ðŸš€ 4. Final Integration Warning for Vendors
 
 Failure to satisfy these static tooling definitions will automatically block integration code acceptance. 
-👉 Back to **[Global Master Index](../../../MASTER_INDEX.md)**
+ðŸ‘‰ Back to **[Global Master Index](../../../MASTER_INDEX.md)**
+
+---
+[? Back to Index](./README.md)

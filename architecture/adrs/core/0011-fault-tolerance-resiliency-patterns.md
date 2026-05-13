@@ -30,4 +30,7 @@ Implement explicit Resilience Patterns protecting all outbound system exits:
 
 ## References
 - [Martin Fowler on Circuit Breakers](https://martinfowler.com/bliki/CircuitBreaker.html)
-- [ADR-0002: Clean Hexagonal Architecture](../02-adrs/nodejs/0002-clean-architecture-nestjs.md)
+- [ADR-0002: Clean Hexagonal Architecture](../adrs/nodejs/0002-clean-architecture-nestjs.md)
+
+---
+[? Back to Index](./README.md)

@@ -1,11 +1,11 @@
-# Guía del Cliente MCP: Consumo de MCP en Aplicaciones
+# GuÃ­a del Cliente MCP: Consumo de MCP en Aplicaciones
 
-## Introducción
-Un **Cliente MCP** es el componente de software responsable de conectarse a uno o múltiples Servidores MCP, orquestar sesiones, leer el catálogo de herramientas/recursos y exponerlos a la lógica de tu aplicación o a la ventana de contexto del LLM.
+## IntroducciÃ³n
+Un **Cliente MCP** es el componente de software responsable de conectarse a uno o mÃºltiples Servidores MCP, orquestar sesiones, leer el catÃ¡logo de herramientas/recursos y exponerlos a la lÃ³gica de tu aplicaciÃ³n o a la ventana de contexto del LLM.
 
 ## Casos de Uso del Cliente
-1.  **En el IDE (Uso Local):** Herramientas como Claude Desktop, Cursor o la CLI de Claude actúan como clientes nativos. Se configuran editando el archivo `mcp-config.json` del host.
-2.  **En tu propio Backend (Uso Programático):** Tu aplicación NestJS o .NET actúa como un cliente que se conecta a Servidores MCP remotos expuestos por otros departamentos de la compañía.
+1.  **En el IDE (Uso Local):** Herramientas como Claude Desktop, Cursor o la CLI de Claude actÃºan como clientes nativos. Se configuran editando el archivo `mcp-config.json` del host.
+2.  **En tu propio Backend (Uso ProgramÃ¡tico):** Tu aplicaciÃ³n NestJS o .NET actÃºa como un cliente que se conecta a Servidores MCP remotos expuestos por otros departamentos de la compaÃ±Ã­a.
 
 ## Ejemplo de Consumo en Node.js (TypeScript)
 
@@ -44,5 +44,8 @@ async function runClient() {
 }
 ```
 
-## Orquestación con LLM
-La forma canónica de usar un cliente MCP es tomando el array devuelto por `client.listTools()`, mapeándolo al formato JSON Schema aceptado por tu proveedor de LLM (OpenAI `tools`, Anthropic `tools`), e inyectándolo en la llamada al modelo. Cuando el modelo decide invocar una, tu código captura el nombre y los argumentos y ejecuta `client.callTool()`.
+## OrquestaciÃ³n con LLM
+La forma canÃ³nica de usar un cliente MCP es tomando el array devuelto por `client.listTools()`, mapeÃ¡ndolo al formato JSON Schema aceptado por tu proveedor de LLM (OpenAI `tools`, Anthropic `tools`), e inyectÃ¡ndolo en la llamada al modelo. Cuando el modelo decide invocar una, tu cÃ³digo captura el nombre y los argumentos y ejecuta `client.callTool()`.
+
+---
+[? Volver al Índice](./README.es.md)

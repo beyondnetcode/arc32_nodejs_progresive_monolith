@@ -1,4 +1,4 @@
-# 🏷️ Automated Versioning & Continuous Audit Strategy (BMAD-METHOD)
+# ðŸ·ï¸ Automated Versioning & Continuous Audit Strategy (BMAD-METHOD)
 
 To maintain a strict, traceable audit log synchronized with GitHub, the Spec-driven AI strategy [BMAD-METHOD](https://github.com/bmad-code-org/BMAD-METHOD) does not rely on manual document drafting. Instead, we leverage the ecosystem we have already built (**Conventional Commits**) combined with the native power of our orchestrator: **Nx Release**.
 
@@ -32,3 +32,6 @@ Nx includes a native versioning suite for monorepos that executes the following 
 To activate this, we only need to:
 1. Modify your `nx.json` file to enable the `"release"` configuration block.
 2. Test generating our first `v1.0.0` version and our first foundational `CHANGELOG.md`.
+
+---
+[? Back to Index](./README.md)

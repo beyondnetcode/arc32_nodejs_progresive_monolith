@@ -1,12 +1,12 @@
-# ⚙️ Construction-Focused SDLC Framework
+# âš™ï¸ Construction-Focused SDLC Framework
 
-> 🌍 **Bilingual Navigation:** [🇪🇸 Versión en Español](../../corporate-sdlc-es/02-engineering/construction-focused-sdlc-framework.md)
+> ðŸŒ **Bilingual Navigation:** [ðŸ‡ªðŸ‡¸ VersiÃ³n en EspaÃ±ol](../../sdlc-es/02-engineering/construction-focused-sdlc-framework.md)
 
 This normative standard solidifies the governance controlling Software Development Life Cycle progression, establishing hardened phase exits and specialized gating mechanisms for the construction layer.
 
 ---
 
-## 📖 1. Core Glossary (Key Terminology)
+## ðŸ“– 1. Core Glossary (Key Terminology)
 
 *   **Milestone:** A discrete target event marking the absolute end of a lifecycle phase.
 *   **Artifact:** An immutable physical document, diagram, or system definition resulting from phase activities.
@@ -15,7 +15,7 @@ This normative standard solidifies the governance controlling Software Developme
 
 ---
 
-## 🗺️ 2. High-Level SDLC Lifecycle (Enterprise Matrix)
+## ðŸ—ºï¸ 2. High-Level SDLC Lifecycle (Enterprise Matrix)
 
 ```mermaid
 timeline
@@ -37,11 +37,11 @@ timeline
 
 ---
 
-## 🏗️ 3. Deep-Dive: Construction Stage Governance
+## ðŸ—ï¸ 3. Deep-Dive: Construction Stage Governance
 
 The construction stage is the absolute engineering heartbeat. To avoid structural regression, it mandates compliance with continuous feedback sub-loops.
 
-### 🔄 3.1 Construction Sub-Phases (Inner Loop)
+### ðŸ”„ 3.1 Construction Sub-Phases (Inner Loop)
 
 ```mermaid
 graph LR
@@ -62,7 +62,7 @@ graph LR
 5.  **Continuous Integration (CI) Triggering:** Automated push execution validating linting, code style enforcement, and regression sanity checks.
 6.  **Peer Code Review:** Strict human evaluation cross-checking for security leaks, antipattern adoption, and adherence to architecture guidelines.
 
-### 📊 3.2 Quality Threshold Metrics
+### ðŸ“Š 3.2 Quality Threshold Metrics
 
 Code progression enforces mathematical gating to halt unstable shipping cycles:
 
@@ -75,7 +75,7 @@ Code progression enforces mathematical gating to halt unstable shipping cycles:
 
 ---
 
-## ✅ 4. Engineering Definition of Done (DoD) Checklist
+## âœ… 4. Engineering Definition of Done (DoD) Checklist
 
 A construction iteration is ONLY considered legitimately finalized when all markers obtain validation:
 
@@ -85,3 +85,6 @@ A construction iteration is ONLY considered legitimately finalized when all mark
 *   [ ] **Internal Documentation:** Explicit functions include inline annotation docs, and corresponding external ADR or guides are updated.
 *   [ ] **Observability Native:** New handlers include basic telemetry counters and structured logging outputs.
 *   [ ] **Clean Build:** The binary container compiles successfully without intermittent environment warnings.
+
+---
+[? Back to Index](./README.md)

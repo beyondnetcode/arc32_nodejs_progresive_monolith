@@ -79,3 +79,6 @@ while True:
 
 > [!WARNING]
 > **Warning on Harness Manipulation:** The model has no visibility of a tool's source code unless specifically provided. It only understands the **Description (Metadata)** of the tool. Ambiguous descriptions generate catastrophic usage hallucinations.
+
+---
+[? Back to Index](./README.md)

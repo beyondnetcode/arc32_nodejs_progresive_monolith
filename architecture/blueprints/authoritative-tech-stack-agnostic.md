@@ -1,6 +1,6 @@
-# 📐 Universal Authoritative Architecture Standards (Agnostic Baseline)
+# ðŸ“ Universal Authoritative Architecture Standards (Agnostic Baseline)
 
-> 🌍 **Bilingual Navigation:** [🇪🇸 Versión en Español](../../corporate-standards-es/architecture/authoritative-tech-stack-agnostic.md)
+> ðŸŒ **Bilingual Navigation:** [ðŸ‡ªðŸ‡¸ VersiÃ³n en EspaÃ±ol](../../standards-es/architecture/authoritative-tech-stack-agnostic.md)
 
 **Document Type:** Corporate Standard  
 **Applicability:** Mandatory for all Runtimes (.NET, Node.js, Android)  
@@ -8,7 +8,7 @@
 
 ---
 
-## 🧭 1. Executive Constraints & Non-Negotiables
+## ðŸ§­ 1. Executive Constraints & Non-Negotiables
 
 Regardless of the concrete technology stack chosen (Node.js, .NET, or Kotlin), every component integrating into the ecosystem MUST strictly adhere to these systemic architectural invariants. Violation of these constraints will automatically fail Architecture Gate validation.
 
@@ -19,26 +19,26 @@ Regardless of the concrete technology stack chosen (Node.js, .NET, or Kotlin), e
 
 ---
 
-## 🛰️ 2. Communication & Contract Standards
+## ðŸ›°ï¸ 2. Communication & Contract Standards
 
 Inter-service integration follows the "Contract First" doctrine to guarantee polyglot interoperability.
 
 | Standard Domain | Required Definition | Rationale |
 | :--- | :--- | :--- |
-| **Internal Sync Communication** | **gRPC (Protocol Buffers)** | Mandated from Phase 2 for cross-service invocations ([ADR-0047](../02-adrs/core/0047-architectural-patterns-monolith-soa-microservices.md)). Phase 1 operations are natively intra-process. |
+| **Internal Sync Communication** | **gRPC (Protocol Buffers)** | Mandated from Phase 2 for cross-service invocations ([ADR-0047](../adrs/core/0047-architectural-patterns-monolith-soa-microservices.md)). Phase 1 operations are natively intra-process. |
 | **Public Web API Standard** | **RESTful (OpenAPI v3)** | Canonical interoperability for third-party Integrators and downstream Frontend SDKs. |
 | **Async Event Bus Architecture** | **AMQP / CloudEvents** | Self-describing event structure following Transactional Outbox patterns for safe propagation. |
 
 ---
 
-## 💾 3. Cross-Cutting Foundation Infrastructure
+## ðŸ’¾ 3. Cross-Cutting Foundation Infrastructure
 
 Approved centralized primitives serving the polyglot mesh. Concrete Runtime Adapters must simply point to these standard protocols.
 
 ### 3.1 Relational Persistence (SQL)
 *   **Homologated Engine:** PostgreSQL v16+
 *   **Maturity Constraint:** Schema-per-Context isolation REQUIRED. Direct SQL Joins across bounded context schema boundaries are FORBIDDEN.
-*   **Isolation Pattern:** Configurable Security Strategy ([ADR-0044](../02-adrs/core/0044-configurable-security-persistence-strategy.md)). Native Row-Level Security (RLS) is OPTIONAL/RECOMMENDED for dense multi-tenant scenarios, managed via the structural `SECURITY_STRATEGY_MODE` flag.
+*   **Isolation Pattern:** Configurable Security Strategy ([ADR-0044](../adrs/core/0044-configurable-security-persistence-strategy.md)). Native Row-Level Security (RLS) is OPTIONAL/RECOMMENDED for dense multi-tenant scenarios, managed via the structural `SECURITY_STRATEGY_MODE` flag.
 
 ### 3.2 Distributed Caching
 *   **Homologated Engine:** Redis v7.2+ (Self-hosted Cluster or Sentinel)
@@ -51,7 +51,7 @@ Approved centralized primitives serving the polyglot mesh. Concrete Runtime Adap
 
 ---
 
-## 🛡️ 4. Hardened Security & Perimeter
+## ðŸ›¡ï¸ 4. Hardened Security & Perimeter
 
 ### 4.1 Identity & Authorization
 *   **Protocol:** OpenID Connect (OIDC) / OAuth 2.0 / SAML 2.0 Federation.
@@ -64,7 +64,7 @@ Approved centralized primitives serving the polyglot mesh. Concrete Runtime Adap
 
 ---
 
-## 📊 5. Native Enterprise Observability
+## ðŸ“Š 5. Native Enterprise Observability
 
 Runtime-agnostic telemetry is mandatory. Teams are forbidden from locking their logic into specific SaaS vendor agents.
 
@@ -74,7 +74,7 @@ Runtime-agnostic telemetry is mandatory. Teams are forbidden from locking their 
 
 ---
 
-## 🛳️ 6. Containerization & Deployment Strategy
+## ðŸ›³ï¸ 6. Containerization & Deployment Strategy
 
 Standardization of packaging and execution to guarantee cloud and on-premise parity.
 
@@ -84,7 +84,7 @@ Standardization of packaging and execution to guarantee cloud and on-premise par
 
 ---
 
-## 🧪 7. Holistic Verification Pyramid
+## ðŸ§ª 7. Holistic Verification Pyramid
 
 Mandatory to guarantee that polyglot software respects contracts before rollout.
 
@@ -94,7 +94,7 @@ Mandatory to guarantee that polyglot software respects contracts before rollout.
 
 ---
 
-## 🧩 8. Third-Party Services Guidelines
+## ðŸ§© 8. Third-Party Services Guidelines
 
 For air-gapped environments, external SaaS integrations MUST be optional and abstracted.
 
@@ -105,7 +105,7 @@ For air-gapped environments, external SaaS integrations MUST be optional and abs
 
 ---
 
-## ⚖️ 9. Vendor Lock-in Risk Registry
+## âš–ï¸ 9. Vendor Lock-in Risk Registry
 
 All base infrastructure choices are audited through the lens of technological sovereignty.
 
@@ -118,10 +118,13 @@ All base infrastructure choices are audited through the lens of technological so
 
 ---
 
-## 🚀 10. Structural Next-Steps for Reading
+## ðŸš€ 10. Structural Next-Steps for Reading
 
 This document covers only the **universal laws**. You MUST now identify your active Runtime and consume the concrete technical compliance mapping:
 
-1.  👉 **[.NET / C# Specific Technology Stack](./authoritative-tech-stack-dotnet.md)**
-2.  👉 **[Node.js / TypeScript Specific Technology Stack](./authoritative-tech-stack-nodejs.md)**
-3.  👉 **[Android / Kotlin Mobile Specific Technology Stack](./authoritative-tech-stack-android.md)**
+1.  ðŸ‘‰ **[.NET / C# Specific Technology Stack](./authoritative-tech-stack-dotnet.md)**
+2.  ðŸ‘‰ **[Node.js / TypeScript Specific Technology Stack](./authoritative-tech-stack-nodejs.md)**
+3.  ðŸ‘‰ **[Android / Kotlin Mobile Specific Technology Stack](./authoritative-tech-stack-android.md)**
+
+---
+[? Back to Index](./README.md)

@@ -17,6 +17,9 @@ Adopt a hybrid governance model:
 *   **Single Corporate Vendor (e.g., Only OpenAI):** Discarded to avoid Vendor Lock-In during prolonged service outages; we prefer an agnostic multi-cloud strategy via unified adapters.
 
 ## Consequences
-*   ✅ **Legal Shielding:** Guaranteed compliance with privacy regulations.
-*   ✅ **Financial Efficiency:** 30-40% reduction in token expenditure by forcing the use of small models for non-critical tasks.
-*   ❌ **Higher Initial Latency:** Bootstrapping local inference clusters for OSS requires initial GPU infrastructure setup time.
+*   âœ… **Legal Shielding:** Guaranteed compliance with privacy regulations.
+*   âœ… **Financial Efficiency:** 30-40% reduction in token expenditure by forcing the use of small models for non-critical tasks.
+*   âŒ **Higher Initial Latency:** Bootstrapping local inference clusters for OSS requires initial GPU infrastructure setup time.
+
+---
+[? Back to Index](./README.md)

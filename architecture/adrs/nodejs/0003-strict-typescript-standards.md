@@ -31,7 +31,7 @@ Enforce strict TypeScript configuration and ESLint rules across the entire monor
 - `@typescript-eslint/no-floating-promises`: error
 - `eslint-plugin-boundaries`: enforces layer import rules (Core cannot import Infrastructure)
 
-All rules are enforced in CI — PRs with TypeScript errors are blocked from merging.
+All rules are enforced in CI â€” PRs with TypeScript errors are blocked from merging.
 
 ## Consequences
 
@@ -41,9 +41,12 @@ All rules are enforced in CI — PRs with TypeScript errors are blocked from mer
 - `eslint-plugin-boundaries` makes hexagonal layer violations a build error, not a code review finding.
 
 ### Negative
-- Higher initial development overhead — developers must be explicit about all types.
+- Higher initial development overhead â€” developers must be explicit about all types.
 - Third-party libraries with poor TypeScript definitions require careful wrapper typing.
 
 ## References
-- [ADR-0001: Monorepo Orchestration](../02-adrs/core/0001-monorepo-orchestration-nx.md)
-- [ADR-0002: Clean Hexagonal Architecture](../02-adrs/nodejs/0002-clean-architecture-nestjs.md)
+- [ADR-0001: Monorepo Orchestration](../adrs/core/0001-monorepo-orchestration-nx.md)
+- [ADR-0002: Clean Hexagonal Architecture](../adrs/nodejs/0002-clean-architecture-nestjs.md)
+
+---
+[? Back to Index](./README.md)

@@ -24,3 +24,6 @@
 *   **Skill (Agent Skill):** Composed capability or pre-designed flow grouping multiple tools to resolve a repeatable functional need (e.g., Refactoring Skill).
 *   **Plan-and-Execute:** Architectural pattern forcing the system to generate an explicit task list (planning) before initiating recursive tool invocation (execution).
 *   **Verification Layer:** Sequential suite of controls (Linters, Unit Tests, E2E, Contract) validating agent-generated artifacts to avoid silent regressions.
+
+---
+[? Back to Index](./README.md)

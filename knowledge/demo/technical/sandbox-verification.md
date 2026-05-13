@@ -1,4 +1,4 @@
-# 🧪 Architectural Sandbox & Demo Verification Scope
+# ðŸ§ª Architectural Sandbox & Demo Verification Scope
 
 **Objective:** Define the precise scope of the canonical implementation (To-Do Product) and catalogue which architectural patterns it exercises in a running environment.
 
@@ -36,3 +36,6 @@ To keep the codebase lightweight, the following are NOT implemented in the code,
 
 ---
 **Verification Status**: All Critical Patterns Checked & Passed in local Sandbox environment.
+
+---
+[? Back to Index](./README.md)

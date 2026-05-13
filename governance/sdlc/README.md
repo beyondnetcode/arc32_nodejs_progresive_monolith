@@ -1,25 +1,28 @@
-# ⚙️ Corporate SDLC Governance Center
+# âš™ï¸ Corporate SDLC Governance Center
 
-> 🌍 **Bilingual Navigation:** [🇪🇸 Versión en Español](../corporate-sdlc-es/README.md)
+> ðŸŒ **Bilingual Navigation:** [ðŸ‡ªðŸ‡¸ VersiÃ³n en EspaÃ±ol](../sdlc-es/README.md)
 
 Welcome to the official Software Development Lifecycle (SDLC) control map. This center consolidates the procedural requirements driving software creation, from ideation to production enforcement.
 
 ---
 
-## 🗺️ SDLC Maturity Lifecycle (BMAD-METHOD Taxonomy)
+## ðŸ—ºï¸ SDLC Maturity Lifecycle (BMAD-METHOD Taxonomy)
 
-### 💡 Phase 01: Ideation & Planning
+### ðŸ’¡ Phase 01: Ideation & Planning
 Procedures dictating how feature requests enter the ecosystem.
 *   *Coming Soon: PRD Drafting & OKR Mapping Guide.*
 
-### 🛠️ Phase 02: Engineering & Development
+### ðŸ› ï¸ Phase 02: Engineering & Development
 Normative coding practices, test automation thresholds, and delivery gating.
-*   👉 **[Construction-Focused SDLC Framework](./02-engineering/construction-focused-sdlc-framework.md)**
+*   ðŸ‘‰ **[Construction-Focused SDLC Framework](./02-engineering/construction-focused-sdlc-framework.md)**
 
-### 📚 Phase 03: Documentation Standards
+### ðŸ“š Phase 03: Documentation Standards
 The ultimate reference governing how technical knowledge is produced and consumed.
-*   👉 **[Best Practices for SDLC Documentation](./03-documentation/sdlc-documentation-best-practices.md)**
+*   ðŸ‘‰ **[Best Practices for SDLC Documentation](./03-documentation/sdlc-documentation-best-practices.md)**
 
-### 🚀 Phase 04: Deployment & Operations
+### ðŸš€ Phase 04: Deployment & Operations
 Operational readiness policies and incident response flows.
 *   *Coming Soon: Zero-Downtime Release Playbook.*
+
+---
+[? Back to Upper Level](../README.md)

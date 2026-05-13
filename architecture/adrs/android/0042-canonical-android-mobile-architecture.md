@@ -40,9 +40,12 @@ The architecture MUST support **Offline-First**:
 
 ## 4. Consequences
 
-### 🟢 Positive
+### ðŸŸ¢ Positive
 *   **Resilience**: Operates 100% disconnected in warehouses or field locations.
 *   **Native Power**: Direct usage of low-level hardware telemetry/scanners.
 
-### 🔴 Negative
+### ðŸ”´ Negative
 *   **Dev Cost**: Higher initial cost compared to cross-platform wrappers (Flutter/React Native), accepted for mission-critical operational workloads only.
+
+---
+[? Back to Index](./README.md)

@@ -7,7 +7,7 @@ Approved
 2026-05-08
 
 ## Context
-Without structured logging and distributed tracing, diagnosing production issues requires guesswork. Log messages without correlation IDs make it impossible to trace a single user request across multiple service layers (Kong → BFF → Core API → Database). Observability must be a first-class citizen, not an afterthought.
+Without structured logging and distributed tracing, diagnosing production issues requires guesswork. Log messages without correlation IDs make it impossible to trace a single user request across multiple service layers (Kong â†’ BFF â†’ Core API â†’ Database). Observability must be a first-class citizen, not an afterthought.
 
 ## Decision
 Adopt the **OpenTelemetry (OTel)** standard as the unified observability backbone, with the following toolchain:
@@ -20,7 +20,7 @@ Adopt the **OpenTelemetry (OTel)** standard as the unified observability backbon
 
 **Implementation rules:**
 
-1. **Auto-instrumentation**: NestJS HTTP, TypeORM, and Redis calls are automatically instrumented via OTel auto-instrumentation packages — no manual span creation required for standard flows.
+1. **Auto-instrumentation**: NestJS HTTP, TypeORM, and Redis calls are automatically instrumented via OTel auto-instrumentation packages â€” no manual span creation required for standard flows.
 2. **Vendor-Agnostic Routing**: The application MUST ONLY emit vendor-neutral telemetry to a local **OpenTelemetry Collector**. Switching final backends (e.g., from Jaeger to Datadog, or Loki to Elastic) requires changing ONLY the Collector's YAML config, with **zero modifications or redeployments** to application source code.
 3. **Manual spans**: Business-significant operations (use case execution, cache misses) get explicit `tracer.startSpan()` wrapping.
 4. **Trace propagation**: All outbound HTTP calls include `traceparent` headers (W3C Trace Context standard).
@@ -31,7 +31,7 @@ Adopt the **OpenTelemetry (OTel)** standard as the unified observability backbon
 ### Positive
 - Single `traceId` traces a request from the Kong gateway log all the way to the PostgreSQL query plan.
 - Grafana dashboards provide SRE-level visibility with P50/P95/P99 latency breakdowns.
-- Zero code changes to the domain Core — all instrumentation lives in the infrastructure and adapter layers.
+- Zero code changes to the domain Core â€” all instrumentation lives in the infrastructure and adapter layers.
 - **Absolute Tech Sovereignty**: Zero vendor lock-in. The OTel protocol decouples us from Datadog, Dynatrace, Grafana, or any commercial vendor natively.
 
 ### Negative
@@ -40,4 +40,7 @@ Adopt the **OpenTelemetry (OTel)** standard as the unified observability backbon
 
 ## References
 - [OpenTelemetry Documentation](https://opentelemetry.io)
-- [ADR-0002: Clean Hexagonal Architecture](../02-adrs/nodejs/0002-clean-architecture-nestjs.md)
+- [ADR-0002: Clean Hexagonal Architecture](../adrs/nodejs/0002-clean-architecture-nestjs.md)
+
+---
+[? Back to Index](./README.md)

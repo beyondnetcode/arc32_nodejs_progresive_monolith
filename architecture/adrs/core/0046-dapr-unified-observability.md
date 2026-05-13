@@ -39,3 +39,6 @@ We hereby mandate the absolute unification of infrastructure and application tel
 - [Reference Blueprint - Observability Integration](../../architecture/reference-blueprint.md#31-patron-de-contexto-general--stack-completo-con-niveles-de-gateway-y-bus-de-eventos-inyectable)
 - [Engineering Manifesto - Infrastructure Isolation](../../engineering/engineering-manifesto.md)
 - [Authoritative Tech Stack - Validated Runtimes](../../architecture/authoritative-tech-stack.md)
+
+---
+[? Back to Index](./README.md)

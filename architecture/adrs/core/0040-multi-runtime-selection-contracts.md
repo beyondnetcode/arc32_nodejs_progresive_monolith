@@ -8,7 +8,7 @@
 ---
 
 ## 2. Context
-To fulfill the **Políglota Corporate Vision**, our organization authorizes multiple execution runtimes. However, without a clear selection policy, teams may select technology based on subjective preference rather than performance suitability. Furthermore, communication between disparate runtimes requires explicit mechanisms to guarantee interoperability without leaking runtime implementation details.
+To fulfill the **PolÃ­glota Corporate Vision**, our organization authorizes multiple execution runtimes. However, without a clear selection policy, teams may select technology based on subjective preference rather than performance suitability. Furthermore, communication between disparate runtimes requires explicit mechanisms to guarantee interoperability without leaking runtime implementation details.
 
 ---
 
@@ -33,9 +33,12 @@ Direct runtime dependency is forbidden. Communication MUST travers explicitly de
 
 ## 4. Consequences
 
-### 🟢 Positive
+### ðŸŸ¢ Positive
 *   **Optimized Cost/Performance**: Each workload runs on the engine most efficient for its memory/CPU profile.
 *   **Talent Agnostic**: Enables simultaneous hiring across TypeScript, C#, and Android pools.
 
-### 🔴 Negative
+### ðŸ”´ Negative
 *   **Governance Overhead**: Requires maintaining standard templates for 3 distinct toolchains.
+
+---
+[? Back to Index](./README.md)

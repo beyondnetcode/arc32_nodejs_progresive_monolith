@@ -1,4 +1,4 @@
-# 👥 Stakeholders Map
+# ðŸ‘¥ Stakeholders Map
 
 Since this is a Reference Architecture Template, the primary stakeholders are **Internal Technical Consumers** interested in delivery quality and standardized scaffolding.
 
@@ -8,3 +8,6 @@ Since this is a Reference Architecture Template, the primary stakeholders are **
 | **Lead Developers** | Reusability of module generators and infrastructure boilerplate. | Onboarding speed |
 | **DevOps Engineers** | Predictability of CI gates, container configuration, and observability. | Mean Time To Repair (MTTR) |
 | **QA Engineers** | Clean, verifiable testing pyramid (Unit vs Pact). | Code coverage % |
+
+---
+[? Back to Index](./README.md)

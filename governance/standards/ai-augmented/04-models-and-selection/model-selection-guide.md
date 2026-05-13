@@ -23,14 +23,17 @@ We adopt a hierarchical tree to match the problem with the right engine.
 Ask the following sequential questions to determine the minimum viable model:
 
 1.  **Is this a 1-to-1 transformation?** (e.g., Input A yields Output B with simple rules)
-    *   👉 Use **Tier 1 (Flash)**.
+    *   ðŸ‘‰ Use **Tier 1 (Flash)**.
 2.  **Does it require using External Tools (MCP)?**
-    *   👉 **If Yes (1-2 tools):** Try Tier 1 first.
-    *   👉 **If Yes (> 3 complex tools):** Advance to **Tier 2 (Pro/Sonnet)** to prevent hallucinations in JSON arguments.
+    *   ðŸ‘‰ **If Yes (1-2 tools):** Try Tier 1 first.
+    *   ðŸ‘‰ **If Yes (> 3 complex tools):** Advance to **Tier 2 (Pro/Sonnet)** to prevent hallucinations in JSON arguments.
 3.  **Does the context exceed 100k tokens?** (e.g., reading an entire code repository or 5 long PDFs)
-    *   👉 Mandate high-window models like **Gemini 1.5 Pro** (up to 2M tokens).
+    *   ðŸ‘‰ Mandate high-window models like **Gemini 1.5 Pro** (up to 2M tokens).
 4.  **Is this a critical production system generating legal/financial outputs?**
-    *   👉 Mandate **Tier 2 or Tier 3** backed by a deterministic Human-in-the-Loop pipeline.
+    *   ðŸ‘‰ Mandate **Tier 2 or Tier 3** backed by a deterministic Human-in-the-Loop pipeline.
 
 ## Benchmarking Metric
 We define **RPT (Reasoning Per Token)** as our internal performance metric. When a new model is released, our AI Committee executes an automated suite of 5 standard domain tasks. Only models passing these tests are officially authorized for production catalog addition.
+
+---
+[? Back to Index](./README.md)

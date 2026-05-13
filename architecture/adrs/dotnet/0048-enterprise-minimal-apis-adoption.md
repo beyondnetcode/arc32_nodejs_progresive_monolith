@@ -38,11 +38,11 @@ To mitigate code disorder, the following non-negotiable rules are enforced:
 
 ## 4. Consequences
 
-### 🟢 Positive
+### ðŸŸ¢ Positive
 *   **Performance**: Immediate throughput gains and full Native AOT compatibility for new services.
 *   **Evolution**: Controlled, incremental adoption without forcing massive legacy rewrites.
 
-### 🔴 Negative
+### ðŸ”´ Negative
 *   **Learning Curve**: Development teams must master both operational patterns simultaneously.
 *   **Onboarding Friction**: As two distinct models coexist, robust documentation is required to prevent confusion.
 
@@ -50,3 +50,6 @@ To mitigate code disorder, the following non-negotiable rules are enforced:
 
 ## 5. Review
 Evaluate in **Q2 of next year** whether the ecosystem's maturity allows us to formally deprecate Controllers for all new software projects.
+
+---
+[? Back to Index](./README.md)

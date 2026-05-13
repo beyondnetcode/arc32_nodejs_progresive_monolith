@@ -41,12 +41,12 @@ We decree a **Strict Factory-Driven Abstraction** strategy for deployment switch
 
 ## 5. Consequences
 
-### 🟢 Positive
+### ðŸŸ¢ Positive
 *   **Zero-Recode Deployment**: The same Docker image runs in production cloud OR inside a private corporate data center.
 *   **Clean Logic**: Business logic remains 100% pure and ignorant of where it resides physically.
 *   **Predictable Configuration**: Infrastructure configuration is centralized in Kubernetes ConfigMaps and Vault mounts.
 
-### 🔴 Negative / Technical Debt
+### ðŸ”´ Negative / Technical Debt
 *   **Increased Configuration Surface**: DevOps teams must explicitly configure Helm Values to drive the boot-time injection logic correctly for both matrices.
 
 ---
@@ -54,3 +54,6 @@ We decree a **Strict Factory-Driven Abstraction** strategy for deployment switch
 ## 6. Verification & Compliance
 *   **Gate**: Unit tests must instantiate both adapter variants to guarantee identical contract compliance.
 *   **Compliance Checklist**: A Pull Request introducing an infrastructure dependency MUST include dynamic binding logic within the central `InfraModule` factory.
+
+---
+[? Back to Index](./README.md)

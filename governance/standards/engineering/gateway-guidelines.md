@@ -1,4 +1,4 @@
-# 🛡️ Kong Plugins Config Guide (DB-less Mode)
+# ðŸ›¡ï¸ Kong Plugins Config Guide (DB-less Mode)
 
 To integrate **Kong Open Source** in front of your **NestJS BFF (Tier 2)**, the modern best practice is using **DB-less mode**. Instead of storing configuration in PostgreSQL, you define all routes and plugins in a YAML file (`kong.yml`) living in your repository. This aligns perfectly with **GitOps** philosophy.
 
@@ -122,3 +122,6 @@ export class KongAuthGuard implements CanActivate {
 
 * **Zero Cost Protection:** Attacks or expired tokens are dropped at the proxy level, preserving NestJS Node.js event loop threads for actual valid users.
 * **Infrastructure Security:** If you add another backend service (e.g., Go or Python), Kong protects them identically without duplicating auth logic.
+
+---
+[? Back to Index](./README.md)

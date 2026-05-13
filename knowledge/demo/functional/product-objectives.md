@@ -1,10 +1,10 @@
-# 🎯 Strategic Product Objectives (OKRs) - Classic To-Do Skeleton
+# ðŸŽ¯ Strategic Product Objectives (OKRs) - Classic To-Do Skeleton
 
 To align technical delivery with the goal of providing a pure Reference Architecture, the template is governed by these **Objectives and Key Results (OKRs)**:
 
 ---
 
-## 🚀 Objective 1: 100% Clean Architecture Compliance
+## ðŸš€ Objective 1: 100% Clean Architecture Compliance
 Ensure absolute separation of the core domain logic from infrastructure details.
 
 - **KR 1.1**: Maintain **Zero Infrastructure SDK imports** inside the `src/core` layer (monitored via `dependency-cruiser`).
@@ -13,7 +13,7 @@ Ensure absolute separation of the core domain logic from infrastructure details.
 
 ---
 
-## ⚡ Objective 2: Production-Ready Observability
+## âš¡ Objective 2: Production-Ready Observability
 Establish that tracing and logging are not afterthoughts but foundational standards.
 
 - **KR 2.1**: Standardize **100% trace propagation** across the stack via OpenTelemetry auto-instrumentation.
@@ -21,8 +21,11 @@ Establish that tracing and logging are not afterthoughts but foundational standa
 
 ---
 
-## 💼 Objective 3: Zero-Friction Local Setup & Scaffold
+## ðŸ’¼ Objective 3: Zero-Friction Local Setup & Scaffold
 Ensure onboarding new developers is seamless and extremely fast.
 
 - **KR 3.1**: Spin up full environment (Postgres, Redis, API) in **less than 1 command** using `docker compose up`.
 - **KR 3.2**: Ensure the monorepo build time is **under 1 minute** via Nx Cache.
+
+---
+[? Back to Index](./README.md)

@@ -36,9 +36,12 @@ The canonical .NET framework consists of:
 
 ## 4. Consequences
 
-### 🟢 Positive
+### ðŸŸ¢ Positive
 *   **High-Efficiency**: Massive concurrency throughput for worker pools.
 *   **Design Symmetricity**: A developer switching from Node.js to .NET will find the same Domain/Application/Infrastructure separation, reducing friction.
 
-### 🔴 Negative
+### ðŸ”´ Negative
 *   **Operational Footprint**: Slightly larger memory idle state compared to lightweight node scripts, mitigated by trimming and AOT compilation.
+
+---
+[? Back to Index](./README.md)

@@ -15,9 +15,12 @@ The **Model Context Protocol (MCP)** is approved as the standardized integration
 *   **gRPC for Tool Calling:** Overly heavy for JSON-based agentic orchestrators and lacks the mature MCP host ecosystem.
 
 ## Consequences and Trade-offs
-*   ✅ **Direct Interoperability:** The same MCP Server serves simultaneously to empower both the developer's IDE and the CRM Agent.
-*   ✅ **Unified Security:** Facilitates creating Gateways that audit tool calls in a single universal format.
-*   ⚠️ **Trade-off:** Demands adding a transport wrapper (Stdio or SSE) to microservices that were traditionally only REST/gRPC.
+*   âœ… **Direct Interoperability:** The same MCP Server serves simultaneously to empower both the developer's IDE and the CRM Agent.
+*   âœ… **Unified Security:** Facilitates creating Gateways that audit tool calls in a single universal format.
+*   âš ï¸ **Trade-off:** Demands adding a transport wrapper (Stdio or SSE) to microservices that were traditionally only REST/gRPC.
 
 ## References
 *   Official MCP Specification: https://modelcontextprotocol.io
+
+---
+[? Back to Index](./README.md)

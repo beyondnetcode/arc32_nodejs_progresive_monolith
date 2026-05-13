@@ -44,5 +44,8 @@ Mandate that ALL Application Use Cases and Domain Entities return errors explici
 
 ## References
 - [Railway Oriented Programming](https://fsharpforfunandprofit.com/rop/)
-- [ADR-0002: Clean Hexagonal Architecture](../02-adrs/nodejs/0002-clean-architecture-nestjs.md)
-- [ADR-0011: Fault Tolerance](../02-adrs/core/0011-fault-tolerance-resiliency-patterns.md)
+- [ADR-0002: Clean Hexagonal Architecture](../adrs/nodejs/0002-clean-architecture-nestjs.md)
+- [ADR-0011: Fault Tolerance](../adrs/core/0011-fault-tolerance-resiliency-patterns.md)
+
+---
+[? Back to Index](./README.md)

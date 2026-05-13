@@ -20,11 +20,14 @@ We formally decide to adopt the discipline of **Harness Engineering** as the man
 *   **No Standardization:** Discarded due to the high risk of incoherent technical debt and methodological fragmentation.
 
 ## Consequences
-*   ✅ **Positive:** Dramatic increase in agent success rates, auditability of agentic behavior, and reuse of corporate security patterns.
-*   ❌ **Negative:** Higher initial learning curve to configure hooks, and the requirement to maintain the `AGENTS.md` file manually.
-*   ⚠️ **Trade-off:** We sacrifice fleeting velocity ("Hacks") in favor of long-term stability.
+*   âœ… **Positive:** Dramatic increase in agent success rates, auditability of agentic behavior, and reuse of corporate security patterns.
+*   âŒ **Negative:** Higher initial learning curve to configure hooks, and the requirement to maintain the `AGENTS.md` file manually.
+*   âš ï¸ **Trade-off:** We sacrifice fleeting velocity ("Hacks") in favor of long-term stability.
 
 ## References
-*   Mitchell Hashimoto — Harness Engineering (Feb 2026)
-*   OpenAI — Harness Engineering with Codex (Feb 2026)
-*   Martin Fowler / Thoughtworks — Harness Engineering (Feb 2026)
+*   Mitchell Hashimoto â€” Harness Engineering (Feb 2026)
+*   OpenAI â€” Harness Engineering with Codex (Feb 2026)
+*   Martin Fowler / Thoughtworks â€” Harness Engineering (Feb 2026)
+
+---
+[? Back to Index](./README.md)

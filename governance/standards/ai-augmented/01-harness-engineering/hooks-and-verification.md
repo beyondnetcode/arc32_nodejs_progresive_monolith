@@ -51,3 +51,6 @@ async function onAfterFileEdit(filePath: string) {
 ## Deterministic Validation vs LLM-Based
 -   **Deterministic Validation (Priority):** Compilers, Linters, Unit Tests. 100% binary results. Must always execute first.
 -   **LLM-Based Validation (Secondary):** Using a second smaller model to audit generated code (e.g., detecting complex logic vulnerabilities). Only use when static analysis is incapable of inferring semantic context.
+
+---
+[? Back to Index](./README.md)

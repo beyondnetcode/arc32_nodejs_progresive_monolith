@@ -13,7 +13,7 @@ Login processes generate the absolute heaviest initial load footprint. Traversin
 Standardize authentication login gateways to yield lightweight, pre-digested **Hierarchical Authorization Graphs** boosted via Distributed memory side-caches:
 
 1. **Stateless Signing**: Session legitimacy verification continues over asymmetric RS256 Token validation, rotated dynamically (RTR).
-2. **Aggregated Graphing**: Instead of repeatedly joining relational tables, resolve the entirety of `Role ➔ System ➔ Menu ➔ Submenu ➔ Action` mappings once.
+2. **Aggregated Graphing**: Instead of repeatedly joining relational tables, resolve the entirety of `Role âž” System âž” Menu âž” Submenu âž” Action` mappings once.
 3. **Read-Aside Memory Burst**: Serialize this graph structure directly into Redis, partitioned by user and tenant context keys. Keep general access authorization resolution under physical **<5ms benchmarks**.
 4. **Explicit-Deny Superiority**: Hardcode rule precedence such that local overrides (`DENY`) explicitly supersede general permissive structures (`ALLOW`) regardless of hierarchy position.
 
@@ -27,5 +27,8 @@ Standardize authentication login gateways to yield lightweight, pre-digested **H
 - Demands rigorous Redis cache invalidation logic explicitly bound to any permissions management write-events.
 
 ## References
-- [ADR-0014: Redis Cache](../02-adrs/core/0014-distributed-caching-strategy-redis.md)
-- [ADR-0022: Contextual Authorization](../02-adrs/nodejs/0022-contextual-auth-and-pluggable-projections.md)
+- [ADR-0014: Redis Cache](../adrs/core/0014-distributed-caching-strategy-redis.md)
+- [ADR-0022: Contextual Authorization](../adrs/nodejs/0022-contextual-auth-and-pluggable-projections.md)
+
+---
+[? Back to Index](./README.md)

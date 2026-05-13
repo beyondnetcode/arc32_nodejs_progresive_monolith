@@ -1,59 +1,62 @@
-# 🏛️ Centro de Estándares Corporativos (EAC)
+# ðŸ›ï¸ Centro de EstÃ¡ndares Corporativos (EAC)
 
-> 🌐 **Navegación Bilingüe:** [🇺🇸 English Version](../corporate-standards/README.md)
+> ðŸŒ **NavegaciÃ³n BilingÃ¼e:** [ðŸ‡ºðŸ‡¸ English Version](../standards/README.md)
 
-Bienvenido al repositorio central de la verdad arquitectónica. Cada documento presente aquí se considera **Normativa Obligatoria** para construir software dentro de la organización.
+Bienvenido al repositorio central de la verdad arquitectÃ³nica. Cada documento presente aquÃ­ se considera **Normativa Obligatoria** para construir software dentro de la organizaciÃ³n.
 
 ---
 
-## 📂 Mapa de Navegación Corporativa Exhaustivo
+## ðŸ“‚ Mapa de NavegaciÃ³n Corporativa Exhaustivo
 
-### 👁️ Fase 00: Visión y Auditoría Interna
-Principios no negociables de crecimiento, diagnósticos de consistencia y modelos de autoevaluación.
-*   [Directivas Arquitectónicas y Evolución](./vision/architectural-directives.md)
-*   **[🚀 Estrategia Evolutiva y Tablero de Control](./vision/evolutionary-strategy-roadmap.md)** *(Visión Global)*
+### ðŸ‘ï¸ Fase 00: VisiÃ³n y AuditorÃ­a Interna
+Principios no negociables de crecimiento, diagnÃ³sticos de consistencia y modelos de autoevaluaciÃ³n.
+*   [Directivas ArquitectÃ³nicas y EvoluciÃ³n](./vision/architectural-directives.md)
+*   **[ðŸš€ Estrategia Evolutiva y Tablero de Control](./vision/evolutionary-strategy-roadmap.md)** *(VisiÃ³n Global)*
 *   [Matriz de Madurez Corporativa](./vision/maturity-matrix.md)
-*   [Evaluación de Madurez Dinámica](./vision/maturity-evaluation.md)
+*   [EvaluaciÃ³n de Madurez DinÃ¡mica](./vision/maturity-evaluation.md)
 
-### 📐 Fase 01: Blueprint y Topología (arc42)
-El diseño estructural del sistema detallado en vistas C4 y CAP.
-*   **[🏛️ Blueprint Corporativo Multi-Runtime](./architecture/reference-blueprint.md)** *(Lectura Obligatoria)*
-*   [Especificación C4 Topología de Contenedores](./architecture/c4-topology-spec.md)
-*   [Análisis Estratégico del Teorema CAP](./architecture/cap-strategic-analysis.md)
-*   [Escenarios de Despliegue Multi-Cloud](./architecture/multi-cloud-deployment-scenarios.md)
-*   [Stack Tecnológico Autoritativo](./architecture/authoritative-tech-stack.md)
-*   [Resumen Rápido del Stack](./architecture/tech-stack-summary.md)
+### ðŸ“ Fase 01: Blueprint y TopologÃ­a (arc42)
+El diseÃ±o estructural del sistema detallado en vistas C4 y CAP.
+*   **[ðŸ›ï¸ Blueprint Corporativo Multi-Runtime](../../architecture/blueprints-es/reference-blueprint.md)** *(Lectura Obligatoria)*
+*   [EspecificaciÃ³n C4 TopologÃ­a de Contenedores](../../architecture/blueprints-es/c4-topology-spec.md)
+*   [AnÃ¡lisis EstratÃ©gico del Teorema CAP](../../architecture/blueprints-es/cap-strategic-analysis.md)
+*   [Escenarios de Despliegue Multi-Cloud](../../architecture/blueprints-es/multi-cloud-deployment-scenarios.md)
+*   [Stack TecnolÃ³gico Autoritativo](../../architecture/blueprints-es/authoritative-tech-stack.md)
+*   [Resumen RÃ¡pido del Stack](../../architecture/blueprints-es/tech-stack-summary.md)
 
-### 📜 Fase 02: Registros de Decisión Arquitectónica (ADRs)
-La historia consolidada y clasificada de las 44 decisiones técnicas activas.
-*   👉 **[Navegador Central de ADRs](./02-adrs/README.md)**
-    *   ⚡ *Ir A:* [🌐 Core](./02-adrs/README.md#universal-core) | [🟢 Node.js](./02-adrs/README.md#nodejs-typescript) | [🔵 .NET](./02-adrs/README.md#net-c) | [🟣 Móvil](./02-adrs/README.md#android-native)
+### ðŸ“œ Fase 02: Registros de DecisiÃ³n ArquitectÃ³nica (ADRs)
+La historia consolidada y clasificada de las 44 decisiones tÃ©cnicas activas.
+*   ðŸ‘‰ **[Navegador Central de ADRs](../../architecture/adrs-es/README.md)**
+    *   âš¡ *Ir A:* [ðŸŒ Core](../../architecture/adrs-es/README.md#universal-core) | [ðŸŸ¢ Node.js](../../architecture/adrs-es/README.md#nodejs-typescript) | [ðŸ”µ .NET](../../architecture/adrs-es/README.md#net-c) | [ðŸŸ£ MÃ³vil](../../architecture/adrs-es/README.md#android-native)
 
-### 🛠️ Fase 03: Estándares de Ingeniería y Auditoría de Stack
-Playbooks de implementación táctica, seguridad defensiva y validación de mercado.
-*   **[🔬 Opinión de Auditoría de Stack 2026](./engineering/detailed-stack-audit-2026.md)** *(Crítico - Evaluación de Licencias)*
-*   **[🧠 Análisis Técnico Senior y Evaluación de Madurez](./engineering/senior-architectural-assessment.md)** *(Nuevo Roadmap)*
-*   [Manifiesto de Ingeniería Global (SOLID/OWASP)](./engineering/engineering-manifesto.md)
-*   [Guía Táctica de Pruebas de Contrato (Pact)](./engineering/contract-testing-guideline.md)
+### ðŸ› ï¸ Fase 03: EstÃ¡ndares de IngenierÃ­a y AuditorÃ­a de Stack
+Playbooks de implementaciÃ³n tÃ¡ctica, seguridad defensiva y validaciÃ³n de mercado.
+*   **[ðŸ”¬ OpiniÃ³n de AuditorÃ­a de Stack 2026](./engineering/detailed-stack-audit-2026.md)** *(CrÃ­tico - EvaluaciÃ³n de Licencias)*
+*   **[ðŸ§  AnÃ¡lisis TÃ©cnico Senior y EvaluaciÃ³n de Madurez](./engineering/senior-architectural-assessment.md)** *(Nuevo Roadmap)*
+*   [Manifiesto de IngenierÃ­a Global (SOLID/OWASP)](./engineering/engineering-manifesto.md)
+*   [GuÃ­a TÃ¡ctica de Pruebas de Contrato (Pact)](./engineering/contract-testing-guideline.md)
 *   [Playbook de Estrategia de Observabilidad](./engineering/observability-playbook.md)
 *   [Manual de Plugins del API Gateway (Kong/Traefik)](./engineering/gateway-guidelines.md)
-*   [Evaluación de Riesgos de Proveedores y Cadena de Suministro](./engineering/vendor-risk-assessment.md)
+*   [EvaluaciÃ³n de Riesgos de Proveedores y Cadena de Suministro](./engineering/vendor-risk-assessment.md)
 
-### 🚦 Fase 04: Gobernanza y Entrega
-*   [Estrategia de Lanzamiento y Auditoría (Nx)](./governance-docs/release-audit-strategy.md)
+### ðŸš¦ Fase 04: Gobernanza y Entrega
+*   [Estrategia de Lanzamiento y AuditorÃ­a (Nx)](./governance-docs/release-audit-strategy.md)
 
-### 🚀 Fase 05: Onboarding (Incorporación)
-*   **[Guía de Inicio Rápido para Nuevos Productos](./onboarding/product-quick-start.md)**
-
----
-*Esta documentación es agnóstica al dominio del negocio y regula estrictamente la estructura tecnológica del holding.*
+### ðŸš€ Fase 05: Onboarding (IncorporaciÃ³n)
+*   **[GuÃ­a de Inicio RÃ¡pido para Nuevos Productos](./onboarding/product-quick-start.md)**
 
 ---
+*Esta documentaciÃ³n es agnÃ³stica al dominio del negocio y regula estrictamente la estructura tecnolÃ³gica del holding.*
 
-## 🤖 Arquitectura Aumentada por IA (Opcional)
+---
 
-Extensión opcional para equipos y productos que buscan incorporar agentes de IA,
-harness engineering y MCP en su arquitectura. No modifica ni reemplaza ningún
-estándar corporativo existente.
+## ðŸ¤– Arquitectura Aumentada por IA (Opcional)
 
-→ [Explorar sección de Arquitectura Aumentada por IA](./ai-augmented/README.md)
+ExtensiÃ³n opcional para equipos y productos que buscan incorporar agentes de IA,
+harness engineering y MCP en su arquitectura. No modifica ni reemplaza ningÃºn
+estÃ¡ndar corporativo existente.
+
+â†’ [Explorar secciÃ³n de Arquitectura Aumentada por IA](./ai-augmented/README.md)
+
+---
+[? Volver al Nivel Superior](../README.es.md)

@@ -13,3 +13,6 @@ The simplest and most common pattern. A single model wrapped by an agentic loop 
 3. Harness executes Tool A.
 4. Agent reasons about result.
 5. Agent provides final response to user.
+
+---
+[? Back to Index](./README.md)

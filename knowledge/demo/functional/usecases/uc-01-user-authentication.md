@@ -1,10 +1,10 @@
-# 🧪 Use Case 1: User Authentication (Local)
+# ðŸ§ª Use Case 1: User Authentication (Local)
 
 This document specifies the transaction flow for authenticating a user against the local database.
 
 ---
 
-## 🏛️ 1. Use Case Definition
+## ðŸ›ï¸ 1. Use Case Definition
 
 | Attribute | Specification |
 | :--- | :--- |
@@ -15,7 +15,7 @@ This document specifies the transaction flow for authenticating a user against t
 
 ---
 
-## 🔄 2. Transaction Flow
+## ðŸ”„ 2. Transaction Flow
 
 ```mermaid
 sequenceDiagram
@@ -43,8 +43,11 @@ sequenceDiagram
 
 ---
 
-## 🛡️ 3. Exception Handling
+## ðŸ›¡ï¸ 3. Exception Handling
 
 ### Error: User Not Found / Invalid Password
 *   The system must return a generic `401 Unauthorized` response to prevent email enumeration attacks.
 *   Log the failure event via the observability dashboard for threshold monitoring.
+
+---
+[? Back to Index](./README.md)

@@ -14,11 +14,11 @@ Integrate **GitHub CodeQL** and **npm audit** as mandatory quality gates in the 
 
 **Pipeline gates:**
 
-1. **CodeQL Static Analysis** — Runs on every pull request. Scans for OWASP Top 10 vulnerability patterns in TypeScript source code. PRs with `High` or `Critical` findings are blocked from merging.
+1. **CodeQL Static Analysis** â€” Runs on every pull request. Scans for OWASP Top 10 vulnerability patterns in TypeScript source code. PRs with `High` or `Critical` findings are blocked from merging.
 
-2. **Dependency Vulnerability Scan** — `npm audit --audit-level=high` runs in CI. Any dependency with a `High` or `Critical` CVE blocks the pipeline.
+2. **Dependency Vulnerability Scan** â€” `npm audit --audit-level=high` runs in CI. Any dependency with a `High` or `Critical` CVE blocks the pipeline.
 
-3. **Secret Detection** — GitHub's built-in secret scanning is enabled on the repository to detect accidentally committed API keys or credentials.
+3. **Secret Detection** â€” GitHub's built-in secret scanning is enabled on the repository to detect accidentally committed API keys or credentials.
 
 **SLA:** All `Critical` findings must be resolved within 24 hours. `High` findings within 72 hours.
 
@@ -26,7 +26,7 @@ Integrate **GitHub CodeQL** and **npm audit** as mandatory quality gates in the 
 
 ### Positive
 - Security vulnerabilities are caught at PR time, before reaching any environment.
-- Zero additional infrastructure cost — CodeQL is free for public and GitHub Team repositories.
+- Zero additional infrastructure cost â€” CodeQL is free for public and GitHub Team repositories.
 - Creates a documented audit trail of security decisions for compliance requirements.
 
 ### Negative
@@ -35,4 +35,7 @@ Integrate **GitHub CodeQL** and **npm audit** as mandatory quality gates in the 
 
 ## References
 - [GitHub CodeQL Documentation](https://docs.github.com/en/code-security/code-scanning)
-- [ADR-0009: Strict Dependency Pinning](../02-adrs/core/0009-strict-dependency-pinning-vulnerability-management.md)
+- [ADR-0009: Strict Dependency Pinning](../adrs/core/0009-strict-dependency-pinning-vulnerability-management.md)
+
+---
+[? Back to Index](./README.md)

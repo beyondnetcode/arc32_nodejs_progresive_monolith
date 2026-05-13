@@ -1,12 +1,12 @@
-# 🗺️ Multi-Cloud Deployment and Compliance Scenarios
+# ðŸ—ºï¸ Multi-Cloud Deployment and Compliance Scenarios
 
-> 🌍 **Bilingual Navigation:** [🇪🇸 Versión en Español](../../corporate-standards-es/architecture/multi-cloud-deployment-scenarios.md)
+> ðŸŒ **Bilingual Navigation:** [ðŸ‡ªðŸ‡¸ VersiÃ³n en EspaÃ±ol](../../standards-es/architecture/multi-cloud-deployment-scenarios.md)
 
 This document details the approved deployment architectures for the Corporate Architecture, considering rigorous controls for data sovereignty, security, and the adaptability of the security strategy selector (`SECURITY_STRATEGY_MODE`).
 
 ---
 
-## 🌐 1. Introduction to Operational Compliance
+## ðŸŒ 1. Introduction to Operational Compliance
 
 Any physical implementation of the architecture must satisfy the guidelines of the **GDPR** (General Data Protection Regulation) and the **ISO/IEC 27001:2022** standard, specifically in domains A.8 (Asset Security) and A.10 (Cryptography).
 
@@ -18,7 +18,7 @@ Any physical implementation of the architecture must satisfy the guidelines of t
 
 ---
 
-## 🔵 2. AZURE Scenario: Strict Enterprise Compliance
+## ðŸ”µ 2. AZURE Scenario: Strict Enterprise Compliance
 
 Geared towards highly regulated sectors (Banking, Healthcare) requiring exhaustive auditing and hardware-backed encryption.
 
@@ -106,7 +106,7 @@ resource policyAssignment 'Microsoft.Authorization/policyAssignments@2023-04-01'
 
 ---
 
-## 🟠 3. AWS Scenario: Global Resilience and Total Privacy
+## ðŸŸ  3. AWS Scenario: Global Resilience and Total Privacy
 
 Aimed at global scaling with complete network isolation, where encryption keys belong to and are rotated exclusively by the customer (CMK).
 
@@ -177,7 +177,7 @@ resource "aws_rds_cluster" "aurora_cluster" {
 
 ---
 
-## 🟢 4. ON-PREMISE Scenario: Total Control and Extreme Sovereignty
+## ðŸŸ¢ 4. ON-PREMISE Scenario: Total Control and Extreme Sovereignty
 
 Designed for government implementations or isolated (Air-Gapped) local facilities where physical sovereignty is absolute.
 
@@ -251,7 +251,7 @@ EOT
 
 ---
 
-## 🟣 5. HYBRID Scenario: Emergency and Elastic Transition
+## ðŸŸ£ 5. HYBRID Scenario: Emergency and Elastic Transition
 
 Oriented towards absorbing sudden traffic spikes or when regulatory compliance permits cloud computing but demands local data persistence.
 
@@ -297,7 +297,7 @@ Operating in a hybrid environment introduces network latency that can severely b
 
 ---
 
-## 📜 6. Executive Summary for Decision Makers
+## ðŸ“œ 6. Executive Summary for Decision Makers
 
 | Metric | Azure | AWS | On-Premise | Hybrid |
 | :--- | :--- | :--- | :--- | :--- |
@@ -305,3 +305,6 @@ Operating in a hybrid environment introduces network latency that can severely b
 | **Flag Flexibility** | Recommended `INFRA` | Mixed | Recommended `APP` | Recommended `APP` |
 | **Scale Agility** | Maximum | Maximum | Limited | High (Compute) |
 | **Compliance Overhead**| Low (Out-of-the-box) | Medium | High (Manual) | Very High |
+
+---
+[? Back to Index](./README.md)

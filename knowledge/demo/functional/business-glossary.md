@@ -1,4 +1,4 @@
-# 📖 Glossary of Terms (Ubiquitous Language)
+# ðŸ“– Glossary of Terms (Ubiquitous Language)
 
 | Term | Definition |
 | :--- | :--- |
@@ -8,3 +8,6 @@
 | **Owner** | The logical concept binding a Task exclusively to the User who created it. |
 | **Category** | A classification bucket for grouping related tasks (e.g., Work, Personal). |
 | **Tag** | A reusable, granular label that can be attached to multiple tasks for cross-filtering. |
+
+---
+[? Back to Index](./README.md)

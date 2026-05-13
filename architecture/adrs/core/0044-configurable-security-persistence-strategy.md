@@ -44,5 +44,8 @@ Adopt a **Configurable Persistence Strategy** utilizing the Strategy Pattern in 
 - **Consistency**: Identical under both strategies as authority originates strictly within Domain.
 
 ## References
-- [ADR-0002: Clean Hexagonal Architecture with NestJS](../02-adrs/nodejs/0002-clean-architecture-nestjs.md)
-- [ADR-0010: Multi-Tenancy Architecture Strategy](../02-adrs/core/0010-multi-tenancy-architecture-strategy.md)
+- [ADR-0002: Clean Hexagonal Architecture with NestJS](../adrs/nodejs/0002-clean-architecture-nestjs.md)
+- [ADR-0010: Multi-Tenancy Architecture Strategy](../adrs/core/0010-multi-tenancy-architecture-strategy.md)
+
+---
+[? Back to Index](./README.md)

@@ -28,4 +28,7 @@ Mandate specific Functional and Structure patterns protecting core purity:
 
 ## References
 - [Result Pattern Guide](https://khalilstemmler.com/articles/enterprise-typescript-nodejs/functional-error-handling-design-patterns/)
-- [ADR-0029: Tactical DDD Primitives](../02-adrs/nodejs/0029-tactical-ddd-primitives-library.md)
+- [ADR-0029: Tactical DDD Primitives](../adrs/nodejs/0029-tactical-ddd-primitives-library.md)
+
+---
+[? Back to Index](./README.md)

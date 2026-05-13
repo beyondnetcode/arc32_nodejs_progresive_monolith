@@ -46,3 +46,6 @@ async function runClient() {
 
 ## LLM Orchestration
 The canonical way to use an MCP client is taking the array returned by `client.listTools()`, mapping it to the JSON Schema format accepted by your LLM provider (OpenAI `tools`, Anthropic `tools`), and injecting it into the model call. When the model decides to invoke one, your code captures the name and arguments and executes `client.callTool()`.
+
+---
+[? Back to Index](./README.md)

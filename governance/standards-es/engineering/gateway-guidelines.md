@@ -1,8 +1,8 @@
-# 🛡️ Guía de Configuración de Plugins de Kong (Modo DB-less)
+# ðŸ›¡ï¸ GuÃ­a de ConfiguraciÃ³n de Plugins de Kong (Modo DB-less)
 
-Para integrar **Kong Open Source** delante de tu **BFF de NestJS (Tier 2)**, la mejor práctica moderna es usar el **modo DB-less**. En lugar de almacenar la configuración en PostgreSQL, defines todas las rutas y plugins en un archivo YAML (`kong.yml`) que vive en tu repositorio. Esto se alinea perfectamente con la filosofía **GitOps**.
+Para integrar **Kong Open Source** delante de tu **BFF de NestJS (Tier 2)**, la mejor prÃ¡ctica moderna es usar el **modo DB-less**. En lugar de almacenar la configuraciÃ³n en PostgreSQL, defines todas las rutas y plugins en un archivo YAML (`kong.yml`) que vive en tu repositorio. Esto se alinea perfectamente con la filosofÃ­a **GitOps**.
 
-A continuación se detalla cómo estructurar este archivo para implementar Limitación de Tasa (Rate Limiting), Validación JWT y Enrutamiento hacia tu BFF de NestJS.
+A continuaciÃ³n se detalla cÃ³mo estructurar este archivo para implementar LimitaciÃ³n de Tasa (Rate Limiting), ValidaciÃ³n JWT y Enrutamiento hacia tu BFF de NestJS.
 
 ---
 
@@ -28,13 +28,13 @@ services:
       # A) Rate Limiting: Protege NestJS de cargas excesivas
       - name: rate-limiting
         config:
-          second: 10     # Máximo 10 peticiones por segundo
-          hour: 10000    # Máximo 10k por hora
+          second: 10     # MÃ¡ximo 10 peticiones por segundo
+          hour: 10000    # MÃ¡ximo 10k por hora
           policy: local   # Almacena los contadores en la memoria de Kong
           fault_tolerant: true
           hide_client_headers: false
 
-      # B) Validación JWT: Bloquea el tráfico no autenticado en el Tier 1
+      # B) ValidaciÃ³n JWT: Bloquea el trÃ¡fico no autenticado en el Tier 1
       - name: jwt
         config:
           claims_to_verify:
@@ -64,7 +64,7 @@ services:
           max_age: 3600
 
 # 4. CONSUMERS Y CREDENCIALES (Para validar JWTs)
-# Kong necesita conocer secretos válidos para verificar firmas de tokens.
+# Kong necesita conocer secretos vÃ¡lidos para verificar firmas de tokens.
 consumers:
   - username: app-frontend-consumer
     jwt_secrets:
@@ -74,21 +74,21 @@ consumers:
 
 ---
 
-## 2. Flujo de Datos Arquitectónico
+## 2. Flujo de Datos ArquitectÃ³nico
 
-1. **El cliente realiza la petición:** `GET /api/v1/orders` con la cabecera `Authorization: Bearer <token>`.
+1. **El cliente realiza la peticiÃ³n:** `GET /api/v1/orders` con la cabecera `Authorization: Bearer <token>`.
 2. **Kong intercepta (Tier 1):**
-    * **Rate Limiting:** Verifica que la IP del cliente no haya excedido el límite. Devuelve `429 Too Many Requests` inmediatamente si se viola. *NestJS nunca se entera.*
-    * **CORS:** Resuelve las preflights `OPTIONS` automáticamente.
-    * **JWT:** Decodifica el token, valida la firma contra el secreto y verifica `exp`. Devuelve `401 Unauthorized` si es inválido. *NestJS nunca se entera.*
-3. **Reenvío al BFF (Tier 2):** Si las comprobaciones pasan, Kong reenvía la petición HTTP intacta a `http://nestjs-bff:3000/api/v1/orders`.
-4. **NestJS actúa:** Recibe tráfico pre-validado. Solo lee la carga útil del JWT para identificar al usuario y procede con los flujos de trabajo de negocio.
+    * **Rate Limiting:** Verifica que la IP del cliente no haya excedido el lÃ­mite. Devuelve `429 Too Many Requests` inmediatamente si se viola. *NestJS nunca se entera.*
+    * **CORS:** Resuelve las preflights `OPTIONS` automÃ¡ticamente.
+    * **JWT:** Decodifica el token, valida la firma contra el secreto y verifica `exp`. Devuelve `401 Unauthorized` si es invÃ¡lido. *NestJS nunca se entera.*
+3. **ReenvÃ­o al BFF (Tier 2):** Si las comprobaciones pasan, Kong reenvÃ­a la peticiÃ³n HTTP intacta a `http://nestjs-bff:3000/api/v1/orders`.
+4. **NestJS actÃºa:** Recibe trÃ¡fico pre-validado. Solo lee la carga Ãºtil del JWT para identificar al usuario y procede con los flujos de trabajo de negocio.
 
 ---
 
-## 3. Avanzado: Inyectando Información de Usuario a NestJS
+## 3. Avanzado: Inyectando InformaciÃ³n de Usuario a NestJS
 
-Por defecto, cuando Kong valida un JWT, puede inyectar cabeceras adicionales. Puedes configurar Kong para pasar claims en cabeceras específicas:
+Por defecto, cuando Kong valida un JWT, puede inyectar cabeceras adicionales. Puedes configurar Kong para pasar claims en cabeceras especÃ­ficas:
 
 ```yaml
       - name: jwt
@@ -99,7 +99,7 @@ Por defecto, cuando Kong valida un JWT, puede inyectar cabeceras adicionales. Pu
             - X-Authenticated-Userid # Mapea un claim personalizado si se especifica
 ```
 
-En tu código de **NestJS**, en lugar de re-validar la criptografía (desperdiciando CPU), simplemente confías en Kong y lees las cabeceras en tu AuthGuard:
+En tu cÃ³digo de **NestJS**, en lugar de re-validar la criptografÃ­a (desperdiciando CPU), simplemente confÃ­as en Kong y lees las cabeceras en tu AuthGuard:
 
 ```typescript
 @Injectable()
@@ -107,7 +107,7 @@ export class KongAuthGuard implements CanActivate {
   canActivate(context: ExecutionContext): boolean {
     const request = context.switchToHttp().getRequest();
     
-    // Kong garantizó la legitimidad del token. Solo leemos los claims inyectados.
+    // Kong garantizÃ³ la legitimidad del token. Solo leemos los claims inyectados.
     const userId = request.headers['x-consumer-username']; 
     
     if (!userId) throw new UnauthorizedException();
@@ -120,5 +120,8 @@ export class KongAuthGuard implements CanActivate {
 
 ## 4. Beneficios de esta Estrategia
 
-* **Protección a Costo Cero:** Los ataques o tokens expirados se descartan a nivel del proxy, preservando los hilos del bucle de eventos de NestJS Node.js para usuarios válidos reales.
-* **Seguridad de Infraestructura:** Si añades otro servicio de backend (ej. Go o Python), Kong los protege de forma idéntica sin duplicar la lógica de autenticación.
+* **ProtecciÃ³n a Costo Cero:** Los ataques o tokens expirados se descartan a nivel del proxy, preservando los hilos del bucle de eventos de NestJS Node.js para usuarios vÃ¡lidos reales.
+* **Seguridad de Infraestructura:** Si aÃ±ades otro servicio de backend (ej. Go o Python), Kong los protege de forma idÃ©ntica sin duplicar la lÃ³gica de autenticaciÃ³n.
+
+---
+[? Volver al Índice](./README.es.md)

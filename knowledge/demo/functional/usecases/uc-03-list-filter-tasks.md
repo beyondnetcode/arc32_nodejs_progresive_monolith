@@ -1,8 +1,8 @@
-# 🧪 Use Case 3: List Personal Tasks
+# ðŸ§ª Use Case 3: List Personal Tasks
 
 Specification for querying existing user task workloads.
 
-## 🏛️ 1. Use Case Definition
+## ðŸ›ï¸ 1. Use Case Definition
 
 | Attribute | Specification |
 | :--- | :--- |
@@ -11,7 +11,7 @@ Specification for querying existing user task workloads.
 | **Preconditions** | User possesses a valid JWT token. |
 | **Postconditions** | An array of task objects belonging to the User is retrieved. |
 
-## 🔄 2. Transaction Flow
+## ðŸ”„ 2. Transaction Flow
 
 ```mermaid
 sequenceDiagram
@@ -38,3 +38,6 @@ sequenceDiagram
 2.  Client calls the `/tasks` endpoint.
 3.  The API uses read-aside caching logic: first checking Redis for the scoped result.
 4.  If missing, queries Postgres, caches the result, and serves the requester.
+
+---
+[? Back to Index](./README.md)

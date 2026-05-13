@@ -30,3 +30,6 @@ Formally adopt the **Transactional Outbox Pattern** to guarantee atomic state pr
 ## References
 - [Transactional Outbox Pattern (Microservices.io)](https://microservices.io/patterns/data/transactional-outbox.html)
 - [ADR-0015: Injectable Event Bus](./0015-event-driven-decoupled-architecture.md)
+
+---
+[? Back to Index](./README.md)

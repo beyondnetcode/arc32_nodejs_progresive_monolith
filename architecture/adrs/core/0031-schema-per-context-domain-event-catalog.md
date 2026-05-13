@@ -64,7 +64,7 @@ All cross-bounded-context communication must occur exclusively via **Domain Even
 
 #### Event Catalog
 
-##### Auth Context — Published Events
+##### Auth Context â€” Published Events
 
 ```typescript
 /** Published when a new user successfully completes registration */
@@ -85,7 +85,7 @@ class UserDeactivatedEvent {
 }
 ```
 
-##### Task Management Context — Published Events
+##### Task Management Context â€” Published Events
 
 ```typescript
 /** Published when a new task is successfully created */
@@ -119,7 +119,7 @@ class TaskDeletedEvent {
 }
 ```
 
-##### Taxonomy Context — Published Events
+##### Taxonomy Context â€” Published Events
 
 ```typescript
 /** Published when a category is removed (tasks referencing it must be notified) */
@@ -147,7 +147,7 @@ class CategoryDeletedEvent {
 ## Consequences
 
 ### Positive (Pros)
-- **Zero-cost microservices extraction**: Schema boundaries defined upfront eliminate the most expensive part of service extraction — data ownership ambiguity.
+- **Zero-cost microservices extraction**: Schema boundaries defined upfront eliminate the most expensive part of service extraction â€” data ownership ambiguity.
 - **Explicit contracts**: The Event Catalog makes all inter-context dependencies visible and auditable, preventing hidden coupling.
 - **Idempotent event processing**: `eventId` (UUID) on every event enables consumers to safely deduplicate retried deliveries.
 - **Independent migration cycles**: Each schema can be migrated independently, enabling zero-downtime deployments per context.
@@ -158,7 +158,10 @@ class CategoryDeletedEvent {
 - **Developer discipline**: Developers must respect schema ownership rules. ESLint boundary rules ([ADR-0003](../nodejs/0003-strict-typescript-standards.md)) should be configured to prevent direct imports across context boundaries.
 
 ## References
-- [ADR-0006: Future Microservices Transition with Dapr](../02-adrs/core/0006-future-microservices-transition-dapr.md)
-- [ADR-0010: Multi-Tenancy Strategy (RLS)](../02-adrs/core/0010-multi-tenancy-architecture-strategy.md)
-- [ADR-0015: Event-Driven Architecture (Injectable Bus)](../02-adrs/core/0015-event-driven-architecture-intra-domain.md)
+- [ADR-0006: Future Microservices Transition with Dapr](../adrs/core/0006-future-microservices-transition-dapr.md)
+- [ADR-0010: Multi-Tenancy Strategy (RLS)](../adrs/core/0010-multi-tenancy-architecture-strategy.md)
+- [ADR-0015: Event-Driven Architecture (Injectable Bus)](../adrs/core/0015-event-driven-architecture-intra-domain.md)
 - [Bounded Context Map](../02-architecture/bounded-context-map.md)
+
+---
+[? Back to Index](./README.md)

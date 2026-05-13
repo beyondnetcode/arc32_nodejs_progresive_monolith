@@ -1,8 +1,8 @@
-# 🧪 Use Case 2: Create To-Do Task
+# ðŸ§ª Use Case 2: Create To-Do Task
 
 Specification for adding new atomic work units.
 
-## 🏛️ 1. Use Case Definition
+## ðŸ›ï¸ 1. Use Case Definition
 
 | Attribute | Specification |
 | :--- | :--- |
@@ -11,7 +11,7 @@ Specification for adding new atomic work units.
 | **Preconditions** | User possesses a valid JWT token. |
 | **Postconditions** | Task entity persists in database mapped to the user ID. |
 
-## 🔄 2. Transaction Flow
+## ðŸ”„ 2. Transaction Flow
 
 ```mermaid
 sequenceDiagram
@@ -33,3 +33,6 @@ sequenceDiagram
 3.  The `CreateTaskUseCase` validates domain constraints (e.g., title cannot be empty).
 4.  The domain entity maps to the infrastructure entity and pushes to the Database Adapter.
 5.  The created record with its system-generated ID is returned to the user.
+
+---
+[? Back to Index](./README.md)

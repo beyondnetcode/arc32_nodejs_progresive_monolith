@@ -91,8 +91,8 @@ app.Run();
 
 We adopt **`Snake_Case`** notation separated by hierarchical domain to prevent collisions among different company MCP Servers:
 
-*   ✅ **Correct:** `inventory_query`, `shipment_track`, `auth_revoke_token`.
-*   ❌ **Incorrect:** `query`, `trackShipment` (CamelCase not recommended in generic prompts), `doIt`.
+*   âœ… **Correct:** `inventory_query`, `shipment_track`, `auth_revoke_token`.
+*   âŒ **Incorrect:** `query`, `trackShipment` (CamelCase not recommended in generic prompts), `doIt`.
 
 ## Production Ready MCP Server Checklist
 
@@ -101,3 +101,6 @@ An MCP Server is NOT production-fit if it lacks:
 - [ ] **Rate Limiting:** Protection against an agent in an infinite loop consuming the database in seconds.
 - [ ] **Centralized Audit Log:** Every executed tool call must report Agent ID, invoked Tool, and Arguments.
 - [ ] **Safe Error Handling:** If backend fails, return a useful message for AI without leaking Stack Traces or server secrets.
+
+---
+[? Back to Index](./README.md)

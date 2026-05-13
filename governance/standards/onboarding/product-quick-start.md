@@ -1,4 +1,4 @@
-# 🚀 Getting Started Guide — Initiating a New Product from Reference
+# ðŸš€ Getting Started Guide â€” Initiating a New Product from Reference
 
 **Role:** Developer / Solutions Architect  
 **Objective:** Instantiate a production-ready repository from the Corporate Reference Framework.
@@ -93,7 +93,10 @@ npm audit
 
 ---
 
-## 🆘 Assistance
+## ðŸ†˜ Assistance
 If you encounter issues during bootstrap, refer to:
-*   📜 **[Architecture Decision Records](../03-adrs/index.md)**: To understand WHY things are configured this way.
-*   📘 **[Engineering Standards](../04-artifacts/engineering-standards.md)**: For code review guidelines.
+*   ðŸ“œ **[Architecture Decision Records](../03-adrs/index.md)**: To understand WHY things are configured this way.
+*   ðŸ“˜ **[Engineering Standards](../04-artifacts/engineering-standards.md)**: For code review guidelines.
+
+---
+[? Back to Index](./README.md)

@@ -1,6 +1,6 @@
-# 📋 Epics & Backlog Registry (Scrum Artifacts)
+# ðŸ“‹ Epics & Backlog Registry (Scrum Artifacts)
 
-> 🌍 **Bilingual Navigation:** [🇪🇸 Versión en Español](./02-backlog-and-epics-es.md)
+> ðŸŒ **Bilingual Navigation:** [ðŸ‡ªðŸ‡¸ VersiÃ³n en EspaÃ±ol](./02-backlog-and-epics-es.md)
 
 **Date:** 2026-05-12  
 **Author:** Product Owner [BMAD Role]  
@@ -8,7 +8,7 @@
 
 ---
 
-## 🏆 1. Epics Summary by Phase
+## ðŸ† 1. Epics Summary by Phase
 
 | Epic | Name | Objective | Phase |
 | :--- | :--- | :--- | :--- |
@@ -19,9 +19,9 @@
 
 ---
 
-## 📑 2. Backlog Detailed View (User Stories & Technical)
+## ðŸ“‘ 2. Backlog Detailed View (User Stories & Technical)
 
-### 🟢 Epic 1: Core Multi-Tenant Isolation
+### ðŸŸ¢ Epic 1: Core Multi-Tenant Isolation
 
 #### **US-101: Login & JWT Issuance**
 *   **Description:** As a sandbox user, I want to authenticate myself to obtain a secured Bearer Token.
@@ -40,7 +40,7 @@
 
 ---
 
-### 🟢 Epic 2: Hexagonal Task Lifecycles
+### ðŸŸ¢ Epic 2: Hexagonal Task Lifecycles
 
 #### **US-201: Validated Task Registration**
 *   **Description:** As a user, I want to log a new to-do task to maintain tracking.
@@ -58,11 +58,14 @@
 
 ---
 
-## 🚦 3. Evolution Roadmap & Planned Technical Debt
+## ðŸš¦ 3. Evolution Roadmap & Planned Technical Debt
 
-Subsequent Technical Tickets are locked until execution parameters scale based on [ADR-0045](../../corporate-standards/02-adrs/core/0045-microservice-extraction-readiness-criteria.md):
+Subsequent Technical Tickets are locked until execution parameters scale based on [ADR-0045](../../standards/02-adrs/core/0045-microservice-extraction-readiness-criteria.md):
 
 *   `TS-302 [Phase 2]` - **Transactional Outbox:** Guaranteeing delivery consistency amid downstream outages.
 *   `TS-401 [Phase 3]` - **Dapr Sidecar Extraction:** Orchestrating the service mesh transition.
 
 > **Scrum Master Note:** All listed stories satisfy **INVEST** hygiene norms and are cleared for direct execution in the very first sprint cycle of the Sandbox.
+
+---
+[? Back to Index](./README.md)

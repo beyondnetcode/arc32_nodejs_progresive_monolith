@@ -6,3 +6,6 @@ Divide and conquer. This pattern utilizes a network of specialized agents, where
 - Drastically reduces hallucinations by limiting the number of tools per agent.
 - Enables using different models for different tasks (e.g., Gemini to read code, GPT-4o mini to summarize errors).
 - Facilitates granular testing of each specialist in isolation.
+
+---
+[? Back to Index](./README.md)

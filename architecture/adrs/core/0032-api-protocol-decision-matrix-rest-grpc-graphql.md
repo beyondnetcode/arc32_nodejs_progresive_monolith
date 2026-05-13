@@ -13,17 +13,17 @@ As the modular monolith evolves into a multi-module ecosystem with multiple BFFs
 We establish a **Strict Protocol Fit Matrix** tailored to specific architectural tiers:
 
 ### 1. Internal Service-to-Service communication
-👉 **MANDATE: gRPC (Protocol Buffers over HTTP/2)**
+ðŸ‘‰ **MANDATE: gRPC (Protocol Buffers over HTTP/2)**
 *   **Scope**: Synchronous calls between internal bounded contexts (e.g., Order context validating user authorization with Identity context).
 *   **Rationale**: High performance, binary serialization collapses bandwidth usage, and strict Type-safety through unified `.proto` contracts.
 
 ### 2. Public Third-Party & External Integration
-👉 **MANDATE: REST (JSON over HTTPS)**
+ðŸ‘‰ **MANDATE: REST (JSON over HTTPS)**
 *   **Scope**: External customer integrations, legacy corporate gateway connections, and global developer public APIs.
 *   **Rationale**: Industry universality, trivial consumption via standard HTTP libraries, easiest debugging/testing, and broad interactive documentation (OpenAPI/Swagger).
 
 ### 3. Frontend Portals & Dynamic BFF Orchestration
-👉 **MANDATE: REST (Primary) / GraphQL (Targeted Enrichment)**
+ðŸ‘‰ **MANDATE: REST (Primary) / GraphQL (Targeted Enrichment)**
 *   **Standard Flows**: Default to conventional REST APIs for transactional commands (Create/Update).
 *   **Rich/Nested Read Scenarios**: Adopt **GraphQL** strictly at the NestJS BFF level when a screen requires complex data aggregation (fetching Entities, associated Taxonomies, Audits, and relations simultaneously) to prevent mobile/web over-fetching and multiple sequential roundtrips.
 
@@ -54,5 +54,8 @@ We establish a **Strict Protocol Fit Matrix** tailored to specific architectural
 - Introduces setup costs for GraphQL execution layers and schema governance tools within BFF stacks.
 
 ## References
-- [ADR-0027: Dual Protocol Strategy](../02-adrs/nodejs/0027-dual-protocol-rest-grpc-api-gateway.md)
-- [ADR-0030: Two-Tier Gateway Patterns](../02-adrs/core/0030-api-gateway-kong-vs-nestjs.md)
+- [ADR-0027: Dual Protocol Strategy](../adrs/nodejs/0027-dual-protocol-rest-grpc-api-gateway.md)
+- [ADR-0030: Two-Tier Gateway Patterns](../adrs/core/0030-api-gateway-kong-vs-nestjs.md)
+
+---
+[? Back to Index](./README.md)

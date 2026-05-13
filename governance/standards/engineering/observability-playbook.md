@@ -1,12 +1,12 @@
-# 📈 End-to-End Distributed Observability & Telemetry Strategy
+# ðŸ“ˆ End-to-End Distributed Observability & Telemetry Strategy
 
 This document details the telemetry architecture, trace propagation, logging standards, and cost-effective monitoring stack for the SCM/Reference Template under the **BMAD-METHOD (Spec-driven AI Strategy)**.
 
 ---
 
-## 🏛️ 1. The Three Pillars of Telemetry
+## ðŸ›ï¸ 1. The Three Pillars of Telemetry
 
-To ensure absolute visibility across our modular monolith and prepare for future microservices, we implement three synchronized pillars of observability as specified in **[ADR 0007](../02-adrs/nodejs/0007-observability-telemetry-loki-opentelemetry.md)**:
+To ensure absolute visibility across our modular monolith and prepare for future microservices, we implement three synchronized pillars of observability as specified in **[ADR 0007](../../../architecture/adrs/nodejs/0007-observability-telemetry-loki-opentelemetry.md)**:
 
 ```mermaid
 graph TD
@@ -28,7 +28,7 @@ graph TD
 
 ---
 
-## ⚙️ 2. Detailed Technical Strategy
+## âš™ï¸ 2. Detailed Technical Strategy
 
 ### A. Structured Logging (Grafana Loki)
 *   **Standard**: All application logs are outputted to standard out (`stdout`) in high-performance **Structured JSON format** (using `pino` or NestJS `Winston`).
@@ -57,7 +57,7 @@ We monitor system health and business operations using two structured patterns:
 
 ---
 
-## 🗺️ 3. End-to-End Business Process Traceability
+## ðŸ—ºï¸ 3. End-to-End Business Process Traceability
 
 To trace a single business transaction from start to finish (e.g., weighing a container and generating an invoice):
 
@@ -69,7 +69,10 @@ To trace a single business transaction from start to finish (e.g., weighing a co
 
 ---
 
-## 💰 4. Monitoring Tools & Cost Sizing
+## ðŸ’° 4. Monitoring Tools & Cost Sizing
 By utilizing the open-source **Grafana LGTM Stack**, the enterprise minimizes licensing costs compared to proprietary tools (e.g., Datadog, Dynatrace) while guaranteeing industry-standard, high-scale telemetry:
 *   **Loki Storage**: Compact, index-free log storage dramatically reduces cloud disk storage costs.
 *   **Self-Hosted/Managed Hybrid**: Local development runs on Docker-compose LGTM; production deploys to managed Grafana Cloud or self-hosted Kubernetes setups for absolute data privacy and sovereign data compliance.
+
+---
+[? Back to Index](./README.md)

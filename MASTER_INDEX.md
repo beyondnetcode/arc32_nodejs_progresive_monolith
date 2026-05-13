@@ -1,53 +1,48 @@
-# 🗺️ Global Master Index (Enterprise Entry Point)
+# 🗺️ Global Master Index
 
-> 🌍 **Bilingual Navigation:** [🇪🇸 Versión en Español (Índice Maestro)](./MASTER_INDEX.es.md)
+> 🌍 **Bilingual Navigation:** [🇪🇸 Español](./MASTER_INDEX.es.md)
 
-Welcome to the **arc32** central nervous system. This master index serves as the canonical routing gate for all actors interacting with this repository. Locate your designated profile below to access the accelerated read-path ensuring technical and procedural compliance.
+Welcome to the **arc32** central index. Use the paths below based on your role to access the relevant documentation.
 
 ---
 
-## 🚀 1. Accelerated Paths by Role (Role-Based Navigation)
+## 🚀 1. Role-Based Navigation
 
-Identify your current relationship with the project to unlock the tailored compulsory reading hierarchy.
-
-| Enterprise Role | Recommended Reading Path | Compliance Expected |
+| Role | Action | Reading Path |
 | :--- | :--- | :--- |
-| **External Software Vendor** | 1. [Product Quick Start](./governance/standards/onboarding/product-quick-start.md)<br>2. [Agnostic Tech Baseline](./architecture/blueprints/authoritative-tech-stack-agnostic.md) + [Runtime Addendum](./architecture/blueprints/authoritative-tech-stack.md)<br>3. [Reference Blueprint (Deep Dive)](./architecture/blueprints/reference-blueprint.md) | Validate local stack matching and boundary isolation before initiating work order. |
-| **Backend Developer / QA** | 1. [Agnostic Tech Baseline](./architecture/blueprints/authoritative-tech-stack-agnostic.md) + [Runtime Addendum](./architecture/blueprints/authoritative-tech-stack.md)<br>2. [Construction-Focused SDLC Framework](./governance/sdlc/02-engineering/construction-focused-sdlc-framework.md)<br>3. [Best Practices for SDLC Docs](./governance/sdlc/03-documentation/sdlc-documentation-best-practices.md) | Guarantee Unit Test thresholds, DoD alignment, and zero logic-leaks in PRs. |
-| **Solutions Architect** | 1. [Reference Blueprint](./architecture/blueprints/reference-blueprint.md)<br>2. [Evolutionary Strategy Roadmap](./governance/standards/vision/evolutionary-strategy-roadmap.md)<br>3. [Architecture Decision Records (ADR Hub)](./architecture/adrs/README.md) | Uphold pattern integrity and assess alignment of new extraction triggers. |
-| **Team Lead / Product Manager** | 1. [Evolutionary Strategy Roadmap](./governance/standards/vision/evolutionary-strategy-roadmap.md)<br>2. [Corporate SDLC Governance Hub](./governance/sdlc/README.md)<br>3. [Product Quick Start](./governance/standards/onboarding/product-quick-start.md) | Synchronize delivery milestones with architecture phase transitions. |
+| **🏢 Vendor / Partner** | Tech Alignment | [Onboarding](./governance/standards/onboarding/product-quick-start.md) → [Blueprints](./architecture/blueprints/reference-blueprint.md) |
+| **💻 Engineer (Dev/QA)** | Construction | [SDLC Framework](./governance/sdlc/README.md) → [Engineering Manifesto](./governance/standards/engineering/engineering-manifesto.md) |
+| **🏗️ Architect** | Decision Hub | [ADR Hub](./architecture/adrs/README.md) → [Roadmap](./governance/standards/vision/evolutionary-strategy-roadmap.md) |
+| **📈 Product Manager** | Roadmap | [Vision](./governance/standards/vision/architectural-directives.md) → [DoD Checklist](./governance/sdlc/02-engineering/construction-focused-sdlc-framework.md) |
 
 ---
 
-## 🛡️ 2. Mandatory Compliance Path (Global Baseline)
+## 🛡️ 2. Mandatory Compliance (Baseline)
 
-All ecosystem participants—regardless of role seniority—MUST adhere to and enforce the foundational pillars hosted below. Failure to respect these anchors nullifies artifact acceptance into the codebase.
+Every artifact in this repository must respect these pillars:
 
-*   📄 **[Universal Agnostic Baseline](./architecture/blueprints/authoritative-tech-stack-agnostic.md)**: Universal systems constraints for all runtimes.
-*   📄 **[Target Runtime Appendices](./architecture/blueprints/authoritative-tech-stack.md)**: Framework mappings for Node.js, .NET, and Android.
-*   📄 **[Reference Architectural Blueprint](./architecture/blueprints/reference-blueprint.md)**: Conceptual grounding for Hexagonal boundaries and Ports/Adapters logic.
-*   📄 **[SDLC Governance Definition of Done](./governance/sdlc/02-engineering/construction-focused-sdlc-framework.md#✅-4-engineering-definition-of-done-dod-checklist)**: Final quality gate blocking production integration.
-*   📄 **[Phase 1 Simplicity Checklist](./architecture/blueprints/simplicity-checklist-phase-01.md)**: Normative safeguard against premature over-engineering.
+1.  📄 **[Agnostic Baseline](./architecture/blueprints/authoritative-tech-stack-agnostic.md)**: Universal decoupling rules.
+2.  📄 **[Reference Architecture](./architecture/blueprints/reference-blueprint.md)**: Hexagonal & DDD patterns.
+3.  📄 **[Definition of Done](./governance/sdlc/02-engineering/construction-focused-sdlc-framework.md)**: Quality gate for production.
 
 ---
 
-## 🏢 3. Enterprise Hub Structural Map
-
-Below represents the physical grouping layout of high-level governance modules within this corporate workspace.
+## 🏢 3. Ecosystem Map
 
 ```mermaid
 graph TD
-    ROOT[Repository Root] --> CS[Corporate Standards Hub]
-    ROOT --> SDLC[Corporate SDLC Hub]
+    ROOT[Repository Root] --> GOV[Governance]
+    ROOT --> ARC[Architecture]
     
-    CS --> Architecture["01-Architecture"]
-    CS --> ADRs["02-ADR Registry"]
-    CS --> Onboard["05-Onboarding"]
+    GOV --> Standards[Standards & Policies]
+    GOV --> SDLC[SDLC Hub]
     
-    SDLC --> Engineering["02-Engineering"]
-    SDLC --> Docs["03-Documentation"]
+    ARC --> Blueprints[Blueprints]
+    ARC --> ADRs[ADR Registry]
 ```
 
-*   👉 **[English Documentation Center Root](./governance/standards/README.md)**
-*   👉 **[English SDLC Governance Center Root](./governance/sdlc/README.md)**
-*   👉 **[Central Navigation Map (Back to Main README)](./README.md#⚡-4-central-navigation-quick-map-english-context)**
+---
+
+<div align="center">
+  <a href="./README.md">← Back to Portal</a>
+</div>

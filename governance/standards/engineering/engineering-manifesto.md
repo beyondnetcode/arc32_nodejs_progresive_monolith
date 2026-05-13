@@ -1,6 +1,6 @@
-# 🏛️ Global Engineering Standards & Developer Guidelines ([bMAD](https://github.com/bmad-code-org/BMAD-METHOD) Manifesto)
+# ðŸ›ï¸ Global Engineering Standards & Developer Guidelines ([bMAD](https://github.com/bmad-code-org/BMAD-METHOD) Manifesto)
 
-## 1. 🌟 Core Engineering Principles (Mandatory)
+## 1. ðŸŒŸ Core Engineering Principles (Mandatory)
 All code, wrappers, and architectural designs within this monorepo **MUST** strictly adhere to the following principles. Code reviews will reject any Pull Request violating these foundations:
 
 *   **SOLID**: Single Responsibility, Open/Closed, Liskov Substitution, Interface Segregation, and Dependency Inversion.
@@ -13,14 +13,14 @@ All code, wrappers, and architectural designs within this monorepo **MUST** stri
 
 ---
 
-## 2. 🛡️ Domain-Driven Design (DDD): Optional & Pragmatic
+## 2. ðŸ›¡ï¸ Domain-Driven Design (DDD): Optional & Pragmatic
 While our architecture supports tactical and strategic DDD:
 **DDD is strictly OPTIONAL**. 
 It shall only be used when it adds tangible value to a complex business domain. It must **not** be considered a mandatory or restrictive straitjacket for the architecture. For simple CRUD (Create, Read, Update, Delete) operations, standard Hexagonal Use Cases and Data Mappers are more than sufficient. Over-applying DDD to simple entities is considered an anti-pattern (Over-engineering).
 
 ---
 
-## 3. 🚫 Architectural & Code Anti-Patterns (Strictly Forbidden)
+## 3. ðŸš« Architectural & Code Anti-Patterns (Strictly Forbidden)
 To guarantee high maintainability and low technical debt, the following practices are explicitly banned:
 *   **High Coupling**: Direct dependencies on concrete third-party tools within the Core. (Violates DIP).
 *   **God Classes / Magic Modules**: Classes that handle routing, validation, business logic, and database saving simultaneously.
@@ -30,8 +30,8 @@ To guarantee high maintainability and low technical debt, the following practice
 
 ---
 
-## 4. 🧩 Ports and Adapters: Essential vs. Accidental
-To avoid structural technical debt and guarantee the domain core is never contaminated by framework or infrastructure specifics, hexagonal architecture is never "postponed"—it is simply deployed in a streamlined form.
+## 4. ðŸ§© Ports and Adapters: Essential vs. Accidental
+To avoid structural technical debt and guarantee the domain core is never contaminated by framework or infrastructure specifics, hexagonal architecture is never "postponed"â€”it is simply deployed in a streamlined form.
 
 | Concept | Essential or Accidental? | Phase 1? | Phase 2+? |
 | :--- | :--- | :--- | :--- |
@@ -40,11 +40,11 @@ To avoid structural technical debt and guarantee the domain core is never contam
 | **Complex Anti-Corruption Wrapper** | Accidental | Forbidden (defer) | Allowed if integrating external systems |
 | **Facade / Additional Layer** | Accidental | Forbidden (defer) | Allowed if justified by specific ADR |
 
-> ⚠️ **Golden Rule**: A simple adapter in Phase 1 is a single class directly implementing the Port contract and performing explicit calls to the chosen tool library (e.g., TypeORM or Prisma), without redundant abstraction shells.
+> âš ï¸ **Golden Rule**: A simple adapter in Phase 1 is a single class directly implementing the Port contract and performing explicit calls to the chosen tool library (e.g., TypeORM or Prisma), without redundant abstraction shells.
 
 ---
 
-## 5. ⚙️ Technical Governance & Enforcement Mechanisms
+## 5. âš™ï¸ Technical Governance & Enforcement Mechanisms
 Human review is flawed. We rely on **Automated Enforcement** to ensure these principles are sustainable over time within the BMAD-METHOD strategy:
 
 1.  **Linters & Architectural Rules**: 
@@ -62,7 +62,7 @@ Human review is flawed. We rely on **Automated Enforcement** to ensure these pri
 
 ---
 
-## 6. 🎯 Decision Priority Matrix
+## 6. ðŸŽ¯ Decision Priority Matrix
 Whenever a technical decision is made (e.g., writing a new ADR, choosing a library, or designing a module), the architect and developers must prioritize the following attributes, in order:
 1.  **Mantenibilidad** (Maintainability)
 2.  **Escalabilidad** (Scalability)
@@ -73,15 +73,15 @@ Whenever a technical decision is made (e.g., writing a new ADR, choosing a libra
 7.  **Resiliencia** (Resilience)
 8.  **Testabilidad** (Testability)
 9.  **Performance** (Performance)
-10. **Claridad Arquitectónica** (Architectural Clarity)
+10. **Claridad ArquitectÃ³nica** (Architectural Clarity)
 
 ---
 
-## 7. 📉 Progressive Platform Complexity
+## 7. ðŸ“‰ Progressive Platform Complexity
 > [!IMPORTANT]
 > **Canon of Progressive Evolution**: Architecture evolves via incremental complexity. Phase 1 is deliberately simple and does not mandate technologies, patterns, or processes that exceed the core needs of a modular monolith. Every additional requirement is introduced precisely at the phase where system architecture objectively warrants it, never before.
 
-Infrastructure burdens should never cripple early development lifecycles. Operational load MUST scale symmetrically with architectural maturity as defined in the [Reference Blueprint](../../corporate-standards/architecture/reference-blueprint.md):
+Infrastructure burdens should never cripple early development lifecycles. Operational load MUST scale symmetrically with architectural maturity as defined in the [Reference Blueprint](../../standards/architecture/reference-blueprint.md):
 - **Phase 1 (Modular Monolith):** Lightweight deployment as standard containers (OCI) hosted on VMs, App Services, or Docker Compose. Orchestration clusters are not required.
 - **Phase 2 (Extractable Modules):** Instrumentation and readiness for orchestration is established, while retaining simplified production environments.
 - **Phase 3+ (Distributed Services):** Managed or self-hosted **Kubernetes** orchestration becomes mandatory.
@@ -89,10 +89,13 @@ Air-gapped compliance is guaranteed starting Phase 1 via strict provider abstrac
 
 ---
 
-## 8. 📝 Pull Request Quality Checklist
+## 8. ðŸ“ Pull Request Quality Checklist
 Before submitting a PR, developers must verify:
 - [ ] No outer-layer logic is leaked into the Domain.
 - [ ] Cross-cutting concerns (Logging, Caching) use Decorators or Ports (No hardcoded tool logic in the core).
 - [ ] DDD was only used if the domain complexity justified it; otherwise, standard Clean Architecture was used.
 - [ ] Test coverage for the new feature is >70%.
 - [ ] Local `npm run lint` and `npm run test` pass successfully.
+
+---
+[? Back to Index](./README.md)

@@ -1,10 +1,10 @@
-# 🏗️ Especificación de Arquitectura y Especificaciones de Modelado C4
+# ðŸ—ï¸ EspecificaciÃ³n de Arquitectura y Especificaciones de Modelado C4
 
-Este documento detalla el riguroso diseño arquitectónico de grado empresarial para la plataforma de referencia, conforme al estándar del blueprint **arc42** (ARC32). El diseño implementa un ecosistema **SaaS Multi-Tenant** avanzado utilizando **Gateways BFF** para gestionar la entrega a clientes.
+Este documento detalla el riguroso diseÃ±o arquitectÃ³nico de grado empresarial para la plataforma de referencia, conforme al estÃ¡ndar del blueprint **arc42** (ARC32). El diseÃ±o implementa un ecosistema **SaaS Multi-Tenant** avanzado utilizando **Gateways BFF** para gestionar la entrega a clientes.
 
 ---
 
-## 🗺️ 1. Estructura Estática del Sistema (Modelo C4)
+## ðŸ—ºï¸ 1. Estructura EstÃ¡tica del Sistema (Modelo C4)
 
 ### Nivel 1: Diagrama de Contexto del Sistema
 Define nuestro sistema delimitado dentro del ecosistema empresarial, sus consumidores (inquilinos) y actores externos activos.
@@ -12,17 +12,17 @@ Define nuestro sistema delimitado dentro del ecosistema empresarial, sus consumi
 ```mermaid
 graph TD
     subgraph Clients["Ecosistema de Clientes Multi-Tenant"]
-        WebPortal["Cliente Web\n[Caché Offline React Query]"]
-        MobileApp["Aplicaciones Móviles\n[Caché SQLite Nativa]"]
+        WebPortal["Cliente Web\n[CachÃ© Offline React Query]"]
+        MobileApp["Aplicaciones MÃ³viles\n[CachÃ© SQLite Nativa]"]
         ThirdParty["Servicios Externos B2B (claves API)"]
     end
 
     subgraph EdgeNet["Borde de Red"]
-        CDN["CDN (Caché Distribuida Global)"]
+        CDN["CDN (CachÃ© Distribuida Global)"]
     end
 
     subgraph CoreSystem["[El Sistema de Plataforma de Referencia]"]
-        MainCore["Núcleo de Monolito Modular"]
+        MainCore["NÃºcleo de Monolito Modular"]
         BFFGateway["Gateways de API BFF"]
     end
 
@@ -42,26 +42,26 @@ graph TD
     MainCore -->|Emitir Eventos| MessageBus
 ```
 
-### Nivel 2: Diagrama de Contenedores (Tiempo de Ejecución de Alta Densidad)
-Demuestra la segregación física de los puntos de entrada de comunicación (BFFs) hasta la infraestructura de la base de datos multi-tenant.
+### Nivel 2: Diagrama de Contenedores (Tiempo de EjecuciÃ³n de Alta Densidad)
+Demuestra la segregaciÃ³n fÃ­sica de los puntos de entrada de comunicaciÃ³n (BFFs) hasta la infraestructura de la base de datos multi-tenant.
 
 ```mermaid
 graph TD
-    subgraph ClientLayer["Capa -1: Núcleo del Cliente"]
-        WebClient["Interfaz Web\n[React Query / Caché de Cliente]"]
+    subgraph ClientLayer["Capa -1: NÃºcleo del Cliente"]
+        WebClient["Interfaz Web\n[React Query / CachÃ© de Cliente]"]
     end
 
-    subgraph PublicEdge["Capa 0: Caché Estática"]
-        CDN["CDN / Caché de Navegador (Opcional)"]
+    subgraph PublicEdge["Capa 0: CachÃ© EstÃ¡tica"]
+        CDN["CDN / CachÃ© de Navegador (Opcional)"]
     end
 
     subgraph EntryLayer["Nivel 1: Ingreso y Enrutamiento"]
-        KongGateway["Gateway Kong / Gestión de APIs"]
+        KongGateway["Gateway Kong / GestiÃ³n de APIs"]
     end
 
     subgraph BFFLayer["Nivel 2: Backend-for-Frontend (BFF)"]
         WebBFF["BFF Web NestJS (GraphQL / REST)"]
-        MobileBFF["BFF Móvil NestJS (GraphQL / REST)"]
+        MobileBFF["BFF MÃ³vil NestJS (GraphQL / REST)"]
     end
 
     subgraph ApplicationLayer["Nivel 3: Contextos de Negocio Centrales"]
@@ -70,22 +70,22 @@ graph TD
 
     subgraph StorageLayer["Nivel 4: Persistencia y Estado"]
         PostgresSQL[("PostgreSQL 16 (RLS de Doble Capa)")]
-        RedisCache[("Caché Distribuida Redis")]
+        RedisCache[("CachÃ© Distribuida Redis")]
     end
 
-    WebClient -->|Petición HTTPS| CDN
-    CDN -->|Reenvío Dinámico| KongGateway
+    WebClient -->|PeticiÃ³n HTTPS| CDN
+    CDN -->|ReenvÃ­o DinÃ¡mico| KongGateway
     KongGateway -->|HTTP/REST| WebBFF
     KongGateway -->|HTTP/REST| MobileBFF
     
-    WebBFF <-->|Lecturas Caché BFF| RedisCache
+    WebBFF <-->|Lecturas CachÃ© BFF| RedisCache
     WebBFF -->|gRPC Interno| MainAPI
     
-    MobileBFF <-->|Lecturas Caché BFF| RedisCache
+    MobileBFF <-->|Lecturas CachÃ© BFF| RedisCache
     MobileBFF -->|gRPC Interno| MainAPI
     
     MainAPI -->|Aislamiento de Inquilinos de Doble Capa| PostgresSQL
-    MainAPI <-->|Lecturas Caché Core| RedisCache
+    MainAPI <-->|Lecturas CachÃ© Core| RedisCache
 ```
 
 ### Nivel 3: Diagrama de Componentes de API (Arquitectura Hexagonal)
@@ -97,9 +97,9 @@ graph TD
         Controller["MainController (REST/gRPC)"]
     end
 
-    subgraph Application["Capa de Aplicación"]
-        UseCase["BusinessUseCase (Coordinación)"]
-        DTO["InputDTO (Validación)"]
+    subgraph Application["Capa de AplicaciÃ³n"]
+        UseCase["BusinessUseCase (CoordinaciÃ³n)"]
+        DTO["InputDTO (ValidaciÃ³n)"]
     end
 
     subgraph Core["Capa de Dominio Core"]
@@ -108,7 +108,7 @@ graph TD
     end
 
     subgraph Infrastructure["Adaptadores de Persistencia (Egreso)"]
-        TypeOrmAdapter["TypeOrmRepository (Implementación)"]
+        TypeOrmAdapter["TypeOrmRepository (ImplementaciÃ³n)"]
     end
 
     Controller -->|Ejecuta| UseCase
@@ -120,36 +120,39 @@ graph TD
 
 ---
 
-## 📜 2. El Libro de Decisiones Aprobadas (ADRs)
+## ðŸ“œ 2. El Libro de Decisiones Aprobadas (ADRs)
 
-Según lo validado por el Arquitecto Principal, estas decisiones fundacionales están **oficialmente Aprobadas** y son obligatorias para la implementación del sistema.
+SegÃºn lo validado por el Arquitecto Principal, estas decisiones fundacionales estÃ¡n **oficialmente Aprobadas** y son obligatorias para la implementaciÃ³n del sistema.
 
-### 🟢 Grupo A: Fundamentos y Estándares Core
-1.  **[ADR 0001: Orquestación de Monorepo](../02-adrs/core/0001-monorepo-orchestration-nx.md)**: Nx y espacios de trabajo npm para un CI/CD lineal y centralizado.
-2.  **[ADR 0002: Arquitectura Hexagonal Limpia](../02-adrs/nodejs/0002-clean-architecture-nestjs.md)**: Separación de la lógica core del código del framework.
-3.  **[ADR 0003: Estándares Estrictos de TypeScript](../02-adrs/nodejs/0003-strict-typescript-standards.md)**: Tipado absoluto, sin `any`, reglas de ESLint obligatorias.
-4.  **[ADR 0005: Seguridad Cero-Costo CodeQL](../02-adrs/core/0005-ci-cd-quality-codeql.md)**: Detección automatizada de vulnerabilidades dentro de la pipeline.
-5.  **[ADR 0009: Fijación Estricta de Dependencias](../02-adrs/core/0009-strict-dependency-pinning-vulnerability-management.md)**: Bloqueo de actualizaciones dinámicas para prevenir brechas en la cadena de suministro.
+### ðŸŸ¢ Grupo A: Fundamentos y EstÃ¡ndares Core
+1.  **[ADR 0001: OrquestaciÃ³n de Monorepo](../adrs-es/core/0001-monorepo-orchestration-nx.md)**: Nx y espacios de trabajo npm para un CI/CD lineal y centralizado.
+2.  **[ADR 0002: Arquitectura Hexagonal Limpia](../adrs-es/nodejs/0002-clean-architecture-nestjs.md)**: SeparaciÃ³n de la lÃ³gica core del cÃ³digo del framework.
+3.  **[ADR 0003: EstÃ¡ndares Estrictos de TypeScript](../adrs-es/nodejs/0003-strict-typescript-standards.md)**: Tipado absoluto, sin `any`, reglas de ESLint obligatorias.
+4.  **[ADR 0005: Seguridad Cero-Costo CodeQL](../adrs-es/core/0005-ci-cd-quality-codeql.md)**: DetecciÃ³n automatizada de vulnerabilidades dentro de la pipeline.
+5.  **[ADR 0009: FijaciÃ³n Estricta de Dependencias](../adrs-es/core/0009-strict-dependency-pinning-vulnerability-management.md)**: Bloqueo de actualizaciones dinÃ¡micas para prevenir brechas en la cadena de suministro.
 
-### 🟠 Grupo B: SaaS, Escalabilidad y Distribución
-6.  **[ADR 0006: Transición futura a Microservicios vía Dapr](../02-adrs/core/0006-future-microservices-transition-dapr.md)**: Desacoplamiento de activadores para romper monolitos en redes de nodos de malla.
-7.  **[ADR 0007: Observabilidad vía OpenTelemetry](../02-adrs/nodejs/0007-observability-telemetry-loki-opentelemetry.md)**: Trazado distribuido a través de BFF, API y BD.
-8.  **[ADR 0008: Patrones BFF](../02-adrs/nodejs/0008-progressive-multimodule-evolution-gateway-bff.md)**: Integración multi-canal a través de capas de traducción dedicadas.
-9.  **[ADR 0010: Estrategia de Arquitectura Multi-Tenancy SaaS](../02-adrs/core/0010-multi-tenancy-architecture-strategy.md)**: Implementación de Seguridad a Nivel de Fila (RLS) física dentro de PostgreSQL para garantizar el aislamiento.
-10. **[ADR 0011: Circuit Breakers de Tolerancia a Fallos](../02-adrs/core/0011-fault-tolerance-resiliency-patterns.md)**: Prevención de degradación en cascada utilizando `opossum`.
-11. **[ADR 0013: Topología de Recuperación ante Desastres](../02-adrs/core/0013-cloud-infrastructure-topology-dr.md)**: Diseño de nodos multi-región.
-12. **[ADR 0014: Caché Distribuida](../02-adrs/core/0014-distributed-caching-strategy-redis.md)**: Aliviar la base de datos a través de Redis centralizado.
-13. **[ADR 0015: Arquitectura Dirigida por Eventos](../02-adrs/core/0015-event-driven-architecture-intra-domain.md)**: Mensajería asíncrona entre contextos delimitados.
-14. **[ADR 0016: Auditoría de Negocio Inmutable](../02-adrs/core/0016-immutable-business-audit-trail.md)**: Sistema de registro que graba diffs de estado transaccional completos.
+### ðŸŸ  Grupo B: SaaS, Escalabilidad y DistribuciÃ³n
+6.  **[ADR 0006: TransiciÃ³n futura a Microservicios vÃ­a Dapr](../adrs-es/core/0006-future-microservices-transition-dapr.md)**: Desacoplamiento de activadores para romper monolitos en redes de nodos de malla.
+7.  **[ADR 0007: Observabilidad vÃ­a OpenTelemetry](../adrs-es/nodejs/0007-observability-telemetry-loki-opentelemetry.md)**: Trazado distribuido a travÃ©s de BFF, API y BD.
+8.  **[ADR 0008: Patrones BFF](../adrs-es/nodejs/0008-progressive-multimodule-evolution-gateway-bff.md)**: IntegraciÃ³n multi-canal a travÃ©s de capas de traducciÃ³n dedicadas.
+9.  **[ADR 0010: Estrategia de Arquitectura Multi-Tenancy SaaS](../adrs-es/core/0010-multi-tenancy-architecture-strategy.md)**: ImplementaciÃ³n de Seguridad a Nivel de Fila (RLS) fÃ­sica dentro de PostgreSQL para garantizar el aislamiento.
+10. **[ADR 0011: Circuit Breakers de Tolerancia a Fallos](../adrs-es/core/0011-fault-tolerance-resiliency-patterns.md)**: PrevenciÃ³n de degradaciÃ³n en cascada utilizando `opossum`.
+11. **[ADR 0013: TopologÃ­a de RecuperaciÃ³n ante Desastres](../adrs-es/core/0013-cloud-infrastructure-topology-dr.md)**: DiseÃ±o de nodos multi-regiÃ³n.
+12. **[ADR 0014: CachÃ© Distribuida](../adrs-es/core/0014-distributed-caching-strategy-redis.md)**: Aliviar la base de datos a travÃ©s de Redis centralizado.
+13. **[ADR 0015: Arquitectura Dirigida por Eventos](../adrs-es/core/0015-event-driven-architecture-intra-domain.md)**: MensajerÃ­a asÃ­ncrona entre contextos delimitados.
+14. **[ADR 0016: AuditorÃ­a de Negocio Inmutable](../adrs-es/core/0016-immutable-business-audit-trail.md)**: Sistema de registro que graba diffs de estado transaccional completos.
 
-### 🔵 Grupo C: Integración, Identidad y Gobernanza
-15. **[ADR 0020: Abstracción de Proveedor de Identidad](../02-adrs/core/0020-identity-provider-abstraction-strategy.md)**: Abstracción de puerto para Okta/Entra ID/Auth0.
-16. **[ADR 0021: Gráficos de Auth de Alto Rendimiento](../02-adrs/nodejs/0021-high-performance-auth-and-graph-compilation.md)**: Requisitos de latencia por debajo de 5ms.
-17. **[ADR 0026: MFA y Seguridad Adaptativa](../02-adrs/nodejs/0026-mfa-passwordless-adaptive-authentication.md)**: Soporte para WebAuthn y Passkeys.
-18. **[ADR 0027: Protocolos Duales REST y gRPC](../02-adrs/nodejs/0027-dual-protocol-rest-grpc-api-gateway.md)**: Streaming interno de alto rendimiento vía gRPC.
-19. **[ADR 0030: Kong Gateway vs NestJS Gateway](../02-adrs/core/0030-api-gateway-kong-vs-nestjs.md)**: Separación de proxies de infraestructura de la orquestación de negocio.
-20. **[ADR 0029: Primitivas DDD Tácticas](../02-adrs/nodejs/0029-tactical-ddd-primitives-library.md)**: Utilización obligatoria de `@nestjslatam/ddd` estandarizado.
-21. **[ADR 0032: Matriz de Decisión de Protocolo de API](../02-adrs/core/0032-api-protocol-decision-matrix-rest-grpc-graphql.md)**: Marco de evaluación que impone REST para exposición pública, gRPC para backbones internos y GraphQL para la agregación optimizada de BFF.
+### ðŸ”µ Grupo C: IntegraciÃ³n, Identidad y Gobernanza
+15. **[ADR 0020: AbstracciÃ³n de Proveedor de Identidad](../adrs-es/core/0020-identity-provider-abstraction-strategy.md)**: AbstracciÃ³n de puerto para Okta/Entra ID/Auth0.
+16. **[ADR 0021: GrÃ¡ficos de Auth de Alto Rendimiento](../adrs-es/nodejs/0021-high-performance-auth-and-graph-compilation.md)**: Requisitos de latencia por debajo de 5ms.
+17. **[ADR 0026: MFA y Seguridad Adaptativa](../adrs-es/nodejs/0026-mfa-passwordless-adaptive-authentication.md)**: Soporte para WebAuthn y Passkeys.
+18. **[ADR 0027: Protocolos Duales REST y gRPC](../adrs-es/nodejs/0027-dual-protocol-rest-grpc-api-gateway.md)**: Streaming interno de alto rendimiento vÃ­a gRPC.
+19. **[ADR 0030: Kong Gateway vs NestJS Gateway](../adrs-es/core/0030-api-gateway-kong-vs-nestjs.md)**: SeparaciÃ³n de proxies de infraestructura de la orquestaciÃ³n de negocio.
+20. **[ADR 0029: Primitivas DDD TÃ¡cticas](../adrs-es/nodejs/0029-tactical-ddd-primitives-library.md)**: UtilizaciÃ³n obligatoria de `@nestjslatam/ddd` estandarizado.
+21. **[ADR 0032: Matriz de DecisiÃ³n de Protocolo de API](../adrs-es/core/0032-api-protocol-decision-matrix-rest-grpc-graphql.md)**: Marco de evaluaciÃ³n que impone REST para exposiciÃ³n pÃºblica, gRPC para backbones internos y GraphQL para la agregaciÃ³n optimizada de BFF.
 
-### 🟣 Grupo D: Preparación para la Evolución a Microservicios
-22. **[ADR 0031: Esquema por Contexto y Catálogo de Eventos de Dominio](../02-adrs/core/0031-schema-per-context-domain-event-catalog.md)**: Cada contexto delimitado posee un esquema PostgreSQL dedicado (`auth` | `tasks` | `taxonomy` | `audit`). Toda la comunicación entre contextos se rige por un Catálogo formal de Eventos de Dominio con contratos de carga útil tipados, permitiendo la extracción de microservicios sin migración.
+### ðŸŸ£ Grupo D: PreparaciÃ³n para la EvoluciÃ³n a Microservicios
+22. **[ADR 0031: Esquema por Contexto y CatÃ¡logo de Eventos de Dominio](../adrs-es/core/0031-schema-per-context-domain-event-catalog.md)**: Cada contexto delimitado posee un esquema PostgreSQL dedicado (`auth` | `tasks` | `taxonomy` | `audit`). Toda la comunicaciÃ³n entre contextos se rige por un CatÃ¡logo formal de Eventos de Dominio con contratos de carga Ãºtil tipados, permitiendo la extracciÃ³n de microservicios sin migraciÃ³n.
+
+---
+[? Volver al Índice](./README.es.md)

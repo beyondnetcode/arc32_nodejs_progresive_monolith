@@ -1,6 +1,6 @@
-# 🗃️ Conceptual Data Model
+# ðŸ—ƒï¸ Conceptual Data Model
 
-The core domain model utilizes a **Hybrid Audit Strategy** ([ADR-0016](../../corporate-standards/02-adrs/core/0016-immutable-business-audit-trail.md)). Every transactional table inherits standard auditing columns, and an external immutable ledger tracks the historical delta changes.
+The core domain model utilizes a **Hybrid Audit Strategy** ([ADR-0016](../../standards/02-adrs/core/0016-immutable-business-audit-trail.md)). Every transactional table inherits standard auditing columns, and an external immutable ledger tracks the historical delta changes.
 
 ## 1. Entity Relationship Diagram (Mermaid)
 
@@ -98,3 +98,6 @@ To ensure the model aligns with corporate compliance strategies, `CATEGORY` and 
 *   **Immutability Rule**: This table allows only `INSERT` operations.
 *   `action_type`: Enumeration (CREATE, UPDATE, DELETE).
 *   `previous_state` / `current_state`: JSON serialization used to perform visual Diff analysis for auditors.
+
+---
+[? Back to Index](./README.md)

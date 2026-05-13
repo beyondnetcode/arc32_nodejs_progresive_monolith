@@ -7,7 +7,7 @@ Approved
 2026-05-08
 
 ## Updated
-2026-05-11 — Added reference to [ADR-0031](0031-schema-per-context-domain-event-catalog.md) Domain Event Catalog. Event definitions and the cross-context subscription map are now formally specified in that record.
+2026-05-11 â€” Added reference to [ADR-0031](0031-schema-per-context-domain-event-catalog.md) Domain Event Catalog. Event definitions and the cross-context subscription map are now formally specified in that record.
 
 ## Context
 As the Modular Monolith grows, allowing bounded contexts to call each other synchronously creates tight coupling. If one context is slow or fails, it should not cascade failures into other contexts. Additionally, inter-context communication must be defined as explicit typed contracts to enable safe future microservices extraction ([ADR-0006](0006-future-microservices-transition-dapr.md)).
@@ -40,7 +40,7 @@ The concrete implementation is injected by the NestJS DI container at startup vi
 ### 2. Domain Events as Cross-Context Contracts
 Every event that crosses a bounded context boundary must be a typed class with an `eventId` (UUID for idempotency) and `occurredAt` timestamp. The complete approved catalog of cross-context events is defined in:
 
-👉 **[ADR-0031: Domain Event Catalog](../02-adrs/core/0031-schema-per-context-domain-event-catalog.md)**
+ðŸ‘‰ **[ADR-0031: Domain Event Catalog](../adrs/core/0031-schema-per-context-domain-event-catalog.md)**
 
 ### 3. Intra-Context (Internal) vs Cross-Context Events
 - **Intra-context events** (within the same bounded context): May use synchronous NestJS event emitters with no schema constraints.
@@ -48,7 +48,7 @@ Every event that crosses a bounded context boundary must be a typed class with a
 
 ### 4. Future Microservices Readiness ([ADR-0006](0006-future-microservices-transition-dapr.md))
 When a bounded context is extracted into an independent microservice:
-- Replace the `in-memory` bus implementation with `rabbitmq` or `kafka` — **zero domain code changes required**.
+- Replace the `in-memory` bus implementation with `rabbitmq` or `kafka` â€” **zero domain code changes required**.
 - The `IEventBusPort` abstraction guarantees the domain remains agnostic to the transport layer.
 
 ## Consequences
@@ -56,6 +56,9 @@ When a bounded context is extracted into an independent microservice:
 * **Cons**: Eventual consistency across contexts must be embraced. Distributed tracing ([ADR-0007](../nodejs/0007-observability-telemetry-loki-opentelemetry.md)) is required to follow event flows across context boundaries.
 
 ## References
-- [ADR-0006: Future Microservices via Dapr](../02-adrs/core/0006-future-microservices-transition-dapr.md)
-- [ADR-0007: Observability with OpenTelemetry](../02-adrs/nodejs/0007-observability-telemetry-loki-opentelemetry.md)
-- [ADR-0031: Schema-per-Context and Domain Event Catalog](../02-adrs/core/0031-schema-per-context-domain-event-catalog.md)
+- [ADR-0006: Future Microservices via Dapr](../adrs/core/0006-future-microservices-transition-dapr.md)
+- [ADR-0007: Observability with OpenTelemetry](../adrs/nodejs/0007-observability-telemetry-loki-opentelemetry.md)
+- [ADR-0031: Schema-per-Context and Domain Event Catalog](../adrs/core/0031-schema-per-context-domain-event-catalog.md)
+
+---
+[? Back to Index](./README.md)

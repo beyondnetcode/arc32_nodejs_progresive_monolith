@@ -16,6 +16,9 @@ We define strict categories of operations that **ALWAYS** require the interrupti
 4.  Critical changes in network security configurations or cloud IAM.
 
 ## Consequences
-*   ✅ **Extreme Risk Mitigation:** Prevents the "rogue agent" scenario deleting servers or expending unlimited cloud budget.
-*   ✅ **Legal Responsibility:** Guarantees a trace where a human is always the final signatory of the action, covering regulatory compliance.
-*   ❌ **Loss of Pure Autonomy:** Overnight or real-time agentic flows will suffer latency of hours waiting for human approval to proceed.
+*   âœ… **Extreme Risk Mitigation:** Prevents the "rogue agent" scenario deleting servers or expending unlimited cloud budget.
+*   âœ… **Legal Responsibility:** Guarantees a trace where a human is always the final signatory of the action, covering regulatory compliance.
+*   âŒ **Loss of Pure Autonomy:** Overnight or real-time agentic flows will suffer latency of hours waiting for human approval to proceed.
+
+---
+[? Back to Index](./README.md)

@@ -1,18 +1,18 @@
-# 🧪 Integration Contract Testing Plan (Pact Specification)
+# ðŸ§ª Integration Contract Testing Plan (Pact Specification)
 
 This document establishes the strategic plan and continuous integration guidelines for **Consumer-Driven Contract Testing** across SCM/Reference Skeleton domains under the **BMAD-METHOD (Spec-driven AI Strategy)**.
 
 ---
 
-## 🏛️ 1. Why Contract Testing?
+## ðŸ›ï¸ 1. Why Contract Testing?
 
 In a modular monorepo that is actively evolving toward distributed services, standard Unit Tests are insufficient to verify cross-module integration safety, and End-to-End (E2E) integration tests are slow, flaky, and expensive. 
 
-We solve this using **Consumer-Driven Contract Testing** (leveraging **Pact JS**). Contract tests ensure that changes to an API or Event contract by a provider do not break active downstream consumers, shifting integration safety left into the CI/CD pipeline as specified in **[ADR 0018](../02-adrs/core/0018-testing-pyramid-quality-gates.md)**.
+We solve this using **Consumer-Driven Contract Testing** (leveraging **Pact JS**). Contract tests ensure that changes to an API or Event contract by a provider do not break active downstream consumers, shifting integration safety left into the CI/CD pipeline as specified in **[ADR 0018](../../../architecture/adrs/core/0018-testing-pyramid-quality-gates.md)**.
 
 ---
 
-## 🔄 2. Consumer-Driven Contract Workflow
+## ðŸ”„ 2. Consumer-Driven Contract Workflow
 
 Contract testing operates under a "Consumer-Driven" model. The consumer (e.g., Billing Module) defines the expected request/response payloads, and the provider (e.g., Inventory Module) must satisfy that contract prior to merging code.
 
@@ -34,7 +34,7 @@ sequenceDiagram
 
 ---
 
-## ⚙️ 3. Concrete Contract Example (Pact Specification)
+## âš™ï¸ 3. Concrete Contract Example (Pact Specification)
 
 The following contract specifies an active interaction between the **Billing Module (Consumer)** and the **Inventory Module (Provider)**:
 
@@ -66,7 +66,7 @@ The following contract specifies an active interaction between the **Billing Mod
 
 ---
 
-## 🛡️ 4. CI/CD Integration & Quality Gates
+## ðŸ›¡ï¸ 4. CI/CD Integration & Quality Gates
 
 To automate contract enforcement and prevent breaking changes from reaching production:
 
@@ -76,3 +76,6 @@ To automate contract enforcement and prevent breaking changes from reaching prod
     `npm run test:contract:provider`
     If a provider developer attempts to rename `verifiedWeight` to `vgm_weight`, the contract test immediately fails, blocking the Pull Request automatically before any deployment occurs.
 4.  **Can-I-Deploy Checks**: Prior to releasing a version to production, the release pipeline queries the Pact Broker to verify that the specific consumer version is fully compatible with the active provider version.
+
+---
+[? Back to Index](./README.md)

@@ -17,3 +17,6 @@ This is a baseline of approved generic tools currently usable inside the monorep
 *   *Coming Soon*: `confluence_search` - To provide centralized architecture context.
 *   *Coming Soon*: `jira_update_ticket` - To sync development progress with administrative tickets.
 *   *Coming Soon*: `sentry_fetch_issue` - To feed real production error logs to debug-agents.
+
+---
+[? Back to Index](./README.md)

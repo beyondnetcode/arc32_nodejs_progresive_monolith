@@ -1,50 +1,50 @@
-# 🗺️ Bounded Context Map — To-Do Reference Skeleton
+# ðŸ—ºï¸ Bounded Context Map â€” To-Do Reference Skeleton
 
-This document establishes the formal **Domain-Driven Design (DDD) Bounded Context Map** for the Reference Template. Each context owns its own **PostgreSQL schema** ([ADR-0031](../../corporate-standards/02-adrs/core/0031-schema-per-context-domain-event-catalog.md)), enabling zero-migration microservices extraction.
+This document establishes the formal **Domain-Driven Design (DDD) Bounded Context Map** for the Reference Template. Each context owns its own **PostgreSQL schema** ([ADR-0031](../../standards/02-adrs/core/0031-schema-per-context-domain-event-catalog.md)), enabling zero-migration microservices extraction.
 
 ---
 
-## 📐 1. Context Map Overview
+## ðŸ“ 1. Context Map Overview
 
 ```mermaid
 graph TD
-    subgraph AuthContext["🔐 Authentication Context (schema: auth)"]
+    subgraph AuthContext["ðŸ” Authentication Context (schema: auth)"]
         IC1["User Registration"]
         IC2["JWT Token Generation"]
         IC3["IPasswordHasher Port"]
     end
 
-    subgraph TaskContext["✅ Task Management Context (schema: tasks)"]
+    subgraph TaskContext["âœ… Task Management Context (schema: tasks)"]
         TC1["Task Command Service"]
         TC2["Task Query Service"]
         TC3["ITaskRepository Port"]
     end
 
-    subgraph TaxonomyContext["🏷️ Taxonomy Context (schema: taxonomy)"]
+    subgraph TaxonomyContext["ðŸ·ï¸ Taxonomy Context (schema: taxonomy)"]
         TAX1["Category Management"]
         TAX2["Tag Management"]
         TAX3["ICategoryRepository / ITagRepository Ports"]
     end
 
-    subgraph AuditContext["📋 Audit Context (schema: audit)"]
+    subgraph AuditContext["ðŸ“‹ Audit Context (schema: audit)"]
         AU1["AuditLog Writer"]
         AU2["Append-Only Ledger"]
     end
 
-    subgraph Infrastructure["🛠️ Shared Infrastructure"]
+    subgraph Infrastructure["ðŸ› ï¸ Shared Infrastructure"]
         DB[("PostgreSQL\n[auth | tasks | taxonomy | audit schemas]")]
         Redis[("Redis Cache")]
         Bus["IEventBusPort\n[In-Memory / RabbitMQ]"]
     end
 
-    AuthContext -->|"UserRegisteredEvent → IEventBusPort"| Bus
-    AuthContext -->|"UserDeactivatedEvent → IEventBusPort"| Bus
+    AuthContext -->|"UserRegisteredEvent â†’ IEventBusPort"| Bus
+    AuthContext -->|"UserDeactivatedEvent â†’ IEventBusPort"| Bus
 
-    TaskContext -->|"TaskCreatedEvent → IEventBusPort"| Bus
-    TaskContext -->|"TaskCompletedEvent → IEventBusPort"| Bus
-    TaskContext -->|"TaskDeletedEvent → IEventBusPort"| Bus
+    TaskContext -->|"TaskCreatedEvent â†’ IEventBusPort"| Bus
+    TaskContext -->|"TaskCompletedEvent â†’ IEventBusPort"| Bus
+    TaskContext -->|"TaskDeletedEvent â†’ IEventBusPort"| Bus
 
-    TaxonomyContext -->|"CategoryDeletedEvent → IEventBusPort"| Bus
+    TaxonomyContext -->|"CategoryDeletedEvent â†’ IEventBusPort"| Bus
     
     Bus -->|"Subscribes: UserRegisteredEvent"| TaskContext
     Bus -->|"Subscribes: CategoryDeletedEvent"| TaskContext
@@ -59,9 +59,9 @@ graph TD
 
 ---
 
-## 📦 2. Context Definitions
+## ðŸ“¦ 2. Context Definitions
 
-### 🔐 A. Authentication Context — `schema: auth`
+### ðŸ” A. Authentication Context â€” `schema: auth`
 **Mission:** Own the identity management primitives and session token issuing.
 
 **Owns:**
@@ -70,12 +70,12 @@ graph TD
 - Auth Controller (Login/Register endpoints)
 
 **Publishes Events:**
-- `UserRegisteredEvent` → consumed by Task, Audit
-- `UserDeactivatedEvent` → consumed by Task, Audit
+- `UserRegisteredEvent` â†’ consumed by Task, Audit
+- `UserDeactivatedEvent` â†’ consumed by Task, Audit
 
 ---
 
-### ✅ B. Task Management Context — `schema: tasks`
+### âœ… B. Task Management Context â€” `schema: tasks`
 **Mission:** Coordinate all operations related to atomic workflow tasks.
 
 **Owns:**
@@ -85,7 +85,7 @@ graph TD
 - Use Cases: `CreateTask`, `ListTasks`, `CompleteTask`, `DeleteTask`
 
 **Integration Contract:**
-- Reads `userId` from JWT (injected by Auth context via token claim — no direct DB cross-schema reads)
+- Reads `userId` from JWT (injected by Auth context via token claim â€” no direct DB cross-schema reads)
 - Subscribes to: `UserRegisteredEvent`, `CategoryDeletedEvent`
 
 **Publishes Events:**
@@ -93,7 +93,7 @@ graph TD
 
 ---
 
-### 🏷️ C. Taxonomy Context — `schema: taxonomy`
+### ðŸ·ï¸ C. Taxonomy Context â€” `schema: taxonomy`
 **Mission:** Manage the classification vocabulary (Categories and Tags) available to the tenant.
 
 **Owns:**
@@ -102,15 +102,15 @@ graph TD
 - `ICategoryRepository`, `ITagRepository` ports
 
 **Publishes Events:**
-- `CategoryDeletedEvent` → consumed by Task (nullify orphaned category_id references)
+- `CategoryDeletedEvent` â†’ consumed by Task (nullify orphaned category_id references)
 
 ---
 
-### 📋 D. Audit Context — `schema: audit`
+### ðŸ“‹ D. Audit Context â€” `schema: audit`
 **Mission:** Maintain an immutable, append-only record of all significant domain state changes.
 
 **Owns:**
-- `audit.audit_log` table (database-level INSERT-only trigger enforced per [ADR-0016](../../corporate-standards/02-adrs/core/0016-immutable-business-audit-trail.md))
+- `audit.audit_log` table (database-level INSERT-only trigger enforced per [ADR-0016](../../standards/02-adrs/core/0016-immutable-business-audit-trail.md))
 
 **Subscribes to:** All events from all contexts.
 
@@ -118,25 +118,28 @@ graph TD
 
 ---
 
-## 🚧 3. Anti-Corruption Layers (ACL)
+## ðŸš§ 3. Anti-Corruption Layers (ACL)
 
 | Boundary | ACL Mechanism | Reason |
 | :--- | :--- | :--- |
-| Task ↔ Redis | `ICachePort` | Prevents Redis driver from leaking into domain layer |
-| Task ↔ TypeORM | `ITaskRepository` | ORM decorators must not impact core TS entity rules |
-| Auth ↔ Bcrypt | `IPasswordHasher` | Decouples crypto algorithm from application workflow |
-| Any Context ↔ Event Bus | `IEventBusPort` | Decouples transport (RabbitMQ/Kafka) from domain logic |
-| Task ↔ Auth | Domain Events only | Task never reads `auth.users` directly — gets userId from JWT claims |
+| Task â†” Redis | `ICachePort` | Prevents Redis driver from leaking into domain layer |
+| Task â†” TypeORM | `ITaskRepository` | ORM decorators must not impact core TS entity rules |
+| Auth â†” Bcrypt | `IPasswordHasher` | Decouples crypto algorithm from application workflow |
+| Any Context â†” Event Bus | `IEventBusPort` | Decouples transport (RabbitMQ/Kafka) from domain logic |
+| Task â†” Auth | Domain Events only | Task never reads `auth.users` directly â€” gets userId from JWT claims |
 
 ---
 
-## 🔄 4. Microservices Extraction Map ([ADR-0031](../../corporate-standards/02-adrs/core/0031-schema-per-context-domain-event-catalog.md), [ADR-0006](../../corporate-standards/02-adrs/core/0006-future-microservices-transition-dapr.md))
+## ðŸ”„ 4. Microservices Extraction Map ([ADR-0031](../../standards/02-adrs/core/0031-schema-per-context-domain-event-catalog.md), [ADR-0006](../../standards/02-adrs/core/0006-future-microservices-transition-dapr.md))
 
 When the system evolves to microservices, each context extracts cleanly:
 
 | Milestone | Action | DB Impact |
 | :--- | :--- | :--- |
 | **M1: Monolith** | All contexts share one DB connection | Single PostgreSQL, 4 schemas |
-| **M2: Extract Task** | `TaskService` gets its own `DATABASE_URL` → `tasks` schema | No migration — schema already isolated |
-| **M3: Extract Taxonomy** | `TaxonomyService` gets its own `DATABASE_URL` → `taxonomy` schema | No migration — schema already isolated |
+| **M2: Extract Task** | `TaskService` gets its own `DATABASE_URL` â†’ `tasks` schema | No migration â€” schema already isolated |
+| **M3: Extract Taxonomy** | `TaxonomyService` gets its own `DATABASE_URL` â†’ `taxonomy` schema | No migration â€” schema already isolated |
 | **M4: Full Mesh** | Each service on its own PostgreSQL instance | `pg_dump --schema=<name>` per service |
+
+---
+[? Back to Index](./README.md)

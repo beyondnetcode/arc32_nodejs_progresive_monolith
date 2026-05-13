@@ -20,3 +20,6 @@ We adopt Boris Tane's directive as internal architectural law:
 > **"Separating planning from execution is the most important architectural decision you will make in your agent."**
 
 When we allow an agent to plan and execute step by step without intermediate control, the agent "forgets" the original plan halfway through. Separating the Planner from the Executor allows us to validate the route BEFORE the system spends money and time on faulty execution.
+
+---
+[? Back to Index](./README.md)

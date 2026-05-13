@@ -4,7 +4,7 @@ Official recommendations for implementing the harness according to the authorize
 
 ---
 
-## 🟢 Node.js / TypeScript
+## ðŸŸ¢ Node.js / TypeScript
 
 The JavaScript ecosystem is the most mature in agentic support frameworks thanks to its natural asynchrony and dynamism.
 
@@ -18,7 +18,7 @@ The JavaScript ecosystem is the most mature in agentic support frameworks thanks
 
 ---
 
-## 🔵 .NET / C#
+## ðŸ”µ .NET / C#
 
 The .NET environment excels in typed robustness and performance in long-running background processes with agentic oversight.
 
@@ -31,7 +31,7 @@ The .NET environment excels in typed robustness and performance in long-running 
 
 ---
 
-## 🟣 Android / Kotlin
+## ðŸŸ£ Android / Kotlin
 
 The role of AI in mobile devices is bounded by battery consumption, memory, and latency.
 
@@ -43,3 +43,6 @@ The role of AI in mobile devices is bounded by battery consumption, memory, and 
     *   Dynamic Generative UI based on the app's current state.
     *   Offline-capable contextual help assistants (if using AICore or small on-device models).
     *   Structured data extraction from local images (Intelligent OCR).
+
+---
+[? Back to Index](./README.md)

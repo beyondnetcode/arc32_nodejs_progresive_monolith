@@ -20,7 +20,7 @@ Adopt **Nx** as the monorepo orchestration tool, combined with **npm workspaces*
 ## Consequences
 
 ### Positive
-- Unified CI/CD pipeline — one lock file, one lint config, one test runner.
+- Unified CI/CD pipeline â€” one lock file, one lint config, one test runner.
 - Nx Computation Cache keeps CI under 1 minute for unchanged projects.
 - `dependency-cruiser` enforces hexagonal layer rules globally across all packages.
 
@@ -30,4 +30,7 @@ Adopt **Nx** as the monorepo orchestration tool, combined with **npm workspaces*
 
 ## References
 - [Nx Documentation](https://nx.dev)
-- [ADR-0003: Strict TypeScript Standards](../02-adrs/nodejs/0003-strict-typescript-standards.md)
+- [ADR-0003: Strict TypeScript Standards](../adrs/nodejs/0003-strict-typescript-standards.md)
+
+---
+[? Back to Index](./README.md)

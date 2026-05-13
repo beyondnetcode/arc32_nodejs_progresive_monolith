@@ -30,3 +30,6 @@ For an MCP Server to be approved by Corporate Security, it must implement:
 
 ## Mandatory Human-in-the-Loop
 Any tool categorized as **"Destructive"** (Delete database, cancel massive subscription, execute bulk payment) requires the harness to intercept the call, set the status to `PENDING_APPROVAL`, and wait for a human to physically click a button before running backend code.
+
+---
+[? Back to Index](./README.md)

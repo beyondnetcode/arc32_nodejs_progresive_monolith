@@ -14,11 +14,11 @@ Adopt **Hexagonal Architecture (Ports & Adapters)** as the mandatory structural 
 
 The architecture is divided into three explicit layers:
 
-1. **Core (Domain)** — Pure TypeScript classes. Zero imports from NestJS, TypeORM, or any external SDK. Contains entities, value objects, and port interfaces (`IUserRepository`, `IPasswordHasher`).
-2. **Application** — Use-case classes that orchestrate Core logic. May import NestJS for DI decorators only (`@Injectable`). No infrastructure imports.
-3. **Infrastructure (Adapters)** — Concrete implementations of Core ports (`TypeOrmUserRepository`, `BcryptPasswordHasher`). All framework and SDK imports live here.
+1. **Core (Domain)** â€” Pure TypeScript classes. Zero imports from NestJS, TypeORM, or any external SDK. Contains entities, value objects, and port interfaces (`IUserRepository`, `IPasswordHasher`).
+2. **Application** â€” Use-case classes that orchestrate Core logic. May import NestJS for DI decorators only (`@Injectable`). No infrastructure imports.
+3. **Infrastructure (Adapters)** â€” Concrete implementations of Core ports (`TypeOrmUserRepository`, `BcryptPasswordHasher`). All framework and SDK imports live here.
 
-Dependency direction is strictly enforced: Infrastructure → Application → Core. Never the reverse.
+Dependency direction is strictly enforced: Infrastructure â†’ Application â†’ Core. Never the reverse.
 
 ### 4. Aspect-Oriented Programming (AOP) Isolation
 Cross-cutting concerns (Logging, Auditing, Distributed Tracing, Caching, Transaction Management) must NEVER hard-couple third-party library decorators or SDKs inside the Core or Application layers.
@@ -33,10 +33,13 @@ Cross-cutting concerns (Logging, Auditing, Distributed Tracing, Caching, Transac
 - `eslint-plugin-boundaries` can statically enforce the dependency direction in CI.
 
 ### Negative
-- Requires additional mapping code (Entity → ORM Model) in the infrastructure layer.
+- Requires additional mapping code (Entity â†’ ORM Model) in the infrastructure layer.
 - Steeper learning curve for developers accustomed to the standard NestJS service pattern.
 
 ## References
-- [ADR-0003: Strict TypeScript Standards](../02-adrs/nodejs/0003-strict-typescript-standards.md)
-- [ADR-0029: Tactical DDD Primitives](../02-adrs/nodejs/0029-tactical-ddd-primitives-library.md)
-- [Architecture Spec — Level 3 Component Diagram](../02-architecture/architecture-spec.md)
+- [ADR-0003: Strict TypeScript Standards](../adrs/nodejs/0003-strict-typescript-standards.md)
+- [ADR-0029: Tactical DDD Primitives](../adrs/nodejs/0029-tactical-ddd-primitives-library.md)
+- [Architecture Spec â€” Level 3 Component Diagram](../02-architecture/architecture-spec.md)
+
+---
+[? Back to Index](./README.md)

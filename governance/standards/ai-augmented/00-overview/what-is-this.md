@@ -22,7 +22,7 @@ Industry focus has rapidly matured toward more deterministic environments:
 
 | Phase | Period | Primary Focus | Description |
 | :--- | :--- | :--- | :--- |
-| **Prompt Engineering** | 2022–2024 | Optimizing Instructions | "Asking well" to get an acceptable response in text format. |
+| **Prompt Engineering** | 2022â€“2024 | Optimizing Instructions | "Asking well" to get an acceptable response in text format. |
 | **Context Engineering** | 2025 | Building Context Windows | Use of RAG, dynamic memory, and MCP to give the right data at the right time. |
 | **Harness Engineering** | 2026 | Designing Runtime Environment | Definition of architectural constraints, verification hooks, permissions, and deterministic control loops. |
 
@@ -33,3 +33,6 @@ Not all projects benefit from agentic integration. Adoption of this augmented ar
 *   **Teams without Base Maturity:** If the team has not implemented a robust testing pyramid, CI/CD, or clean architecture, AI will exponentially multiply technical debt.
 *   **Unvalidated MVP Products:** Costs and latency of agentic flows usually slow down the initial market validation cycle.
 *   **Ultra-Critical Systems without Supervision:** Strict real-time operations or decisions directly affecting human lives without a deterministic checkpoint or human supervision (Human-in-the-loop).
+
+---
+[? Back to Index](./README.md)

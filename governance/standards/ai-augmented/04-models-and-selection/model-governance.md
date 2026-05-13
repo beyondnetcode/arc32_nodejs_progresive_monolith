@@ -19,3 +19,6 @@ The LLM landscape shifts every 3 months. Tying our entire backend explicitly to 
 
 *   **Standardization Policy:** Use uniform connectors like the **OpenAI SDK format** (accepted as de facto standard by multiple alternative vendors) or orchestrators like **LiteLLM** / **Vercel AI SDK** to decouple the interface from the underlying implementation.
 *   Switching from `model-A` to `model-B` should ideally only require changing one environment variable (`LLM_MODEL_ID`).
+
+---
+[? Back to Index](./README.md)

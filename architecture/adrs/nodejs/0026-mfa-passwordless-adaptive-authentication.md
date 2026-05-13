@@ -28,5 +28,8 @@ Rollout an **Adaptive Risk-Managed MFA Framework** driving the Core authenticati
 - Minimal cryptography processing overhead required per login.
 
 ## References
-- [ADR-0020: IdP Abstraction](../02-adrs/core/0020-identity-provider-abstraction-strategy.md)
+- [ADR-0020: IdP Abstraction](../adrs/core/0020-identity-provider-abstraction-strategy.md)
 - [WebAuthn Official Guide](https://webauthn.guide/)
+
+---
+[? Back to Index](./README.md)

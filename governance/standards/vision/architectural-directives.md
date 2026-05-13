@@ -1,4 +1,4 @@
-# 🏛️ Master Architectural Directives & Evolution Strategy
+# ðŸ›ï¸ Master Architectural Directives & Evolution Strategy
 
 ## 1. Global System Objectives
 The reference architecture is designed to anchor all corporate products upon non-negotiable delivery standards that secure long-term technical viability.
@@ -13,3 +13,6 @@ All products instantiated from this blueprint MUST align with the following dire
 
 ---
 *Extracted from original scope analysis for universal enforcement.*
+
+---
+[? Back to Index](./README.md)
