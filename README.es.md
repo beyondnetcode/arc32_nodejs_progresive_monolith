@@ -21,8 +21,8 @@ Bienvenido a la **Arquitectura de Referencia Corporativa Unificada**. Este ecosi
 🚀 **No explores los directorios al azar.** Todas las rutas de cumplimiento y ejecución de flujo de trabajo están gobernadas explícitamente por el perfil del usuario:
 
 1.  👉 **[Índice Maestro Global](./MASTER_INDEX.es.md)**: La línea de salida canónica. Identifica tu rol (Proveedor, Dev, Arquitecto, PM) y encuentra tu jerarquía de lectura obligatoria exacta de inmediato.
-2.  🇪🇸 **[Centro de Estándares Corporativos](./00-governance/standards-es/README.md)**: Especificaciones arquitectónicas integrales y pilares de gobernanza en español.
-3.  ⚙️ **[Centro de Gobernanza SDLC](./00-governance/sdlc-es/README.md)**: Requisitos detallados de ingeniería del ciclo de vida y Puertas de Calidad.
+2.  🇪🇸 **[Centro de Estándares Corporativos](./governance/standards-es/README.md)**: Especificaciones arquitectónicas integrales y pilares de gobernanza en español.
+3.  ⚙️ **[Centro de Gobernanza SDLC](./governance/sdlc-es/README.md)**: Requisitos detallados de ingeniería del ciclo de vida y Puertas de Calidad.
 
 ---
 
@@ -45,7 +45,7 @@ Para interactuar de manera segura con esta federación de activos, todos los mie
 ## ⚡ 4. Arquitectura de Alto Nivel y Mapa Rápido del Ecosistema
 
 ### 🚀 Federación Políglota Autorizada (Horizonte 2026)
-Las cargas de trabajo se distribuyen globalmente según restricciones de entorno validadas ([ADR-0040](./01-architecture/adrs-es/core/0040-multi-runtime-selection-contracts.md)):
+Las cargas de trabajo se distribuyen globalmente según restricciones de entorno validadas ([ADR-0040](./architecture/adrs-es/core/0040-multi-runtime-selection-contracts.md)):
 
 | Entorno de Ejecución | Rol Canónico | Stack Base Autorizado |
 | :--- | :--- | :--- |
@@ -54,11 +54,11 @@ Las cargas de trabajo se distribuyen globalmente según restricciones de entorno
 | **🟣 Android** | Móvil Nativo Desconectado | Kotlin 2.3 / Jetpack Compose 1.11 / Room |
 
 ### 🛠️ Directorio de Accesos Rápidos
-*   📂 **[Política de Taxonomía del Repositorio](./00-governance/standards-es/repository-taxonomy.es.md)**: Estructura de directorios y convenciones de nombres.
-*   🏛️ **[Blueprint de Referencia](./01-architecture/blueprints-es/reference-blueprint.md)**: Especificación maestra del sistema.
-*   🚀 **[Estrategia Evolutiva](./00-governance/standards-es/00-vision/evolutionary-strategy-roadmap.md)**: Tablero de KPIs y horizontes de escala.
-*   📜 **[Hub de Registro ADR](./01-architecture/adrs-es/README.md)**: Búsqueda acelerada de decisiones universales.
+*   📂 **[Política de Taxonomía del Repositorio](./governance/standards-es/repository-taxonomy.es.md)**: Estructura de directorios y convenciones de nombres.
+*   🏛️ **[Blueprint de Referencia](./architecture/blueprints-es/reference-blueprint.md)**: Especificación maestra del sistema.
+*   🚀 **[Estrategia Evolutiva](./governance/standards-es/vision/evolutionary-strategy-roadmap.md)**: Tablero de KPIs y horizontes de escala.
+*   📜 **[Hub de Registro ADR](./architecture/adrs-es/README.md)**: Búsqueda acelerada de decisiones universales.
 *   🧪 **[Sandbox Ejecutable (Demo)](./arc-corporate-ws/demo/README.md)**: Probar patrones de arquitectura en código real y vivo.
 
 ---
-🤖 **Habilitación Aumentada por IA:** ¿Buscas arquitecturas de agentes MCP y LLM? → [Explorar Módulo de IA](./00-governance/standards-es/ai-augmented/README.md)
+🤖 **Habilitación Aumentada por IA:** ¿Buscas arquitecturas de agentes MCP y LLM? → [Explorar Módulo de IA](./governance/standards-es/ai-augmented/README.md)

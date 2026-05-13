@@ -21,8 +21,8 @@ Welcome to the **Unified Corporate Reference Architecture**. This ecosystem serv
 🚀 **Do not explore the directories randomly.** All compliance and workflow execution routes are governed explicitly by persona:
 
 1.  👉 **[Global Master Index](./MASTER_INDEX.md)**: The canonical starting line. Identify your role (Vendor, Dev, Architect, PM) and find your exact compulsory reading hierarchy immediately.
-2.  🇺🇸 **[Corporate Standards Center](./00-governance/standards/README.md)**: Comprehensive architectural specifications and governance pillars.
-3.  ⚙️ **[SDLC Governance Center](./00-governance/sdlc/README.md)**: Detailed lifecycle engineering requirements and quality Gates.
+2.  🇺🇸 **[Corporate Standards Center](./governance/standards/README.md)**: Comprehensive architectural specifications and governance pillars.
+3.  ⚙️ **[SDLC Governance Center](./governance/sdlc/README.md)**: Detailed lifecycle engineering requirements and quality Gates.
 
 ---
 
@@ -45,7 +45,7 @@ To interact safely with this asset federation, all members MUST respect the foll
 ## ⚡ 4. High-Level Architecture & Ecosystem Quick Map
 
 ### 🚀 Authorized Polyglot Federation (Horizon 2026)
- Workloads distribute globally according to validated runtime constraints ([ADR-0040](./01-architecture/adrs/core/0040-multi-runtime-selection-contracts.md)):
+ Workloads distribute globally according to validated runtime constraints ([ADR-0040](./architecture/adrs/core/0040-multi-runtime-selection-contracts.md)):
 
 | Runtime | Canonical Role | Authorized Baseline Stack |
 | :--- | :--- | :--- |
@@ -54,11 +54,11 @@ To interact safely with this asset federation, all members MUST respect the foll
 | **🟣 Android** | Offline Native Mobile | Kotlin 2.3 / Jetpack Compose 1.11 / Room |
 
 ### 🛠️ Fast Shortcuts Directory
-*   📂 **[Repository Taxonomy Policy](./00-governance/standards/repository-taxonomy.md)**: Standard directory structure and naming conventions.
-*   🏛️ **[Reference Blueprint](./01-architecture/blueprints/reference-blueprint.md)**: Master system specification.
-*   🚀 **[Evolutionary Strategy](./00-governance/standards/00-vision/evolutionary-strategy-roadmap.md)**: KPI dashboard and scale horizons.
-*   📜 **[ADR Registry Hub](./01-architecture/adrs/README.md)**: Fast-track lookup for universal decisions.
+*   📂 **[Repository Taxonomy Policy](./governance/standards/repository-taxonomy.md)**: Standard directory structure and naming conventions.
+*   🏛️ **[Reference Blueprint](./architecture/blueprints/reference-blueprint.md)**: Master system specification.
+*   🚀 **[Evolutionary Strategy](./governance/standards/vision/evolutionary-strategy-roadmap.md)**: KPI dashboard and scale horizons.
+*   📜 **[ADR Registry Hub](./architecture/adrs/README.md)**: Fast-track lookup for universal decisions.
 *   🧪 **[Executable Sandbox Demo](./arc-corporate-ws/demo/README.md)**: Test architecture patterns in live running code.
 
 ---
-🤖 **AI-Augmented Enablement:** Seeking MCP and LLM agent architectures? → [Explore AI Module](./00-governance/standards/ai-augmented/README.md)
+🤖 **AI-Augmented Enablement:** Seeking MCP and LLM agent architectures? → [Explore AI Module](./governance/standards/ai-augmented/README.md)
