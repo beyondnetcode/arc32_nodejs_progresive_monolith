@@ -34,6 +34,12 @@ Maximize non-human artifact updating to ensure reliability.
 *   Expose live API schemas directly from codebase metadata (Swagger/OpenAPI).
 *   Leverage Mermaid.js markup language for diagrams directly inside markdown to support visual tracking without binaries.
 
+### E. Functional Story Readability
+Functional requirements must be readable by Product Owners and Business Analysts before they are useful to engineering.
+*   Functional Stories MUST separate business purpose, actors, flows, business rules, and acceptance criteria from implementation detail.
+*   APIs, payloads, protocols, database, cache, security controls, and runtime constraints MUST be placed in a dedicated Technical Requirements section.
+*   See the mandatory [Functional Story Writing Standard](./functional-story-writing-standard.md).
+
 ---
 
 ## ðŸ” 3. Feedback & Clean-Up Lifecycle

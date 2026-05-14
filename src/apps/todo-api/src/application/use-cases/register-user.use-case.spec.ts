@@ -53,7 +53,7 @@ describe('RegisterUserUseCase (Clean Architecture Unit Test)', () => {
   it('should successfully register a user when email and username are unique', async () => {
     const dto: RegisterUserDto = {
       username: 'test_user',
-      email: 'test@ums.com',
+      email: 'test@example.com',
       password: 'SecurePassword123!',
     };
 
@@ -79,14 +79,14 @@ describe('RegisterUserUseCase (Clean Architecture Unit Test)', () => {
   it('should throw ConflictException if email already exists', async () => {
     const dto: RegisterUserDto = {
       username: 'test_user',
-      email: 'existing@ums.com',
+      email: 'existing@example.com',
       password: 'SecurePassword123!',
     };
 
     const existingUser = User.create(
       'uuid-123',
       'another_username',
-      'existing@ums.com',
+      'existing@example.com',
       'hash',
       'user',
     );
@@ -100,7 +100,7 @@ describe('RegisterUserUseCase (Clean Architecture Unit Test)', () => {
   it('should throw ConflictException if username already exists', async () => {
     const dto: RegisterUserDto = {
       username: 'existing_username',
-      email: 'test@ums.com',
+      email: 'test@example.com',
       password: 'SecurePassword123!',
     };
 
@@ -108,7 +108,7 @@ describe('RegisterUserUseCase (Clean Architecture Unit Test)', () => {
     const existingUser = User.create(
       'uuid-123',
       'existing_username',
-      'another@ums.com',
+      'another@example.com',
       'hash',
       'user',
     );

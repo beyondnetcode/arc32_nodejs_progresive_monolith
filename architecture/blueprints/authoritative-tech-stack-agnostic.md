@@ -40,6 +40,7 @@ Approved centralized primitives serving the polyglot mesh. Concrete Runtime Adap
     *   **.NET Services:** Microsoft SQL Server (Latest).
     *   **Node.js Services:** PostgreSQL v16+.
 *   **Maturity Constraint:** Schema-per-Context isolation REQUIRED. Direct SQL Joins across bounded context schema boundaries are FORBIDDEN.
+*   **Design Standards:** All data modeling MUST adhere to the standards defined in [ADR-0054](../adrs/core/0054-database-design-normalization-standards.md) (3NF baseline for SQL).
 *   **Isolation Pattern:** Configurable Security Strategy ([ADR-0044](../adrs/core/0044-configurable-security-persistence-strategy.md)). Native Row-Level Security (RLS) is OPTIONAL/RECOMMENDED for dense multi-tenant scenarios, managed via the structural `SECURITY_STRATEGY_MODE` flag.
 
 ### 3.2 Distributed Caching

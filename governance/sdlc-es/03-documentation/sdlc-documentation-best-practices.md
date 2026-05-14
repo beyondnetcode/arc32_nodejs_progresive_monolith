@@ -34,6 +34,12 @@ Maximizar la actualización no-humana de artefactos para garantizar fiabilidad.
 *   Exponer esquemas de API vivos directamente desde los metadatos del código fuente (Swagger/OpenAPI).
 *   Aprovechar el lenguaje de marcado Mermaid.js para diagramas directamente dentro del markdown, permitiendo trazabilidad visual sin archivos binarios.
 
+### E. Legibilidad de Historias Funcionales
+Los requisitos funcionales deben ser legibles por Product Owners y Analistas de Negocio antes de ser utiles para ingenieria.
+*   Las Historias Funcionales DEBEN separar proposito de negocio, actores, flujos, reglas de negocio y criterios de aceptacion del detalle de implementacion.
+*   APIs, payloads, protocolos, base de datos, cache, controles de seguridad y restricciones de runtime DEBEN ubicarse en una seccion dedicada de Requisitos Tecnicos.
+*   Ver el [Estandar de Redaccion de Historias Funcionales](./functional-story-writing-standard.md).
+
 ---
 
 ## ðŸ” 3. Ciclo de Retroalimentación y Limpieza

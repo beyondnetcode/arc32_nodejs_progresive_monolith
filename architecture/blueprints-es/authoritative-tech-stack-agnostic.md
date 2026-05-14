@@ -45,6 +45,7 @@ Primitivas centralizadas aprobadas que sirven a la red políglota. Los adaptador
     *   **Servicios .NET:** Microsoft SQL Server (Última versión).
     *   **Servicios Node.js:** PostgreSQL v16+.
 *   **Restricción de Madurez:** REQUERIDO aislamiento de Esquema por Contexto. ESTÁN PROHIBIDOS los SQL Joins directos a través de las fronteras de esquemas de contextos delimitados.
+*   **Estándares de Diseño:** Todo el modelado de datos DEBE cumplir con los estándares definidos en el [ADR-0054](../adrs-es/core/0054-estandares-diseño-normalizacion-base-datos.md) (línea base 3NF para SQL).
 *   **Patrón de Aislamiento:** Estrategia de Seguridad Configurable ([ADR-0044](../adrs-es/core/0044-configurable-security-persistence-strategy.md)). La Seguridad a Nivel de Fila (RLS) nativa es OPCIONAL/RECOMENDADA para densidades multi-tenant, gobernada por el flag `SECURITY_STRATEGY_MODE`.
 
 ### 3.2 Caché Distribuida

@@ -14,6 +14,7 @@
 | **R-10** | Audit Report Format on Verification Tasks | `qa`, `sm`, `architect` | Executing verification or audit | Audits must produce a structured report containing artifact, location, issue type, severity, and fix. |
 | **R-11** | PO-first Architect-second Execution Order | `po`, `architect`, `sm` | Tasks needing functional and tech analysis | Execute PO agent first, then Architect agent; never parallelize or reverse this order. |
 | **R-12** | Naming and Tagging Convention Enforcement | `po`, `analyst`, `architect`, `dev`, `qa`, `sm` | Artifact creation or update | Strictly apply project naming conventions, category prefixes, and tags to all artifacts. |
+| **R-13** | Functional/Technical Story Split | `po`, `analyst`, `architect`, `dev`, `qa`, `sm` | Creating or updating functional stories, use cases, PRDs, or requirements | Functional intent, actors, flows, rules, and acceptance criteria must be written for PO/BA readability; APIs, payloads, protocols, persistence, cache, security controls, and implementation constraints must live in a dedicated Technical Requirements section. |
 
 ---
 [? Back to Index](./README.md)
