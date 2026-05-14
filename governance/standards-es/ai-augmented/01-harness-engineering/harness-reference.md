@@ -9,11 +9,13 @@ No es el "cerebro" (ese es el modelo); es el "sistema nervioso y el exoesqueleto
 
 ```mermaid
 graph TD
- A[Usuario / Disparador] --> B[Capa 1: Prompt de Sistema & Identidad]
+ A[Usuario / Disparador] --> B[Capa 1: Prompt de Sistema
+ A[Usuario / Disparador] --> Identidad]
  B --> C[Capa 2: Selección del Modelo]
  C <--> D[Capa 3: Inyección de Contexto / RAG / MCP]
  C <--> E[Capa 4: Catálogo de Herramientas]
- E --> F{Capa 5: Permisos & Sandbox}
+ E --> F{Capa 5: Permisos
+ E --> Sandbox}
  F -- Aprobado --> G[Ejecución Determinista]
  G --> H[Capa 6: Capas de Verificación / Hooks]
  H --> C

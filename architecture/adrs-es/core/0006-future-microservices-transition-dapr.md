@@ -62,8 +62,8 @@ Con la introducción de Dapr en fases avanzadas, se formalizan los siguientes ma
 3. **Exportación Centralizada**: Ambas fuentes de telemetría (Sidecar + App) deben utilizar el recolector OpenTelemetry unificado para garantizar vistas de traza de extremo a extremo coherentes.
 
 ## Referencias
-- [ADR-0015: Arquitectura Dirigida por Eventos](../adrs/core/0015-event-driven-architecture-intra-domain.md)
-- [ADR-0031: Esquema por Contexto y Catálogo de Eventos de Dominio](../adrs/core/0031-schema-per-context-domain-event-catalog.md)
+- [ADR-0015: Arquitectura Dirigida por Eventos](../../adrs/core/0015-event-driven-architecture-intra-domain.md)
+- [ADR-0031: Esquema por Contexto y Catálogo de Eventos de Dominio](../../adrs/core/0031-schema-per-context-domain-event-catalog.md)
 - [ADR-0046: Observabilidad Unificada Dapr](./0046-dapr-observabilidad-unificada.md)
 - [Documentación de Dapr](https://dapr.io)
 

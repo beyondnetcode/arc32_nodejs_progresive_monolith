@@ -37,4 +37,4 @@ Diseñado para equipos de producto e ingenieros que deseen integrar agentes de I
 - [ADR-AI-005: Política de Human-in-the-Loop](./06-adrs/adr-ai-005-human-in-the-loop-policy.md)
 
 ---
-[Volver al Nivel Superior](../README.es.md)
+[Volver al Nivel Superior](../README.md)

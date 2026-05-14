@@ -37,8 +37,8 @@ Cross-cutting concerns (Logging, Auditing, Distributed Tracing, Caching, Transac
 - Steeper learning curve for developers accustomed to the standard NestJS service pattern.
 
 ## References
-- [ADR-0003: Strict TypeScript Standards](../adrs/nodejs/0003-strict-typescript-standards.md)
-- [ADR-0029: Tactical DDD Primitives](../adrs/nodejs/0029-tactical-ddd-primitives-library.md)
+- [ADR-0003: Strict TypeScript Standards](../../adrs/nodejs/0003-strict-typescript-standards.md)
+- [ADR-0029: Tactical DDD Primitives](../../adrs/nodejs/0029-tactical-ddd-primitives-library.md)
 - [Architecture Spec - Level 3 Component Diagram](../02-architecture/architecture-spec.md)
 
 ---

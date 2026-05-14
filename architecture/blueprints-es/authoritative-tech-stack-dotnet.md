@@ -73,7 +73,7 @@ Al utilizar la estrategia `INFRA_NATIVE` implementando SQL Server Row-Level Secu
 ## 4. Advertencia Final de Integración para Proveedores
 
 No satisfacer estas definiciones de herramientas estáticas bloqueará automáticamente la aceptación del código de integración.
--> Volver al **[índice Maestro Global](../../../MASTER_INDEX.es.md)**
+-> Volver al **[índice Maestro Global](../../MASTER_INDEX.es.md)**
 
 ---
-[Volver al Índice](./README.es.md)
+[Volver al Índice](./README.md)

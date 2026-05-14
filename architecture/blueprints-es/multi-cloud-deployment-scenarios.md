@@ -25,7 +25,7 @@ Orientado a sectores altamente regulados (Banca, Salud) que requieren auditoría
 ### 2.1 Blueprint de Red y Seguridad
 ```mermaid
 graph TD
- subgraph VNet["Azure Virtual Network (Hub & Spoke)"]
+ subgraph VNet["Azure Virtual Network (Hub and Spoke)"]
  subgraph DMZ["DMZ Subnet"]
  AFD["Azure Front Door (WAF v2)"]
  AGW["App Gateway (TLS Term)"]
@@ -307,4 +307,4 @@ Al operar en un entorno híbrido, la latencia de red introduce cuellos de botell
 | **Compliance Overhead** | Bajo (Out-of-the-box) | Medio | Alto (Manual) | Muy Alto |
 
 ---
-[Volver al Índice](./README.es.md)
+[Volver al Índice](./README.md)

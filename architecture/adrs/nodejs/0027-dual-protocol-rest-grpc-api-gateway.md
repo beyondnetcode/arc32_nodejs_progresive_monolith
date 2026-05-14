@@ -27,7 +27,7 @@ Orchestrate a strict **Dual-Protocol Runtime Edge** paired with Kong Gateway orc
 - Developers must generate and compile Proto libraries locally, slightly complicating local developer workstation ramp-up time.
 
 ## References
-- [ADR-0002: Clean Architecture](../adrs/nodejs/0002-clean-architecture-nestjs.md)
+- [ADR-0002: Clean Architecture](../../adrs/nodejs/0002-clean-architecture-nestjs.md)
 - [gRPC Official Site](https://grpc.io/)
 
 ---

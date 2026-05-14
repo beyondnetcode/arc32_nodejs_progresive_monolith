@@ -40,7 +40,7 @@ Adoptar una **Estrategia Multi-Tenancy Híbrida "Pooled"** utilizando un **Marco
 
 ## Referencias
 - [Documentación de RLS en PostgreSQL](https://www.postgresql.org/docs/current/ddl-rowsecurity.html)
-- [ADR-0031: Estrategia de Esquema por Contexto](../adrs/core/0031-schema-per-context-domain-event-catalog.md)
+- [ADR-0031: Estrategia de Esquema por Contexto](../../adrs/core/0031-schema-per-context-domain-event-catalog.md)
 
 ---
 [Volver al Índice](./README.es.md)

@@ -51,4 +51,4 @@ Este documento establece la **política oficial e inmutable** de estructuración
 Está terminantemente prohibido duplicar información de gobernanza dentro de los directorios de código fuente. Toda referencia técnica debe apuntar a la raíz del repositorio.
 
 ---
-[Volver al Índice](./README.es.md)
+[Volver al Índice](./README.md)

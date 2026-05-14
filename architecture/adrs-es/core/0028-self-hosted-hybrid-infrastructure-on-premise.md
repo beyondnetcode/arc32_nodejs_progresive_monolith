@@ -28,8 +28,8 @@ Gobernar estrictamente la selección de herramientas internas basándose en el *
 - Incrementa la sobrecarga administrativa. El DevOps local debe mantener la replicación, las copias de seguridad y los parches de escala que las principales nubes típicamente manejan automáticamente.
 
 ## Referencias
-- [ADR-0013: Topología Cloud](../adrs/core/0013-cloud-infrastructure-topology-dr.md)
-- [Referencia de Definición de Stack](../../02-architecture/stack.md)
+- [ADR-0013: Topología Cloud](../../adrs/core/0013-cloud-infrastructure-topology-dr.md)
+- [Referencia de Definición de Stack](../../blueprints/tech-stack-summary.md)
 
 ---
 [Volver al Índice](./README.es.md)

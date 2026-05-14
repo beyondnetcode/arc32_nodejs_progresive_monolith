@@ -1,4 +1,4 @@
-# End-to-End Distributed Observability & Telemetry Strategy
+# End-to-End Distributed Observability and Telemetry Strategy
 
 This document details the telemetry architecture, trace propagation, logging standards, and cost-effective monitoring stack for the SCM/Reference Template under the **BMAD-METHOD (Spec-driven AI Strategy)**.
 
@@ -46,11 +46,11 @@ graph TD
  }
  ```
 
-### B. Distributed Tracing (OpenTelemetry & Tempo)
+### B. Distributed Tracing (OpenTelemetry and Tempo)
 * **Propagation**: OpenTelemetry (OTel) is initialized at application startup. Trace contexts are propagated automatically using standard **W3C Trace Context headers** (`traceparent`).
 * **Intra-Domain Event Propagation**: When an event is published asynchronously via the Event Bus, the active `trace_id` is appended to the event payload. Downstream subscribers extract the context and start a child span, preserving the transaction timeline across modules.
 
-### C. System & Business Metrics (Mimir)
+### C. System and Business Metrics (Mimir)
 We monitor system health and business operations using two structured patterns:
 * **RED Pattern (Services)**: **R**ate (requests/sec), **E**rrors (HTTP 5xx / database failures), **D**uration (latency p95/p99 targets < 200ms).
 * **USE Pattern (Infrastructure)**: **U**tilization, **S**aturation, and **E**rrors for CPU, memory, and database connections.
@@ -69,7 +69,7 @@ To trace a single business transaction from start to finish (e.g., weighing a co
 
 ---
 
-## 4. Monitoring Tools & Cost Sizing
+## 4. Monitoring Tools and Cost Sizing
 By utilizing the open-source **Grafana LGTM Stack**, the enterprise minimizes licensing costs compared to proprietary tools (e.g., Datadog, Dynatrace) while guaranteeing industry-standard, high-scale telemetry:
 * **Loki Storage**: Compact, index-free log storage dramatically reduces cloud disk storage costs.
 * **Self-Hosted/Managed Hybrid**: Local development runs on Docker-compose LGTM; production deploys to managed Grafana Cloud or self-hosted Kubernetes setups for absolute data privacy and sovereign data compliance.

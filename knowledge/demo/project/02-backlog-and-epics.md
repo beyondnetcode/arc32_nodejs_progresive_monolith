@@ -60,7 +60,7 @@
 
 ## 3. Evolution Roadmap & Planned Technical Debt
 
-Subsequent Technical Tickets are locked until execution parameters scale based on [ADR-0045](../../standards/02-adrs/core/0045-microservice-extraction-readiness-criteria.md):
+Subsequent Technical Tickets are locked until execution parameters scale based on [ADR-0045](../../../architecture/adrs/core/0045-microservice-extraction-readiness-criteria.md):
 
 * `TS-302 [Phase 2]` - **Transactional Outbox:** Guaranteeing delivery consistency amid downstream outages.
 * `TS-401 [Phase 3]` - **Dapr Sidecar Extraction:** Orchestrating the service mesh transition.

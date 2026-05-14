@@ -43,8 +43,8 @@ graph TD
 - Introduces Kong management operational stack lifecycle.
 
 ## References
-- [ADR-0008: Progressive BFF Patterns](../adrs/nodejs/0008-progressive-multimodule-evolution-gateway-bff.md)
-- [ADR-0027: Dual Protocol Edge](../adrs/nodejs/0027-dual-protocol-rest-grpc-api-gateway.md)
+- [ADR-0008: Progressive BFF Patterns](../../adrs/nodejs/0008-progressive-multimodule-evolution-gateway-bff.md)
+- [ADR-0027: Dual Protocol Edge](../../adrs/nodejs/0027-dual-protocol-rest-grpc-api-gateway.md)
 
 ---
 [Back to Index](./README.md)

@@ -59,4 +59,4 @@ estándar corporativo existente.
 -> [Explorar sección de Arquitectura Aumentada por IA](./ai-augmented/README.md)
 
 ---
-[Volver al Nivel Superior](../README.es.md)
+[Volver al Nivel Superior](../../README.es.md)

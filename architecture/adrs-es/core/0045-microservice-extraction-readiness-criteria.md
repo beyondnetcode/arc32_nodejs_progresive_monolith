@@ -34,7 +34,7 @@ Un módulo de dominio DEBE considerarse un candidato válido para la fase de ext
 - Alineación explícita con la arquitectura basada en métricas y observables.
 
 ### Negativas
-- Requiere que la observabilidad ([ADR-0007](../../nodejs/0007-observability-telemetry-loki-opentelemetry.md)) esté plenamente operativa para capturar los indicadores P95 por módulo.
+- Requiere que la observabilidad ([ADR-0007](../nodejs/0007-observability-telemetry-loki-opentelemetry.md)) esté plenamente operativa para capturar los indicadores P95 por módulo.
 
 ## Referencias
 - [ADR 0006: Future Microservices Transition](../core/0006-future-microservices-transition-dapr.md)

@@ -30,7 +30,7 @@ Standardize on utilizing the **`@nestjslatam/ddd`** primitives ecosystem within 
 - Introduces another shallow internal dependency. (Mitigated cleanly via the Barrel abstraction).
 
 ## References
-- [ADR-0002: Hexagonal Architecture](../adrs/nodejs/0002-clean-architecture-nestjs.md)
+- [ADR-0002: Hexagonal Architecture](../../adrs/nodejs/0002-clean-architecture-nestjs.md)
 - [@nestjslatam/ddd docs](https://github.com/nestjslatam/ddd)
 
 ---

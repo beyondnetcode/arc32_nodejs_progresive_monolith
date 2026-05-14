@@ -12,7 +12,7 @@ By using the universally understood "To-Do" domain, all cognitive overhead is di
 ---
 
 ## 2. Proposed Solution
-This To-Do application serves as the authoritative reference for the **Hexagonal Ports & Adapters** architecture inside a modern NestJS Monorepo.
+This To-Do application serves as the authoritative reference for the **Hexagonal Ports and Adapters** architecture inside a modern NestJS Monorepo.
 
 ```mermaid
 graph TD
@@ -21,7 +21,7 @@ graph TD
  %% CORE BUSINESS LOGIC
  App -->|2. Execute Use Cases| Core["Application Core / Hexagon"]
  
- %% PERSISTENCE & INFRASTRUCTURE
+ %% PERSISTENCE AND INFRASTRUCTURE
  Core -->|3. ITaskRepository| DB["PostgreSQL (TypeORM Adapter)"]
  Core -.->|4. Read Cache| Cache["Redis (Distributed Cache Adapter)"]
  
@@ -48,4 +48,4 @@ Standardizing this reference template provides:
 The basic unit of execution is a personal **Task Management Cycle** (Create, Edit, Complete, Delete), scoped exclusively by authenticatable users. Detailed flow maps are located within Phase 01 - Requirements.
 
 ---
-[Back to Index](./README.md)
+ [Back to Index](../../../README.md)

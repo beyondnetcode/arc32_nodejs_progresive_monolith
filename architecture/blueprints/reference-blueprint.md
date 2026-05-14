@@ -44,7 +44,7 @@ The organization promotes a deliberate polyglot architecture where runtimes are 
 
 #### Supplemental Strategic Frameworks
 To deeply understand the mathematical and risk posture of this architecture, consult:
-* -> **[Design Maturity & Patterns Evaluation](../vision/maturity-evaluation.md)**
+* -> **[Design Maturity and Patterns Evaluation](../../governance/standards/vision/maturity-evaluation.md)**
 * -> **[CAP Theorem Strategic Analysis](./cap-strategic-analysis.md)**
 * -> **[Multi-Cloud Deployment Scenarios](./multi-cloud-deployment-scenarios.md)**
 
@@ -99,7 +99,7 @@ graph TD
  IdP["Federated IdP (Auth0 / Entra ID)\n[ADR-0020, ADR-0026]"]
  
  subgraph EventBusAbstraction["Injectable Event Bus (ADR-0015, ADR-0031)"]
- IBusPort["«Port» IEventBusPort"]
+ IBusPort["(Port) IEventBusPort"]
  InMemory["In-Memory (Dev/Test)"]
  RabbitMQ["RabbitMQ (Production)"]
  Kafka["Kafka (High-Scale)"]
@@ -117,7 +117,9 @@ graph TD
  OTel --> Jaeger
  end
 
- WebApp & MobileApp & B2B -->|TLS/HTTP| CDN
+ WebApp --> |TLS/HTTP| CDN
+ MobileApp --> |TLS/HTTP| CDN
+ B2B --> |TLS/HTTP| CDN
  CDN -->|Dynamic Forward| Kong
 
  Kong -->|Route| WebBFF
@@ -139,7 +141,7 @@ graph TD
 
 ## 4. Solution Strategy
 
-### 4.1 Hexagonal Architecture - Ports & Adapters ([ADR-0002](../adrs/nodejs/0002-clean-architecture-nestjs.md))
+### 4.1 Hexagonal Architecture - Ports and Adapters ([ADR-0002](../adrs/nodejs/0002-clean-architecture-nestjs.md))
 All business logic in the Domain and Application layers has **zero runtime dependencies** on frameworks, ORMs, or cloud services. The infrastructure layer implements pure TypeScript Ports.
 
 ### 4.2 SaaS Multi-Tenancy Strategy ([ADR-0010](../adrs/core/0010-multi-tenancy-architecture-strategy.md))
@@ -196,7 +198,7 @@ graph TD
  end
 
  subgraph MessagingTier["Async Messaging Tier (ADR-0015, ADR-0031)"]
- IBusPort["«Port» IEventBusPort"]
+ IBusPort["(Port) IEventBusPort"]
  InMemoryBus["In-Memory Bus\n(Dev/Test)"]
  RabbitMQBus["RabbitMQ\n(Production)"]
  IBusPort -.->|Impl| InMemoryBus
@@ -213,7 +215,8 @@ graph TD
  OTel["OTel Collector"]
  Loki["Grafana Loki"]
  Jaeger["Jaeger Tracing"]
- OTel --> Loki & Jaeger
+ OTel --> Loki
+ OTel --> Jaeger
  end
 
  subgraph InfraTier["Self-Hosted OSS Infrastructure (ADR-0028)"]
@@ -221,16 +224,23 @@ graph TD
  MinIO["MinIO\n[Object Storage]"]
  end
 
- WebApp & MobileApp & B2BClient -->|TLS/HTTP| CDN
+ WebApp --> |TLS/HTTP| CDN
+ MobileApp --> |TLS/HTTP| CDN
+ B2BClient --> |TLS/HTTP| CDN
  CDN -->|Origin Requests| Kong
- Kong -->|Route| WebBFF & MobileBFF & CoreAPI
+ Kong --> |Route| WebBFF
+ Kong --> MobileBFF
+ Kong --> CoreAPI
 
- WebBFF & MobileBFF -->|gRPC| CoreAPI
- WebBFF & MobileBFF <-->|BFF Cache Reads| Redis
+ WebBFF --> |gRPC| CoreAPI
+ MobileBFF --> |gRPC| CoreAPI
+ WebBFF <--> |BFF Cache Reads| Redis
+ MobileBFF <--> |BFF Cache Reads| Redis
  CoreAPI <-->|Core Cache Reads| Redis
 
  CoreAPI -->|SQL/Dual-Layer RLS| PgSQL
- CoreAPI --> PgSQL & AuditLog
+ CoreAPI --> PgSQL
+ CoreAPI --> AuditLog
  CoreAPI --> IBusPort
  CoreAPI --> AuthGraph
  CoreAPI --> FeatureFlags
@@ -366,13 +376,17 @@ graph TD
  MinIO["MinIO Storage"]
  end
 
- Internet -->|DNS Failover| KongA & KongB
+ Internet --> |DNS Failover| KongA
+ Internet --> KongB
  KongA --> BFFA --> APIA --> PgPrimary
  KongB --> BFFB --> APIB --> PgReplica
  PgPrimary -.->|Streaming Replication| PgReplica
- APIA & APIB <--> Redis
- APIA & APIB --> RabbitMQ
- APIA & APIB --> Vault
+ APIA <--> Redis
+ APIB <--> Redis
+ APIA --> RabbitMQ
+ APIB --> RabbitMQ
+ APIA --> Vault
+ APIB --> Vault
 ```
 
 ---
@@ -382,7 +396,7 @@ graph TD
 | Architectural Concern | Implementing ADR(s) | Pattern / Technology | Diagram Section |
 | :--- | :--- | :--- | :--- |
 | **Monorepo Governance** | [ADR-0001](../adrs/core/0001-monorepo-orchestration-nx.md) | Nx + npm workspaces | 2 |
-| **Hexagonal Architecture** | [ADR-0002](../adrs/nodejs/0002-clean-architecture-nestjs.md) | Ports & Adapters | 4.1, 5 |
+| **Hexagonal Architecture** | [ADR-0002](../adrs/nodejs/0002-clean-architecture-nestjs.md) | Ports and Adapters | 4.1, 5 |
 | **TypeScript Standards** | [ADR-0003](../adrs/nodejs/0003-strict-typescript-standards.md) | Strict mode + ESLint Boundaries | 2 |
 | **Frontend Resilience** | [ADR-0004](../adrs/nodejs/0004-frontend-offline-resilience.md) | React Query offline cache | 3.1 |
 | **CI/CD Security** | [ADR-0005](../adrs/core/0005-ci-cd-quality-codeql.md) | CodeQL + GitHub Actions | 2 |
@@ -403,10 +417,10 @@ graph TD
 | **Identity Provider Abstraction** | [ADR-0020](../adrs/core/0020-identity-provider-abstraction-strategy.md) | Strategy Pattern -> Auth0/Entra/Zitadel | 3.1, 5 |
 | **Auth Graph Compilation** | [ADR-0021](../adrs/nodejs/0021-high-performance-auth-and-graph-compilation.md) | Redis-cached permission graph < 5ms | 5 |
 | **Pluggable Projections** | [ADR-0022](../adrs/nodejs/0022-contextual-auth-and-pluggable-projections.md) | Context-aware read projections | 5 |
-| **Centralized Auth Kernel** | [ADR-0023](../adrs/nodejs/0023-centralized-TODO-vs-decentralized-access.md) | Shared authorization core kernel | 5 |
-| **Config & Feature Platform** | [ADR-0024](../adrs/core/0024-configuration-feature-management-platform.md) | Multi-IdP parameter engine | 5 |
+| **Centralized Auth Kernel** | [ADR-0023](../adrs/nodejs/0023-centralized-ums-vs-decentralized-access.md) | Shared authorization core kernel | 5 |
+| **Config and Feature Platform** | [ADR-0024](../adrs/core/0024-configuration-feature-management-platform.md) | Multi-IdP parameter engine | 5 |
 | **Feature Flag Abstraction** | [ADR-0025](../adrs/core/0025-feature-flag-provider-abstraction.md) | `IFeatureFlagPort` pluggable providers | 5 |
-| **MFA & Passkeys** | [ADR-0026](../adrs/nodejs/0026-mfa-passwordless-adaptive-authentication.md) | WebAuthn + Passkeys + TOTP + Adaptive | 5 |
+| **MFA and Passkeys** | [ADR-0026](../adrs/nodejs/0026-mfa-passwordless-adaptive-authentication.md) | WebAuthn + Passkeys + TOTP + Adaptive | 5 |
 | **Dual Protocol REST/gRPC** | [ADR-0027](../adrs/nodejs/0027-dual-protocol-rest-grpc-api-gateway.md) | REST (external) + gRPC (internal) | 3.1 |
 | **Self-Hosted OSS Infra** | [ADR-0028](../adrs/core/0028-self-hosted-hybrid-infrastructure-on-premise.md) | MinIO + RabbitMQ + Vault OSS | 5, 7 |
 | **Tactical DDD Primitives** | [ADR-0029](../adrs/nodejs/0029-tactical-ddd-primitives-library.md) | `@nestjslatam/ddd` via barrel re-exports | 4.1 |
@@ -416,11 +430,11 @@ graph TD
 | **Transactional Outbox** | [ADR-0033](../adrs/core/0033-transactional-outbox-pattern.md) | Atomic DB + Event atomic guarantee | 6.2 |
 | **CQRS Separation** | [ADR-0034](../adrs/core/0034-cqrs-pattern-applicability-matrix.md) | Evaluation Matrix for Read/Write Models | 5, 6.1 |
 | **Distributed Sagas** | [ADR-0035](../adrs/core/0035-distributed-saga-pattern-strategy.md) | Compensating Transaction Strategy | 6.2 |
-| **Messaging Strategy** | [ADR-0036](../adrs/core/0036-message-bus-delivery-strategy-fifo-dlq.md) | FIFO vs Fire & Forget vs DLQ Policies | 6.2 |
+| **Messaging Strategy** | [ADR-0036](../adrs/core/0036-message-bus-delivery-strategy-fifo-dlq.md) | FIFO vs Fire and Forget vs DLQ Policies | 6.2 |
 | **Performance Testing** | [ADR-0037](../adrs/core/0037-performance-concurrency-chaos-strategy.md) | K6 Load + Pact Contract Verification | 5, 6.3 |
 | **Error Management** | [ADR-0038](../adrs/nodejs/0038-error-handling-result-pattern-strategy.md) | Result Pattern + Unified Boundaries | 5, 6.3 |
 | **Deployment Switcher** | [ADR-0039](../adrs/core/0039-deployment-topology-abstraction-switcher.md) | Factory-based Topology Abstraction | 7 |
-| **Polyglot Selection** | [ADR-0040](../adrs/core/0040-multi-runtime-selection-contracts.md) | Workload Matrix & Type-Safe Contracts | 1.2 |
+| **Polyglot Selection** | [ADR-0040](../adrs/core/0040-multi-runtime-selection-contracts.md) | Workload Matrix and Type-Safe Contracts | 1.2 |
 | **.NET Arch Canonical** | [ADR-0041](../adrs/dotnet/0041-canonical-dotnet-backend-architecture.md) | Clean Arch C# / Minimal APIs | 1.2 |
 | **Android Arch Canonical** | [ADR-0042](../adrs/android/0042-canonical-android-mobile-architecture.md) | Native Kotlin / Compose / Offline | 1.2 |
 
@@ -441,7 +455,7 @@ graph TD
 
 ## 10. Canonical Reference Implementation
 
--> **[Back to Project Root & Quick Start](../../README.md)**
+-> **[Back to Project Root and Quick Start](../../README.md)**
 
 Implemented using:
 - **Framework**: NestJS (v10) with strict Hexagonal boundaries.
@@ -478,7 +492,7 @@ Reference nomenclature used by this blueprint.
 * **Bounded Context**: Strategic logic boundary owning its private database schema.
 * **Clean Architecture**: Design paradigm where control flow always points inward toward dependencies.
 * **Distributed Circuit Breaker**: Mechanism to halt request delivery to failing upstreams sharing state across pods via Redis.
-* **Hexagonal Architecture**: See *Ports & Adapters*.
+* **Hexagonal Architecture**: See *Ports and Adapters*.
 * **Port**: Explicit contract (Interface) that the application requires to talk to external systems.
 * **RLS (Row-Level Security)**: Native DB engine security constraining table rows to active session user.
 * **Saga Pattern**: Managing distributed transactional consistency via compensating events.

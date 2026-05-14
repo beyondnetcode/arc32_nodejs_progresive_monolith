@@ -40,7 +40,7 @@ La implementación concreta se inyecta por el contenedor DI de NestJS en el arra
 ### 2. Eventos de Dominio como Contratos entre Contextos
 Cada evento que cruza un límite de contexto delimitado debe ser una clase tipada con un `eventId` (UUID para idempotencia) y una marca de tiempo `occurredAt`. El catálogo completo aprobado de eventos entre contextos se define en:
 
- **[ADR-0031: Catálogo de Eventos de Dominio](../adrs/core/0031-schema-per-context-domain-event-catalog.md)**
+ **[ADR-0031: Catálogo de Eventos de Dominio](../../adrs/core/0031-schema-per-context-domain-event-catalog.md)**
 
 ### 3. Eventos Intra-Contexto (Internos) vs Eventos Entre-Contextos
 - **Eventos Intra-contexto** (dentro del mismo contexto delimitado): Pueden usar emisores de eventos de NestJS síncronos sin restricciones de esquema.
@@ -56,9 +56,9 @@ Cuando un contexto delimitado sea extraído a un microservicio independiente:
 * **Negativas**: Se debe abrazar la consistencia eventual a través de los contextos. Se requiere trazado distribuido ([ADR-0007](../nodejs/0007-observability-telemetry-loki-opentelemetry.md)) para seguir los flujos de eventos a través de los límites de los contextos.
 
 ## Referencias
-- [ADR-0006: Futuros Microservicios vía Dapr](../adrs/core/0006-future-microservices-transition-dapr.md)
-- [ADR-0007: Observabilidad con OpenTelemetry](../adrs/nodejs/0007-observability-telemetry-loki-opentelemetry.md)
-- [ADR-0031: Esquema por Contexto y Catálogo de Eventos de Dominio](../adrs/core/0031-schema-per-context-domain-event-catalog.md)
+- [ADR-0006: Futuros Microservicios vía Dapr](../../adrs/core/0006-future-microservices-transition-dapr.md)
+- [ADR-0007: Observabilidad con OpenTelemetry](../../adrs/nodejs/0007-observability-telemetry-loki-opentelemetry.md)
+- [ADR-0031: Esquema por Contexto y Catálogo de Eventos de Dominio](../../adrs/core/0031-schema-per-context-domain-event-catalog.md)
 
 ---
 [Volver al Índice](./README.es.md)

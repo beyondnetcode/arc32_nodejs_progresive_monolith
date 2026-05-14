@@ -25,4 +25,4 @@ Políticas de preparación operativa y flujos de respuesta ante incidentes.
 * *Próximamente: Playbook de Lanzamientos Zero-Downtime.*
 
 ---
-[Volver al Nivel Superior](../README.es.md)
+[Volver al Nivel Superior](../../README.es.md)

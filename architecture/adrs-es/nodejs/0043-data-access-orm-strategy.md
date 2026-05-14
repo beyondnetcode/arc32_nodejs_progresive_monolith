@@ -63,9 +63,9 @@ Las migraciones deben escribirse explícitamente a través de archivos TypeScrip
 - **Dependencia del Proveedor (Lock-in)**: Mitigación a través de la estricta adherencia a interfaces en la capa de Dominio (Puertos).
 
 ## Referencias
-- [ADR-0002: Arquitectura Hexagonal Limpia con NestJS](../adrs/nodejs/0002-clean-architecture-nestjs.md)
-- [ADR-0010: Estrategia de Arquitectura Multi-Tenancy](../adrs/core/0010-multi-tenancy-architecture-strategy.md)
-- [ADR-0029: Primitivas DDD Tácticas](../adrs/nodejs/0029-tactical-ddd-primitives-library.md)
+- [ADR-0002: Arquitectura Hexagonal Limpia con NestJS](../../adrs/nodejs/0002-clean-architecture-nestjs.md)
+- [ADR-0010: Estrategia de Arquitectura Multi-Tenancy](../../adrs/core/0010-multi-tenancy-architecture-strategy.md)
+- [ADR-0029: Primitivas DDD Tácticas](../../adrs/nodejs/0029-tactical-ddd-primitives-library.md)
 
 ---
 [Volver al Índice](./README.es.md)

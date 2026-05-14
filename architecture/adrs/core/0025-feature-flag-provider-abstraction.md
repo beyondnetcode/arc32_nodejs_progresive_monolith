@@ -26,8 +26,8 @@ Subsume feature toggle invocation under classic Hexagonal Port principles:
 - Maintenance cost associated with sustaining multiple specialized adaptor classes targeting diverse provider formats.
 
 ## References
-- [ADR-0024: Configuration Platform](../adrs/core/0024-configuration-feature-management-platform.md)
-- [ADR-0002: Hexagonal Architecture](../adrs/nodejs/0002-clean-architecture-nestjs.md)
+- [ADR-0024: Configuration Platform](../../adrs/core/0024-configuration-feature-management-platform.md)
+- [ADR-0002: Hexagonal Architecture](../../adrs/nodejs/0002-clean-architecture-nestjs.md)
 
 ---
 [Back to Index](./README.md)

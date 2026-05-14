@@ -43,7 +43,7 @@ Any Saga implementation MUST implement:
 
 ## References
 - [Saga distributed transactions pattern](https://learn.microsoft.com/en-us/azure/architecture/reference-architectures/saga/saga)
-- [ADR-0033: Transactional Outbox Pattern](../adrs/core/0033-transactional-outbox-pattern.md)
+- [ADR-0033: Transactional Outbox Pattern](../../adrs/core/0033-transactional-outbox-pattern.md)
 
 ---
 [Back to Index](./README.md)

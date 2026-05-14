@@ -9,11 +9,13 @@ It is not the "brain" (that is the model); it is the "nervous system and the exo
 
 ```mermaid
 graph TD
- A[User / Trigger] --> B[Layer 1: System Prompt & Identity]
+ A[User / Trigger] --> B[Layer 1: System Prompt
+ A[User / Trigger] --> Identity]
  B --> C[Layer 2: Model Selection]
  C <--> D[Layer 3: Context Injection / RAG / MCP]
  C <--> E[Layer 4: Tooling Catalog]
- E --> F{Layer 5: Permissions & Sandbox}
+ E --> F{Layer 5: Permissions
+ E --> Sandbox}
  F -- Approved --> G[Deterministic Execution]
  G --> H[Layer 6: Verification Layers / Hooks]
  H --> C

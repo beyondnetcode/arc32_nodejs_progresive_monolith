@@ -54,8 +54,8 @@ We establish a **Strict Protocol Fit Matrix** tailored to specific architectural
 - Introduces setup costs for GraphQL execution layers and schema governance tools within BFF stacks.
 
 ## References
-- [ADR-0027: Dual Protocol Strategy](../adrs/nodejs/0027-dual-protocol-rest-grpc-api-gateway.md)
-- [ADR-0030: Two-Tier Gateway Patterns](../adrs/core/0030-api-gateway-kong-vs-nestjs.md)
+- [ADR-0027: Dual Protocol Strategy](../../adrs/nodejs/0027-dual-protocol-rest-grpc-api-gateway.md)
+- [ADR-0030: Two-Tier Gateway Patterns](../../adrs/core/0030-api-gateway-kong-vs-nestjs.md)
 
 ---
 [Back to Index](./README.md)

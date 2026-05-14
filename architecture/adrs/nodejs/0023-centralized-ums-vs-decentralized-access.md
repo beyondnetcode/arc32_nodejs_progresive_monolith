@@ -1,4 +1,4 @@
-# [ADR 0023](0023-centralized-TODO-vs-decentralized-access.md): Centralized Authorization Core Strategy
+# [ADR 0023](0023-centralized-ums-vs-decentralized-access.md): Centralized Authorization Core Strategy
 
 ## Status
 Approved
@@ -28,8 +28,8 @@ Commit to building and deploying the system as the **Centralized Authorization N
 - Forms a single architectural point of failure if not heavily scaled and redundant across zone clusters.
 
 ## References
-- [ADR-0021: High Performance Authorization Graph](../adrs/nodejs/0021-high-performance-auth-and-graph-compilation.md)
-- [ADR-0022: Contextual Auth and Projections](../adrs/nodejs/0022-contextual-auth-and-pluggable-projections.md)
+- [ADR-0021: High Performance Authorization Graph](../../adrs/nodejs/0021-high-performance-auth-and-graph-compilation.md)
+- [ADR-0022: Contextual Auth and Projections](../../adrs/nodejs/0022-contextual-auth-and-pluggable-projections.md)
 
 ---
 [Back to Index](./README.md)

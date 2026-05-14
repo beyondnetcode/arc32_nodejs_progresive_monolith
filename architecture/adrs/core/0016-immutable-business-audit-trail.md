@@ -27,8 +27,8 @@ Deploy a **Hybrid Audit Strategy** balancing performant direct reading with deep
 - Physical storage footprint linearly expands indefinitely via continuous appends; archivals will eventually require lifecycle rotation policies.
 
 ## References
-- [ADR-0031: Domain Event Catalog](../adrs/core/0031-schema-per-context-domain-event-catalog.md)
-- [ADR-0015: Event Driven Architecture](../adrs/core/0015-event-driven-architecture-intra-domain.md)
+- [ADR-0031: Domain Event Catalog](../../adrs/core/0031-schema-per-context-domain-event-catalog.md)
+- [ADR-0015: Event Driven Architecture](../../adrs/core/0015-event-driven-architecture-intra-domain.md)
 
 ---
 [Back to Index](./README.md)

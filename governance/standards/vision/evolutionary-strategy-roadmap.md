@@ -10,7 +10,7 @@ This document establishes the strategic roadmap driven by Corporate Architecture
 
 Our core vision states that **Infrastructure is an Implementation Detail**, asserting sovereign control over Core Business Rules.
 
-* **Core Architecture:** Hexagonal (Ports & Adapters). Domain is centralized, fully isolated from persistence layers and frameworks.
+* **Core Architecture:** Hexagonal (Ports and Adapters). Domain is centralized, fully isolated from persistence layers and frameworks.
 * **Absolute Priority:** Aggressive decoupling. Tying application logic to specific cloud vendor syntax is strictly prohibited.
 * **Dynamic Security:** Leveraging the `SECURITY_STRATEGY_MODE` selector to adjust isolation logic according to target runtime capabilities.
 * **Native Compliance:** Governed from day one by strict GDPR sovereignty constraints and the ISO/IEC 27001:2022 regulatory standard.
@@ -23,8 +23,8 @@ Our core vision states that **Infrastructure is an Implementation Detail**, asse
 timeline
  title Architectural Stage Roadmap (Timeline Overview)
  Phase 1 : The Lean Foundation (MVP) : Modular Monolith : API-First Contracts : App-Side Security (Agnostic)
- Phase 2 : Scale & Decoupling : Critical Service Extraction : Hybrid RLS Activation : Full Observability & Optimized I/O
- Phase 3 : North Star : Multi-Cloud Agnosticism : Event-Driven Architecture : Zero Trust Network & Auto Compliance
+ Phase 2 : Scale and Decoupling : Critical Service Extraction : Hybrid RLS Activation : Full Observability and Optimized I/O
+ Phase 3 : North Star : Multi-Cloud Agnosticism : Event-Driven Architecture : Zero Trust Network and Auto Compliance
 ```
 
 ### Phase 1: The Lean Foundation (MVP) - Short Term
@@ -36,7 +36,7 @@ timeline
 | **Persistence** | Single relational instance. Application-side enforced security (`APP_AGNOSTIC`). |
 | **Critical Focus** | Rigid API-First contract definition and comprehensive validation of core business rules without infrastructure noise. |
 
-### ¡ Phase 2: Scale & Decoupling - Medium Term
+### ¡ Phase 2: Scale and Decoupling - Medium Term
 **Focus:** Operational Efficiency and Component Segregation.
 
 | Dimension | Strategy |
@@ -45,7 +45,7 @@ timeline
 | **Persistence** | Activation of Hybrid Mode. Deploying native RLS (`INFRA_NATIVE`) to production for database speed, maintaining safe codebase fallbacks for test harness suites. |
 | **Critical Focus** | Comprehensive Observability (distributed tracing + structured logs) and aggressive reduction of I/O persistence latency. |
 
-### Phase 3: North Star (Resilience & Sovereignty) - Long Term
+### Phase 3: North Star (Resilience and Sovereignty) - Long Term
 **Focus:** Total Cloud Agnosticism and Hardened Data Sovereignty.
 
 | Dimension | Strategy |
@@ -56,7 +56,7 @@ timeline
 
 ---
 
-## 3. Observability Dashboard & KPIs (Architectural Metrics)
+## 3. Observability Dashboard and KPIs (Architectural Metrics)
 
 To ensure zero structural drift over time, every phase is measured via strict deterministic equations.
 

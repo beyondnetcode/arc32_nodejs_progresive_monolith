@@ -28,8 +28,8 @@ Introduce an authoritative **Configuration & Feature Management Bounded Context*
 - Modest expansion of database schema topology and active Redis key governance strategies.
 
 ## References
-- [ADR-0025: Feature Flag Abstraction Strategy](../adrs/core/0025-feature-flag-provider-abstraction.md)
-- [ADR-0014: Redis Cache Strategy](../adrs/core/0014-distributed-caching-strategy-redis.md)
+- [ADR-0025: Feature Flag Abstraction Strategy](../../adrs/core/0025-feature-flag-provider-abstraction.md)
+- [ADR-0014: Redis Cache Strategy](../../adrs/core/0014-distributed-caching-strategy-redis.md)
 
 ---
 [Back to Index](./README.md)

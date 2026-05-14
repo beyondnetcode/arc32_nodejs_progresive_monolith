@@ -37,8 +37,8 @@ Las preocupaciones transversales (Registro, Auditoría, Rastreo Distribuido, Alm
 - Curva de aprendizaje más pronunciada para desarrolladores acostumbrados al patrón de servicio estándar de NestJS.
 
 ## Referencias
-- [ADR-0003: Estándares Estrictos de TypeScript](../adrs/nodejs/0003-strict-typescript-standards.md)
-- [ADR-0029: Primitivas DDD Tácticas](../adrs/nodejs/0029-tactical-ddd-primitives-library.md)
+- [ADR-0003: Estándares Estrictos de TypeScript](../../adrs/nodejs/0003-strict-typescript-standards.md)
+- [ADR-0029: Primitivas DDD Tácticas](../../adrs/nodejs/0029-tactical-ddd-primitives-library.md)
 - [Especificación de Arquitectura - Diagrama de Componentes de Nivel 3](../../architecture/c4-topology-spec.md)
 
 ---

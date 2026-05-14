@@ -44,8 +44,8 @@ Mandar que TODOS los Casos de Uso de Aplicación y Entidades de Dominio devuelva
 
 ## Referencias
 - [Railway Oriented Programming](https://fsharpforfunandprofit.com/rop/)
-- [ADR-0002: Arquitectura Hexagonal Limpia](../adrs/nodejs/0002-clean-architecture-nestjs.md)
-- [ADR-0011: Tolerancia a Fallos](../adrs/core/0011-fault-tolerance-resiliency-patterns.md)
+- [ADR-0002: Arquitectura Hexagonal Limpia](../../adrs/nodejs/0002-clean-architecture-nestjs.md)
+- [ADR-0011: Tolerancia a Fallos](../../adrs/core/0011-fault-tolerance-resiliency-patterns.md)
 
 ---
 [Volver al Índice](./README.es.md)

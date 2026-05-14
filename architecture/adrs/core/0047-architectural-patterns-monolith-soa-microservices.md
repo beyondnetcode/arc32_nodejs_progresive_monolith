@@ -19,7 +19,7 @@
 
 Poor selection of an initial or transitional architectural pattern is the primary source of technical bankruptcy in modern engineering organizations. Adopting microservices prematurely destroys *Time-to-Market* through operational overload, while maintaining an excessively coupled monolith prevents organizational scaling across distributed teams.
 
-This ADR establishes the official corporate stance: architecture must evolve symmetrically with business complexity and organizational size. Dogmatic imposition of distributed architectures is strictly forbidden. All new systems shall start as a **Modular Monolith** shielded by Ports & Adapters, migrating toward **Microservices** or **SOA** only when business or operational drivers objectively demand it based on the numerical thresholds defined in this registry.
+This ADR establishes the official corporate stance: architecture must evolve symmetrically with business complexity and organizational size. Dogmatic imposition of distributed architectures is strictly forbidden. All new systems shall start as a **Modular Monolith** shielded by Ports and Adapters, migrating toward **Microservices** or **SOA** only when business or operational drivers objectively demand it based on the numerical thresholds defined in this registry.
 
 ---
 
@@ -124,7 +124,7 @@ Decomposing an application into a set of small, autonomous, independently deploy
 
 ---
 
-## 6. Decision Framework (Logic Tree & Scoring Model)
+## 6. Decision Framework (Logic Tree and Scoring Model)
 
 ### Decision Tree Diagram (Mermaid)
 
@@ -217,7 +217,7 @@ flowchart LR
 ### Positive (Expected Benefits):
 * **Budget Efficiency:** 60% reduction in initial infrastructure costs by avoiding oversized clusters for MVPs.
 * **Organizational Clarity:** Technical leaders know exactly what metrics to look for before decomposed architectures are debated, reducing dogmatic friction.
-* **Low Structural Debt:** Since the modular monolith mandates Ports & Adapters, eventual microservice migrations require zero core business logic rewrites.
+* **Low Structural Debt:** Since the modular monolith mandates Ports and Adapters, eventual microservice migrations require zero core business logic rewrites.
 
 ### Negative (Accepted Risks):
 * **Engineering Resistance:** Engineers with a strong Cloud-Native bias may perceive "Monolith First" as a technical step backward, necessitating cultural mentorship on the economics of architecture.

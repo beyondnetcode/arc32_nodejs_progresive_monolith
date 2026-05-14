@@ -51,8 +51,8 @@ Producto y Arquitectura requieren pruebas contra los siguientes flujos extremos 
 ## Referencias
 - [Documentación de Grafana k6](https://k6.io/docs/)
 - [Pact.io - Contratos Dirigidos por el Consumidor](https://docs.pact.io/)
-- [ADR-0011: Circuit Breakers Distribuidos](../adrs/core/0011-fault-tolerance-resiliency-patterns.md)
-- [ADR-0033: Outbox Transaccional](../adrs/core/0033-transactional-outbox-pattern.md)
+- [ADR-0011: Circuit Breakers Distribuidos](../../adrs/core/0011-fault-tolerance-resiliency-patterns.md)
+- [ADR-0033: Outbox Transaccional](../../adrs/core/0033-transactional-outbox-pattern.md)
 
 ---
 [Volver al Índice](./README.es.md)

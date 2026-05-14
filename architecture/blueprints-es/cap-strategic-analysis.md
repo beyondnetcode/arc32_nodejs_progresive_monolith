@@ -66,4 +66,4 @@ Nuestra arquitectura no elige ciegamente un solo lado. En su lugar, segmenta el 
 **Estado de Evaluación**: Verificado consistente con Estándares Internacionales de Arquitectura Empresarial.
 
 ---
-[Volver al Índice](./README.es.md)
+[Volver al Índice](./README.md)

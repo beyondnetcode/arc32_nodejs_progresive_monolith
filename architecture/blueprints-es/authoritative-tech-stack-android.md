@@ -17,7 +17,7 @@
 | **Async / Streams**| **Kotlin Coroutines + Flow** | íltima | **Sí** | RxJava 2/3 |
 
 ---
--> Volver al **[índice Maestro Global](../../../MASTER_INDEX.es.md)**
+-> Volver al **[índice Maestro Global](../../MASTER_INDEX.es.md)**
 
 ---
-[Volver al Índice](./README.es.md)
+[Volver al Índice](./README.md)

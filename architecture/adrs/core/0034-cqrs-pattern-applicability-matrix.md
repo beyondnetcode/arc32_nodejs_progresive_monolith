@@ -39,7 +39,7 @@ Mandate complete physical code/logic separation ONLY if at least **TWO** of the 
 
 ## References
 - [CQRS pattern (Martin Fowler)](https://martinfowler.com/bliki/CQRS.html)
-- [ADR-0002: Clean Hexagonal Architecture](../adrs/nodejs/0002-clean-architecture-nestjs.md)
+- [ADR-0002: Clean Hexagonal Architecture](../../adrs/nodejs/0002-clean-architecture-nestjs.md)
 
 ---
 [Back to Index](./README.md)

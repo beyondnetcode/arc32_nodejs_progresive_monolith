@@ -155,4 +155,4 @@ Según lo validado por el Arquitecto Principal, estas decisiones fundacionales e
 22. **[ADR 0031: Esquema por Contexto y Catálogo de Eventos de Dominio](../adrs-es/core/0031-schema-per-context-domain-event-catalog.md)**: Cada contexto delimitado posee un esquema PostgreSQL dedicado (`auth` | `tasks` | `taxonomy` | `audit`). Toda la comunicación entre contextos se rige por un Catálogo formal de Eventos de Dominio con contratos de carga útil tipados, permitiendo la extracción de microservicios sin migración.
 
 ---
-[Volver al Índice](./README.es.md)
+[Volver al Índice](./README.md)

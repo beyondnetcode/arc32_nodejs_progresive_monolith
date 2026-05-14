@@ -30,7 +30,7 @@ Adopt **Nx** as the monorepo orchestration tool, combined with **npm workspaces*
 
 ## References
 - [Nx Documentation](https://nx.dev)
-- [ADR-0003: Strict TypeScript Standards](../adrs/nodejs/0003-strict-typescript-standards.md)
+- [ADR-0003: Strict TypeScript Standards](../../adrs/nodejs/0003-strict-typescript-standards.md)
 
 ---
 [Back to Index](./README.md)

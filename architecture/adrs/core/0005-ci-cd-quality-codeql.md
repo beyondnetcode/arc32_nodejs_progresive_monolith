@@ -35,7 +35,7 @@ Integrate **GitHub CodeQL** and **npm audit** as mandatory quality gates in the 
 
 ## References
 - [GitHub CodeQL Documentation](https://docs.github.com/en/code-security/code-scanning)
-- [ADR-0009: Strict Dependency Pinning](../adrs/core/0009-strict-dependency-pinning-vulnerability-management.md)
+- [ADR-0009: Strict Dependency Pinning](../../adrs/core/0009-strict-dependency-pinning-vulnerability-management.md)
 
 ---
 [Back to Index](./README.md)

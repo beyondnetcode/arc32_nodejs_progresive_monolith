@@ -29,8 +29,8 @@ Separate credential verification from the business layer via polymorphic **Strat
 - Increases initialization factory complexity required to correctly instantiate correct credential drivers based on runtime host context.
 
 ## References
-- [ADR-0026: MFA and Passwordless](../adrs/nodejs/0026-mfa-passwordless-adaptive-authentication.md)
-- [ADR-0002: Clean Hexagonal Architecture](../adrs/nodejs/0002-clean-architecture-nestjs.md)
+- [ADR-0026: MFA and Passwordless](../../adrs/nodejs/0026-mfa-passwordless-adaptive-authentication.md)
+- [ADR-0002: Clean Hexagonal Architecture](../../adrs/nodejs/0002-clean-architecture-nestjs.md)
 
 ---
 [Back to Index](./README.md)

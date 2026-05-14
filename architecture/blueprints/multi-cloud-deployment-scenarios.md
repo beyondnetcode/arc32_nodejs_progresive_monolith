@@ -25,7 +25,7 @@ Geared towards highly regulated sectors (Banking, Healthcare) requiring exhausti
 ### 2.1 Network and Security Blueprint
 ```mermaid
 graph TD
- subgraph VNet["Azure Virtual Network (Hub & Spoke)"]
+ subgraph VNet["Azure Virtual Network (Hub and Spoke)"]
  subgraph DMZ["DMZ Subnet"]
  AFD["Azure Front Door (WAF v2)"]
  AGW["App Gateway (TLS Term)"]

@@ -44,7 +44,7 @@ La organización promueve una arquitectura políglota deliberada donde los entor
 
 #### Marcos Estratégicos Complementarios
 Para comprender profundamente la postura matemática y de riesgo de esta arquitectura, consulte:
-* -> **[Evaluación de Madurez y Patrones de Diseño](../vision/maturity-evaluation.md)**
+* -> **[Evaluación de Madurez y Patrones de Diseño](../../governance/standards/vision/maturity-evaluation.md)**
 * -> **[Análisis Estratégico del Teorema CAP](./cap-strategic-analysis.md)**
 * -> **[Escenarios de Despliegue Multi-Cloud](./multi-cloud-deployment-scenarios.md)**
 
@@ -96,18 +96,18 @@ graph TD
  end
 
  subgraph ExternalIntegrations["Capa de Integración Externa"]
- IdP["IdP Federado (Auth0 / Entra ID)\n[ADR-0020, ADR-0026]"]
- 
- subgraph EventBusAbstraction["Bus de Eventos Inyectable (ADR-0015, ADR-0031)"]
- IBusPort["«Port» IEventBusPort"]
- InMemory["En-Memoria (Dev/Test)"]
- RabbitMQ["RabbitMQ (Producción)"]
- Kafka["Kafka (Alta Escala)"]
- IBusPort -.->|Impl| InMemory
- IBusPort -.->|Impl| RabbitMQ
- IBusPort -.->|Impl| Kafka
- end
- end
+  IdP["IdP Federado (Auth0 / Entra ID)\n[ADR-0020, ADR-0026]"]
+  end
+
+  subgraph EventBusAbstraction["Bus de Eventos Inyectable (ADR-0015, ADR-0031)"]
+  IBusPort["(Port) IEventBusPort"]
+  InMemory["En-Memoria (Dev/Test)"]
+  RabbitMQ["RabbitMQ (Producción)"]
+  Kafka["Kafka (Alta Escala)"]
+  IBusPort -.->|Impl| InMemory
+  IBusPort -.->|Impl| RabbitMQ
+  IBusPort -.->|Impl| Kafka
+  end
 
  subgraph ObsLayer["Observabilidad (ADR-0007)"]
  OTel["Coleccionista OpenTelemetry"]
@@ -117,7 +117,9 @@ graph TD
  OTel --> Jaeger
  end
 
- WebApp & MobileApp & B2B -->|TLS/HTTP| CDN
+ WebApp --> |TLS/HTTP| CDN
+ MobileApp --> |TLS/HTTP| CDN
+ B2B --> |TLS/HTTP| CDN
  CDN -->|Reenvío Dinámico| Kong
 
  Kong -->|Ruta| WebBFF
@@ -196,11 +198,11 @@ graph TD
  end
 
  subgraph MessagingTier["Nivel Mensajería Asíncrona (ADR-0015, ADR-0031)"]
- IBusPort["«Port» IEventBusPort"]
- InMemoryBus["Bus En-Memoria\n(Dev/Test)"]
- RabbitMQBus["RabbitMQ\n(Producción)"]
- IBusPort -.->|Impl| InMemoryBus
- IBusPort -.->|Impl| RabbitMQBus
+  IBusPort["(Port) IEventBusPort"]
+  InMemoryBus["Bus En-Memoria\n(Dev/Test)"]
+  RabbitMQBus["RabbitMQ\n(Producción)"]
+  IBusPort -.->|Impl| InMemoryBus
+  IBusPort -.->|Impl| RabbitMQBus
  end
 
  subgraph SecurityTier["Nivel de Seguridad (ADR-0020, ADR-0026, ADR-0021)"]
@@ -213,7 +215,8 @@ graph TD
  OTel["Coleccionista OTel"]
  Loki["Grafana Loki"]
  Jaeger["Trazado Jaeger"]
- OTel --> Loki & Jaeger
+ OTel --> Loki
+ OTel --> Jaeger
  end
 
  subgraph InfraTier["Infraestructura OSS Autohospedada (ADR-0028)"]
@@ -221,16 +224,23 @@ graph TD
  MinIO["MinIO\n[Almacenamiento de Objetos]"]
  end
 
- WebApp & MobileApp & B2BClient -->|TLS/HTTP| CDN
+ WebApp --> |TLS/HTTP| CDN
+ MobileApp --> |TLS/HTTP| CDN
+ B2BClient --> |TLS/HTTP| CDN
  CDN -->|Peticiones de Origen| Kong
- Kong -->|Ruta| WebBFF & MobileBFF & CoreAPI
+ Kong --> |Ruta| WebBFF
+ Kong --> MobileBFF
+ Kong --> CoreAPI
 
- WebBFF & MobileBFF -->|gRPC| CoreAPI
- WebBFF & MobileBFF <-->|Lecturas Caché BFF| Redis
+ WebBFF --> |gRPC| CoreAPI
+ MobileBFF --> |gRPC| CoreAPI
+ WebBFF <--> |Lecturas Caché BFF| Redis
+ MobileBFF <--> |Lecturas Caché BFF| Redis
  CoreAPI <-->|Lecturas Caché Core| Redis
 
  CoreAPI -->|SQL/Dual-Layer RLS| PgSQL
- CoreAPI --> PgSQL & AuditLog
+ CoreAPI --> PgSQL
+ CoreAPI --> AuditLog
  CoreAPI --> IBusPort
  CoreAPI --> AuthGraph
  CoreAPI --> FeatureFlags
@@ -329,7 +339,7 @@ sequenceDiagram
  A->>CB: execute(llamada)
  alt Circuito CERRADO
  CB->>Ext: Reenviar llamada
- Ext-->>CB: íxito
+ Ext-->>CB: Éxito
  CB-->>A: Resultado
  else Circuito ABIERTO (umbral excedido)
  CB-->>A: Respuesta Alternativa (sin llamada ejecutada)
@@ -366,13 +376,17 @@ graph TD
  MinIO["Almacenamiento MinIO"]
  end
 
- Internet -->|DNS Failover| KongA & KongB
+ Internet --> |DNS Failover| KongA
+ Internet --> KongB
  KongA --> BFFA --> APIA --> PgPrimary
  KongB --> BFFB --> APIB --> PgReplica
  PgPrimary -.->|Replicación en Streaming| PgReplica
- APIA & APIB <--> Redis
- APIA & APIB --> RabbitMQ
- APIA & APIB --> Vault
+ APIA <--> Redis
+ APIB <--> Redis
+ APIA --> RabbitMQ
+ APIB --> RabbitMQ
+ APIA --> Vault
+ APIB --> Vault
 ```
 
 ---
@@ -403,8 +417,8 @@ graph TD
 | **Abstracción de Proveedor Identidad** | [ADR-0020](../adrs-es/core/0020-identity-provider-abstraction-strategy.md) | Strategy Pattern -> Auth0/Entra/Zitadel | 3.1, 5 |
 | **Compilación de Gráfico de Auth** | [ADR-0021](../adrs-es/nodejs/0021-high-performance-auth-and-graph-compilation.md) | Gráfico de permisos en caché Redis < 5ms | 5 |
 | **Proyecciones Conectables** | [ADR-0022](../adrs-es/nodejs/0022-contextual-auth-and-pluggable-projections.md) | Proyecciones de lectura conscientes del contexto | 5 |
-| **Núcleo de Autenticación Centralizado** | [ADR-0023](../adrs-es/nodejs/0023-centralized-TODO-vs-decentralized-access.md) | Núcleo compartido de autorización | 5 |
-| **Plataforma de Config & Features** | [ADR-0024](../adrs-es/core/0024-configuration-feature-management-platform.md) | Motor de parámetros multi-IdP | 5 |
+| **Núcleo de Autenticación Centralizado** | [ADR-0023](../adrs-es/nodejs/0023-centralized-ums-vs-decentralized-access.md) | Núcleo compartido de autorización | 5 |
+| **Plataforma de Config and Features** | [ADR-0024](../adrs-es/core/0024-configuration-feature-management-platform.md) | Motor de parámetros multi-IdP | 5 |
 | **Abstracción de Feature Flags** | [ADR-0025](../adrs-es/core/0025-feature-flag-provider-abstraction.md) | Proveedores conectables de `IFeatureFlagPort` | 5 |
 | **MFA y Passkeys** | [ADR-0026](../adrs-es/nodejs/0026-mfa-passwordless-adaptive-authentication.md) | WebAuthn + Passkeys + TOTP + Adaptativo | 5 |
 | **Protocolo Dual REST/gRPC** | [ADR-0027](../adrs-es/nodejs/0027-dual-protocol-rest-grpc-api-gateway.md) | REST (externo) + gRPC (interno) | 3.1 |
@@ -484,4 +498,4 @@ Nomenclatura de referencia utilizada por este blueprint.
 * **Patrón Saga**: Gestión de la consistencia transaccional distribuida a través de eventos de compensación.
 
 ---
-[Volver al Índice](./README.es.md)
+[Volver al Índice](./README.md)

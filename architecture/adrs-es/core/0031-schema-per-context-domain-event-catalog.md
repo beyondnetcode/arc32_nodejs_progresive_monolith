@@ -158,9 +158,9 @@ class CategoryDeletedEvent {
 - **Disciplina del desarrollador**: Los desarrolladores deben respetar las reglas de propiedad del esquema. Las reglas de límites de ESLint ([ADR-0003](../nodejs/0003-strict-typescript-standards.md)) deben configurarse para prevenir importaciones directas a través de los límites de los contextos.
 
 ## Referencias
-- [ADR-0006: Transición Futura a Microservicios con Dapr](../adrs/core/0006-future-microservices-transition-dapr.md)
-- [ADR-0010: Estrategia Multi-Tenancy (RLS)](../adrs/core/0010-multi-tenancy-architecture-strategy.md)
-- [ADR-0015: Arquitectura Dirigida por Eventos (Bus Inyectable)](../adrs/core/0015-event-driven-architecture-intra-domain.md)
+- [ADR-0006: Transición Futura a Microservicios con Dapr](../../adrs/core/0006-future-microservices-transition-dapr.md)
+- [ADR-0010: Estrategia Multi-Tenancy (RLS)](../../adrs/core/0010-multi-tenancy-architecture-strategy.md)
+- [ADR-0015: Arquitectura Dirigida por Eventos (Bus Inyectable)](../../adrs/core/0015-event-driven-architecture-intra-domain.md)
 - [Mapa de Contextos Delimitados](../02-architecture/bounded-context-map.md)
 
 ---

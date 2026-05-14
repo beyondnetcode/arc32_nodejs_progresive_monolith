@@ -37,4 +37,4 @@ How the corporate architectural blueprint is applied tactically within the code 
 This application is NOT a final production product. It intentionally lacks complex business logic (multi-user collaboration, dense semantic searches) to keep the code clean, lightweight, and 100% focused on validating **Architectural Boundaries** and **Framework Capabilities**.
 
 ---
-[Back to Upper Level](../README.md)
+[Back to Upper Level](../../README.md)

@@ -95,7 +95,7 @@ npm audit
 
 ## Asistencia
 Si encuentras problemas durante el arranque, consulta:
-* **[Registros de Decisión de Arquitectura](../../../architecture/adrs-es/index.md)**: Para entender POR QUí las cosas están configuradas de esta manera.
+* **[Registros de Decisión de Arquitectura](../../../architecture/adrs-es/README.md)**: Para entender POR QUí las cosas están configuradas de esta manera.
 * **[Estándares de Ingeniería](../engineering/engineering-manifesto.md)**: Para las directrices de revisión de código.
 
 ---

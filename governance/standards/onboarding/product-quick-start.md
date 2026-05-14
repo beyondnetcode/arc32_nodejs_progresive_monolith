@@ -95,7 +95,7 @@ npm audit
 
 ## Assistance
 If you encounter issues during bootstrap, refer to:
-* **[Architecture Decision Records](../03-adrs/index.md)**: To understand WHY things are configured this way.
+* **[Architecture Decision Records](../../../architecture/adrs/README.md)**: To understand WHY things are configured this way.
 * **[Engineering Standards](../04-artifacts/engineering-standards.md)**: For code review guidelines.
 
 ---

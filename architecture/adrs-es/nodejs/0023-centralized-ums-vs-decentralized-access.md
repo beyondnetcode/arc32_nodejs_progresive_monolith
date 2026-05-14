@@ -1,4 +1,4 @@
-# [ADR 0023](0023-centralized-TODO-vs-decentralized-access.md): Estrategia de Núcleo de Autorización Centralizado
+# [ADR 0023](0023-centralized-ums-vs-decentralized-access.md): Estrategia de Núcleo de Autorización Centralizado
 
 ## Estado
 Aprobado
@@ -28,8 +28,8 @@ Comprometerse a construir y desplegar el sistema como el **Núcleo de Autorizaci
 - Forma un punto único de fallo arquitectónico si no se escala fuertemente y se hace redundante a través de clústeres de zona.
 
 ## Referencias
-- [ADR-0021: Grafo de Autorización de Alto Rendimiento](../adrs/nodejs/0021-high-performance-auth-and-graph-compilation.md)
-- [ADR-0022: Autorización Contextual y Proyecciones](../adrs/nodejs/0022-contextual-auth-and-pluggable-projections.md)
+- [ADR-0021: Grafo de Autorización de Alto Rendimiento](../../adrs/nodejs/0021-high-performance-auth-and-graph-compilation.md)
+- [ADR-0022: Autorización Contextual y Proyecciones](../../adrs/nodejs/0022-contextual-auth-and-pluggable-projections.md)
 
 ---
 [Volver al Índice](./README.es.md)

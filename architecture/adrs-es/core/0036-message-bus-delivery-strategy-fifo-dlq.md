@@ -67,8 +67,8 @@ Adoptar el siguiente **Marco de Decisión de Entrega de Eventos** mapeando el co
 
 ## Referencias
 - [RabbitMQ Dead Letter Exchanges](https://www.rabbitmq.com/dlx.html)
-- [ADR-0015: Mecanismo de Bus de Eventos Inyectable](./0015-event-driven-decoupled-architecture.md)
-- [ADR-0033: Patrón Transactional Outbox](../adrs/core/0033-transactional-outbox-pattern.md)
+- [ADR-0015: Mecanismo de Bus de Eventos Inyectable](./0015-event-driven-architecture-intra-domain.md)
+- [ADR-0033: Patrón Transactional Outbox](../../adrs/core/0033-transactional-outbox-pattern.md)
 
 ---
 [Volver al Índice](./README.es.md)

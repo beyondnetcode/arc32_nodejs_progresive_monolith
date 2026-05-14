@@ -1,6 +1,6 @@
 # Authoritative Tech Stack: Android & Kotlin Ecosystem
 
-> **Bilingual Navigation:** [Versión en Español](./authoritative-tech-stack-android.es.md)
+> **Bilingual Navigation:** [Versión en Español](./../blueprints-es/authoritative-tech-stack-android.md)
 
 **Document Type:** Runtime Addendum 
 **Prerequisite:** MUST be read after the **[Agnostic Baseline](./authoritative-tech-stack-agnostic.md)**. 
@@ -17,7 +17,7 @@
 | **Async / Streams** | **Kotlin Coroutines + Flow** | Latest | **YES** | RxJava 2/3 |
 
 ---
--> Back to **[Global Master Index](../../../MASTER_INDEX.md)**
+-> Back to **[Global Master Index](../../MASTER_INDEX.md)**
 
 ---
 [Back to Index](./README.md)

@@ -18,4 +18,4 @@
 | **R-14** | Professional Documentation Standards | `po`, `architect`, `analyst`, `dev`, `qa`, `sm` | Any document or artifact update | All Markdown files must maintain a professional format, avoiding emojis, UTF-8 icons, or non-standard decorative characters. Prioritize plain text, standard headings, clean tables, and simple lists. |
 
 ---
-[Back to Index](./README.md)
+[Back to Index](.././README.md)

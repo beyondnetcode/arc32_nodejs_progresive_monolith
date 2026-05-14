@@ -34,7 +34,7 @@ A domain module MUST be deemed a valid candidate for the extraction phase (Miles
 - Explicit alignment with data-driven metrics and observable telemetry.
 
 ### Negative
-- Mandates fully operational observability ([ADR-0007](../../nodejs/0007-observability-telemetry-loki-opentelemetry.md)) to accurately capture per-module P95 health indicators.
+- Mandates fully operational observability ([ADR-0007](../nodejs/0007-observability-telemetry-loki-opentelemetry.md)) to accurately capture per-module P95 health indicators.
 
 ## References
 - [ADR 0006: Future Microservices Transition](../core/0006-future-microservices-transition-dapr.md)

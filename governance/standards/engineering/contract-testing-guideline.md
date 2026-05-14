@@ -66,11 +66,11 @@ The following contract specifies an active interaction between the **Billing Mod
 
 ---
 
-## ¡ 4. CI/CD Integration & Quality Gates
+## ¡ 4. CI/CD Integration and Quality Gates
 
 To automate contract enforcement and prevent breaking changes from reaching production:
 
-1. **Commit lint & Local Generation**: When a developer modifies consumer code (Billing), local tests generate a new `.json` pact contract.
+1. **Commit lint and Local Generation**: When a developer modifies consumer code (Billing), local tests generate a new `.json` pact contract.
 2. **Pact Broker Verification**: The CI/CD pipeline pushes pact files to an internal Pact Broker (or saves them in a shared workspace folder during monorepo execution).
 3. **Provider Verification Gate**: The Provider (Inventory) CI pipeline executes:
  `npm run test:contract:provider`

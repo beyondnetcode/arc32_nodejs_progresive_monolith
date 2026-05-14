@@ -46,7 +46,7 @@ graph TD
  }
  ```
 
-### B. Trazado Distribuido (OpenTelemetry & Tempo)
+### B. Trazado Distribuido (OpenTelemetry and Tempo)
 * **Propagación**: OpenTelemetry (OTel) se inicializa al arranque de la aplicación. Los contextos de traza se propagan automáticamente usando **cabeceras W3C Trace Context** estándar (`traceparent`).
 * **Propagación de Eventos Intra-Dominio**: Cuando un evento se publica asíncronamente a través del Bus de Eventos, el `trace_id` activo se adjunta a la carga útil del evento. Los suscriptores aguas abajo extraen el contexto y comienzan un span hijo, preservando la línea de tiempo de la transacción a través de los módulos.
 

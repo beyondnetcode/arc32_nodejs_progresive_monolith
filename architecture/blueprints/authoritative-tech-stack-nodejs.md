@@ -1,6 +1,6 @@
 # Authoritative Tech Stack: Node.js & TypeScript Ecosystem
 
-> **Bilingual Navigation:** [Versión en Español](./authoritative-tech-stack-nodejs.es.md)
+> **Bilingual Navigation:** [Versión en Español](./../blueprints-es/authoritative-tech-stack-nodejs.md)
 
 **Document Type:** Runtime Addendum 
 **Prerequisite:** MUST be read after the **[Agnostic Baseline](./authoritative-tech-stack-agnostic.md)**. 
@@ -43,7 +43,7 @@ Node.js solutions MUST utilize strict library isolation enforced by **Nx tags**:
 * **Linting:** ESLint v8 strict mode + Prettier configuration.
 
 ---
--> Back to **[Global Master Index](../../../MASTER_INDEX.md)**
+-> Back to **[Global Master Index](../../MASTER_INDEX.md)**
 
 ---
 [Back to Index](./README.md)

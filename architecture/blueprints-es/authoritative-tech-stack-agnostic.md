@@ -135,4 +135,4 @@ Este documento cubre solo las **leyes universales**. AHORA DEBE identificar su E
 3. -> **[Stack Tecnológico Móvil Específico para Android / Kotlin](./authoritative-tech-stack-android.md)**
 
 ---
-[Volver al Índice](./README.es.md)
+[Volver al Índice](./README.md)

@@ -60,7 +60,7 @@
 
 ## 3. Roadmap y Deuda Técnica Planificada (Roadmap View)
 
-Las siguientes historias técnicas se encuentran bloqueadas hasta alcanzar la Fase 2 o 3 según la evolución natural de carga del sistema ([ADR-0045](../../standards/02-adrs/core/0045-microservice-extraction-readiness-criteria.md)):
+Las siguientes historias técnicas se encuentran bloqueadas hasta alcanzar la Fase 2 o 3 según la evolución natural de carga del sistema ([ADR-0045](../../../architecture/adrs/core/0045-microservice-extraction-readiness-criteria.md)):
 
 * `TS-302 [Fase 2]` - **Transactional Outbox:** Garantizar entrega de eventos en fallos de red.
 * `TS-401 [Fase 3]` - **Extracción Sidecar Dapr:** Integración de malla de servicios.

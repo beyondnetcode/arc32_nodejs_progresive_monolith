@@ -37,4 +37,4 @@ Actualmente ejecutados y vigentes en esta carpeta:
 > Para navegar por el scope funcional de la demo (Ubiquitous Language, Glosarios, Casos de Uso Atómicos), dirígete a la carpeta madre [../functional](../README.md).
 
 ---
-[Volver al Nivel Superior](../README.es.md)
+[Volver al Nivel Superior](../README.md)

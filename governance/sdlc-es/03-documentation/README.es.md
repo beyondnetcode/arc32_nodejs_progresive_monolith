@@ -4,4 +4,4 @@
 * [functional-story-writing-standard](./functional-story-writing-standard.md)
 
 ---
-[Volver al Nivel Superior](../README.es.md)
+[Volver al Nivel Superior](../README.md)

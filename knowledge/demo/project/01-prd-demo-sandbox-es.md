@@ -28,7 +28,7 @@ Demostrar mediante código ejecutable que se puede construir un sistema reactivo
 
 ---
 
-## 5. Criterios de íxito de la Demo
+## 5. Criterios de Éxito de la Demo
 1. **Seguridad:** Ejecutar un `SELECT` crudo con el contexto de Usuario A y demostrar que los datos del Usuario B son invisibles.
 2. **Agnosticismo:** Reemplazar el adaptador del repositorio de base de datos por una implementación `InMemory` para tests sin cambiar un solo caracter en la capa de aplicación o dominio.
 

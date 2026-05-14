@@ -158,9 +158,9 @@ class CategoryDeletedEvent {
 - **Developer discipline**: Developers must respect schema ownership rules. ESLint boundary rules ([ADR-0003](../nodejs/0003-strict-typescript-standards.md)) should be configured to prevent direct imports across context boundaries.
 
 ## References
-- [ADR-0006: Future Microservices Transition with Dapr](../adrs/core/0006-future-microservices-transition-dapr.md)
-- [ADR-0010: Multi-Tenancy Strategy (RLS)](../adrs/core/0010-multi-tenancy-architecture-strategy.md)
-- [ADR-0015: Event-Driven Architecture (Injectable Bus)](../adrs/core/0015-event-driven-architecture-intra-domain.md)
+- [ADR-0006: Future Microservices Transition with Dapr](../../adrs/core/0006-future-microservices-transition-dapr.md)
+- [ADR-0010: Multi-Tenancy Strategy (RLS)](../../adrs/core/0010-multi-tenancy-architecture-strategy.md)
+- [ADR-0015: Event-Driven Architecture (Injectable Bus)](../../adrs/core/0015-event-driven-architecture-intra-domain.md)
 - [Bounded Context Map](../02-architecture/bounded-context-map.md)
 
 ---

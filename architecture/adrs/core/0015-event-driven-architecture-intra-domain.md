@@ -40,7 +40,7 @@ The concrete implementation is injected by the NestJS DI container at startup vi
 ### 2. Domain Events as Cross-Context Contracts
 Every event that crosses a bounded context boundary must be a typed class with an `eventId` (UUID for idempotency) and `occurredAt` timestamp. The complete approved catalog of cross-context events is defined in:
 
--> **[ADR-0031: Domain Event Catalog](../adrs/core/0031-schema-per-context-domain-event-catalog.md)**
+-> **[ADR-0031: Domain Event Catalog](../../adrs/core/0031-schema-per-context-domain-event-catalog.md)**
 
 ### 3. Intra-Context (Internal) vs Cross-Context Events
 - **Intra-context events** (within the same bounded context): May use synchronous NestJS event emitters with no schema constraints.
@@ -56,9 +56,9 @@ When a bounded context is extracted into an independent microservice:
 * **Cons**: Eventual consistency across contexts must be embraced. Distributed tracing ([ADR-0007](../nodejs/0007-observability-telemetry-loki-opentelemetry.md)) is required to follow event flows across context boundaries.
 
 ## References
-- [ADR-0006: Future Microservices via Dapr](../adrs/core/0006-future-microservices-transition-dapr.md)
-- [ADR-0007: Observability with OpenTelemetry](../adrs/nodejs/0007-observability-telemetry-loki-opentelemetry.md)
-- [ADR-0031: Schema-per-Context and Domain Event Catalog](../adrs/core/0031-schema-per-context-domain-event-catalog.md)
+- [ADR-0006: Future Microservices via Dapr](../../adrs/core/0006-future-microservices-transition-dapr.md)
+- [ADR-0007: Observability with OpenTelemetry](../../adrs/nodejs/0007-observability-telemetry-loki-opentelemetry.md)
+- [ADR-0031: Schema-per-Context and Domain Event Catalog](../../adrs/core/0031-schema-per-context-domain-event-catalog.md)
 
 ---
 [Back to Index](./README.md)

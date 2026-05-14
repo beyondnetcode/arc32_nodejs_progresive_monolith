@@ -25,7 +25,7 @@ sequenceDiagram
  participant API as NestJS API
  participant DB as PostgreSQL
 
- User->>Web: Enter Email & Password
+ User->>Web: Enter Email and Password
  Web->>API: POST /auth/login {email, pass}
  API->>DB: Query User by Email
  DB-->>API: Return user (with hash)
@@ -43,11 +43,11 @@ sequenceDiagram
 
 ---
 
-## ¡ 3. Exception Handling
+## 3. Exception Handling
 
 ### Error: User Not Found / Invalid Password
 * The system must return a generic `401 Unauthorized` response to prevent email enumeration attacks.
 * Log the failure event via the observability dashboard for threshold monitoring.
 
 ---
-[Back to Index](./README.md)
+[Back to Index](../../README.md)

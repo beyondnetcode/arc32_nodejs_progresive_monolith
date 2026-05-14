@@ -74,4 +74,4 @@ Esta hoja de trucos sirve como referencia autoritativa y de alta densidad de her
 * **Pruebas End-to-End (E2E):** Playwright
 
 ---
-[Volver al Índice](./README.es.md)
+[Volver al Índice](./README.md)

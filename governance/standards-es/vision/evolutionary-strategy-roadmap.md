@@ -23,7 +23,7 @@ Nuestra visión consiste en construir un ecosistema donde la **Infraestructura e
 timeline
  title Hoja de Ruta Arquitectónica (Evolución Temporal)
  Fase 1 : The Lean Foundation (MVP) : Monolito Modular : Contratos API First : Seguridad en Capa de Aplicación (Agnóstico)
- Fase 2 : Scale & Decoupling : Extracción de Servicios Críticos : Activación Híbrida RLS : Observabilidad Total e I/O Optimizada
+ Fase 2 : Scale and Decoupling : Extracción de Servicios Críticos : Activación Híbrida RLS : Observabilidad Total e I/O Optimizada
  Fase 3 : North Star : Agnosticismo Multi-Cloud : Arquitectura Dirigida por Eventos : Red Zero Trust y Cumplimiento Automatizado
 ```
 
@@ -36,7 +36,7 @@ timeline
 | **Persistencia** | Instancia única relacional. Seguridad forzada en Capa de Aplicación (`APP_AGNOSTIC`). |
 | **Foco Crítico** | Definición férrea de Contratos API First y validación exhaustiva de las reglas de negocio core sin ruido de infraestructura. |
 
-### ¡ Fase 2: Scale & Decoupling - Mediano Plazo
+### ¡ Fase 2: Scale and Decoupling - Mediano Plazo
 **Enfoque:** Eficiencia Operativa y Segregación.
 
 | Dominio | Estrategia |
@@ -45,7 +45,7 @@ timeline
 | **Persistencia** | Activación del Modo Híbrido. Implementación de RLS Nativo (`INFRA_NATIVE`) en producción para optimización de latencia, manteniendo el fallback en código funcional para tests. |
 | **Foco Crítico** | Observabilidad Completa (Tracing distribuido + Logs estructurados) y optimización radical de la latencia en I/O. |
 
-### Fase 3: North Star (Resilience & Sovereignty) - Largo Plazo
+### Fase 3: North Star (Resilience and Sovereignty) - Largo Plazo
 **Enfoque:** Agnosticismo Total y Soberanía de Datos.
 
 | Dominio | Estrategia |

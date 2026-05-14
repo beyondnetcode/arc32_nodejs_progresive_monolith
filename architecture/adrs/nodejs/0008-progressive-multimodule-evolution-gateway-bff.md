@@ -52,7 +52,7 @@ graph TD
 - Requires discipline to keep business logic out of the BFF (it should only orchestrate and compose).
 
 ## References
-- [ADR-0030: Kong Gateway vs NestJS BFF](../adrs/core/0030-api-gateway-kong-vs-nestjs.md)
+- [ADR-0030: Kong Gateway vs NestJS BFF](../../adrs/core/0030-api-gateway-kong-vs-nestjs.md)
 
 ---
 [Back to Index](./README.md)

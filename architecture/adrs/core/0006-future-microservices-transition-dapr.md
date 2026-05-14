@@ -62,8 +62,8 @@ With the subsequent introduction of Dapr, explicit observability mandates are en
 3. **Unified Export**: Both telemetry streams (Sidecar + App) must funnel via the unified OpenTelemetry collector to maintain true end-to-end spanning visualizations.
 
 ## References
-- [ADR-0015: Event-Driven Architecture](../adrs/core/0015-event-driven-architecture-intra-domain.md)
-- [ADR-0031: Schema-per-Context & Domain Event Catalog](../adrs/core/0031-schema-per-context-domain-event-catalog.md)
+- [ADR-0015: Event-Driven Architecture](../../adrs/core/0015-event-driven-architecture-intra-domain.md)
+- [ADR-0031: Schema-per-Context & Domain Event Catalog](../../adrs/core/0031-schema-per-context-domain-event-catalog.md)
 - [ADR-0046: Dapr Unified Observability](./0046-dapr-unified-observability.md)
 - [Dapr Documentation](https://dapr.io)
 

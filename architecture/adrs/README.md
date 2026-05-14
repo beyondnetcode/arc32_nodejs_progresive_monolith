@@ -58,7 +58,7 @@ Decisions tied to the primary runtime for APIs and BFFs.
 * [ADR 0012: Auth RBAC/ABAC Guards](./nodejs/0012-advanced-authorization-rbac-abac.md)
 * [ADR 0021: Auth Graph Compilation](./nodejs/0021-high-performance-auth-and-graph-compilation.md)
 * [ADR 0022: Contextual Projections](./nodejs/0022-contextual-auth-and-pluggable-projections.md)
-* [ADR 0023: Centralized Kernel Boundary](./nodejs/0023-centralized-TODO-vs-decentralized-access.md)
+* [ADR 0023: Centralized Kernel Boundary](./nodejs/0023-centralized-ums-vs-decentralized-access.md)
 * [ADR 0026: MFA Adaptive Implementation](./nodejs/0026-mfa-passwordless-adaptive-authentication.md)
 * [ADR 0027: Dual-Protocol Node Setup](./nodejs/0027-dual-protocol-rest-grpc-api-gateway.md)
 * [ADR 0029: Tactical DDD Primitives](./nodejs/0029-tactical-ddd-primitives-library.md)
@@ -95,4 +95,4 @@ Decisions tied to resilient mobile clients.
 -> [View all AI ADRs](../../governance/standards/ai-augmented/06-adrs/README.md)
 
 ---
-[Back to Upper Level](../README.md)
+[Back to Upper Level](../../README.md)

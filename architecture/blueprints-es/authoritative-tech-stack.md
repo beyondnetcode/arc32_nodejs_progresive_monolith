@@ -11,4 +11,4 @@ Por favor, proceda al nuevo mapeo autorizado:
 4. **[LEER SEGUNDO: Stack de Android / Kotlin](./authoritative-tech-stack-android.md)**
 
 ---
-[Volver al Índice](./README.es.md)
+[Volver al Índice](./README.md)
