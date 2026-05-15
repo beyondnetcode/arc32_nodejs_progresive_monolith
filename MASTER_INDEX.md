@@ -11,14 +11,14 @@ This is the complete navigation index for **arc32**. Use it when you already kno
 
 | Intent | Primary entry point | Supporting reference |
 |---|---|---|
-| Understand the architecture vision | [Architectural Directives](./governance/standards/vision/architectural-directives.md) | [Evolutionary Strategy Roadmap](./governance/standards/vision/evolutionary-strategy-roadmap.md) |
-| Understand the progressive architecture model | [Reference Blueprint](./architecture/blueprints/reference-blueprint.md) | [Microservice Extraction Readiness Criteria](./architecture/adrs/core/0045-microservice-extraction-readiness-criteria.md) |
-| Review technology choices | [Authoritative Tech Stack](./architecture/blueprints/authoritative-tech-stack.md) | [Agnostic Baseline](./architecture/blueprints/authoritative-tech-stack-agnostic.md) |
-| Review architectural decisions | [ADR Registry](./architecture/adrs/README.md) | [Core ADRs](./architecture/adrs/core/README.md) |
-| Learn engineering standards | [Engineering Manifesto](./governance/standards/engineering/engineering-manifesto.md) | [Contract Testing Guideline](./governance/standards/engineering/contract-testing-guideline.md) |
-| Understand SDLC expectations | [SDLC Framework](./governance/sdlc/README.md) | [Construction-Focused SDLC](./governance/sdlc/02-engineering/construction-focused-sdlc-framework.md) |
-| Explore the demo sandbox | [Demo Hub](./knowledge/demo/README.md) | [Sandbox Verification Matrix](./knowledge/demo/technical/sandbox-verification.md) |
-| Operate or deploy locally | [Operations Hub](./operations/README.md) | [Infrastructure Hub](./infrastructure/README.md) |
+| Understand the architecture vision | [Architectural Directives](./reference/governance/standards/vision/architectural-directives.md) | [Evolutionary Strategy Roadmap](./reference/governance/standards/vision/evolutionary-strategy-roadmap.md) |
+| Understand the progressive architecture model | [Reference Blueprint](./reference/architecture/blueprints/reference-blueprint.md) | [Microservice Extraction Readiness Criteria](./reference/architecture/adrs/core/0045-microservice-extraction-readiness-criteria.md) |
+| Review technology choices | [Authoritative Tech Stack](./reference/architecture/blueprints/authoritative-tech-stack.md) | [Agnostic Baseline](./reference/architecture/blueprints/authoritative-tech-stack-agnostic.md) |
+| Review architectural decisions | [ADR Registry](./reference/architecture/adrs/README.md) | [Core ADRs](./reference/architecture/adrs/core/README.md) |
+| Learn engineering standards | [Engineering Manifesto](./reference/governance/standards/engineering/engineering-manifesto.md) | [Contract Testing Guideline](./reference/governance/standards/engineering/contract-testing-guideline.md) |
+| Understand SDLC expectations | [SDLC Framework](./reference/governance/sdlc/README.md) | [Construction-Focused SDLC](./reference/governance/sdlc/02-engineering/construction-focused-sdlc-framework.md) |
+| Explore the demo sandbox | [Demo Hub](./reference/knowledge/demo/README.md) | [Sandbox Verification Matrix](./reference/knowledge/demo/technical/sandbox-verification.md) |
+| Operate or deploy locally | [Operations Hub](./reference/operations/README.md) | [Infrastructure Hub](./reference/infrastructure/README.md) |
 
 ---
 
@@ -26,17 +26,17 @@ This is the complete navigation index for **arc32**. Use it when you already kno
 
 | Role | Reading path |
 |---|---|
-| **Executive / Sponsor** | [Architectural Directives](./governance/standards/vision/architectural-directives.md) -> [Evolutionary Roadmap](./governance/standards/vision/evolutionary-strategy-roadmap.md) -> [Maturity Matrix](./governance/standards/vision/maturity-matrix.md) |
-| **Product Owner / PM** | [Demo PRD](./knowledge/demo/project/01-prd-demo-sandbox.md) -> [Business Glossary](./knowledge/demo/functional/business-glossary.md) -> [Backlog and Epics](./knowledge/demo/project/02-backlog-and-epics.md) |
-| **Software Architect** | [Reference Blueprint](./architecture/blueprints/reference-blueprint.md) -> [ADR Registry](./architecture/adrs/README.md) -> [Microservice Extraction Criteria](./architecture/adrs/core/0045-microservice-extraction-readiness-criteria.md) |
-| **Principal / Staff Engineer** | [Agnostic Baseline](./architecture/blueprints/authoritative-tech-stack-agnostic.md) -> [Tactical Design Patterns](./architecture/adrs/core/0019-tactical-design-patterns-future-proofing.md) -> [Simplicity Checklist](./architecture/blueprints/simplicity-checklist-phase-01.md) |
-| **Backend Developer** | [Engineering Manifesto](./governance/standards/engineering/engineering-manifesto.md) -> [Clean Architecture ADR](./architecture/adrs/nodejs/0002-clean-architecture-nestjs.md) -> [Sandbox Verification](./knowledge/demo/technical/sandbox-verification.md) |
-| **Frontend Developer** | [Frontend Offline Resilience ADR](./architecture/adrs/nodejs/0004-frontend-offline-resilience.md) -> [Gateway/BFF ADR](./architecture/adrs/nodejs/0008-progressive-multimodule-evolution-gateway-bff.md) -> [To-Do Web App](./src/apps/todo-web/README.md) |
-| **DevOps / SRE** | [Infrastructure Hub](./infrastructure/README.md) -> [Operations Hub](./operations/README.md) -> [Observability ADR](./architecture/adrs/nodejs/0007-observability-telemetry-loki-opentelemetry.md) |
-| **QA / SDET** | [Testing Pyramid ADR](./architecture/adrs/core/0018-testing-pyramid-quality-gates.md) -> [Contract Testing Guideline](./governance/standards/engineering/contract-testing-guideline.md) -> [Integration and E2E Testing ADR](./architecture/adrs/core/0053-integration-e2e-testing-strategy.md) |
-| **Security Engineer** | [Vendor Risk Assessment](./governance/standards/engineering/vendor-risk-assessment.md) -> [Multi-Tenancy ADR](./architecture/adrs/core/0010-multi-tenancy-architecture-strategy.md) -> [Immutable Audit Trail ADR](./architecture/adrs/core/0016-immutable-business-audit-trail.md) |
-| **AI Contributor** | [AI-Augmented Standards](./governance/standards/ai-augmented/README.md) -> [Harness Rules](./.harness/rules/global-rules.md) -> [AI ADRs](./governance/standards/ai-augmented/06-adrs/README.md) |
-| **New Joiner** | [Product Quick Start](./governance/standards/onboarding/product-quick-start.md) -> [Repository Taxonomy](./governance/standards/repository-taxonomy.md) -> [README Portal](./README.md) |
+| **Executive / Sponsor** | [Architectural Directives](./reference/governance/standards/vision/architectural-directives.md) -> [Evolutionary Roadmap](./reference/governance/standards/vision/evolutionary-strategy-roadmap.md) -> [Maturity Matrix](./reference/governance/standards/vision/maturity-matrix.md) |
+| **Product Owner / PM** | [Demo PRD](./reference/knowledge/demo/project/01-prd-demo-sandbox.md) -> [Business Glossary](./reference/knowledge/demo/functional/business-glossary.md) -> [Backlog and Epics](./reference/knowledge/demo/project/02-backlog-and-epics.md) |
+| **Software Architect** | [Reference Blueprint](./reference/architecture/blueprints/reference-blueprint.md) -> [ADR Registry](./reference/architecture/adrs/README.md) -> [Microservice Extraction Criteria](./reference/architecture/adrs/core/0045-microservice-extraction-readiness-criteria.md) |
+| **Principal / Staff Engineer** | [Agnostic Baseline](./reference/architecture/blueprints/authoritative-tech-stack-agnostic.md) -> [Tactical Design Patterns](./reference/architecture/adrs/core/0019-tactical-design-patterns-future-proofing.md) -> [Simplicity Checklist](./reference/architecture/blueprints/simplicity-checklist-phase-01.md) |
+| **Backend Developer** | [Engineering Manifesto](./reference/governance/standards/engineering/engineering-manifesto.md) -> [Clean Architecture ADR](./reference/architecture/adrs/nodejs/0002-clean-architecture-nestjs.md) -> [Sandbox Verification](./reference/knowledge/demo/technical/sandbox-verification.md) |
+| **Frontend Developer** | [Frontend Offline Resilience ADR](./reference/architecture/adrs/nodejs/0004-frontend-offline-resilience.md) -> [Gateway/BFF ADR](./reference/architecture/adrs/nodejs/0008-progressive-multimodule-evolution-gateway-bff.md) -> [To-Do Web App](./src/apps/todo-web/README.md) |
+| **DevOps / SRE** | [Infrastructure Hub](./reference/infrastructure/README.md) -> [Operations Hub](./reference/operations/README.md) -> [Observability ADR](./reference/architecture/adrs/nodejs/0007-observability-telemetry-loki-opentelemetry.md) |
+| **QA / SDET** | [Testing Pyramid ADR](./reference/architecture/adrs/core/0018-testing-pyramid-quality-gates.md) -> [Contract Testing Guideline](./reference/governance/standards/engineering/contract-testing-guideline.md) -> [Integration and E2E Testing ADR](./reference/architecture/adrs/core/0053-integration-e2e-testing-strategy.md) |
+| **Security Engineer** | [Vendor Risk Assessment](./reference/governance/standards/engineering/vendor-risk-assessment.md) -> [Multi-Tenancy ADR](./reference/architecture/adrs/core/0010-multi-tenancy-architecture-strategy.md) -> [Immutable Audit Trail ADR](./reference/architecture/adrs/core/0016-immutable-business-audit-trail.md) |
+| **AI Contributor** | [AI-Augmented Standards](./reference/governance/standards/ai-augmented/README.md) -> [Harness Rules](./.harness/rules/global-rules.md) -> [AI ADRs](./reference/governance/standards/ai-augmented/06-adrs/README.md) |
+| **New Joiner** | [Product Quick Start](./reference/governance/standards/onboarding/product-quick-start.md) -> [Repository Taxonomy](./reference/governance/standards/repository-taxonomy.md) -> [README Portal](./README.md) |
 
 ---
 
@@ -44,20 +44,20 @@ This is the complete navigation index for **arc32**. Use it when you already kno
 
 | Area | Entry point |
 |---|---|
-| Blueprints | [architecture/blueprints](./architecture/blueprints/README.md) |
-| ADR Registry | [architecture/adrs](./architecture/adrs/README.md) |
-| Core ADRs | [architecture/adrs/core](./architecture/adrs/core/README.md) |
-| Node.js ADRs | [architecture/adrs/nodejs](./architecture/adrs/nodejs/README.md) |
-| .NET ADRs | [architecture/adrs/dotnet](./architecture/adrs/dotnet/README.md) |
-| Android ADRs | [architecture/adrs/android](./architecture/adrs/android/README.md) |
+| Blueprints | [reference/architecture/blueprints](./reference/architecture/blueprints/README.md) |
+| ADR Registry | [reference/architecture/adrs](./reference/architecture/adrs/README.md) |
+| Core ADRs | [reference/architecture/adrs/core](./reference/architecture/adrs/core/README.md) |
+| Node.js ADRs | [reference/architecture/adrs/nodejs](./reference/architecture/adrs/nodejs/README.md) |
+| .NET ADRs | [reference/architecture/adrs/dotnet](./reference/architecture/adrs/dotnet/README.md) |
+| Android ADRs | [reference/architecture/adrs/android](./reference/architecture/adrs/android/README.md) |
 
 Key architecture references:
 
-- [Reference Blueprint](./architecture/blueprints/reference-blueprint.md)
-- [Authoritative Tech Stack Index](./architecture/blueprints/authoritative-tech-stack.md)
-- [C4 Topology Spec](./architecture/blueprints/c4-topology-spec.md)
-- [CAP Strategic Analysis](./architecture/blueprints/cap-strategic-analysis.md)
-- [Multi-Cloud Deployment Scenarios](./architecture/blueprints/multi-cloud-deployment-scenarios.md)
+- [Reference Blueprint](./reference/architecture/blueprints/reference-blueprint.md)
+- [Authoritative Tech Stack Index](./reference/architecture/blueprints/authoritative-tech-stack.md)
+- [C4 Topology Spec](./reference/architecture/blueprints/c4-topology-spec.md)
+- [CAP Strategic Analysis](./reference/architecture/blueprints/cap-strategic-analysis.md)
+- [Multi-Cloud Deployment Scenarios](./reference/architecture/blueprints/multi-cloud-deployment-scenarios.md)
 
 ---
 
@@ -65,21 +65,21 @@ Key architecture references:
 
 | Area | Entry point |
 |---|---|
-| Standards | [governance/standards](./governance/standards/README.md) |
-| Vision | [governance/standards/vision](./governance/standards/vision/README.md) |
-| Engineering | [governance/standards/engineering](./governance/standards/engineering/README.md) |
-| Onboarding | [governance/standards/onboarding](./governance/standards/onboarding/README.md) |
-| AI-Augmented Engineering | [governance/standards/ai-augmented](./governance/standards/ai-augmented/README.md) |
-| SDLC | [governance/sdlc](./governance/sdlc/README.md) |
-| Documentation Standards | [governance/sdlc/03-documentation](./governance/sdlc/03-documentation/README.md) |
+| Standards | [reference/governance/standards](./reference/governance/standards/README.md) |
+| Vision | [reference/governance/standards/vision](./reference/governance/standards/vision/README.md) |
+| Engineering | [reference/governance/standards/engineering](./reference/governance/standards/engineering/README.md) |
+| Onboarding | [reference/governance/standards/onboarding](./reference/governance/standards/onboarding/README.md) |
+| AI-Augmented Engineering | [reference/governance/standards/ai-augmented](./reference/governance/standards/ai-augmented/README.md) |
+| SDLC | [reference/governance/sdlc](./reference/governance/sdlc/README.md) |
+| Documentation Standards | [reference/governance/sdlc/03-documentation](./reference/governance/sdlc/03-documentation/README.md) |
 
 Key governance references:
 
-- [Engineering Manifesto](./governance/standards/engineering/engineering-manifesto.md)
-- [Repository Taxonomy](./governance/standards/repository-taxonomy.md)
-- [Product Quick Start](./governance/standards/onboarding/product-quick-start.md)
-- [Functional Story Writing Standard](./governance/sdlc/03-documentation/functional-story-writing-standard.md)
-- [SDLC Documentation Best Practices](./governance/sdlc/03-documentation/sdlc-documentation-best-practices.md)
+- [Engineering Manifesto](./reference/governance/standards/engineering/engineering-manifesto.md)
+- [Repository Taxonomy](./reference/governance/standards/repository-taxonomy.md)
+- [Product Quick Start](./reference/governance/standards/onboarding/product-quick-start.md)
+- [Functional Story Writing Standard](./reference/governance/sdlc/03-documentation/functional-story-writing-standard.md)
+- [SDLC Documentation Best Practices](./reference/governance/sdlc/03-documentation/sdlc-documentation-best-practices.md)
 
 ---
 
@@ -87,20 +87,20 @@ Key governance references:
 
 | Area | Entry point |
 |---|---|
-| Demo Hub | [knowledge/demo](./knowledge/demo/README.md) |
-| Demo Project Planning | [knowledge/demo/project](./knowledge/demo/project/README.md) |
-| Demo Functional Layer | [knowledge/demo/functional](./knowledge/demo/functional/README.md) |
-| Demo Technical Layer | [knowledge/demo/technical](./knowledge/demo/technical/README.md) |
-| Research | [knowledge/research](./knowledge/research/README.md) |
-| Proofs of Concept | [knowledge/poc](./knowledge/poc/README.md) |
+| Demo Hub | [reference/knowledge/demo](./reference/knowledge/demo/README.md) |
+| Demo Project Planning | [reference/knowledge/demo/project](./reference/knowledge/demo/project/README.md) |
+| Demo Functional Layer | [reference/knowledge/demo/functional](./reference/knowledge/demo/functional/README.md) |
+| Demo Technical Layer | [reference/knowledge/demo/technical](./reference/knowledge/demo/technical/README.md) |
+| Research | [reference/knowledge/research](./reference/knowledge/research/README.md) |
+| Proofs of Concept | [reference/knowledge/poc](./reference/knowledge/poc/README.md) |
 
 Key demo references:
 
-- [Demo PRD](./knowledge/demo/project/01-prd-demo-sandbox.md)
-- [Backlog and Epics](./knowledge/demo/project/02-backlog-and-epics.md)
-- [Business Glossary](./knowledge/demo/functional/business-glossary.md)
-- [Bounded Context Map](./knowledge/demo/technical/bounded-context-map.md)
-- [Sandbox Verification Matrix](./knowledge/demo/technical/sandbox-verification.md)
+- [Demo PRD](./reference/knowledge/demo/project/01-prd-demo-sandbox.md)
+- [Backlog and Epics](./reference/knowledge/demo/project/02-backlog-and-epics.md)
+- [Business Glossary](./reference/knowledge/demo/functional/business-glossary.md)
+- [Bounded Context Map](./reference/knowledge/demo/technical/bounded-context-map.md)
+- [Sandbox Verification Matrix](./reference/knowledge/demo/technical/sandbox-verification.md)
 
 ---
 
@@ -108,11 +108,11 @@ Key demo references:
 
 | Area | Entry point |
 |---|---|
-| Operations | [operations](./operations/README.md) |
-| OpenTelemetry | [operations/otel](./operations/otel/README.md) |
-| Grafana | [operations/grafana](./operations/grafana/README.md) |
-| Tempo | [operations/tempo](./operations/tempo/README.md) |
-| Infrastructure | [infrastructure](./infrastructure/README.md) |
+| Operations | [reference/operations](./reference/operations/README.md) |
+| OpenTelemetry | [reference/operations/otel](./reference/operations/otel/README.md) |
+| Grafana | [reference/operations/grafana](./reference/operations/grafana/README.md) |
+| Tempo | [reference/operations/tempo](./reference/operations/tempo/README.md) |
+| Infrastructure | [reference/infrastructure](./reference/infrastructure/README.md) |
 
 ---
 
@@ -130,11 +130,11 @@ Key demo references:
 
 Every artifact and implementation should respect these pillars:
 
-1. [Agnostic Baseline](./architecture/blueprints/authoritative-tech-stack-agnostic.md)
-2. [Reference Architecture](./architecture/blueprints/reference-blueprint.md)
-3. [Engineering Manifesto](./governance/standards/engineering/engineering-manifesto.md)
-4. [Definition of Done](./governance/sdlc/02-engineering/construction-focused-sdlc-framework.md)
-5. [Repository Taxonomy](./governance/standards/repository-taxonomy.md)
+1. [Agnostic Baseline](./reference/architecture/blueprints/authoritative-tech-stack-agnostic.md)
+2. [Reference Architecture](./reference/architecture/blueprints/reference-blueprint.md)
+3. [Engineering Manifesto](./reference/governance/standards/engineering/engineering-manifesto.md)
+4. [Definition of Done](./reference/governance/sdlc/02-engineering/construction-focused-sdlc-framework.md)
+5. [Repository Taxonomy](./reference/governance/standards/repository-taxonomy.md)
 
 ---
 

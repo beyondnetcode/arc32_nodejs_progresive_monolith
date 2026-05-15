@@ -17,10 +17,10 @@
 | If you want to... | Go to |
 |---|---|
 | Understand the whole repository | [Global Master Index](./MASTER_INDEX.md) |
-| Learn the architecture model | [Reference Blueprint](./architecture/blueprints/reference-blueprint.md) |
-| Review the universal rules | [Agnostic Architecture Baseline](./architecture/blueprints/authoritative-tech-stack-agnostic.md) |
-| Explore decisions and trade-offs | [ADR Registry](./architecture/adrs/README.md) |
-| Inspect the executable example | [Demo Sandbox](./knowledge/demo/README.md) |
+| Learn the architecture model | [Reference Blueprint](./reference/architecture/blueprints/reference-blueprint.md) |
+| Review the universal rules | [Agnostic Architecture Baseline](./reference/architecture/blueprints/authoritative-tech-stack-agnostic.md) |
+| Explore decisions and trade-offs | [ADR Registry](./reference/architecture/adrs/README.md) |
+| Inspect the executable example | [Demo Sandbox](./reference/knowledge/demo/README.md) |
 
 ---
 
@@ -43,11 +43,11 @@ The repository helps teams decide **when to stay simple**, **when to modularize*
 
 | Area | What you will find |
 |---|---|
-| [architecture/](./architecture/blueprints/README.md) | Blueprints, topology, stack profiles, and architectural decisions |
-| [governance/](./governance/standards/README.md) | Engineering standards, SDLC, onboarding, and architecture rules |
-| [operations/](./operations/README.md) | Observability, runtime support, and operational documentation |
-| [infrastructure/](./infrastructure/README.md) | Local platform, gateway, containers, and infrastructure assets |
-| [knowledge/](./knowledge/demo/README.md) | Demo documentation, research, examples, and learning material |
+| [reference/architecture/](./reference/architecture/blueprints/README.md) | Blueprints, topology, stack profiles, and architectural decisions |
+| [reference/governance/](./reference/governance/standards/README.md) | Engineering standards, SDLC, onboarding, and architecture rules |
+| [reference/operations/](./reference/operations/README.md) | Observability, runtime support, and operational documentation |
+| [reference/infrastructure/](./reference/infrastructure/README.md) | Local platform, gateway, containers, and infrastructure assets |
+| [reference/knowledge/](./reference/knowledge/demo/README.md) | Demo documentation, research, examples, and learning material |
 | [src/](./src/apps/todo-web/README.md) | Reference implementation and executable sandbox |
 
 For role-based navigation, use the [Global Master Index](./MASTER_INDEX.md).
@@ -56,11 +56,11 @@ For role-based navigation, use the [Global Master Index](./MASTER_INDEX.md).
 
 ## Recommended First Reads
 
-1. [Architectural Directives](./governance/standards/vision/architectural-directives.md)
-2. [Reference Blueprint](./architecture/blueprints/reference-blueprint.md)
-3. [Agnostic Architecture Baseline](./architecture/blueprints/authoritative-tech-stack-agnostic.md)
-4. [ADR Registry](./architecture/adrs/README.md)
-5. [Demo Sandbox](./knowledge/demo/README.md)
+1. [Architectural Directives](./reference/governance/standards/vision/architectural-directives.md)
+2. [Reference Blueprint](./reference/architecture/blueprints/reference-blueprint.md)
+3. [Agnostic Architecture Baseline](./reference/architecture/blueprints/authoritative-tech-stack-agnostic.md)
+4. [ADR Registry](./reference/architecture/adrs/README.md)
+5. [Demo Sandbox](./reference/knowledge/demo/README.md)
 
 ---
 
@@ -71,11 +71,11 @@ git clone https://github.com/beyondnetcode/arc32_progresive_monolith.git
 cd arc32_progresive_monolith/src
 npm install
 
-docker-compose -f ../infrastructure/docker-compose.yml up -d
+docker-compose -f ../reference/infrastructure/docker-compose.yml up -d
 npm run dev
 ```
 
-The demo exists to show architecture patterns in code. General rules and policies remain in `architecture/` and `governance/`.
+The demo exists to show architecture patterns in code. General rules and policies remain in `reference/architecture/` and `reference/governance/`.
 
 ---
 
@@ -85,9 +85,9 @@ Contributions are welcome through issues, documentation improvements, ADR review
 
 Before contributing, read:
 
-- [Repository Taxonomy](./governance/standards/repository-taxonomy.md)
-- [Engineering Manifesto](./governance/standards/engineering/engineering-manifesto.md)
-- [Gitflow ADR](./architecture/adrs/core/0050-gitflow-branching-strategy.md)
+- [Repository Taxonomy](./reference/governance/standards/repository-taxonomy.md)
+- [Engineering Manifesto](./reference/governance/standards/engineering/engineering-manifesto.md)
+- [Gitflow ADR](./reference/architecture/adrs/core/0050-gitflow-branching-strategy.md)
 
 ---
 
