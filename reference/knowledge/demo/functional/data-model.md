@@ -11,9 +11,9 @@ erDiagram
  TASK }o--o{ TAG : associated_with
 
  %% Interschema Loose Coupling (Logical References via UUID)
- USER ..o{ TASK : logical_ownership
- USER ..o{ CATEGORY : logical_ownership
- CATEGORY ..o{ TASK : classification
+ USER ||--o{ TASK : owns
+ USER ||--o{ CATEGORY : owns
+ CATEGORY ||--o{ TASK : classifies
  
  %% System Multi-Tenancy Root
  TENANT {
@@ -30,9 +30,9 @@ erDiagram
  datetime created_at
  datetime updated_at
  }
- CATEGORY {
+CATEGORY {
  uuid id PK
- uuid user_id LogicalRef
+ uuid user_id "logical reference"
  string name
  datetime created_at
  uuid created_by
@@ -40,13 +40,13 @@ erDiagram
  uuid updated_by
  integer version
  }
- TASK {
+TASK {
  uuid id PK
- uuid user_id LogicalRef
- uuid category_id LogicalRef
+ uuid user_id "logical reference"
+ uuid category_id "logical reference"
  string title
  string description
- enum status
+ string status
  datetime created_at
  uuid created_by
  datetime updated_at
@@ -60,9 +60,9 @@ erDiagram
  }
 
  %% Central Audit Ledger (Populated via Events asynchronously)
- AUDIT_LOG {
+AUDIT_LOG {
  uuid id PK
- uuid user_id LogicalRef
+ uuid user_id "logical reference"
  string action_type
  string entity_name
  uuid entity_id

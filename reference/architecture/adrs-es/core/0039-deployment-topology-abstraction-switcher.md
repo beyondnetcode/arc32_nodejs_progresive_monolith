@@ -31,7 +31,7 @@ Decretamos una estrategia de **Abstracción Estricta Dirigida por Factoría** pa
 
 ### Opción A: Ramas específicas por entorno / binarios distintos
 * **Descripción**: Mantener un repositorio o rama separado para On-Premise.
-* **Razón del Rechazo**: Viola la Fuente ínica de la Verdad. Carga de mantenimiento masiva rastreando arreglos de bugs a través de múltiples artefactos de liberación.
+* **Razón del Rechazo**: Viola la Fuente única de la Verdad. Carga de mantenimiento masiva rastreando arreglos de bugs a través de múltiples artefactos de liberación.
 
 ### Opción B: Sentencias Condicionales En Línea (`if (mode === 'saas')`)
 * **Descripción**: Comprobar el modo de despliegue directamente dentro de los métodos del servicio.

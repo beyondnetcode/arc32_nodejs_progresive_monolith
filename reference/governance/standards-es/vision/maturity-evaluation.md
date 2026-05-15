@@ -14,13 +14,13 @@ Esta matriz califica nuestra infraestructura actual y preparación de diseño fr
 | **Composición** | **BFF (Backend for Frontend)** | **Núcleo Obligatorio** | 100% Adoptado | Implementado oficialmente a través de capas NestJS especializadas por dispositivo ([ADR-0008](../../../architecture/adrs-es/nodejs/0008-progressive-multimodule-evolution-gateway-bff.md)). Previene la contaminación cruzada entre canales. |
 | **Fiabilidad** | **Circuit Breaker** | **Operacional** | 100% Adoptado | Implementado a través de **Circuit Breakers Distribuidos** compartiendo estado vía Redis ([ADR-0011](../../../architecture/adrs-es/core/0011-fault-tolerance-resiliency-patterns.md)) combinado con monitoreo de salud activo en Kong Ingress Edge. |
 | **Base de Datos** | **Schema Per Context** | **Núcleo Obligatorio** | 100% Adoptado | Resuelve el acoplamiento desde el primer día. Previene la intoxicación por joins de SQL puro a través de dominios ([ADR-0031](../../../architecture/adrs-es/core/0031-schema-per-context-domain-event-catalog.md)). Portabilidad de BD con cero refactorización. |
-| **Escalabilidad** | **CQRS (Básico)** | **Opcional** | ¡ Hoja de Ruta | Habilitado para ser implementado como Modelos de Lectura agregados solo cuando la contienda de lectura en base de datos lo justifique. |
-| **Consistencia** | **Saga Pattern** | **Futuro Distribuido** | ¡ Hoja de Ruta | Estrategia establecida para uso exclusivo a partir de la Fase 3, resolviendo transacciones distribuidas en escenarios de microservicios. |
-| **Mensajería** | **Transactional Outbox** | **Fase 2+** | ¡ Hoja de Ruta | Garantiza consistencia atómica entre el estado de la BD y el reenvío de eventos cuando se activa la integración asíncrona externa. |
+| **Escalabilidad** | **CQRS (Básico)** | **Opcional** | Hoja de Ruta | Habilitado para ser implementado como Modelos de Lectura agregados solo cuando la contienda de lectura en base de datos lo justifique. |
+| **Consistencia** | **Saga Pattern** | **Futuro Distribuido** | Hoja de Ruta | Estrategia establecida para uso exclusivo a partir de la Fase 3, resolviendo transacciones distribuidas en escenarios de microservicios. |
+| **Mensajería** | **Transactional Outbox** | **Fase 2+** | Hoja de Ruta | Garantiza consistencia atómica entre el estado de la BD y el reenvío de eventos cuando se activa la integración asíncrona externa. |
 
 **Leyenda de Puntuación:**
 * **Adoptado**: Totalmente diseñado, verificado en especificaciones, requiere cero cambios de configuración.
-* ¡ **Hoja de Ruta**: La infraestructura lo maneja de forma nativa, la implementación depende de la complejidad futura de los módulos.
+* **Hoja de Ruta**: La infraestructura lo maneja de forma nativa, la implementación depende de la complejidad futura de los módulos.
 * **Incompatible**: Bloqueado por la elección actual de infraestructura (Ninguno identificado actualmente).
 
 ---
@@ -83,7 +83,7 @@ Generación de logs de consola no coordinados a través de pods sin correlación
 
 ## 3. Evaluación Final de Madurez y Riesgo
 
-### ¡ Fortaleza de Resiliencia: **ALTA**
+### Fortaleza de Resiliencia: **ALTA**
 * La inserción de **Circuit Breakers ([ADR-0011](../../../architecture/adrs-es/core/0011-fault-tolerance-resiliency-patterns.md))** nativos y el estricto régimen de pruebas de contrato protegen al backend de un fallo total si los sistemas externos colapsan.
 * El **Aislamiento de Doble Capa ([ADR-0010](../../../architecture/adrs-es/core/0010-multi-tenancy-architecture-strategy.md))** crea una contención de seguridad matemáticamente demostrable para el Multi-Tenancy.
 

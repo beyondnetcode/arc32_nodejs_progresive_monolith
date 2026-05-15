@@ -112,7 +112,7 @@ Pending .NET ADRs:
 
 ---
 
-### ¡ IMPORTANT - I1: 70% Coverage Target Insufficient for Critical Domain
+### IMPORTANT - I1: 70% Coverage Target Insufficient for Critical Domain
 
 **Finding:** The Engineering Manifesto and [ADR-0018](../../../architecture/adrs/core/0018-testing-pyramid-quality-gates.md) set `>70%` as the coverage threshold.
 
@@ -129,7 +129,7 @@ Pending .NET ADRs:
 
 ---
 
-### ¡ IMPORTANT - I2: Dapr as Migration Strategy - Over-Engineering Risk
+### IMPORTANT - I2: Dapr as Migration Strategy - Over-Engineering Risk
 
 **Finding:** [ADR-0006](../../../architecture/adrs/core/0006-future-microservices-transition-dapr.md) proposes Dapr Sidecars as the transition mechanism.
 
@@ -148,7 +148,7 @@ Pre-Dapr Alternative: Kong + direct gRPC between NestJS services
 
 ---
 
-### ¡ IMPORTANT - I3: Saga Pattern Lacks Concrete Compensation Strategy
+### IMPORTANT - I3: Saga Pattern Lacks Concrete Compensation Strategy
 
 **Finding:** [ADR-0035](../../../architecture/adrs/core/0035-distributed-saga-pattern-strategy.md) mentions "Compensating Transaction Strategy" but the blueprint provides no concrete code samples.
 
@@ -175,7 +175,7 @@ class CreateOrderSaga implements ISaga {
 
 ---
 
-### ¡ IMPORTANT - I4: Absence of Explicit Strangler Fig Pattern
+### IMPORTANT - I4: Absence of Explicit Strangler Fig Pattern
 
 **Finding:** The migration path omits the **Strangler Fig** pattern (Martin Fowler, 2004), the de facto standard for incremental legacy decommissioning.
 

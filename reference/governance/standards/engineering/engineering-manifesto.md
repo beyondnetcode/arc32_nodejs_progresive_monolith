@@ -13,7 +13,7 @@ All code, wrappers, and architectural designs within this monorepo **MUST** stri
 
 ---
 
-## 2. ¡ Domain-Driven Design (DDD): Optional & Pragmatic
+## 2. Domain-Driven Design (DDD): Optional & Pragmatic
 While our architecture supports tactical and strategic DDD:
 **DDD is strictly OPTIONAL**. 
 It shall only be used when it adds tangible value to a complex business domain. It must **not** be considered a mandatory or restrictive straitjacket for the architecture. For simple CRUD (Create, Read, Update, Delete) operations, standard Hexagonal Use Cases and Data Mappers are more than sufficient. Over-applying DDD to simple entities is considered an anti-pattern (Over-engineering).

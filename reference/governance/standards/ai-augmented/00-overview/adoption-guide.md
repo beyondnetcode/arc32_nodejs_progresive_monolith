@@ -10,7 +10,7 @@ The team adopts AI strictly as an accelerator in the software construction proce
 * **Characteristics:** Usage of Claude Code, Copilot, or terminal agents. They maintain an `AGENTS.md` file in the repository as a minimum harness.
 * **Focus:** Increase developer experience (DX).
 
-### ¡ Level 2 - AI-Integrated (Functional Integrated)
+### Level 2 - AI-Integrated (Functional Integrated)
 The product incorporates the ability to query language models to enrich specific and predictable functionalities.
 * **Architecture Impact:** Medium (Invocations to external inference services).
 * **Characteristics:** Structured calls to LLMs are implemented for ticket classification, structured data extraction, or auto-summarization. Use of MCP to standardize how internal agents consume corporate data.

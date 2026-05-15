@@ -31,7 +31,7 @@ We evaluate the Reference Skeleton across 5 standard levels of maturity:
 
 We evaluate the Reference Skeleton architecture against the 5 critical pillars of the Well-Architected Framework.
 
-### ¡ Pillar 1: Security & Compliance
+### Pillar 1: Security & Compliance
 **Current Maturity Level: 4 (Managed)**
 * **Evidence**: 
  * Zero-Cost Security Pipeline implemented via CodeQL ([ADR-0005](../../../architecture/adrs/core/0005-ci-cd-quality-codeql.md)).

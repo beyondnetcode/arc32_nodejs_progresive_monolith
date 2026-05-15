@@ -16,7 +16,7 @@
 | **BD Relacional** | **PostgreSQL** | v16+ | **SÍ** | MySQL, MariaDB |
 | **BD No Relacional** | **MongoDB** | Última | **SÍ** | Cassandra, DynamoDB |
 | **ORM Relacional** | **TypeORM** o **Drizzle** | Última | **NO** | Sequelize, Prisma (requiere ADR de rendimiento) |
-| **Validación** | **class-validator** | íltima | **NO** | Zod (excepto para contratos de API externos) |
+| **Validación** | **class-validator** | última | **NO** | Zod (excepto para contratos de API externos) |
 | **Motor de Pruebas** | **Jest** | 29.x | **Sí** | Mocha, Ava |
 | **Orquestador Monorepo**| **Nx** | 18.x+ | **Sí** | Turborepo, Lerna |
 > [!TIP]

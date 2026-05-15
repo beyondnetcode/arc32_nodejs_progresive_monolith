@@ -112,7 +112,7 @@ ADRs pendientes para .NET:
 
 ---
 
-### ¡ IMPORTANTE - I1: Coverage Target del 70% es Insuficiente para Dominio Crítico
+### IMPORTANTE - I1: Coverage Target del 70% es Insuficiente para Dominio Crítico
 
 **Hallazgo:** El Engineering Manifesto y [ADR-0018](../../../architecture/adrs-es/core/0018-testing-pyramid-quality-gates.md) establecen `>70%` como umbral de cobertura.
 
@@ -129,7 +129,7 @@ ADRs pendientes para .NET:
 
 ---
 
-### ¡ IMPORTANTE - I2: Dapr como Estrategia de Migración - Riesgo de Over-Engineering
+### IMPORTANTE - I2: Dapr como Estrategia de Migración - Riesgo de Over-Engineering
 
 **Hallazgo:** [ADR-0006](../../../architecture/adrs-es/core/0006-future-microservices-transition-dapr.md) propone Dapr Sidecars como mecanismo de transición a microservicios.
 
@@ -148,7 +148,7 @@ Alternativa pre-Dapr: Kong + gRPC directo entre servicios NestJS
 
 ---
 
-### ¡ IMPORTANTE - I3: Saga Pattern Sin Estrategia de Compensación Concreta
+### IMPORTANTE - I3: Saga Pattern Sin Estrategia de Compensación Concreta
 
 **Hallazgo:** [ADR-0035](../../../architecture/adrs-es/core/0035-distributed-saga-pattern-strategy.md) menciona "Compensating Transaction Strategy" pero el blueprint no incluye ningún ejemplo concreto de saga.
 
@@ -175,7 +175,7 @@ class CreateOrderSaga implements ISaga {
 
 ---
 
-### ¡ IMPORTANTE - I4: Ausencia de Strangler Fig Pattern Explícito
+### IMPORTANTE - I4: Ausencia de Strangler Fig Pattern Explícito
 
 **Hallazgo:** La ruta de migración no menciona el patrón **Strangler Fig** (Martin Fowler, 2004) que es el estándar de facto para migraciones incrementales de monolito a microservicios.
 

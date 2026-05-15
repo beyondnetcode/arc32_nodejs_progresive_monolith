@@ -27,7 +27,7 @@ Establecemos una **Matriz de Ajuste de Protocolo Estricta** adaptada a niveles a
 * **Flujos Estándar**: Por defecto a APIs REST convencionales para comandos transaccionales (Crear/Actualizar).
 * **Escenarios de Lectura Ricos/Anidados**: Adoptar **GraphQL** estrictamente al nivel de BFF NestJS cuando una pantalla requiera agregación de datos compleja (obtener Entidades, Taxonomías asociadas, Auditorías y relaciones simultáneamente) para prevenir el over-fetching móvil/web y los múltiples roundtrips secuenciales.
 
-### írbol de Decisión de Selección
+### árbol de Decisión de Selección
 
 | Escenario | Protocolo Preferido | Justificación |
 | :--- | :--- | :--- |

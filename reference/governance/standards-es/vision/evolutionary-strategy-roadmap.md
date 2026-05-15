@@ -36,7 +36,7 @@ timeline
 | **Persistencia** | Instancia única relacional. Seguridad forzada en Capa de Aplicación (`APP_AGNOSTIC`). |
 | **Foco Crítico** | Definición férrea de Contratos API First y validación exhaustiva de las reglas de negocio core sin ruido de infraestructura. |
 
-### ¡ Fase 2: Scale and Decoupling - Mediano Plazo
+### Fase 2: Scale and Decoupling - Mediano Plazo
 **Enfoque:** Eficiencia Operativa y Segregación.
 
 | Dominio | Estrategia |
@@ -68,7 +68,7 @@ PI = \frac{\text{Líneas de Código (Dominio + Aplicación)}}{\text{Líneas de C
 ```
 
 * **Meta:** Valor creciente o estable. Si cae, indica "sangrado" de lógica de negocio hacia el ORM o Framework.
-* ¡ **Ejemplo Práctico:**
+* **Ejemplo Práctico:**
  * Código de Negocio: 10,000 líneas.
  * Código de Persistencia/Infra: 2,000 líneas.
  * **PI Actual:** $10,000 / 2,000 = 5.0$ (Estado Sano). Si baja a 2.0, se requiere auditoría urgente.
@@ -81,7 +81,7 @@ Impacto de latencia comparativo entre el filtrado por software vs. el filtrado n
 ```
 
 * **Meta:** Penalización porcentual de latencia inferior al 15% en modo Agnóstico.
-* ¡ **Ejemplo Práctico:**
+* **Ejemplo Práctico:**
  * Modo Nativo RLS: 40ms de respuesta en lectura.
  * Modo Agnóstico App: 45ms de respuesta.
  * **Impacto:** Aumento de 5ms (+12.5%). **PASA EL CONTROL** (Menor al 15%).
@@ -90,7 +90,7 @@ Impacto de latencia comparativo entre el filtrado por software vs. el filtrado n
 Esfuerzo real necesario para reemplazar por completo un adaptador de infraestructura crítica.
 
 * **Meta:** Menor a 24 horas hombre para servicios críticos en la Fase 3.
-* ¡ **Ejemplo Práctico:** Un equipo de 3 desarrolladores debe ser capaz de migrar de TypeORM a Drizzle en una sola jornada laboral (8h x 3 = 24h) gracias al desacoplamiento de la interfaz `IRepositoryPort`.
+* **Ejemplo Práctico:** Un equipo de 3 desarrolladores debe ser capaz de migrar de TypeORM a Drizzle en una sola jornada laboral (8h x 3 = 24h) gracias al desacoplamiento de la interfaz `IRepositoryPort`.
 
 ### 3.4 Ratio de Deuda Técnica Planeada ($RTD$)
 Garantía de salud del código base contra la presión de producto.
@@ -100,7 +100,7 @@ RTD = \frac{\text{Tickets de Refactorización}}{\text{Tickets de Funcionalidades
 ```
 
 * **Meta:** Mantener un ratio constante del 20% para saneamiento continuo.
-* ¡ **Ejemplo Práctico:** Por cada 10 User Stories finalizadas en un Sprint, el equipo debe procesar 2 Tickets de Refactoring (`tech-debt`) dedicados a la limpieza del MVP foundation.
+* **Ejemplo Práctico:** Por cada 10 User Stories finalizadas en un Sprint, el equipo debe procesar 2 Tickets de Refactoring (`tech-debt`) dedicados a la limpieza del MVP foundation.
 
 ---
 
@@ -114,7 +114,7 @@ Para evitar el caos evolutivo, se establecen las siguientes prohibiciones técni
 
 ---
 
-## ¡ 5. Estrategia de Compliance y Recuperación
+## 5. Estrategia de Compliance y Recuperación
 
 ### Mapeo de Controles ISO 27001 por Entorno
 

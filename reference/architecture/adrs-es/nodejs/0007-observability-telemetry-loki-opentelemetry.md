@@ -21,7 +21,7 @@ Adoptar el estándar **OpenTelemetry (OTel)** como el espinazo unificado de obse
 **Reglas de implementación:**
 
 1. **Auto-instrumentación**: Las llamadas HTTP de NestJS, TypeORM y Redis se instrumentan automáticamente vía paquetes de auto-instrumentación de OTel - no se requiere la creación manual de span para flujos estándar.
-2. **Enrutamiento Agnóstico al Proveedor**: La aplicación DEBE íNICAMENTE emitir telemetría neutral al proveedor hacia un **Colector OpenTelemetry** local. Cambiar los backends finales (ej., de Jaeger a Datadog, o de Loki a Elastic) requiere cambiar íNICAMENTE la configuración YAML del Colector, con **cero modificaciones o re-despliegues** en el código fuente de la aplicación.
+2. **Enrutamiento Agnóstico al Proveedor**: La aplicación DEBE ÚNICAMENTE emitir telemetría neutral al proveedor hacia un **Colector OpenTelemetry** local. Cambiar los backends finales (ej., de Jaeger a Datadog, o de Loki a Elastic) requiere cambiar ÚNICAMENTE la configuración YAML del Colector, con **cero modificaciones o re-despliegues** en el código fuente de la aplicación.
 3. **Spans manuales**: Las operaciones significativas de negocio (ejecución de casos de uso, fallos de caché) obtienen una envoltura explícita con `tracer.startSpan()`.
 4. **Propagación de trazas**: Todas las llamadas HTTP salientes incluyen cabeceras `traceparent` (estándar W3C Trace Context).
 5. **Logs estructurados**: Cada entrada de registro incluye `traceId`, `spanId`, `tenantId` y `userId` para una correlación completa.

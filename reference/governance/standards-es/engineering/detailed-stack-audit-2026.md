@@ -22,7 +22,7 @@
 ### Node.js - Base de Runtime
 | Campo | Detalle |
 |-------|---------|
-| Versión Recomendada | 24.x Active LTS (íltima 24.5.0) |
+| Versión Recomendada | 24.x Active LTS (última 24.5.0) |
 | Licencia | MIT |
 | Nivel OSS | 1 (Fundación OpenJS) |
 | Estado | Verde |
@@ -74,7 +74,7 @@
 ### MassTransit - Abstracción de Mensajería
 | Campo | Detalle |
 |-------|---------|
-| Versión Recomendada | 8.3.x (íltimo árbol OSS) |
+| Versión Recomendada | 8.3.x (último árbol OSS) |
 | Licencia | Apache 2.0 (v8) |
 | Estado | Amarillo (Evaluar Riesgo) |
 **Alerta**: MassTransit v9 es Comercial. DEBEMOS fijar la versión en la v8 LTS o evaluar **Rebus** para la continuidad de entrega puramente de código abierto.
@@ -85,7 +85,7 @@
 | Versión Recomendada | 10.0.x (Alineado con el SDK) |
 | Nivel OSS | 1 |
 | Estado | Verde |
-**írbol de Decisión**: Usar EF Core para patrones de escritura transaccionales; integrar **Dapper** explícitamente para pipelines de lectura por lotes pesados para caché de rendimiento.
+**árbol de Decisión**: Usar EF Core para patrones de escritura transaccionales; integrar **Dapper** explícitamente para pipelines de lectura por lotes pesados para caché de rendimiento.
 
 ### xUnit v3 - Pruebas
 | Campo | Detalle |
@@ -157,7 +157,7 @@
 
 # BLOQUE 5 - INFRAESTRUCTURA (CRíTICO)
 
-**Resumen Ejecutivo**: ípoca transformacional. Desacoplamiento estratégico del desvío comercial (Redis -> Valkey, Terraform -> OpenTofu, Vault -> OpenBao) validado con éxito.
+**Resumen Ejecutivo**: época transformacional. Desacoplamiento estratégico del desvío comercial (Redis -> Valkey, Terraform -> OpenTofu, Vault -> OpenBao) validado con éxito.
 
 ### Valkey 9.0 - Caché Distribuida y Streams
 | Campo | Detalle |

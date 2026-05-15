@@ -12,9 +12,9 @@
 | Categoría | Herramienta / Framework Aprobado | Versión Validada | ¿ADR Requerido para Cambiar? | Alternativas Explícitamente Rechazadas |
 | :--- | :--- | :--- | :--- | :--- |
 | **Runtime Base** | **Kotlin JVM** | 1.9+ | **Sí** | Java (Android Nativo) |
-| **Framework UI** | **Jetpack Compose** | íltima | **Sí** | XML Views / DataBinding |
+| **Framework UI** | **Jetpack Compose** | última | **Sí** | XML Views / DataBinding |
 | **DB Local** | **Room** | 2.6.x+ | **NO** | Realm, SQLite Raw |
-| **Async / Streams**| **Kotlin Coroutines + Flow** | íltima | **Sí** | RxJava 2/3 |
+| **Async / Streams**| **Kotlin Coroutines + Flow** | última | **Sí** | RxJava 2/3 |
 
 ---
 -> Volver al **[índice Maestro Global](../../../MASTER_INDEX.es.md)**

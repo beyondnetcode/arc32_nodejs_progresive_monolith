@@ -1,4 +1,4 @@
-# ¡ Kong Plugins Config Guide (DB-less Mode)
+# Kong Plugins Config Guide (DB-less Mode)
 
 To integrate **Kong Open Source** in front of your **NestJS BFF (Tier 2)**, the modern best practice is using **DB-less mode**. Instead of storing configuration in PostgreSQL, you define all routes and plugins in a YAML file (`kong.yml`) living in your repository. This aligns perfectly with **GitOps** philosophy.
 

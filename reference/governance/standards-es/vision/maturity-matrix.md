@@ -31,7 +31,7 @@ Evaluamos el Esqueleto de Referencia a través de 5 niveles estándar de madurez
 
 Evaluamos la arquitectura del Esqueleto de Referencia frente a los 5 pilares críticos del Well-Architected Framework.
 
-### ¡ Pilar 1: Seguridad y Cumplimiento
+### Pilar 1: Seguridad y Cumplimiento
 **Nivel de Madurez Actual: 4 (Gestionado)**
 * **Evidencia**: 
  * Pipeline de Seguridad Cero-Costo implementado vía CodeQL ([ADR-0005](../../../architecture/adrs-es/core/0005-ci-cd-quality-codeql.md)).

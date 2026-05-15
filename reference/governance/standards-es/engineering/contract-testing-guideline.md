@@ -19,11 +19,11 @@ Las pruebas de contrato operan bajo un modelo "Dirigido por el Consumidor". El c
 ```mermaid
 sequenceDiagram
  autonumber
- participant Cons as Consumidor (Facturación)
+ participant Cons as "Consumidor (Facturación)"
  participant Pact as Pact Broker / Almacén Local de Contratos
- participant Prov as Proveedor (Inventario)
+ participant Prov as "Proveedor (Inventario)"
 
- Note over Cons: Escribir Prueba de Contrato y Definir Mock de Carga ítil
+ Note over Cons: Escribir Prueba de Contrato y Definir Mock de Carga útil
  Cons->>Pact: 1. Generar y Publicar Archivo de Contrato Pact JSON
  Note over Prov: La Pipeline CI Dispara la Verificación del Proveedor
  Pact->>Prov: 2. Obtener Contratos Activos
@@ -66,7 +66,7 @@ El siguiente contrato especifica una interacción activa entre el **Módulo de F
 
 ---
 
-## ¡ 4. Integración CI/CD y Puertas de Calidad
+## 4. Integración CI/CD y Puertas de Calidad
 
 Para automatizar la aplicación de contratos y prevenir que los cambios disruptivos lleguen a producción:
 

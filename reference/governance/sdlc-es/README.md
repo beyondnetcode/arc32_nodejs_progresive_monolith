@@ -8,13 +8,13 @@ Bienvenido al mapa de control oficial del Ciclo de Vida de Desarrollo de Softwar
 
 ## Ciclo de Madurez SDLC (Taxonomía BMAD-METHOD)
 
-### ¡ Fase 01: Ideación y Planificación
+### Fase 01: Ideación y Planificación
 Procedimientos que dictan cómo las peticiones de funcionalidades entran al ecosistema.
 * *Próximamente: Guía de Redacción de PRD y Mapeo de OKR.*
 
 ### Fase 02: Ingeniería y Desarrollo
 Prácticas de codificación normativa, umbrales de automatización de pruebas y puertas de entrega.
-* -> **[Marco de Trabajo SDLC con ínfasis en Construcción](./02-engineering/construction-focused-sdlc-framework.md)**
+* -> **[Marco de Trabajo SDLC con énfasis en Construcción](./02-engineering/construction-focused-sdlc-framework.md)**
 
 ### Fase 03: Estándares Documentales
 La referencia máxima que gobierna cómo se produce y consume el conocimiento técnico.

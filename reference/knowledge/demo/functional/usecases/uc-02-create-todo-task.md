@@ -17,7 +17,7 @@ Specification for adding new atomic work units.
 sequenceDiagram
  autonumber
  actor User as User
- participant API as NestJS API (Hexagon)
+ participant API as "NestJS API (Hexagon)"
  participant DB as PostgreSQL
 
  User->>API: POST /tasks {title, description}

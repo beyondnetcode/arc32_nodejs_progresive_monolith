@@ -16,7 +16,7 @@ Decidimos formalmente adoptar la disciplina de **Harness Engineering** (Ingenier
 
 ## Alternativas Consideradas
 * **Prompt Engineering Puro:** Descartado por carecer de control de errores determinista y degradarse rápidamente a escalas de producción.
-* **Frameworks de Terceros como ínico Estándar:** Descartado (ej. obligar solo a LangChain) debido a la alta volatilidad del ecosistema actual; preferimos estandarizar la estrategia de harness, no la herramienta específica.
+* **Frameworks de Terceros como Único Estándar:** Descartado (ej. obligar solo a LangChain) debido a la alta volatilidad del ecosistema actual; preferimos estandarizar la estrategia de harness, no la herramienta específica.
 * **Sin Estandarización:** Descartado por el alto riesgo de deuda técnica incoherente y fragmentación metodológica.
 
 ## Consecuencias

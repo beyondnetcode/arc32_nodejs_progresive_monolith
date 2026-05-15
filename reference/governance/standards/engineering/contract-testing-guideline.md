@@ -19,9 +19,9 @@ Contract testing operates under a "Consumer-Driven" model. The consumer (e.g., B
 ```mermaid
 sequenceDiagram
  autonumber
- participant Cons as Consumer (Billing)
+ participant Cons as "Consumer (Billing)"
  participant Pact as Pact Broker / Local Contract Store
- participant Prov as Provider (Inventory)
+ participant Prov as "Provider (Inventory)"
 
  Note over Cons: Write Contract Test and Define Mock Payload
  Cons->>Pact: 1. Generate and Publish Pact JSON Contract File
@@ -66,7 +66,7 @@ The following contract specifies an active interaction between the **Billing Mod
 
 ---
 
-## ¡ 4. CI/CD Integration and Quality Gates
+## 4. CI/CD Integration and Quality Gates
 
 To automate contract enforcement and prevent breaking changes from reaching production:
 

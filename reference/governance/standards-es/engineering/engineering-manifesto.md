@@ -3,7 +3,7 @@
 ## 1. Principios Core de Ingeniería (Obligatorios)
 Todo código, wrappers y diseños arquitectónicos dentro de este monorepo **DEBEN** adherirse estrictamente a los siguientes principios. Las revisiones de código rechazarán cualquier Pull Request que viole estos fundamentos:
 
-* **SOLID**: Responsabilidad ínica, Abierto/Cerrado, Sustitución de Liskov, Segregación de Interfaces e Inversión de Dependencias.
+* **SOLID**: Responsabilidad única, Abierto/Cerrado, Sustitución de Liskov, Segregación de Interfaces e Inversión de Dependencias.
 * **DRY (Don't Repeat Yourself)**: Eliminar la duplicación innecesaria. Consolidar la lógica compartida en utilidades o librerías compartidas (shared-kernel).
 * **KISS (Keep It Simple, Stupid)**: Evitar la sobre-ingeniería. Escribir código que sea fácil de leer, entender y depurar.
 * **YAGNI (You Aren't Gonna Need It)**: No añadir funcionalidad, abstracciones o herramientas hasta que sean estrictamente necesarias.
@@ -13,7 +13,7 @@ Todo código, wrappers y diseños arquitectónicos dentro de este monorepo **DEB
 
 ---
 
-## 2. ¡ Domain-Driven Design (DDD): Opcional y Pragmático
+## 2. Domain-Driven Design (DDD): Opcional y Pragmático
 Aunque nuestra arquitectura soporta DDD táctico y estratégico:
 **DDD es estrictamente OPCIONAL**.
 Solo se utilizará cuando añada un valor tangible a un dominio de negocio complejo. **No** debe considerarse una camisa de fuerza obligatoria o restrictiva para la arquitectura. Para operaciones simples CRUD (Crear, Leer, Actualizar, Borrar), los Casos de Uso Hexagonales estándar y los Mapeadores de Datos son más que suficientes. La aplicación excesiva de DDD a entidades simples se considera un anti-patrón (Sobre-ingeniería).

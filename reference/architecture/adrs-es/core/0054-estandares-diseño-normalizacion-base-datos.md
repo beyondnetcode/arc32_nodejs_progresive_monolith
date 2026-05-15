@@ -62,7 +62,7 @@ El modelado DEBE seguir patrones de **Diseño para el Acceso** (*Design-for-Acce
 | **Esquema** | Rígido, predefinido. | Flexible, dinámico. |
 | **Transacciones** | Requiere ACID fuerte. | Consistencia eventual aceptable. |
 | **Relaciones** | Joins complejos entre tablas. | Datos jerárquicos o aislados. |
-| **Escalado** | Vertical (típicamente). | Horizontal (Sharding). |
+| **Escalado** | Vertical (tépicamente). | Horizontal (Sharding). |
 | **Velocidad de Datos**| Moderada. | Alta (Escritura pesada). |
 
 ---

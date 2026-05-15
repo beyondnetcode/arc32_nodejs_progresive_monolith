@@ -35,7 +35,7 @@ El entorno .NET sobresale en robustez tipada y rendimiento en procesos de fondo 
 
 El rol de la IA en dispositivos móviles está acotado por el consumo de batería, la memoria y la latencia.
 
-* **Alcance Acotado:** Los agentes de Android típicamente deberían diseñarse como **clientes** que solicitan orquestación de un agente robusto alojado en el backend. Se desaconsejan los bucles agénticos recursivos y complejos en el runtime local.
+* **Alcance Acotado:** Los agentes de Android tépicamente deberían diseñarse como **clientes** que solicitan orquestación de un agente robusto alojado en el backend. Se desaconsejan los bucles agénticos recursivos y complejos en el runtime local.
 * **SDKs Recomendados:**
  * **Google AI SDK para Android:** Para inferencia directa con Gemini en tareas rápidas.
  * **Firebase Genkit:** Integración simplificada si el ecosistema Firebase ya está implementado.

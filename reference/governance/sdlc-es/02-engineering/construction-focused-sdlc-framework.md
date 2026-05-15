@@ -1,4 +1,4 @@
-# Marco de Trabajo SDLC con ínfasis en la Construcción
+# Marco de Trabajo SDLC con énfasis en la Construcción
 
 > **Navegación Bilingüe:** [English Version](../../sdlc/02-engineering/construction-focused-sdlc-framework.md)
 

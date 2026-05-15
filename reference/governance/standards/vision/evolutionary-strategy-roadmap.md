@@ -36,7 +36,7 @@ timeline
 | **Persistence** | Single relational instance. Application-side enforced security (`APP_AGNOSTIC`). |
 | **Critical Focus** | Rigid API-First contract definition and comprehensive validation of core business rules without infrastructure noise. |
 
-### ¡ Phase 2: Scale and Decoupling - Medium Term
+### Phase 2: Scale and Decoupling - Medium Term
 **Focus:** Operational Efficiency and Component Segregation.
 
 | Dimension | Strategy |
@@ -68,7 +68,7 @@ PI = \frac{\text{Lines of Code (Domain + App)}}{\text{Lines of Code (Infrastruct
 ```
 
 * **Goal:** Growth or absolute stability over time. A shrinking score warns of leaks into persistence or frameworks.
-* ¡ **Practical Example:**
+* **Practical Example:**
  * Business Logic Code: 10,000 lines.
  * Persistence/Infra Code: 2,000 lines.
  * **Current PI:** $10,000 / 2,000 = 5.0$ (Healthy state). If dropped to 2.0, urgent isolation review is flagged.
@@ -81,7 +81,7 @@ Tracks the relative latency delta observed between application-tier and hardware
 ```
 
 * **Goal:** Percentile latency penalty under 15% when executing the Agnostic path.
-* ¡ **Practical Example:**
+* **Practical Example:**
  * Native RLS Mode: 40ms read response.
  * Agnostic App Mode: 45ms read response.
  * **Impact:** 5ms increase (+12.5%). **PASSED** (Threshold below 15%).
@@ -90,7 +90,7 @@ Tracks the relative latency delta observed between application-tier and hardware
 Objective effort assessed in transitioning or hot-swapping a foundational infrastructural component.
 
 * **Goal:** Under 24 man-hours total elapsed effort for primary services by entering Phase 3.
-* ¡ **Practical Example:** A concentrated team of 3 staff engineers executes a full adapter swap from TypeORM to Drizzle within a single shared 8-hour workday (8h x 3 = 24h total effort).
+* **Practical Example:** A concentrated team of 3 staff engineers executes a full adapter swap from TypeORM to Drizzle within a single shared 8-hour workday (8h x 3 = 24h total effort).
 
 ### 3.4 Planned Technical Debt Ratio ($RTD$)
 Protects code core stability against aggressive external product feature velocity.
@@ -100,7 +100,7 @@ RTD = \frac{\text{Refactoring Tickets}}{\text{Feature Tickets}}
 ```
 
 * **Goal:** Retain a constant capacity band of 20% devoted exclusively to ongoing sanitary discipline.
-* ¡ **Practical Example:** For every 10 completed User Stories inside a delivery cycle, the squad completes at least 2 Refactoring tickets (`tech-debt`) directed towards foundational clean-up.
+* **Practical Example:** For every 10 completed User Stories inside a delivery cycle, the squad completes at least 2 Refactoring tickets (`tech-debt`) directed towards foundational clean-up.
 
 ---
 
@@ -114,7 +114,7 @@ To preempt evolutionary decay, the subsequent barriers are implemented globally:
 
 ---
 
-## ¡ 5. Compliance and Operational Resiliency Strategy
+## 5. Compliance and Operational Resiliency Strategy
 
 ### Mapping ISO 27001 Controls per Environment
 

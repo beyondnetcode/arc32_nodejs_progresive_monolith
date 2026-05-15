@@ -271,12 +271,12 @@ graph TD
 sequenceDiagram
  autonumber
  participant C as Web App
- participant CL as Client Cache (ADR-0004)
- participant CDN as CDN (Layer 1)
- participant B as NestJS BFF (Layer 2)
+ participant CL as "Client Cache (ADR-0004)"
+ participant CDN as "CDN (Layer 1)"
+ participant B as "NestJS BFF (Layer 2)"
  participant R as Redis Distributed
- participant A as Core API (Layer 3)
- participant D as PostgreSQL (RLS)
+ participant A as "Core API (Layer 3)"
+ participant D as "PostgreSQL (RLS)"
 
  C->>CL: Query State (React Query)
  alt Cache Hit (Immediate Render)
@@ -319,9 +319,9 @@ sequenceDiagram
  autonumber
  participant UC as Use Case
  participant Port as IEventBusPort
- participant Bus as Concrete Impl (RabbitMQ / In-Memory)
+ participant Bus as "Concrete Impl (RabbitMQ / In-Memory)"
  participant AuditSvc as Audit Service
- participant AuditDB as Audit Log (Append-Only)
+ participant AuditDB as "Audit Log (Append-Only)"
 
  UC->>Port: publish(DomainEvent)
  Port->>Bus: Dispatch (via injected impl)
@@ -336,7 +336,7 @@ sequenceDiagram
 sequenceDiagram
  autonumber
  participant A as Core API
- participant CB as Circuit Breaker (opossum)
+ participant CB as "Circuit Breaker (opossum)"
  participant Ext as External Service
 
  A->>CB: execute(call)

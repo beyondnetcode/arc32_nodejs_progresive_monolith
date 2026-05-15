@@ -14,13 +14,13 @@ This matrix rates our current infrastructure and design readiness against standa
 | **Composition** | **BFF (Backend for Frontend)** | **Core Mandatory** | 100% Adopted | Officially implemented via specialized NestJS layers per device ([ADR-0008](../../../architecture/adrs/nodejs/0008-progressive-multimodule-evolution-gateway-bff.md)). Prevents cross-channel pollution. |
 | **Reliability** | **Circuit Breaker** | **Operational** | 100% Adopted | Implemented via **Distributed Circuit Breakers** sharing state via Redis ([ADR-0011](../../../architecture/adrs/core/0011-fault-tolerance-resiliency-patterns.md)) combined with active upstream healthcheck monitoring at Kong Ingress Edge. |
 | **Database** | **Schema Per Context** | **Core Mandatory** | 100% Adopted | Solves coupling from day one. Prevents raw SQL join poisoning across domains ([ADR-0031](../../../architecture/adrs/core/0031-schema-per-context-domain-event-catalog.md)). Zero-refactor DB portability. |
-| **Scalability** | **CQRS (Basic)** | **Optional** | ¡ Roadmap | Enabled for implementation as read-models only when database write contention explicitly demands it. |
-| **Consistency** | **Saga Pattern** | **Distributed Future** | ¡ Roadmap | Formal strategy established for exclusive use from Phase 3 onwards, handling transactions across distributed microservices. |
-| **Messaging** | **Transactional Outbox** | **Phase 2+** | ¡ Roadmap | Ensures atomic consistency between DB state and event forwarding when asynchronous integration scale is achieved. |
+| **Scalability** | **CQRS (Basic)** | **Optional** | Roadmap | Enabled for implementation as read-models only when database write contention explicitly demands it. |
+| **Consistency** | **Saga Pattern** | **Distributed Future** | Roadmap | Formal strategy established for exclusive use from Phase 3 onwards, handling transactions across distributed microservices. |
+| **Messaging** | **Transactional Outbox** | **Phase 2+** | Roadmap | Ensures atomic consistency between DB state and event forwarding when asynchronous integration scale is achieved. |
 
 **Score Legend:**
 * **Adopted**: Fully designed, verified in specs, zero configuration changes required.
-* ¡ **Roadmap**: Infrastructure handles it natively, implementation depends on future module complexity.
+* **Roadmap**: Infrastructure handles it natively, implementation depends on future module complexity.
 * **Incompatible**: Blocked by current infrastructure choice (None currently identified).
 
 ---
@@ -83,7 +83,7 @@ Generating uncoordinated console logs across pods with no centralized identifier
 
 ## 3. Final Maturity & Risk Assessment
 
-### ¡ Resiliency Strength: **HIGH**
+### Resiliency Strength: **HIGH**
 * The insertion of native **Circuit Breakers ([ADR-0011](../../../architecture/adrs/core/0011-fault-tolerance-resiliency-patterns.md))** and the strict contract testing regime shields the backend from total failure if external systems collapse.
 * **Dual-Layer Isolation ([ADR-0010](../../../architecture/adrs/core/0010-multi-tenancy-architecture-strategy.md))** creates mathematically provable security containment for Multi-Tenancy.
 

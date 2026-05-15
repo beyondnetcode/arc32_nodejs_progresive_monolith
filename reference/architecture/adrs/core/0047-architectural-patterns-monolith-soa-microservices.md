@@ -111,15 +111,15 @@ Decomposing an application into a set of small, autonomous, independently deploy
 
 | Attribute | Modular Monolith | Traditional Corporate SOA | Cloud-Native Microservices |
 | :--- | :--- | :--- | :--- |
-| **Initial Complexity** | Very Low | ¡ High | Critical |
-| **Initial Time-to-Market**| Immediate | ¡ Slow | Very Slow |
-| **Team Autonomy** | ¡ Limited (>25 devs) | ¡ Intermediate | Maximum |
-| **Compute Scalability** | ¡ Vertical / Homogeneous | Horizontal | Granular / Selective |
+| **Initial Complexity** | Very Low | High | Critical |
+| **Initial Time-to-Market**| Immediate | Slow | Very Slow |
+| **Team Autonomy** | Limited (>25 devs) | Intermediate | Maximum |
+| **Compute Scalability** | Vertical / Homogeneous | Horizontal | Granular / Selective |
 | **Data Consistency** | Strongly ACID | Centralized / Distributed | Eventual Consistency |
-| **Debugging / Support** | Simple (Local) | ¡ Complex (Remote) | Extremely Complex |
-| **Deployment (DevOps)** | Docker Compose / VM | ¡ Centralized Servers | Kubernetes / Service Mesh |
-| **Observability** | Standard Logs/APM | ¡ ESB Tracking | W3C Distributed Tracing |
-| **Fault Tolerance** | None (Single process) | ¡ Medium | Excellent (Circuit Breaker)|
+| **Debugging / Support** | Simple (Local) | Complex (Remote) | Extremely Complex |
+| **Deployment (DevOps)** | Docker Compose / VM | Centralized Servers | Kubernetes / Service Mesh |
+| **Observability** | Standard Logs/APM | ESB Tracking | W3C Distributed Tracing |
+| **Fault Tolerance** | None (Single process) | Medium | Excellent (Circuit Breaker)|
 | **Base Operating Cost** | Very Low ($) | High ($$$) | Critical ($$$$) |
 
 ---

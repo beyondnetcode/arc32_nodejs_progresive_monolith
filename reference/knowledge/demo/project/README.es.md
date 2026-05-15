@@ -17,7 +17,7 @@ Para garantizar trazabilidad y visibilidad entre el negocio y la ingeniería, la
  * Definición de OKRs y KPIs del negocio.
  * Análisis de competencia y valor diferencial.
 2. **`02-planning/` (Gobernanza Técnica)**
- * Definición de ípicas y Priorización (MoSCoW).
+ * Definición de épicas y Priorización (MoSCoW).
  * Historias de Usuario y Especificaciones Técnicas In-Sprint.
  * Acuerdos de Definición de Terminado (DoD) y Preparado (DoR).
 3. **`03-design/` (Detalle de Solución)**

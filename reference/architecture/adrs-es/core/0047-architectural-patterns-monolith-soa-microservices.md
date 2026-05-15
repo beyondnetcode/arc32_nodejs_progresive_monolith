@@ -70,7 +70,7 @@ Consiste en un artefacto de despliegue único que aloja toda la lógica de negoc
  * Transaccionalidad ACID nativa garantizada por el motor de base de datos.
  * Pruebas E2E simplificadas sin mocks de red excesivos.
 * **Desventajas:**
- * ínico punto de fallo de despliegue (un error fatal en un módulo puede tumbar todo el proceso).
+ * Único punto de fallo de despliegue (un error fatal en un módulo puede tumbar todo el proceso).
  * Acaparamiento de memoria/CPU heterogéneo (el módulo A escala todo el sistema innecesariamente).
  * Saturación de equipos a partir de >25-30 ingenieros trabajando concurrentemente.
 * **Cuándo Usar:** Fase 1 de cualquier producto; validación de mercado (MVP); equipos con <15 ingenieros; dominios altamente transaccionales.
@@ -78,7 +78,7 @@ Consiste en un artefacto de despliegue único que aloja toda la lógica de negoc
 
 ### Opción B - SOA (Service-Oriented Architecture)
 
-Es un paradigma centrado en la integración empresarial. Los sistemas exponen sus capacidades mediante servicios interoperables con contratos estrictos (generalmente SOAP o REST) y gobernados típicamente por un bus de servicios empresarial (ESB). SOA se enfoca en la reutilización de componentes existentes por encima del desarrollo de nuevos servicios modulares.
+Es un paradigma centrado en la integración empresarial. Los sistemas exponen sus capacidades mediante servicios interoperables con contratos estrictos (generalmente SOAP o REST) y gobernados tépicamente por un bus de servicios empresarial (ESB). SOA se enfoca en la reutilización de componentes existentes por encima del desarrollo de nuevos servicios modulares.
 
 * **Ventajas:**
  * Excelente para la coexistencia de tecnologías dispares (Mainframes, Java, .NET, SaaS).
@@ -111,22 +111,22 @@ Descomposición de una aplicación en un conjunto de servicios pequeños, autón
 
 | Característica | Monolito Modular | SOA Tradicional / Corporativo | Microservicios Cloud-Native |
 | :--- | :--- | :--- | :--- |
-| **Complejidad Inicial** | Muy Baja | ¡ Alta | Crítica |
-| **Time-to-Market Inicial**| Inmediato | ¡ Lento | Muy Lento |
-| **Autonomía de Equipos** | ¡ Limitada (>25 devs) | ¡ Intermedia | Máxima |
-| **Escalabilidad Cómputo**| ¡ Vertical / Homogénea | Horizontal | Granular / Selectiva |
+| **Complejidad Inicial** | Muy Baja | Alta | Crítica |
+| **Time-to-Market Inicial**| Inmediato | Lento | Muy Lento |
+| **Autonomía de Equipos** | Limitada (>25 devs) | Intermedia | Máxima |
+| **Escalabilidad Cómputo**| Vertical / Homogénea | Horizontal | Granular / Selectiva |
 | **Consistencia de Datos**| Fuertemente ACID | Centralizada / Distribuida | Consistencia Eventual |
-| **Depuración / Debugging**| Simple (Local) | ¡ Compleja (Remota) | Extremadamente Compleja |
-| **Despliegue (DevOps)** | Docker Compose / VM | ¡ Servidores Centralizados | Kubernetes / Service Mesh |
-| **Observabilidad** | Estándar Logs/APM | ¡ Seguimiento ESB | Trazado Distribuido W3C |
-| **Tolerancia a Fallos** | Nula (Un solo proceso) | ¡ Media | Excelente (Circuit Breaker)|
+| **Depuración / Debugging**| Simple (Local) | Compleja (Remota) | Extremadamente Compleja |
+| **Despliegue (DevOps)** | Docker Compose / VM | Servidores Centralizados | Kubernetes / Service Mesh |
+| **Observabilidad** | Estándar Logs/APM | Seguimiento ESB | Trazado Distribuido W3C |
+| **Tolerancia a Fallos** | Nula (Un solo proceso) | Media | Excelente (Circuit Breaker)|
 | **Costo Operativo Base** | Muy Bajo ($) | Alto ($$$) | Crítico ($$$$) |
 
 ---
 
-## 6. Framework de Decisión (írbol Lógico y Modelo de Puntuación)
+## 6. Framework de Decisión (árbol Lógico y Modelo de Puntuación)
 
-### Diagrama de írbol de Decisión (Mermaid)
+### Diagrama de árbol de Decisión (Mermaid)
 
 ```mermaid
 graph TD

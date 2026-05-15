@@ -1,4 +1,4 @@
-# Backlog de ípicas e Historias (Scrum Artifacts)
+# Backlog de épicas e Historias (Scrum Artifacts)
 
 > **Navegación Bilingüe:** [English Version](./02-backlog-and-epics.md)
 
@@ -8,9 +8,9 @@
 
 ---
 
-## 1. Resumen de ípicas por Fase
+## 1. Resumen de épicas por Fase
 
-| ípica | Nombre | Objetivo | Fase |
+| épica | Nombre | Objetivo | Fase |
 | :--- | :--- | :--- | :--- |
 | **EPIC-01** | Core Multi-Tenant Isolation | Establecer la base de datos aislada y el middleware de identidad. | **MVP (Fase 1)** |
 | **EPIC-02** | Hexagonal Task Lifecycles | CRUD de dominio puro sin acoplamiento a infraestructura. | **MVP (Fase 1)** |
@@ -21,7 +21,7 @@
 
 ## 2. Detalle del Backlog (Historias de Usuario & Técnicas)
 
-### ípica 1: Core Multi-Tenant Isolation
+### épica 1: Core Multi-Tenant Isolation
 
 #### **US-101: Login con emisión de JWT**
 * **Descripción:** Como usuario del sandbox, quiero autenticarme con mis credenciales para recibir un Bearer Token seguro.
@@ -40,7 +40,7 @@
 
 ---
 
-### ípica 2: Hexagonal Task Lifecycles
+### épica 2: Hexagonal Task Lifecycles
 
 #### **US-201: Registro de Tareas Validadas**
 * **Descripción:** Como usuario, quiero registrar un nuevo pendiente para darle seguimiento.

@@ -1,4 +1,4 @@
-# Guía de Selección de Modelos y írbol de Complejidad
+# Guía de Selección de Modelos y árbol de Complejidad
 
 ## Axioma de Costo vs Capacidad de Razonamiento
 No todo problema demanda el "Modelo Más Inteligente".
@@ -18,7 +18,7 @@ Adoptamos un árbol jerárquico para emparejar el problema con el motor adecuado
 
 ---
 
-## írbol de Decisión de Selección
+## árbol de Decisión de Selección
 
 Hágase las siguientes preguntas secuenciales para determinar el modelo mínimo viable:
 

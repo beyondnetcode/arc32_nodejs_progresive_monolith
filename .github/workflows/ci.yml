@@ -17,25 +17,34 @@ jobs:
         with:
           fetch-depth: 0 # Required for SonarCloud analysis
 
+      - name: Validate Documentation Standards
+        run: node .harness/scripts/validate-docs.mjs --render-mermaid
+
       - name: Setup Node.js v18
         uses: actions/setup-node@v4
         with:
           node-version: 18
+          cache-dependency-path: src/package-lock.json
           cache: 'npm'
 
       - name: Install Dependencies
+        working-directory: src
         run: npm ci
 
       - name: Security Vulnerability Audit
+        working-directory: src
         run: npm audit --audit-level=high
 
       - name: Run Global Linter
+        working-directory: src
         run: npx nx run-many --target=lint
 
       - name: Run Unit Tests with Coverage
+        working-directory: src
         run: npx nx run-many --target=test --code-coverage
 
       - name: Build Applications (Vite & NestJS)
+        working-directory: src
         run: npx nx run-many --target=build
 
   # 2. Advanced Security Analysis (CodeQL)

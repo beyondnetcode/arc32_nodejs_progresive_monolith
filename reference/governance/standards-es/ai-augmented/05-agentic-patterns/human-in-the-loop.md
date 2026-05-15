@@ -3,7 +3,7 @@
 ## Definición y Objetivos
 El patrón **Human-in-the-Loop (HITL)** establece barreras forzadas en el flujo de ejecución donde el agente autónomo está obligado a pausar su estado y solicitar la aprobación humana explícita y física para continuar.
 
-Nuestra arquitectura asume que **NINGíN AGENTE ES 100% CONFIABLE** en escenarios con ramificaciones en el mundo físico o legal.
+Nuestra arquitectura asume que **NINGÚN AGENTE ES 100% CONFIABLE** en escenarios con ramificaciones en el mundo físico o legal.
 
 ## ¿Qué decisiones requieren SIEMPRE aprobación humana?
 

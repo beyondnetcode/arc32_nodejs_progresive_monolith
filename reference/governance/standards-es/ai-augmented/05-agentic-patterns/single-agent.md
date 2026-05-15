@@ -1,4 +1,4 @@
-# Patrón: Agente ínico con Herramientas (Single Agent with Tools)
+# Patrón: Agente Único con Herramientas (Single Agent with Tools)
 
 El patrón más sencillo y común. Un único modelo envuelto por un bucle agéntico que posee acceso directo a un conjunto acotado de herramientas y memoria local del hilo de conversación.
 

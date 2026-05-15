@@ -39,7 +39,7 @@ graph TD
 - Mejora el aislamiento del backend (la Capa 1 protege explícitamente a la Capa 2).
 
 ### Negativas
-- Añade una variable de latencia de segundo salto (típicamente insignificante <1ms de sobrecarga si se despliega correctamente).
+- Añade una variable de latencia de segundo salto (tépicamente insignificante <1ms de sobrecarga si se despliega correctamente).
 - Introduce el ciclo de vida del stack operativo de gestión de Kong.
 
 ## Referencias
