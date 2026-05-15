@@ -44,6 +44,12 @@ Decisions applicable to any product built on top of the framework, regardless of
 * [ADR 0048: Enterprise Taxonomy and Reference Layout](./core/0048-enterprise-taxonomy-reference-layout.md)
 * [ADR 0049: Naming Semantics & Clean Code Policy](./core/0049-naming-semantics-clean-code-policy.md)
 * [ADR 0050: Gitflow Branching Strategy Standardization](./core/0050-gitflow-branching-strategy.md)
+* [ADR 0051: Enterprise Database Engine Strategy](./core/0051-enterprise-database-engine-strategy.md)
+* [ADR 0052: Unit Testing Isolation Strategy](./core/0052-unit-testing-isolation-strategy.md)
+* [ADR 0053: Integration & E2E Testing Strategy](./core/0053-integration-e2e-testing-strategy.md)
+* [ADR 0054: Database Design & Normalization Standards](./core/0054-database-design-normalization-standards.md)
+* [ADR 0055: Microfrontends Architecture Strategy](./core/0055-microfrontends-architecture-strategy.md)
+* **[ADR 0056: Enterprise Naming & Design Conventions — Multi-Language, Multi-Platform](./core/0056-enterprise-naming-design-conventions.md)**
 
 ---
 

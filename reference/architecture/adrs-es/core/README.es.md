@@ -33,6 +33,13 @@
 * [0047-architectural-patterns-monolith-soa-microservices](./0047-architectural-patterns-monolith-soa-microservices.md)
 * [0048-enterprise-taxonomy-reference-layout](./0048-enterprise-taxonomy-reference-layout.md)
 * [0049-naming-semantics-clean-code-policy](./0049-naming-semantics-clean-code-policy.md)
+* [0050-estrategia-ramas-gitflow](./0050-estrategia-ramas-gitflow.md)
+* [0051-estrategia-motor-base-datos-empresarial](./0051-estrategia-motor-base-datos-empresarial.md)
+* [0052-estrategia-aislamiento-pruebas-unitarias](./0052-estrategia-aislamiento-pruebas-unitarias.md)
+* [0053-estrategia-pruebas-integracion-e2e](./0053-estrategia-pruebas-integracion-e2e.md)
+* [0054-estandares-diseño-normalizacion-base-datos](./0054-estandares-diseño-normalizacion-base-datos.md)
+* [0055-estrategia-arquitectura-microfrontends](./0055-estrategia-arquitectura-microfrontends.md)
+* **[0056-convenciones-nomenclatura-diseno-empresarial](./0056-convenciones-nomenclatura-diseno-empresarial.md)**
 
 ---
 [Volver al Nivel Superior](../README.md)

@@ -43,6 +43,12 @@ Decisiones aplicables a cualquier producto construido sobre el framework, indepe
 * [ADR 0048: Taxonomía Empresarial y Layout de Referencia](./core/0048-enterprise-taxonomy-reference-layout.md)
 * [ADR 0049: Estándares de Semántica y Nomenclatura Clean Code](./core/0049-naming-semantics-clean-code-policy.md)
 * [ADR 0050: Estandarización de la Estrategia de Ramas Gitflow](./core/0050-estrategia-ramas-gitflow.md)
+* [ADR 0051: Estrategia Empresarial de Motor de Base de Datos](./core/0051-estrategia-motor-base-datos-empresarial.md)
+* [ADR 0052: Estrategia de Aislamiento en Pruebas Unitarias](./core/0052-estrategia-aislamiento-pruebas-unitarias.md)
+* [ADR 0053: Estrategia de Pruebas de Integración y E2E](./core/0053-estrategia-pruebas-integracion-e2e.md)
+* [ADR 0054: Estándares de Diseño y Normalización de Base de Datos](./core/0054-estandares-diseño-normalizacion-base-datos.md)
+* [ADR 0055: Estrategia de Arquitectura de Microfrontends](./core/0055-estrategia-arquitectura-microfrontends.md)
+* **[ADR 0056: Convenciones Empresariales de Nomenclatura y Diseño — Multi-Lenguaje, Multi-Plataforma](./core/0056-convenciones-nomenclatura-diseno-empresarial.md)**
 
 ---
 

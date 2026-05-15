@@ -32,6 +32,14 @@
 * [0046-dapr-unified-observability](./0046-dapr-unified-observability.md)
 * [0047-architectural-patterns-monolith-soa-microservices](./0047-architectural-patterns-monolith-soa-microservices.md)
 * [0048-enterprise-taxonomy-reference-layout](./0048-enterprise-taxonomy-reference-layout.md)
+* [0049-naming-semantics-clean-code-policy](./0049-naming-semantics-clean-code-policy.md)
+* [0050-gitflow-branching-strategy](./0050-gitflow-branching-strategy.md)
+* [0051-enterprise-database-engine-strategy](./0051-enterprise-database-engine-strategy.md)
+* [0052-unit-testing-isolation-strategy](./0052-unit-testing-isolation-strategy.md)
+* [0053-integration-e2e-testing-strategy](./0053-integration-e2e-testing-strategy.md)
+* [0054-database-design-normalization-standards](./0054-database-design-normalization-standards.md)
+* [0055-microfrontends-architecture-strategy](./0055-microfrontends-architecture-strategy.md)
+* [0056-enterprise-naming-design-conventions](./0056-enterprise-naming-design-conventions.md) — **Multi-language, multi-platform naming & design standard**
 
 ---
 [Back to Upper Level](../README.md)
