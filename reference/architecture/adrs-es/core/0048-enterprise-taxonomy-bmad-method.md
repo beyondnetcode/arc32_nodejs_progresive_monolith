@@ -4,26 +4,27 @@
 Aceptado
 
 ## Contexto
-A medida que el ecosistema evoluciona hacia un Monolito Progresivo, la proliferación de carpetas anidadas y la falta de convenciones estrictas de nombres han generado una alta carga cognitiva para los equipos de ingeniería. Se requería una política inmutable que unificara la estructura de directorios, la separación por dominios y la ubicación de los artefactos de gobernanza en la raíz del repositorio, garantizando el principio de **Docs-as-Code**.
+A medida que el ecosistema evoluciona hacia un Monolito Progresivo, la proliferación de carpetas anidadas y la falta de convenciones estrictas de nombres han generado una alta carga cognitiva para los equipos de ingeniería. Se requería una política inmutable que unificara la estructura de directorios, redujera el ruido visual de la raíz, separara el código fuente del corpus de referencia y garantizara el principio de **Docs-as-Code**.
 
 Esta estandarización también optimiza la interacción con agentes de Inteligencia Artificial mediante el soporte de la metodología **BMAD-METHOD**, pero el driver principal es la mantenibilidad y la arquitectura enterprise.
 
 ## Decisión
-Se ha decidido adoptar la **Taxonomía Enterprise v3.0 (Separated Governance & Source)** como el estándar arquitectónico oficial. Esta política impone la segregación absoluta entre la gobernanza documental (Raíz) y la implementación técnica (`src/`).
+Se ha decidido adoptar la **Taxonomía Enterprise v4.0 (Minimal Root, Reference Corpus & Source)** como el estándar arquitectónico oficial. Esta política impone la segregación entre el portal público de raíz, el corpus documental (`reference/`) y la implementación técnica (`src/`).
 
 Las reglas inmutables son:
-1. **Portal de Gobernanza (Raíz)**: Los dominios transversales de gobernanza deben vivir exclusivamente en la raíz del repositorio:
- * `governance/`: Visión, requisitos (BMAD Phase 00-01) y roadmap (Phase 05).
- * `architecture/`: ADRs (Phase 03) y Blueprints (Phase 02).
- * `infrastructure/`: Configuraciones de plataforma e IaC.
- * `operations/`: Observabilidad y monitoreo.
- * `knowledge/`: Onboarding y POCs.
-2. **Source Root (`src/`)**: ínico contenedor de la implementación técnica. No debe contener carpetas redundantes de dominio intermedio (ej. NO usar `src/TODO/`).
-3. **Monorepo Standard (Nx)**: Dentro de `src/`, el código se organiza siguiendo las mejores prácticas de Nx:
+1. **Raíz Minimalista**: La raíz del repositorio debe mantenerse pequeña y navegable. Los puntos de entrada públicos viven en raíz; la documentación profunda vive en `reference/`; la implementación ejecutable vive en `src/`.
+2. **Corpus de Referencia (`reference/`)**: Los dominios documentales transversales deben vivir bajo:
+ * `reference/architecture/`: ADRs, blueprints, C4 model y perfiles de stack.
+ * `reference/governance/`: Políticas, SDLC, estándares, onboarding y reglas documentales.
+ * `reference/knowledge/`: Documentación demo, investigación, POCs y ejemplos.
+ * `reference/operations/`: Observabilidad, monitoreo y playbooks operacionales.
+ * `reference/infrastructure/`: Plataforma local, gateway, contenedores y activos de infraestructura.
+3. **Source Root (`src/`)**: Único contenedor de la implementación técnica. No debe contener carpetas redundantes de dominio intermedio.
+4. **Monorepo Standard (Nx)**: Dentro de `src/`, el código se organiza siguiendo las mejores prácticas de Nx:
  * `src/apps/`: Aplicaciones desplegables.
  * `src/libs/`: Librerías compartidas.
  * `src/package.json` & `src/nx.json`: El motor técnico reside en la raíz de `src/`.
-4. **Límites de Responsabilidad**: El código fuente debe ser agnóstico a la documentación de negocio, permitiendo que la gobernanza evolucione sin afectar el build path.
+5. **Límites de Responsabilidad**: El código fuente debe ser agnóstico a la documentación de negocio, permitiendo que la gobernanza evolucione sin afectar el build path.
 
 ## Consecuencias
 ### Positivas:
@@ -32,8 +33,8 @@ Las reglas inmutables son:
 * **Mejor Interacción con IA:** Los agentes como Cline/Windsurf/Cursor tienen ahora un "Contexto AI" aislado y optimizado (`.harness`) sin generar ruido visual en la raíz.
 
 ### Negativas/Riesgos:
-* **Refactoring Inicial:** Implicó un cambio mayor ("Breaking Change" a nivel de carpetas) que requirió actualizar `nx.json`, `package.json` y re-escribir hipervínculos internos en toda la documentación.
-* **Curva de Aprendizaje:** Los nuevos desarrolladores deben ser capacitados obligatoriamente sobre la política de taxonomía (ubicada en `governance/standards/repository-taxonomy.md`) antes de crear nuevas carpetas.
+* **Refactoring Inicial:** Implicó un cambio mayor a nivel de carpetas que requirió re-escribir hipervínculos internos en toda la documentación.
+* **Curva de Aprendizaje:** Los nuevos desarrolladores deben ser capacitados sobre la política de taxonomía (ubicada en `reference/governance/standards-es/repository-taxonomy.es.md`) antes de crear nuevas carpetas.
 
 ---
-[Volver al Índice](./README.es.md)
+[Volver al Registro ADR](./README.es.md)

@@ -1,6 +1,6 @@
 # Enterprise Taxonomy & Repository Structuring Policy
 
-> **Status:** ¡ Proposed | **Version:** 1.0.0 | **Framework:** BMAD-METHOD & Clean Architecture
+> **Status:** Accepted | **Version:** 4.0.0 | **Framework:** BMAD-METHOD & Docs-as-Code
 
 This document establishes the **official and immutable policy** for the structuring, taxonomy, and governance of this enterprise repository.
 
@@ -15,12 +15,13 @@ This document establishes the **official and immutable policy** for the structur
  .bmad-core/ # Jump to: ENGINE: BMAD-Method implementation (Agents, Tooling)
  .github/ # CI/CD: Workflows, Actions, Issue/PR Templates
  .harness/ # AI CONTEXT: Base rules, Playbooks, Prompts
- governance/ # LAWS: Policies, SDLC, and Standards
- architecture/ # BLUEPRINTS: ADRs, Architecture, C4 Models
- src/ # BUSINESS: Source code encapsulated by domain (DDD). Contains 100% of the product's source code.
- infrastructure/ # FOUNDATION: Infrastructure as Code (IaC), DevOps
- operations/ # RUN: Operations Playbooks, Observability
--- knowledge/ # LEARNING: Onboarding, POCs, Examples, Training
+ reference/ # REFERENCE CORPUS: Architecture, governance, knowledge, operations, and infrastructure
+   architecture/ # BLUEPRINTS: ADRs, architecture, C4 models, stack profiles
+   governance/ # LAWS: Policies, SDLC, standards, onboarding, documentation rules
+   knowledge/ # LEARNING: Demo documentation, research, POCs, examples
+   operations/ # RUN: Operations playbooks and observability assets
+   infrastructure/ # FOUNDATION: Local platform, gateway, containers, infrastructure assets
+ src/ # SOURCE: Executable reference implementation and technical sandbox
 ```
 
 > [!IMPORTANT]
@@ -37,12 +38,23 @@ This document establishes the **official and immutable policy** for the structur
 ## 3. Navigation Strategy (SSoT)
 
 1. **Role-Based Navigation:** Guided by `MASTER_INDEX.md`.
-2. **Docs-as-Code:** Forbidden to repeat standards; always link to `governance/`.
+2. **Docs-as-Code:** Forbidden to repeat standards; always link to the canonical artifact under `reference/`.
 3. **Breadcrumbs:** Every deep Markdown document must contain a backlink to `MASTER_INDEX.md`.
 
 ## 4. Domain Separation (DDD)
 
 The code in `src/` is organized by **Business Capability**. Code inside `user-management` cannot directly import internal files from another domain. Inter-domain communication must be resolved via formal contracts (Interfaces, APIs, Events).
 
+## 5. Root Directory Policy
+
+The repository root must remain intentionally small and navigable. Public discovery starts in `README.md` and `MASTER_INDEX.md`; deep architectural, governance, operational, infrastructure, and knowledge artifacts live under `reference/`.
+
+Only these categories are allowed at root:
+
+- Public navigation files (`README.md`, `README.es.md`, `MASTER_INDEX.md`, `MASTER_INDEX.es.md`, `LICENSE`).
+- Tooling and platform dot-folders (`.github/`, `.harness/`, `.bmad-core/`, editor and automation configuration).
+- `src/` for executable implementation.
+- `reference/` for the documentation and architecture corpus.
+
 ---
-[Back to Index](./README.md)
+[Back to Reference Hub](../../../README.md)
