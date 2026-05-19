@@ -77,6 +77,7 @@ Decisiones vinculadas a runtimes de alto cómputo.
 
 * **[ADR 0041: Arquitectura de Backend Canónica .NET](./dotnet/0041-canonical-dotnet-backend-architecture.md)**
 * [ADR 0048: Estrategia de Endpoints en APIs .NET](./dotnet/0048-enterprise-minimal-apis-adoption.md)
+* **[ADR 0057: Estrategia de Acceso a Datos .NET (EF Core / Dapper)](./dotnet/0057-estrategia-acceso-datos-orm-dotnet.md)**
 
 ---
 
